@@ -407,228 +407,209 @@ var
   /// </remarks>
   webui_set_runtime : procedure(window: TWebUIWindowID; runtime: TWebUIRuntime); stdcall;
 
+  /// <summary>
+  /// Get an argument as integer at a specific index.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="index">The argument position starting from 0.</param>
+  /// <returns>Returns argument as integer.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int_at)</see></para>
+  /// </remarks>
+  webui_get_int_at : function(e: PWebUIEvent; index: NativeUInt): int64; stdcall;
 
+  /// <summary>
+  /// Get the first argument as integer.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <returns>Returns argument as integer.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int)</see></para>
+  /// </remarks>
+  webui_get_int : function(e: PWebUIEvent): int64; stdcall;
 
-/**
- * @brief Get an argument as integer at a specific index
- *
- * @param e The event struct
- * @param index The argument position starting from 0
- *
- * @return Returns argument as integer
- *
- * @example long long int myNum = webui_get_int_at(e, 0);
- */
-WEBUI_EXPORT long long int webui_get_int_at(webui_event_t* e, size_t index);
+  /// <summary>
+  /// Get an argument as string at a specific index.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="index">The argument position starting from 0.</param>
+  /// <returns>Returns argument as string.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string_at)</see></para>
+  /// </remarks>
+  webui_get_string_at : function(e: PWebUIEvent; index: NativeUInt): PWebUIChar; stdcall;
 
-/**
- * @brief Get the first argument as integer
- *
- * @param e The event struct
- *
- * @return Returns argument as integer
- *
- * @example long long int myNum = webui_get_int(e);
- */
-WEBUI_EXPORT long long int webui_get_int(webui_event_t* e);
+  /// <summary>
+  /// Get the first argument as string.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <returns>Returns argument as string.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string)</see></para>
+  /// </remarks>
+  webui_get_string : function(e: PWebUIEvent): PWebUIChar; stdcall;
 
-/**
- * @brief Get an argument as string at a specific index
- *
- * @param e The event struct
- * @param index The argument position starting from 0
- *
- * @return Returns argument as string
- *
- * @example const char* myStr = webui_get_string_at(e, 0);
- */
-WEBUI_EXPORT const char* webui_get_string_at(webui_event_t* e, size_t index);
+  /// <summary>
+  /// Get an argument as boolean at a specific index.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="index">The argument position starting from 0.</param>
+  /// <returns>Returns argument as boolean.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_bool_at)</see></para>
+  /// </remarks>
+  webui_get_bool_at : function(e: PWebUIEvent; index: NativeUInt): boolean; stdcall;
 
-/**
- * @brief Get the first argument as string
- *
- * @param e The event struct
- *
- * @return Returns argument as string
- *
- * @example const char* myStr = webui_get_string(e);
- */
-WEBUI_EXPORT const char* webui_get_string(webui_event_t* e);
+  /// <summary>
+  /// Get the first argument as boolean.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <returns>Returns argument as boolean.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_bool)</see></para>
+  /// </remarks>
+  webui_get_bool : function(e: PWebUIEvent): boolean; stdcall;
 
-/**
- * @brief Get an argument as boolean at a specific index
- *
- * @param e The event struct
- * @param index The argument position starting from 0
- *
- * @return Returns argument as boolean
- *
- * @example bool myBool = webui_get_bool_at(e, 0);
- */
-WEBUI_EXPORT bool webui_get_bool_at(webui_event_t* e, size_t index);
+  /// <summary>
+  /// Get the size in bytes of an argument at a specific index.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="index">The argument position starting from 0.</param>
+  /// <returns>Returns size in bytes.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_size_at)</see></para>
+  /// </remarks>
+  webui_get_size_at : function(e: PWebUIEvent; index: NativeUInt): NativeUInt; stdcall;
 
-/**
- * @brief Get the first argument as boolean
- *
- * @param e The event struct
- *
- * @return Returns argument as boolean
- *
- * @example bool myBool = webui_get_bool(e);
- */
-WEBUI_EXPORT bool webui_get_bool(webui_event_t* e);
+  /// <summary>
+  /// Get size in bytes of the first argument.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <returns>Returns size in bytes.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_size)</see></para>
+  /// </remarks>
+  webui_get_size : function(e: PWebUIEvent): NativeUInt; stdcall;
 
-/**
- * @brief Get the size in bytes of an argument at a specific index
- *
- * @param e The event struct
- * @param index The argument position starting from 0
- *
- * @return Returns size in bytes
- *
- * @example size_t argLen = webui_get_size_at(e, 0);
- */
-WEBUI_EXPORT size_t webui_get_size_at(webui_event_t* e, size_t index);
+  /// <summary>
+  /// Return the response to JavaScript as integer.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="n">The integer to be send to JavaScript.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_int)</see></para>
+  /// </remarks>
+  webui_return_int : procedure(e: PWebUIEvent; n: int64); stdcall;
 
-/**
- * @brief Get size in bytes of the first argument
- *
- * @param e The event struct
- *
- * @return Returns size in bytes
- *
- * @example size_t argLen = webui_get_size(e);
- */
-WEBUI_EXPORT size_t webui_get_size(webui_event_t* e);
+  /// <summary>
+  /// Return the response to JavaScript as string.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="s">The string to be send to JavaScript.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
+  /// </remarks>
+  webui_return_string : procedure(e: PWebUIEvent; const s: PWebUIChar); stdcall;
 
-/**
- * @brief Return the response to JavaScript as integer.
- *
- * @param e The event struct
- * @param n The integer to be send to JavaScript
- *
- * @example webui_return_int(e, 123);
- */
-WEBUI_EXPORT void webui_return_int(webui_event_t* e, long long int n);
+  /// <summary>
+  /// Return the response to JavaScript as boolean.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <param name="n">The boolean to be send to JavaScript.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_bool)</see></para>
+  /// </remarks>
+  webui_return_bool : procedure(e: PWebUIEvent; n: boolean); stdcall;
 
-/**
- * @brief Return the response to JavaScript as string.
- *
- * @param e The event struct
- * @param n The string to be send to JavaScript
- *
- * @example webui_return_string(e, "Response...");
- */
-WEBUI_EXPORT void webui_return_string(webui_event_t* e, const char* s);
+  /// <summary>
+  /// Bind a specific HTML element click event with a function. Empty element means all events.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="element">The element ID.</param>
+  /// <param name="func">The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</param>
+  /// <returns>Returns unique bind ID.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_bind)</see></para>
+  /// </remarks>
+  webui_interface_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIInterfaceEventCallback): TWebUIBindID; stdcall;
 
-/**
- * @brief Return the response to JavaScript as boolean.
- *
- * @param e The event struct
- * @param n The boolean to be send to JavaScript
- *
- * @example webui_return_bool(e, true);
- */
-WEBUI_EXPORT void webui_return_bool(webui_event_t* e, bool b);
+  /// <summary>
+  /// When using `webui_interface_bind()`, you may need this function to easily set a response.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="response">The response as string to be send to JavaScript.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
+  /// </remarks>
+  webui_interface_set_response : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const response: PWebUIChar); stdcall;
 
-// -- Wrapper's Interface -------------
+  /// <summary>
+  /// Check if the app still running.
+  /// </summary>
+  /// <returns>Returns True if app is running.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_is_app_running)</see></para>
+  /// </remarks>
+  webui_interface_is_app_running : function(): boolean; stdcall;
 
-/**
- * @brief Bind a specific HTML element click event with a function. Empty element means all events.
- *
- * @param window The window number
- * @param element The element ID
- * @param func The callback as myFunc(Window, EventType, Element, EventNumber, BindID)
- *
- * @return Returns unique bind ID
- *
- * @example size_t id = webui_interface_bind(myWindow, "myID", myCallback);
- */
-WEBUI_EXPORT size_t webui_interface_bind(size_t window, const char* element,
-    void (*func)(size_t, size_t, char*, size_t, size_t));
+  /// <summary>
+  /// Get a unique window ID.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <returns>Returns the unique window ID as integer.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_window_id)</see></para>
+  /// </remarks>
+  webui_interface_get_window_id : function(window: TWebUIWindowID): TWebUIWindowID; stdcall;
 
-/**
- * @brief When using `webui_interface_bind()`, you may need this function to easily set a response.
- *
- * @param window The window number
- * @param event_number The event number
- * @param response The response as string to be send to JavaScript
- *
- * @example webui_interface_set_response(myWindow, e->event_number, "Response...");
- */
-WEBUI_EXPORT void webui_interface_set_response(size_t window, size_t event_number, const char* response);
+  /// <summary>
+  /// Get an argument as string at a specific index.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="index">The argument position.</param>
+  /// <returns>Returns argument as string.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_string_at)</see></para>
+  /// </remarks>
+  webui_interface_get_string_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): PWebUIChar; stdcall;
 
-/**
- * @brief Check if the app still running.
- *
- * @return Returns True if app is running
- *
- * @example bool status = webui_interface_is_app_running();
- */
-WEBUI_EXPORT bool webui_interface_is_app_running(void);
+  /// <summary>
+  /// Get an argument as integer at a specific index.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="index">The argument position.</param>
+  /// <returns>Returns argument as integer.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_int_at)</see></para>
+  /// </remarks>
+  webui_interface_get_int_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): int64; stdcall;
 
-/**
- * @brief Get a unique window ID.
- *
- * @param window The window number
- *
- * @return Returns the unique window ID as integer
- *
- * @example size_t id = webui_interface_get_window_id(myWindow);
- */
-WEBUI_EXPORT size_t webui_interface_get_window_id(size_t window);
+  /// <summary>
+  /// Get an argument as boolean at a specific index.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="index">The argument position.</param>
+  /// <returns>Returns argument as boolean.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_bool_at)</see></para>
+  /// </remarks>
+  webui_interface_get_bool_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): boolean; stdcall;
 
-/**
- * @brief Get an argument as string at a specific index
- *
- * @param window The window number
- * @param event_number The event number
- * @param index The argument position
- *
- * @return Returns argument as string
- *
- * @example const char* myStr = webui_interface_get_string_at(myWindow, e->event_number, 0);
- */
-WEBUI_EXPORT const char* webui_interface_get_string_at(size_t window, size_t event_number, size_t index);
-
-/**
- * @brief Get an argument as integer at a specific index
- *
- * @param window The window number
- * @param event_number The event number
- * @param index The argument position
- *
- * @return Returns argument as integer
- *
- * @example long long int myNum = webui_interface_get_int_at(myWindow, e->event_number, 0);
- */
-WEBUI_EXPORT long long int webui_interface_get_int_at(size_t window, size_t event_number, size_t index);
-
-/**
- * @brief Get an argument as boolean at a specific index
- *
- * @param window The window number
- * @param event_number The event number
- * @param index The argument position
- *
- * @return Returns argument as boolean
- *
- * @example bool myBool = webui_interface_get_bool_at(myWindow, e->event_number, 0);
- */
-WEBUI_EXPORT bool webui_interface_get_bool_at(size_t window, size_t event_number, size_t index);
-
-/**
- * @brief Get the size in bytes of an argument at a specific index
- *
- * @param window The window number
- * @param event_number The event number
- * @param index The argument position
- *
- * @return Returns size in bytes
- *
- * @example size_t argLen = webui_interface_get_size_at(myWindow, e->event_number, 0);
- */
-WEBUI_EXPORT size_t webui_interface_get_size_at(size_t window, size_t event_number, size_t index);
+  /// <summary>
+  /// Get the size in bytes of an argument at a specific index.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="index">The argument position.</param>
+  /// <returns>Returns size in bytes.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_size_at)</see></para>
+  /// </remarks>
+  webui_interface_get_size_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): NativeUInt; stdcall;
 
 implementation
 

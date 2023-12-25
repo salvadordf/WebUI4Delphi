@@ -125,6 +125,11 @@ type
   TWebUIBindID = type NativeUInt;
 
   /// <summary>
+  /// The event number or event ID.
+  /// </summary>
+  TWebUIEventID = type NativeUInt;
+
+  /// <summary>
   /// WebUI char type.
   /// </summary>
   TWebUIChar = type AnsiChar;
@@ -144,25 +149,25 @@ type
     /// <summary>
     /// Event type.
     /// </summary>
-    event_type   : NativeUInt;
+    event_type   : TWebUIEventType;
     /// <summary>
     /// HTML element ID.
     /// </summary>
-    element      : PAnsiChar;
+    element      : PWebUIChar;
     /// <summary>
     /// Internal WebUI.
     /// </summary>
-    event_number : NativeUInt;
+    event_number : TWebUIEventID;
     /// <summary>
     /// Bind ID.
     /// </summary>
-    bind_id      : NativeUInt;
+    bind_id      : TWebUIBindID;
   end;
   PWebUIEvent = ^TWebUIEvent;
 
   TWebUIBindCallback           = procedure(e: PWebUIEvent);
   TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): PWebUIChar;
-  TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: NativeUInt; const element: PWebUIChar; event_number: NativeUInt; bind_id: TWebUIBindID);
+  TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
 
 implementation
 
