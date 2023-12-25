@@ -1,0 +1,13 @@
+{
+    "id": "{53290E35-72F4-46AF-A124-CBEFB4A41EE2}",
+    "picture": "packages\\res\\webui.png",
+    "licenses":
+    [
+        {
+          "type": "MIT",
+          "file": "LICENSE"
+        }
+    ],
+    "platforms": "Win32;Win64",
+    "dependencies": []
+}
