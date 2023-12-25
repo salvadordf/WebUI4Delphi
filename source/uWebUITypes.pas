@@ -4,6 +4,17 @@ interface
 
 type
   /// <summary>
+  /// TWebUILoader status values
+  /// </summary>
+  TLoaderStatus = (lsCreated,
+                   lsLoading,
+                   lsLoaded,
+                   lsImported,
+                   lsInitialized,
+                   lsError,
+                   lsUnloaded);
+
+  /// <summary>
   /// Supported web browsers.
   /// </summary>
   /// <remarks>

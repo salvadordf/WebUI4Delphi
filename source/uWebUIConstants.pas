@@ -2,11 +2,7 @@ unit uWebUIConstants;
 
 interface
 
-{$I ..\source\uWebUI.inc}
-
 const
-  {$I ..\source\uWebUIVersion.inc}
-
   /// <summary>
   /// WebUI library version.
   /// </summary>
@@ -30,6 +26,8 @@ const
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (WEBUI_MAX_ARG)</see></para>
   /// </remarks>
   WEBUI_MAX_ARG = 16;
+
+  WEBUI_LIB = 'webui-2.dll';
 
 implementation
 

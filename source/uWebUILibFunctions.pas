@@ -138,9 +138,7 @@ var
   /// Set a custom handler to serve files.
   /// </summary>
   /// <param name="window">The window number.</param>
-  /// <param name="path">The local folder full path.</param>
-  /// <param name="handler">The handler function.</param>
-  /// <returns>Returns True if the function was successful.</returns>
+  /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
   /// </remarks>
@@ -515,11 +513,11 @@ var
   /// Return the response to JavaScript as boolean.
   /// </summary>
   /// <param name="e">The event struct.</param>
-  /// <param name="n">The boolean to be send to JavaScript.</param>
+  /// <param name="b">The boolean to be send to JavaScript.</param>
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_bool)</see></para>
   /// </remarks>
-  webui_return_bool : procedure(e: PWebUIEvent; n: boolean); stdcall;
+  webui_return_bool : procedure(e: PWebUIEvent; b: boolean); stdcall;
 
   /// <summary>
   /// Bind a specific HTML element click event with a function. Empty element means all events.
