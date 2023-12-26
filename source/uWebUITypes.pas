@@ -9,7 +9,6 @@ type
   TLoaderStatus = (lsCreated,
                    lsLoading,
                    lsLoaded,
-                   lsImported,
                    lsInitialized,
                    lsError,
                    lsUnloaded);

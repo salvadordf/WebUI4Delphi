@@ -29,6 +29,11 @@ const
 
   WEBUI_LIB = 'webui-2.dll';
 
+  /// <summary>
+  /// Default timeout in seconds before the browser starts.
+  /// </summary>
+  WEBUI_DEFAULT_TIMEOUT = 30;
+
 implementation
 
 end.

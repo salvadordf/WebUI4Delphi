@@ -35,7 +35,10 @@ contains
   uWebUITypes in '..\source\uWebUITypes.pas',
   uWebUIConstants in '..\source\uWebUIConstants.pas',
   uWebUILibFunctions in '..\source\uWebUILibFunctions.pas',
-  uWebUILoader in '..\source\uWebUILoader.pas',
-  uWebUIMiscFunctions in '..\source\uWebUIMiscFunctions.pas';
+  uWebUI in '..\source\uWebUI.pas',
+  uWebUIMiscFunctions in '..\source\uWebUIMiscFunctions.pas',
+  uWebUIEvent in '..\source\uWebUIEvent.pas',
+  uWebUIWindow in '..\source\uWebUIWindow.pas',
+  uWebUIBase64 in '..\source\uWebUIBase64.pas';
 
 end.

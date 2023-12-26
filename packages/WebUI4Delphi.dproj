@@ -131,8 +131,11 @@
         <DCCReference Include="..\source\uWebUITypes.pas"/>
         <DCCReference Include="..\source\uWebUIConstants.pas"/>
         <DCCReference Include="..\source\uWebUILibFunctions.pas"/>
-        <DCCReference Include="..\source\uWebUILoader.pas"/>
+        <DCCReference Include="..\source\uWebUI.pas"/>
         <DCCReference Include="..\source\uWebUIMiscFunctions.pas"/>
+        <DCCReference Include="..\source\uWebUIEvent.pas"/>
+        <DCCReference Include="..\source\uWebUIWindow.pas"/>
+        <DCCReference Include="..\source\uWebUIBase64.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -176,6 +179,12 @@
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\23.0\Bpl\WebUI4Delphi.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
+                        <RemoteName>WebUI4Delphi.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\23.0\Bpl\Win64\WebUI4Delphi.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
                         <RemoteName>WebUI4Delphi.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>

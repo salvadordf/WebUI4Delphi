@@ -29,4 +29,30 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = Button2Click
   end
+  object Button3: TButton
+    Left = 368
+    Top = 176
+    Width = 75
+    Height = 25
+    Caption = 'Show'
+    TabOrder = 2
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 368
+    Top = 256
+    Width = 75
+    Height = 25
+    Caption = 'Url'
+    TabOrder = 3
+    OnClick = Button4Click
+  end
+  object Edit1: TEdit
+    Left = 449
+    Top = 257
+    Width = 152
+    Height = 23
+    TabOrder = 4
+    Text = 'Edit1'
+  end
 end

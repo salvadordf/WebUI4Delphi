@@ -37,7 +37,7 @@ function PathIsURLUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL 
 implementation
 
 uses
-  uWebUILoader;
+  uWebUI;
 
 procedure OutputDebugMessage(const aMessage : string);
 begin
@@ -50,7 +50,7 @@ function CustomExceptionHandler(const aFunctionName : string; const aException :
 begin
   OutputDebugMessage(aFunctionName + ' error : ' + aException.message);
 
-  Result := (GlobalWebUILoader <> nil) and GlobalWebUILoader.ReRaiseExceptions;
+  Result := (WebUI <> nil) and WebUI.ReRaiseExceptions;
 end;
 
 function CustomPathIsRelative(const aPath : string) : boolean;
