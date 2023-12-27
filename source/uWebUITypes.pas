@@ -165,7 +165,7 @@ type
     /// </summary>
     element      : PWebUIChar;
     /// <summary>
-    /// Internal WebUI.
+    /// Internal WebUI. Event number or Event ID.
     /// </summary>
     event_number : TWebUIEventID;
     /// <summary>

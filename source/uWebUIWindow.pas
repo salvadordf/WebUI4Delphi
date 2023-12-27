@@ -13,6 +13,9 @@ uses
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 type
+  /// <summary>
+  /// Window wrapper for Window objects in WebUI.
+  /// </summary>
   TWebUIWindow = class
     protected
       FID  : TWebUIWindowID;
@@ -55,7 +58,17 @@ type
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
       /// </remarks>
-      function    Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID;
+      function    Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID; overload;
+      /// <summary>
+      /// Bind a specific HTML element click event with a function. Empty element means all events.
+      /// </summary>
+      /// <param name="element_">The element ID.</param>
+      /// <param name="func_">The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</param>
+      /// <returns>Returns unique bind ID.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_bind)</see></para>
+      /// </remarks>
+      function    Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID; overload;
       /// <summary>
       /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
       /// </summary>
@@ -359,6 +372,20 @@ begin
     begin
       LElement := UTF8Encode(element_ + #0);
       Result   := webui_bind(FID, @LElement[1], func_);
+    end;
+end;
+
+function TWebUIWindow.Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID;
+var
+  LElement: AnsiString;
+begin
+  Result := 0;
+
+  if Initialized then
+    begin
+      LElement := UTF8Encode(element_ + #0);
+      //Result   := webui_bind(FID, @LElement[1], func_);
+      Result   := webui_interface_bind(FID, @LElement[1], func_);
     end;
 end;
 
