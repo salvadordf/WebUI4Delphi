@@ -28,11 +28,14 @@ const
   WEBUI_MAX_ARG = 16;
 
   WEBUI_LIB = 'webui-2.dll';
+  WEBUI_DEBUG_LIB = 'webui-2_debug.dll';
 
   /// <summary>
   /// Default timeout in seconds before the browser starts.
   /// </summary>
   WEBUI_DEFAULT_TIMEOUT = 30;
+
+  CRLF = #13 + #10;
 
 implementation
 

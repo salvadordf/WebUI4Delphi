@@ -2,6 +2,8 @@ unit uWebUIBase64;
 
 {$I uWebUI.inc}
 
+{$MINENUMSIZE 4}
+
 interface
 
 uses

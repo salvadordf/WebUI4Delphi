@@ -8,11 +8,12 @@ program call_c_from_js;
 
 uses
   {$IFDEF DELPHI16_UP}
-  System.SysUtils,
+  System.SysUtils, System.Classes,
   {$ELSE}
   SysUtils,
   {$ENDIF}
-  uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler;
+  uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
+  uWebUIConstants;
 
 var
   LWindow : TWebUIWindow;
@@ -117,70 +118,73 @@ begin
   try
     try
       WebUI := TWebUI.Create;
+      {$IFDEF DEBUG}
+      WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+      {$ENDIF}
       if WebUI.Initialize then
         begin
-          LMyHTML := '<!DOCTYPE html>' +
-                     '<html>' +
-                     '  <head>' +
-                     '    <meta charset="UTF-8">' +
-                     '    <script src="webui.js"></script>' +
-                     '    <title>Call C from JavaScript Example</title>' +
-                     '    <style>' +
-                     '       body {' +
-                     '            font-family: ' + quotedstr('Arial') + ', sans-serif;' +
-                     '            color: white;' +
-                     '            background: linear-gradient(to right, #507d91, #1c596f, #022737);' +
-                     '            text-align: center;' +
-                     '            font-size: 18px;' +
-                     '        }' +
-                     '        button, input {' +
-                     '            padding: 10px;' +
-                     '            margin: 10px;' +
-                     '            border-radius: 3px;' +
-                     '            border: 1px solid #ccc;' +
-                     '            box-shadow: 0 3px 5px rgba(0,0,0,0.1);' +
-                     '            transition: 0.2s;' +
-                     '        }' +
-                     '        button {' +
-                     '            background: #3498db;' +
-                     '            color: #fff; ' +
-                     '            cursor: pointer;' +
-                     '            font-size: 16px;' +
-                     '        }' +
-                     '        h1 { text-shadow: -7px 10px 7px rgb(67 57 57 / 76%); }' +
-                     '        button:hover { background: #c9913d; }' +
-                     '        input:focus { outline: none; border-color: #3498db; }' +
-                     '    </style>' +
-                     '  </head>' +
-                     '  <body>' +
-                     '    <h1>WebUI - Call C from JavaScript</h1>' +
-                     '    <p>Call C functions with arguments (<em>See the logs in your terminal</em>)</p>' +
-                     '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello') + ', ' + quotedstr('World') + ');">Call my_function_string()</button>' +
-                     '    <br>' +
-                     '    <button onclick="webui.call(' + quotedstr('MyID_Two') + ', 123, 456, 789);">Call my_function_integer()</button>' +
-                     '    <br>' +
-                     '    <button onclick="webui.call(' + quotedstr('MyID_Three') + ', true, false);">Call my_function_boolean()</button>' +
-                     '    <br>' +
-                     '    <button onclick="webui.call(' + quotedstr('MyID_RawBinary') + ', new Uint8Array([0x41,0x42,0x43]), big_arr);"> ' +
-                     '     Call my_function_raw_binary()</button>' +
-                     '    <br>' +
-                     '    <p>Call a C function that returns a response</p>' +
-                     '    <button onclick="MyJS();">Call my_function_with_response()</button>' +
-                     '    <div>Double: <input type="text" id="MyInputID" value="2"></div>' +
-                     '    <script>' +
-                     '      const arr_size = 512 * 1000;' +
-                     '      const big_arr = new Uint8Array(arr_size);' +
-                     '      big_arr[0] = 0xA1;' +
-                     '      big_arr[arr_size - 1] = 0xA2;' +
-                     '      function MyJS() {' +
-                     '        const MyInput = document.getElementById(' + quotedstr('MyInputID') + ');' +
-                     '        const number = MyInput.value;' +
-                     '        webui.call(' + quotedstr('MyID_Four') + ', number, 2).then((response) => {' +
-                     '            MyInput.value = response;' +
-                     '        });' +
-                     '      }' +
-                     '    </script>' +
-                     '  </body>' +
+          LMyHTML := '<!DOCTYPE html>' + CRLF +
+                     '<html>' + CRLF +
+                     '  <head>' + CRLF +
+                     '    <meta charset="UTF-8">' + CRLF +
+                     '    <script src="webui.js"></script>' + CRLF +
+                     '    <title>Call C from JavaScript Example</title>' + CRLF +
+                     '    <style>' + CRLF +
+                     '       body {' + CRLF +
+                     '            font-family: ' + quotedstr('Arial') + ', sans-serif;' + CRLF +
+                     '            color: white;' + CRLF +
+                     '            background: linear-gradient(to right, #507d91, #1c596f, #022737);' + CRLF +
+                     '            text-align: center;' + CRLF +
+                     '            font-size: 18px;' + CRLF +
+                     '        }' + CRLF +
+                     '        button, input {' + CRLF +
+                     '            padding: 10px;' + CRLF +
+                     '            margin: 10px;' + CRLF +
+                     '            border-radius: 3px;' + CRLF +
+                     '            border: 1px solid #ccc;' + CRLF +
+                     '            box-shadow: 0 3px 5px rgba(0,0,0,0.1);' + CRLF +
+                     '            transition: 0.2s;' + CRLF +
+                     '        }' + CRLF +
+                     '        button {' + CRLF +
+                     '            background: #3498db;' + CRLF +
+                     '            color: #fff; ' + CRLF +
+                     '            cursor: pointer;' + CRLF +
+                     '            font-size: 16px;' + CRLF +
+                     '        }' + CRLF +
+                     '        h1 { text-shadow: -7px 10px 7px rgb(67 57 57 / 76%); }' + CRLF +
+                     '        button:hover { background: #c9913d; }' + CRLF +
+                     '        input:focus { outline: none; border-color: #3498db; }' + CRLF +
+                     '    </style>' + CRLF +
+                     '  </head>' + CRLF +
+                     '  <body>' + CRLF +
+                     '    <h1>WebUI - Call C from JavaScript</h1>' + CRLF +
+                     '    <p>Call C functions with arguments (<em>See the logs in your terminal</em>)</p>' + CRLF +
+                     '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello') + ', ' + quotedstr('World') + ');">Call my_function_string()</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button onclick="webui.call(' + quotedstr('MyID_Two') + ', 123, 456, 789);">Call my_function_integer()</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button onclick="webui.call(' + quotedstr('MyID_Three') + ', true, false);">Call my_function_boolean()</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button onclick="webui.call(' + quotedstr('MyID_RawBinary') + ', new Uint8Array([0x41,0x42,0x43]), big_arr);"> ' + CRLF +
+                     '     Call my_function_raw_binary()</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <p>Call a C function that returns a response</p>' + CRLF +
+                     '    <button onclick="MyJS();">Call my_function_with_response()</button>' + CRLF +
+                     '    <div>Double: <input type="text" id="MyInputID" value="2"></div>' + CRLF +
+                     '    <script>' + CRLF +
+                     '      const arr_size = 512 * 1000;' + CRLF +
+                     '      const big_arr = new Uint8Array(arr_size);' + CRLF +
+                     '      big_arr[0] = 0xA1;' + CRLF +
+                     '      big_arr[arr_size - 1] = 0xA2;' + CRLF +
+                     '      function MyJS() {' + CRLF +
+                     '        const MyInput = document.getElementById(' + quotedstr('MyInputID') + ');' + CRLF +
+                     '        const number = MyInput.value;' + CRLF +
+                     '        webui.call(' + quotedstr('MyID_Four') + ', number, 2).then((response) => {' + CRLF +
+                     '            MyInput.value = response;' + CRLF +
+                     '        });' + CRLF +
+                     '      }' + CRLF +
+                     '    </script>' + CRLF +
+                     '  </body>' + CRLF +
                      '</html>';
 
           LWindow := TWebUIWindow.Create;
@@ -198,6 +202,11 @@ begin
 
       DestroyWebUI;
     end;
+    WriteLn('');
+    WriteLn('*******************');
+    WriteLn('*   PRESS ENTER   *');
+    WriteLn('*******************');
+    ReadLn;
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);

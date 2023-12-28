@@ -2,6 +2,8 @@ unit uWebUIWindow;
 
 {$I uWebUI.inc}
 
+{$MINENUMSIZE 4}
+
 interface
 
 uses
@@ -41,7 +43,7 @@ type
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_new_window_id)</see></para>
       /// </remarks>
-      constructor Create(windowId : TWebUIWindowID); overload;
+      constructor Create(windowId : TWebUIWindowID; createWebUIWindow: boolean = True); overload;
       /// <summary>
       /// Close the window and free all memory resources.
       /// </summary>
@@ -293,16 +295,21 @@ begin
     FID := 0;
 end;
 
-constructor TWebUIWindow.Create(windowId : TWebUIWindowID);
+constructor TWebUIWindow.Create(windowId : TWebUIWindowID; createWebUIWindow: boolean);
 begin
   inherited Create;
 
   if (WebUI <> nil) and WebUI.Initialized then
     begin
-      if (windowId > 0) and (windowId < WEBUI_MAX_IDS) then
-        FID := webui_new_window_id(windowId)
+      if createWebUIWindow then
+        begin
+          if (windowId > 0) and (windowId < WEBUI_MAX_IDS) then
+            FID := webui_new_window_id(windowId)
+           else
+            FID := webui_new_window();
+        end
        else
-        FID := webui_new_window();
+        FID := windowId;
     end
    else
     FID := 0;

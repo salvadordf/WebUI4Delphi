@@ -2,6 +2,8 @@ unit uWebUIEventHandler;
 
 {$I uWebUI.inc}
 
+{$MINENUMSIZE 4}
+
 interface
 
 uses
@@ -201,7 +203,7 @@ begin
     end;
 
   if (FEvent.window <> 0) then
-    FWindow := TWebUIWindow.Create(FEvent.window)
+    FWindow := TWebUIWindow.Create(FEvent.window, False)
    else
     FWindow := nil;
 end;
@@ -217,7 +219,7 @@ begin
   FEvent.bind_id      := bind_id;
 
   if (FEvent.window <> 0) then
-    FWindow := TWebUIWindow.Create(FEvent.window)
+    FWindow := TWebUIWindow.Create(FEvent.window, False)
    else
     FWindow := nil;
 end;

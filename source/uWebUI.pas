@@ -2,6 +2,8 @@ unit uWebUI;
 
 {$I uWebUI.inc}
 
+{$MINENUMSIZE 4}
+
 interface
 
 uses
@@ -32,8 +34,8 @@ type
 
       procedure SetTimeout(aValue: NativeUInt);
 
-      function  LoadLibProcedures : boolean;
       function  LoadWebUILibrary : boolean;
+      function  LoadLibProcedures : boolean;
       procedure UnLoadWebUILibrary;
       procedure ShowErrorMessageDlg(const aError : string);
 

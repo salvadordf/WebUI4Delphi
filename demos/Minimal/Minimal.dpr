@@ -1,6 +1,6 @@
 program Minimal;
 
-{$I uWebUI.inc}
+{$I ..\..\source\uWebUI.inc}
 
 {$APPTYPE CONSOLE}
 

@@ -1,5 +1,7 @@
 unit uWebUITypes;
 
+{$MINENUMSIZE 4}
+
 interface
 
 type
