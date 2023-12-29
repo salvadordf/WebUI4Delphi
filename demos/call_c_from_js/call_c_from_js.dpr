@@ -74,22 +74,28 @@ end;
 
 procedure my_function_raw_binary(e: PWebUIEvent);
 var
-  LEvent : TWebUIEventHandler;
-  raw_1, raw_2 : string;
-  len_1, len_2 : NativeUInt;
+  LEvent  : TWebUIEventHandler;
+  LStream : TMemoryStream;
+  LData   : byte;
+  LHexStr : string;
 begin
-  LEvent := TWebUIEventHandler.Create(e);
+  LEvent  := TWebUIEventHandler.Create(e);
+  LStream := TMemoryStream.Create;
 
 	// JavaScript:
-	// webui.call('MyID_RawBinary', new Uint8Array([0x41]), new Uint8Array([0x42, 0x43]));
+	// webui.call('MyID_RawBinary', new Uint8Array([0x41,0x42,0x43]), big_arr);
 
-  raw_1 := LEvent.GetString;
-  raw_2 := LEvent.GetStringAt(1);
-  len_1 := LEvent.GetSize;
-  len_2 := LEvent.GetSizeAt(1);
+  if LEvent.GetStream(LStream) then
+    begin
+      LHexStr := 'my_function_raw_binary 1: ';
 
-  // ******
+      while (LStream.ReadData(LData, 1) > 0) do
+        LHexStr := LHexStr + uppercase(inttohex(LData, 2));
 
+      writeln(LHexStr);
+    end;
+
+  LStream.Free;
   LEvent.Free;
 end;
 

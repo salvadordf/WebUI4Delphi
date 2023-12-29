@@ -48,7 +48,6 @@ type
       /// <summary>
       /// Get the first argument as integer.
       /// </summary>
-      /// <param name="e">The event struct.</param>
       /// <returns>Returns argument as integer.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int)</see></para>
@@ -66,12 +65,30 @@ type
       /// <summary>
       /// Get the first argument as string.
       /// </summary>
-      /// <param name="e">The event struct.</param>
       /// <returns>Returns argument as string.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string)</see></para>
       /// </remarks>
       function GetString: string;
+      /// <summary>
+      /// Get an argument as a stream at a specific index.
+      /// </summary>
+      /// <param name="aResultStream">The stream with the returned data.</param>
+      /// <param name="index">The argument position starting from 0.</param>
+      /// <returns>Returns true if the stream has data.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string_at)</see></para>
+      /// </remarks>
+      function GetStreamAt(var aResultStream: TMemoryStream; index: NativeUInt): boolean;
+      /// <summary>
+      /// Get the first argument as a stream.
+      /// </summary>
+      /// <param name="aResultStream">The stream with the returned data.</param>
+      /// <returns>Returns true if the stream has data.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string)</see></para>
+      /// </remarks>
+      function GetStream(var aResultStream: TMemoryStream): boolean;
       /// <summary>
       /// Get an argument as boolean at a specific index.
       /// </summary>
@@ -302,6 +319,51 @@ begin
     Result := UTF8ToString(PAnsiChar(webui_get_string(@FEvent)))
    else
     Result := '';
+end;
+
+function TWebUIEventHandler.GetStreamAt(var aResultStream: TMemoryStream; index: NativeUInt): boolean;
+var
+  LSize   : NativeUInt;
+  LBuffer : PWebUIChar;
+begin
+  Result := False;
+
+  if assigned(aResultStream) then
+    begin
+      LSize := GetSizeAt(index);
+
+      if (LSize > 0) then
+        begin
+          LBuffer := webui_get_string_at(@FEvent, index);
+          aResultStream.Clear;
+          aResultStream.Write(LBuffer^, LSize);
+          aResultStream.Seek(0, soBeginning);
+          Result := True;
+        end;
+    end;
+end;
+
+function TWebUIEventHandler.GetStream(var aResultStream: TMemoryStream): boolean;
+var
+  LSize   : NativeUInt;
+  LBuffer : PWebUIChar;
+begin
+  Result := False;
+
+  if assigned(aResultStream) then
+    begin
+      aResultStream.Clear;
+      LSize := GetSize;
+
+      if (LSize > 0) then
+        begin
+          LBuffer := webui_get_string(@FEvent);
+          aResultStream.Clear;
+          aResultStream.Write(LBuffer^, LSize);
+          aResultStream.Seek(0, soBeginning);
+          Result := True;
+        end;
+    end;
 end;
 
 function TWebUIEventHandler.GetBoolAt(index: NativeUInt): boolean;

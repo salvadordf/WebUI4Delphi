@@ -1,0 +1,138 @@
+program call_js_from_c;
+
+{$I ..\..\source\uWebUI.inc}
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  {$IFDEF DELPHI16_UP}
+  System.SysUtils, System.Classes,
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
+  uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
+  uWebUIConstants;
+
+var
+  LWindow : TWebUIWindow;
+  LMyHTML : string;
+
+procedure my_function_exit(e: PWebUIEvent);
+begin
+  WebUI.Exit;
+end;
+
+procedure my_function_count(e: PWebUIEvent);
+var
+  LEvent : TWebUIEventHandler;
+  LResult : string;
+  LCount : integer;
+begin
+  // This function gets called every time the user clicks on "MyButton1"
+  LEvent := TWebUIEventHandler.Create(e);
+
+  if not(LWindow.Script('return GetCount();', 0, LResult, 64)) then
+    begin
+      if not(LWindow.IsShown) then
+        writeln('The window is closed.')
+       else
+        writeln('Javascript error : ' + LResult);
+    end
+   else
+    begin
+      LCount := StrToIntDef(LResult, 0);
+      inc(LCount);
+      LWindow.Run('SetCount(' + IntToStr(LCount) + ');');
+    end;
+
+  LEvent.Free;
+end;
+
+begin
+  LWindow := nil;
+  try
+    try
+      WebUI := TWebUI.Create;
+      {$IFDEF DEBUG}
+      WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+      {$ENDIF}
+      if WebUI.Initialize then
+        begin
+          LMyHTML := '<!DOCTYPE html>' + CRLF +
+                     '<html>' + CRLF +
+                     '  <head>' + CRLF +
+                     '    <meta charset="UTF-8">' + CRLF +
+                     '    <script src="webui.js"></script>' + CRLF +
+                     '    <title>Call JavaScript from C Example</title>' + CRLF +
+                     '    <style>' + CRLF +
+                     '       body {' + CRLF +
+                     '            font-family: ' + quotedstr('Arial') + ', sans-serif;' + CRLF +
+                     '            color: white;' + CRLF +
+                     '            background: linear-gradient(to right, #507d91, #1c596f, #022737);' + CRLF +
+                     '            text-align: center;' + CRLF +
+                     '            font-size: 18px;' + CRLF +
+                     '        }' + CRLF +
+                     '        button, input {' + CRLF +
+                     '            padding: 10px;' + CRLF +
+                     '            margin: 10px;' + CRLF +
+                     '            border-radius: 3px;' + CRLF +
+                     '            border: 1px solid #ccc;' + CRLF +
+                     '            box-shadow: 0 3px 5px rgba(0,0,0,0.1);' + CRLF +
+                     '            transition: 0.2s;' + CRLF +
+                     '        }' + CRLF +
+                     '        button {' + CRLF +
+                     '            background: #3498db;' + CRLF +
+                     '            color: #fff; ' + CRLF +
+                     '            cursor: pointer;' + CRLF +
+                     '            font-size: 16px;' + CRLF +
+                     '        }' + CRLF +
+                     '        h1 { text-shadow: -7px 10px 7px rgb(67 57 57 / 76%); }' + CRLF +
+                     '        button:hover { background: #c9913d; }' + CRLF +
+                     '        input:focus { outline: none; border-color: #3498db; }' + CRLF +
+                     '    </style>' + CRLF +
+                     '  </head>' + CRLF +
+                     '  <body>' + CRLF +
+                     '    <h1>WebUI - Call JavaScript from C</h1>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <h1 id="count">0</h1>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button id="MyButton1">Manual Count</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button id="MyTest" OnClick="AutoTest();">Auto Count (Every 100ms)</button>' + CRLF +
+                     '    <br>' + CRLF +
+                     '    <button id="MyButton2">Exit</button>' + CRLF +
+                     '    <script>' + CRLF +
+                     '      let count = 0;' + CRLF +
+                     '      function GetCount() {' + CRLF +
+                     '        return count;' + CRLF +
+                     '      }' + CRLF +
+                     '      function SetCount(number) {' + CRLF +
+                     '        document.getElementById(' + quotedstr('count') + ').innerHTML = number;' + CRLF +
+                     '        count = number;' + CRLF +
+                     '      }' + CRLF +
+                     '      function AutoTest(number) {' + CRLF +
+                     '        setInterval(function(){ webui.call(' + quotedstr('MyButton1') + '); }, 100);' + CRLF +
+                     '      }' + CRLF +
+                     '    </script>' + CRLF +
+                     '  </body>' + CRLF +
+                     '</html>';
+
+          LWindow := TWebUIWindow.Create;
+          LWindow.Bind('MyButton1', my_function_count);
+          LWindow.Bind('MyButton2', my_function_exit);
+          LWindow.Show(LMyHTML);
+          WebUI.Wait;
+        end;
+    finally
+      if assigned(LWindow) then
+        FreeAndNil(LWindow);
+
+      DestroyWebUI;
+    end;
+  except
+    on E: Exception do
+      Writeln(E.ClassName, ': ', E.Message);
+  end;
+end.
