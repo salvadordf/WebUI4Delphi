@@ -1,4 +1,4 @@
-program call_js_from_c;
+program call_js_from_delphi;
 
 {$I ..\..\source\uWebUI.inc}
 
@@ -131,6 +131,11 @@ begin
 
       DestroyWebUI;
     end;
+    WriteLn('');
+    WriteLn('*******************');
+    WriteLn('*   PRESS ENTER   *');
+    WriteLn('*******************');
+    ReadLn;
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);

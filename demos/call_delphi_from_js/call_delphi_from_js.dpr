@@ -1,4 +1,4 @@
-program call_c_from_js;
+program call_delphi_from_js;
 
 {$I ..\..\source\uWebUI.inc}
 
