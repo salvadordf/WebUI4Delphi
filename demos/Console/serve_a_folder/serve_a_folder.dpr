@@ -1,22 +1,18 @@
 program serve_a_folder;
 
-{$I ..\..\source\uWebUI.inc}
+{$I ..\..\..\source\uWebUI.inc}
 
 {$APPTYPE CONSOLE}
 
 {$R *.res}
 
 uses
-  {$IFDEF DELPHI16_UP}
   System.SysUtils, System.Classes,
-  {$ELSE}
-  SysUtils,
-  {$ENDIF}
   uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
   uWebUIConstants, uWebUIMiscFunctions;
 
 var
-  LWindow, LSecondWindow : TWebUIWindow;
+  LWindow, LSecondWindow : IWebUIWindow;
   LCount : integer;
   LRoot : string;
 
@@ -121,58 +117,47 @@ begin
 end;
 
 begin
-  LWindow := nil;
   try
-    try
-      WebUI := TWebUI.Create;
-      {$IFDEF DEBUG}
-      WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
-      {$ENDIF}
-      if WebUI.Initialize then
-        begin
-          LWindow       := TWebUIWindow.Create;
-          LSecondWindow := TWebUIWindow.Create;
+    WebUI := TWebUI.Create;
+    {$IFDEF DEBUG}
+    //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+    {$ENDIF}
+    if WebUI.Initialize then
+      begin
+        LWindow       := TWebUIWindow.Create;
+        LSecondWindow := TWebUIWindow.Create;
 
-	        // Bind HTML element IDs with a C functions
-          LWindow.Bind('SwitchToSecondPage', switch_to_second_page);
-          LWindow.Bind('OpenNewWindow', show_second_window);
-          LWindow.Bind('Exit', exit_app);
-          LSecondWindow.Bind('Exit', exit_app);
+        // Bind HTML element IDs with a C functions
+        LWindow.Bind('SwitchToSecondPage', switch_to_second_page);
+        LWindow.Bind('OpenNewWindow', show_second_window);
+        LWindow.Bind('Exit', exit_app);
+        LSecondWindow.Bind('Exit', exit_app);
 
-          // Bind events
-          LWindow.Bind('', events);
+        // Bind events
+        LWindow.Bind('', events);
 
-          // Make Deno as the `.ts` and `.js` interpreter
-          LWindow.SetRuntime(Deno);
+        // Make Deno as the `.ts` and `.js` interpreter
+        LWindow.SetRuntime(Deno);
 
-          // Set a custom files handler
-          LWindow.SetFileHandler(my_files_handler);
+        // Set a custom files handler
+        LWindow.SetFileHandler(my_files_handler);
 
-          // Set window size
-          LWindow.SetSize(800, 800);
+        // Set window size
+        LWindow.SetSize(800, 800);
 
-          // Set window position
-          LWindow.SetPosition(200, 200);
+        // Set window position
+        LWindow.SetPosition(200, 200);
 
-          // Set the web-server root folder for the first window
-          LRoot := CustomAbsolutePath('..\assets\serve_a_folder\', True);
-          LWindow.SetRootFolder(LRoot);
-          LSecondWindow.SetRootFolder(LRoot);
+        // Set the web-server root folder for the first window
+        LRoot := CustomAbsolutePath('..\assets\serve_a_folder\', True);
+        LWindow.SetRootFolder(LRoot);
+        LSecondWindow.SetRootFolder(LRoot);
 
-          // Show a new window
-          LWindow.Show('index.html');
+        // Show a new window
+        LWindow.Show('index.html');
 
-          WebUI.Wait;
-        end;
-    finally
-      if assigned(LWindow) then
-        FreeAndNil(LWindow);
-
-      if assigned(LSecondWindow) then
-        FreeAndNil(LSecondWindow);
-
-      DestroyWebUI;
-    end;
+        WebUI.Wait;
+      end;
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);

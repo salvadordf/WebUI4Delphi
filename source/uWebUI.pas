@@ -7,11 +7,8 @@ unit uWebUI;
 interface
 
 uses
-  {$IFDEF DELPHI16_UP}
   WinApi.Windows, System.Classes, System.SysUtils, Winapi.ShlObj, System.Math,
-  {$ELSE}
-  Windows, Classes, SysUtils, ShlObj, Math,
-  {$ENDIF}
+  System.Generics.Collections, System.SyncObjs,
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 type
@@ -26,22 +23,30 @@ type
       FError                                  : int64;
       FShowMessageDlg                         : boolean;
       FTimeout                                : NativeUInt;
+      FWindowList                             : TList<IWebUIWindow>;
+      FCritSection                            : TCriticalSection;
 
       function  GetErrorMessage : string;
       function  GetInitialized : boolean;
       function  GetInitializationError : boolean;
       function  GetIsAppRunning : boolean;
+      function  GetStatus : TLoaderStatus;
 
       procedure SetTimeout(aValue: NativeUInt);
+      procedure SetStatus(aValue: TLoaderStatus);
 
+      procedure DestroyWindowList;
       function  LoadWebUILibrary : boolean;
       function  LoadLibProcedures : boolean;
       procedure UnLoadWebUILibrary;
       procedure ShowErrorMessageDlg(const aError : string);
+      function  Lock: boolean;
+      procedure Unlock;
 
     public
       constructor Create;
-      destructor  Destroy; override;
+      procedure   AfterConstruction; override;
+      procedure   BeforeDestruction; override;
       /// <summary>
       /// Initialize the WebUI library.
       /// </summary>
@@ -99,11 +104,23 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_tls_certificate)</see></para>
       /// </remarks>
       function    SetTLSCertificate(const certificate_pem, private_key_pem : string): boolean;
+      /// <summary>
+      /// Search an IWebUIWindow instance.
+      /// </summary>
+      function    SearchWindow(windowId: TWebUIWindowID) : IWebUIWindow;
+      /// <summary>
+      /// Add an IWebUIWindow instance.
+      /// </summary>
+      function    AddWindow(window: IWebUIWindow): int64;
+      /// <summary>
+      /// Remove an IWebUIWindow instance.
+      /// </summary>
+      procedure   RemoveWindow(window: IWebUIWindow);
 
       /// <summary>
       /// Returns the TWVLoader initialization status.
       /// </summary>
-      property Status                                 : TLoaderStatus                      read FStatus;
+      property Status                                 : TLoaderStatus                      read GetStatus                                write SetStatus;
       /// <summary>
       /// Returns all the text appended to the error log with AppendErrorLog.
       /// </summary>
@@ -153,16 +170,35 @@ var
   WebUI : TWebUI = nil;
 
 procedure DestroyWebUI;
+procedure global_webui_event_callback(e: PWebUIEvent);
 
 implementation
 
 uses
-  uWebUIMiscFunctions;
+  uWebUIMiscFunctions, uWebUIEventHandler;
 
 procedure DestroyWebUI;
 begin
   if assigned(WebUI) then
     FreeAndNil(WebUI);
+end;
+
+procedure global_webui_event_callback(e: PWebUIEvent);
+var
+  LWindow : IWebUIWindow;
+  LEvent  : IWebUIEventHandler;
+begin
+  if assigned(WebUI) and WebUI.Initialized then
+    try
+      LEvent  := TWebUIEventHandler.Create(e);
+      LWindow := WebUI.SearchWindow(LEvent.WindowID);
+
+      if assigned(LWindow) then
+        LWindow.doOnWebUIEvent(LEvent);
+    finally
+      LEvent  := nil;
+      LWindow := nil;
+    end;
 end;
 
 constructor TWebUI.Create;
@@ -177,19 +213,63 @@ begin
   FErrorLog                               := nil;
   FShowMessageDlg                         := True;
   FTimeout                                := WEBUI_DEFAULT_TIMEOUT;
+  FWindowList                             := nil;
+  FCritSection                            := nil;
 end;
 
-destructor TWebUI.Destroy;
+procedure TWebUI.AfterConstruction;
+begin
+  inherited AfterConstruction;
+
+  FCritSection := TCriticalSection.Create;
+  FWindowList  := TList<IWebUIWindow>.Create;
+end;
+
+procedure TWebUI.BeforeDestruction;
 begin
   try
+    DestroyWindowList;
     Clean;
     UnLoadWebUILibrary;
+
+    if assigned(FCritSection) then
+      FreeAndNil(FCritSection);
 
     if assigned(FErrorLog) then
       FreeAndNil(FErrorLog);
   finally
-    inherited Destroy;
+    inherited BeforeDestruction;
   end;
+end;
+
+function TWebUI.Lock: boolean;
+begin
+  Result := False;
+
+  if assigned(FCritSection) then
+    begin
+      FCritSection.Acquire;
+      Result := True;
+    end;
+end;
+
+procedure TWebUI.Unlock;
+begin
+  if assigned(FCritSection) then
+    FCritSection.Release;
+end;
+
+procedure TWebUI.DestroyWindowList;
+var
+  i: int64;
+begin
+  if assigned(FWindowList) then
+    begin
+      for i := 0 to pred(FWindowList.Count) do
+        FWindowList[i] := nil;
+
+      FreeAndNil(FWindowList);
+    end;
 end;
 
 function TWebUI.Initialize : boolean;
@@ -205,7 +285,7 @@ begin
       begin
         FreeLibrary(FLibHandle);
         FLibHandle := 0;
-        FStatus    := lsUnloaded;
+        Status     := lsUnloaded;
       end;
   except
     on e : exception do
@@ -231,7 +311,7 @@ begin
             chdir(GetModulePath);
           end;
 
-        FStatus := lsLoading;
+        Status := lsLoading;
 
         if (FLoaderDllPath <> '') then
           TempLoaderLibPath := FLoaderDllPath
@@ -242,8 +322,8 @@ begin
 
         if (FLibHandle = 0) then
           begin
-            FStatus   := lsError;
-            FError    := GetLastError;
+            Status   := lsError;
+            FError   := GetLastError;
 
             AppendErrorLog('Error loading ' + TempLoaderLibPath);
             AppendErrorLog('Error code : 0x' + inttohex(cardinal(FError), 8));
@@ -253,8 +333,8 @@ begin
           end
          else
           begin
-            FStatus := lsLoaded;
-            Result  := True;
+            Status := lsLoaded;
+            Result := True;
           end;
       finally
         if FSetCurrentDir then
@@ -391,12 +471,12 @@ begin
            assigned(webui_interface_get_bool_at) and
            assigned(webui_interface_get_size_at) then
           begin
-            Result  := True;
-            FStatus := lsInitialized;
+            Result := True;
+            Status := lsInitialized;
           end
          else
           begin
-            FStatus := lsError;
+            Status := lsError;
             AppendErrorLog('There was a problem loading the library procedures');
 
             ShowErrorMessageDlg(ErrorMessage);
@@ -411,8 +491,13 @@ end;
 procedure TWebUI.AppendErrorLog(const aText : string);
 begin
   OutputDebugMessage(aText);
-  if assigned(FErrorLog) then
-    FErrorLog.Add(aText);
+  if Lock then
+    try
+      if assigned(FErrorLog) then
+        FErrorLog.Add(aText);
+    finally
+      UnLock;
+    end;
 end;
 
 procedure TWebUI.ShowErrorMessageDlg(const aError : string);
@@ -423,20 +508,39 @@ end;
 
 function TWebUI.GetErrorMessage : string;
 begin
-  if assigned(FErrorLog) then
-    Result := FErrorLog.Text
-   else
-    Result := '';
+  Result := '';
+
+  if Lock then
+    try
+      if assigned(FErrorLog) then
+        Result := FErrorLog.Text;
+    finally
+      UnLock;
+    end;
 end;
 
 function TWebUI.GetInitialized : boolean;
 begin
-  Result := (FStatus = lsInitialized);
+  Result := False;
+
+  if Lock then
+    try
+      Result := (FStatus = lsInitialized);
+    finally
+      UnLock;
+    end;
 end;
 
 function TWebUI.GetInitializationError : boolean;
 begin
-  Result := (FStatus = lsError);
+  Result := False;
+
+  if Lock then
+    try
+      Result := (FStatus = lsError);
+    finally
+      UnLock;
+    end;
 end;
 
 function TWebUI.GetIsAppRunning : boolean;
@@ -445,11 +549,32 @@ begin
             webui_interface_is_app_running();
 end;
 
+function TWebUI.GetStatus : TLoaderStatus;
+begin
+  Result := lsCreated;
+  if Lock then
+    try
+      Result := FStatus;
+    finally
+      UnLock;
+    end;
+end;
+
 procedure TWebUI.SetTimeout(aValue: NativeUInt);
 begin
   FTimeout := aValue;
   if Initialized then
     webui_set_timeout(FTimeout);
+end;
+
+procedure TWebUI.SetStatus(aValue: TLoaderStatus);
+begin
+  if Lock then
+    try
+      FStatus := aValue;
+    finally
+      UnLock;
+    end;
 end;
 
 procedure TWebUI.Wait;
@@ -502,5 +627,72 @@ begin
       Result        := webui_set_tls_certificate(@LCertificate[1], @LPrivateKey[1]);
     end;
 end;
+
+function TWebUI.SearchWindow(windowId: TWebUIWindowID) : IWebUIWindow;
+var
+  i, j: int64;
+begin
+  Result := nil;
+
+  if Lock then
+    try
+      if assigned(FWindowList) then
+        begin
+          i := 0;
+          j := FWindowList.Count;
+
+          while (i < j) do
+            begin
+              if assigned(FWindowList[i]) and (FWindowList[i].ID = windowId) then
+                begin
+                  Result := FWindowList[i];
+                  break;
+                end;
+
+              inc(i);
+            end;
+        end;
+    finally
+      Unlock;
+    end;
+end;
+
+function TWebUI.AddWindow(window: IWebUIWindow): int64;
+begin
+  Result := -1;
+
+  if Lock then
+    try
+      if assigned(FWindowList) and (FWindowList.IndexOf(window) < 0) then
+        FWindowList.Add(window);
+    finally
+      Unlock;
+    end;
+end;
+
+procedure TWebUI.RemoveWindow(window: IWebUIWindow);
+var
+  i : int64;
+begin
+  if Lock then
+    try
+      if assigned(FWindowList) then
+        begin
+          i := FWindowList.IndexOf(window);
+          if (i >= 0) then
+            begin
+              FWindowList[i] := nil;
+              FWindowList.Delete(i);
+            end;
+        end;
+    finally
+      Unlock;
+    end;
+end;
+
+initialization
+
+finalization
+  DestroyWebUI;
 
 end.

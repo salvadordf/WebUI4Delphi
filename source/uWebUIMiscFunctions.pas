@@ -5,11 +5,7 @@ unit uWebUIMiscFunctions;
 interface
 
 uses
-  {$IFDEF DELPHI16_UP}
   Winapi.Windows, System.Classes, System.UITypes, Winapi.ActiveX, System.SysUtils, System.Math, System.StrUtils,
-  {$ELSE}
-  Windows, Classes, ActiveX, SysUtils, Graphics, Math, Controls, StrUtils,
-  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 const

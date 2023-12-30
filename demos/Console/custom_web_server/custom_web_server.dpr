@@ -1,22 +1,18 @@
 program custom_web_server;
 
-{$I ..\..\source\uWebUI.inc}
+{$I ..\..\..\source\uWebUI.inc}
 
 {$APPTYPE CONSOLE}
 
 {$R *.res}
 
 uses
-  {$IFDEF DELPHI16_UP}
   System.SysUtils, System.Classes,
-  {$ELSE}
-  SysUtils,
-  {$ENDIF}
   uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
   uWebUIConstants;
 
 var
-  LWindow : TWebUIWindow;
+  LWindow : IWebUIWindow;
 
 procedure my_backend_func(e: PWebUIEvent);
 var
@@ -66,42 +62,34 @@ begin
 end;
 
 begin
-  LWindow := nil;
   try
-    try
-      WebUI := TWebUI.Create;
-      {$IFDEF DEBUG}
-      WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
-      {$ENDIF}
-      if WebUI.Initialize then
-        begin
-          LWindow := TWebUIWindow.Create;
+    WebUI := TWebUI.Create;
+    {$IFDEF DEBUG}
+    //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+    {$ENDIF}
+    if WebUI.Initialize then
+      begin
+        LWindow := TWebUIWindow.Create;
 
-          // Bind all events
-          LWindow.Bind('', events);
+        // Bind all events
+        LWindow.Bind('', events);
 
-          // Bind HTML elements with C functions
-          LWindow.Bind('my_backend_func', my_backend_func);
+        // Bind HTML elements with C functions
+        LWindow.Bind('my_backend_func', my_backend_func);
 
-          // Set web server network port WebUI should use
-          // this mean `webui.js` will be available at:
-          // http://localhost:8081/webui.js
-          LWindow.SetPort(8081);
+        // Set web server network port WebUI should use
+        // this mean `webui.js` will be available at:
+        // http://localhost:8081/webui.js
+        LWindow.SetPort(8081);
 
-          // Show a new window and show our custom web server
-          // Assuming the custom web server is running on port
-          // 8080...
-          // Run the \assets\custom_web_server\simple_web_server.py script to create a simple web server
-          LWindow.Show('http://localhost:8080/');
+        // Show a new window and show our custom web server
+        // Assuming the custom web server is running on port
+        // 8080...
+        // Run the \assets\custom_web_server\simple_web_server.py script to create a simple web server
+        LWindow.Show('http://localhost:8080/');
 
-          WebUI.Wait;
-        end;
-    finally
-      if assigned(LWindow) then
-        FreeAndNil(LWindow);
-
-      DestroyWebUI;
-    end;
+        WebUI.Wait;
+      end;
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);

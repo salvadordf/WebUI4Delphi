@@ -7,26 +7,29 @@ unit uWebUIWindow;
 interface
 
 uses
-  {$IFDEF DELPHI16_UP}
   WinApi.Windows, System.Classes, System.SysUtils,
-  {$ELSE}
-  Windows, Classes, SysUtils,
-  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 type
   /// <summary>
   /// Window wrapper for Window objects in WebUI.
   /// </summary>
-  TWebUIWindow = class
+  TWebUIWindow = class(TInterfacedObject, IWebUIWindow)
     protected
-      FID  : TWebUIWindowID;
+      FID           : TWebUIWindowID;
+      FOnWebUIEvent : TOnWebUIEvent;
 
-      function GetInitialized : boolean;
-      function GetIsShown : boolean;
-      function GetUrl : string;
-      function GetParentProcessID : NativeUInt;
-      function GetChildProcessID : NativeUInt;
+      function  GetID : TWebUIWindowID;
+      function  GetInitialized : boolean;
+      function  GetIsShown : boolean;
+      function  GetUrl : string;
+      function  GetParentProcessID : NativeUInt;
+      function  GetChildProcessID : NativeUInt;
+      function  GetOnWebUIEvent : TOnWebUIEvent;
+
+      procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
+
+      procedure doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 
     public
       /// <summary>
@@ -43,7 +46,13 @@ type
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_new_window_id)</see></para>
       /// </remarks>
-      constructor Create(windowId : TWebUIWindowID; createWebUIWindow: boolean = True); overload;
+      constructor Create(windowId : TWebUIWindowID); overload;
+      procedure   AfterConstruction; override;
+      procedure   BeforeDestruction; override;
+      /// <summary>
+      /// Destroy the window wrapper.
+      /// </summary>
+      destructor  Destroy; override;
       /// <summary>
       /// Close the window and free all memory resources.
       /// </summary>
@@ -52,7 +61,16 @@ type
       /// </remarks>
       procedure   DestroyWindow;
       /// <summary>
-      /// Bind a specific html element click event with a function. Empty element means all events.
+      /// <para>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.</para>
+      /// </summary>
+      /// <param name="element_">The HTML ID.</param>
+      /// <returns>Returns a unique bind ID.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
+      /// </remarks>
+      function    Bind(const element_: string): TWebUIBindID; overload;
+      /// <summary>
+      /// Bind a specific html element click event with a callback function. Empty element means all events.
       /// </summary>
       /// <param name="element_">The HTML ID.</param>
       /// <param name="func_">The callback function.</param>
@@ -62,7 +80,7 @@ type
       /// </remarks>
       function    Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID; overload;
       /// <summary>
-      /// Bind a specific HTML element click event with a function. Empty element means all events.
+      /// Bind a specific HTML element click event with a callback function. Empty element means all events.
       /// </summary>
       /// <param name="element_">The element ID.</param>
       /// <param name="func_">The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</param>
@@ -71,6 +89,23 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_bind)</see></para>
       /// </remarks>
       function    Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID; overload;
+      /// <summary>
+      /// <para>Bind all browser events with the OnWebUIEvent event.</para>
+      /// </summary>
+      /// <returns>Returns a unique bind ID.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
+      /// </remarks>
+      function    BindAllEvents: TWebUIBindID; overload;
+      /// <summary>
+      /// <para>Bind all browser events with a callback function.</para>
+      /// </summary>
+      /// <param name="func_">The callback function.</param>
+      /// <returns>Returns a unique bind ID.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
+      /// </remarks>
+      function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID; overload;
       /// <summary>
       /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
       /// </summary>
@@ -250,10 +285,7 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_new_window_id)</see></para>
       /// </remarks>
       class function GetNewWindowID : TWebUIWindowID;
-      /// <summary>
-      /// Window number or Window ID.
-      /// </summary>
-      property ID                : TWebUIWindowID   read FID;
+
       /// <summary>
       /// Returns true if the Window was created successfully.
       /// </summary>
@@ -286,6 +318,10 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
       /// </remarks>
       property ChildProcessID   : NativeUInt        read GetChildProcessID;
+      /// <summary>
+      /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
+      /// </summary>
+      property OnWebUIEvent     : TOnWebUIEvent     read GetOnWebUIEvent     write SetOnWebUIEvent;
   end;
 
 implementation
@@ -297,30 +333,57 @@ constructor TWebUIWindow.Create;
 begin
   inherited Create;
 
+  FOnWebUIEvent := nil;
+
   if (WebUI <> nil) and WebUI.Initialized then
     FID := webui_new_window()
    else
     FID := 0;
 end;
 
-constructor TWebUIWindow.Create(windowId : TWebUIWindowID; createWebUIWindow: boolean);
+constructor TWebUIWindow.Create(windowId : TWebUIWindowID);
 begin
   inherited Create;
 
+  FOnWebUIEvent := nil;
+
   if (WebUI <> nil) and WebUI.Initialized then
     begin
-      if createWebUIWindow then
-        begin
-          if (windowId > 0) and (windowId < WEBUI_MAX_IDS) then
-            FID := webui_new_window_id(windowId)
-           else
-            FID := webui_new_window();
-        end
+      if (windowId > 0) and (windowId < WEBUI_MAX_IDS) then
+        FID := webui_new_window_id(windowId)
        else
-        FID := windowId;
+        FID := webui_new_window();
     end
    else
     FID := 0;
+end;
+
+destructor TWebUIWindow.Destroy;
+begin
+  try
+    Close;
+    DestroyWindow;
+  finally
+    inherited Destroy;
+  end;
+end;
+
+procedure TWebUIWindow.AfterConstruction;
+begin
+  inherited AfterConstruction;
+
+  if (WebUI <> nil) and WebUI.Initialized and (FID <> 0) then
+    WebUI.AddWindow(Self);
+end;
+
+procedure TWebUIWindow.BeforeDestruction;
+begin
+  try
+    if (WebUI <> nil) and WebUI.Initialized and (FID <> 0) then
+      WebUI.RemoveWindow(Self);
+  finally
+    inherited BeforeDestruction;
+  end;
 end;
 
 procedure TWebUIWindow.DestroyWindow;
@@ -330,6 +393,11 @@ begin
       webui_destroy(FID);
       FID := 0;
     end;
+end;
+
+function TWebUIWindow.GetID : TWebUIWindowID;
+begin
+  Result := FID;
 end;
 
 function TWebUIWindow.GetInitialized : boolean;
@@ -369,12 +437,33 @@ begin
     Result := 0;
 end;
 
+function TWebUIWindow.GetOnWebUIEvent : TOnWebUIEvent;
+begin
+  Result := FOnWebUIEvent;
+end;
+
+procedure TWebUIWindow.SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
+begin
+  FOnWebUIEvent := aEvent;
+end;
+
+procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
+begin
+  if assigned(FOnWebUIEvent) then
+    FOnWebUIEvent(self, aEvent);
+end;
+
 class function TWebUIWindow.GetNewWindowID : TWebUIWindowID;
 begin
   if (WebUI <> nil) and WebUI.Initialized then
     Result := webui_get_new_window_id()
    else
     Result := 0;
+end;
+
+function TWebUIWindow.Bind(const element_: string): TWebUIBindID;
+begin
+  Result := Bind(element_, global_webui_event_callback);
 end;
 
 function TWebUIWindow.Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID;
@@ -399,8 +488,25 @@ begin
   if Initialized then
     begin
       LElement := UTF8Encode(element_ + #0);
-      //Result   := webui_bind(FID, @LElement[1], func_);
       Result   := webui_interface_bind(FID, @LElement[1], func_);
+    end;
+end;
+
+function TWebUIWindow.BindAllEvents: TWebUIBindID;
+begin
+  Result := BindAllEvents(global_webui_event_callback);
+end;
+
+function TWebUIWindow.BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID;
+var
+  LElement: AnsiString;
+begin
+  Result := 0;
+
+  if Initialized then
+    begin
+      LElement := UTF8Encode(#0);
+      Result   := webui_bind(FID, @LElement[1], func_);
     end;
 end;
 
@@ -430,13 +536,8 @@ begin
 
   if Initialized then
     begin
-      if (length(content) > 0) then
-        begin
-          LContent := UTF8Encode(content + #0);
-          Result   := webui_show_browser(FID, @LContent[1], browser);
-        end
-       else
-        Result := webui_show_browser(FID, nil, browser);
+      LContent := UTF8Encode(content + #0);
+      Result   := webui_show_browser(FID, @LContent[1], browser);
     end;
 end;
 

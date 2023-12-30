@@ -7,21 +7,16 @@ unit uWebUIEventHandler;
 interface
 
 uses
-  {$IFDEF DELPHI16_UP}
   WinApi.Windows, System.Classes, System.SysUtils,
-  {$ELSE}
-  Windows, Classes, SysUtils,
-  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
 type
   /// <summary>
   /// Event wrapper for Event objects in WebUI.
   /// </summary>
-  TWebUIEventHandler = class
+  TWebUIEventHandler = class(TInterfacedObject, IWebUIEventHandler)
     protected
-      FEvent  : TWebUIEvent;
-      FWindow : TWebUIWindow;
+      FEvent : TWebUIEvent;
 
       function GetInitialized: boolean;
       function GetEvent: PWebUIEvent;
@@ -30,11 +25,11 @@ type
       function GetElement: string;
       function GetEventID: TWebUIEventID;
       function GetBindID: TWebUIBindID;
+      function GetWindow: IWebUIWindow;
 
     public
       constructor Create(const aEvent: PWebUIEvent); overload;
       constructor Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); overload;
-      destructor  Destroy; override;
 
       /// <summary>
       /// Get an argument as integer at a specific index.
@@ -170,7 +165,7 @@ type
       /// <summary>
       /// Window wrapper for the Window object of this event.
       /// </summary>
-      property Window            : TWebUIWindow     read FWindow;
+      property Window            : IWebUIWindow     read GetWindow;
       /// <summary>
       /// The window object number or ID.
       /// </summary>
@@ -218,11 +213,6 @@ begin
       FEvent.event_number := 0;
       FEvent.bind_id      := 0;
     end;
-
-  if (FEvent.window <> 0) then
-    FWindow := TWebUIWindow.Create(FEvent.window, False)
-   else
-    FWindow := nil;
 end;
 
 constructor TWebUIEventHandler.Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
@@ -234,19 +224,6 @@ begin
   FEvent.element      := element;
   FEvent.event_number := event_number;
   FEvent.bind_id      := bind_id;
-
-  if (FEvent.window <> 0) then
-    FWindow := TWebUIWindow.Create(FEvent.window, False)
-   else
-    FWindow := nil;
-end;
-
-destructor TWebUIEventHandler.Destroy;
-begin
-  if assigned(FWindow) then
-    FreeAndNil(FWindow);
-
-  inherited Destroy;
 end;
 
 function TWebUIEventHandler.GetInitialized: boolean;
@@ -287,6 +264,11 @@ end;
 function TWebUIEventHandler.GetBindID: TWebUIBindID;
 begin
   Result := FEvent.bind_id;
+end;
+
+function TWebUIEventHandler.GetWindow: IWebUIWindow;
+begin
+  Result := WebUI.SearchWindow(FEvent.window);
 end;
 
 function TWebUIEventHandler.GetIntAt(index: NativeUInt): int64;
@@ -406,13 +388,8 @@ var
 begin
   if Initialized then
     begin
-      if (length(aReturnValue) > 0) then
-        begin
-          LString := UTF8Encode(aReturnValue + #0);
-          webui_return_string(@FEvent, @LString[1]);
-        end
-       else
-        webui_return_string(@FEvent, nil);
+      LString := UTF8Encode(aReturnValue + #0);
+      webui_return_string(@FEvent, @LString[1]);
     end;
 end;
 
@@ -428,13 +405,8 @@ var
 begin
   if Initialized then
     begin
-      if (length(response) > 0) then
-        begin
-          LResponse := UTF8Encode(response + #0);
-          webui_interface_set_response(FEvent.window, FEvent.event_number, @LResponse[1]);
-        end
-       else
-        webui_interface_set_response(FEvent.window, FEvent.event_number, nil);
+      LResponse := UTF8Encode(response + #0);
+      webui_interface_set_response(FEvent.window, FEvent.event_number, @LResponse[1]);
     end;
 end;
 
