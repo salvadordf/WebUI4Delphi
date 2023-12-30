@@ -223,6 +223,7 @@ begin
 
   FCritSection := TCriticalSection.Create;
   FWindowList  := TList<IWebUIWindow>.Create;
+  FErrorLog    := TStringList.Create;
 end;
 
 procedure TWebUI.BeforeDestruction;

@@ -381,6 +381,15 @@ type
     /// </remarks>
     procedure   DestroyWindow;
     /// <summary>
+    /// <para>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.</para>
+    /// </summary>
+    /// <param name="element_">The HTML ID.</param>
+    /// <returns>Returns a unique bind ID.</returns>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
+    /// </remarks>
+    function    Bind(const element_: string): TWebUIBindID; overload;
+    /// <summary>
     /// Bind a specific html element click event with a function. Empty element means all events.
     /// </summary>
     /// <param name="element_">The HTML ID.</param>
@@ -401,6 +410,14 @@ type
     /// </remarks>
     function    Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID; overload;
     /// <summary>
+    /// <para>Bind all browser events with the OnWebUIEvent event.</para>
+    /// </summary>
+    /// <returns>Returns a unique bind ID.</returns>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
+    /// </remarks>
+    function    BindAllEvents: TWebUIBindID; overload;
+    /// <summary>
     /// Bind all events with a function.
     /// </summary>
     /// <param name="func_">The callback function.</param>
@@ -408,7 +425,7 @@ type
     /// <remarks>
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
     /// </remarks>
-    function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID;
+    function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID; overload;
     /// <summary>
     /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
     /// </summary>
