@@ -116,6 +116,14 @@ type
       /// </remarks>
       function    SetRootFolder(const path : string) : boolean;
       /// <summary>
+      /// Set a custom handler to serve files.
+      /// </summary>
+      /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
+      /// </remarks>>
+      procedure   SetFileHandler(handler: TWebUIFileHandlerCallback);
+      /// <summary>
       /// Set the default embedded HTML favicon.
       /// </summary>
       /// <param name="icon">The icon as string: `<svg>...</svg>`.</param>
@@ -455,6 +463,12 @@ begin
       LPath  := UTF8Encode(path + #0);
       Result := webui_set_root_folder(FID, @LPath[1]);
     end;
+end;
+
+procedure TWebUIWindow.SetFileHandler(handler: TWebUIFileHandlerCallback);
+begin
+  if Initialized then
+    webui_set_file_handler(FID, handler);
 end;
 
 procedure TWebUIWindow.SetIcon(const icon, icon_type : string);
