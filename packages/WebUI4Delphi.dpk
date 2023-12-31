@@ -37,7 +37,7 @@ contains
   uWebUILibFunctions in '..\source\uWebUILibFunctions.pas',
   uWebUI in '..\source\uWebUI.pas',
   uWebUIMiscFunctions in '..\source\uWebUIMiscFunctions.pas',
-  uWebUIEvent in '..\source\uWebUIEvent.pas',
+  uWebUIEventHandler in '..\source\uWebUIEventHandler.pas',
   uWebUIWindow in '..\source\uWebUIWindow.pas',
   uWebUIBase64 in '..\source\uWebUIBase64.pas';
 

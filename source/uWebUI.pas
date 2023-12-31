@@ -23,7 +23,6 @@ type
       FError                                  : int64;
       FShowMessageDlg                         : boolean;
       FTimeout                                : NativeUInt;
-      //FWindowList                             : TList<IWebUIWindow>;
       FWindowList                             : TList;
       FCritSection                            : TCriticalSection;
 
@@ -224,7 +223,6 @@ begin
   inherited AfterConstruction;
 
   FCritSection := TCriticalSection.Create;
-  //FWindowList  := TList<IWebUIWindow>.Create;
   FWindowList  := TList.Create;
   FErrorLog    := TStringList.Create;
 end;
@@ -265,7 +263,7 @@ end;
 
 procedure TWebUI.DestroyWindowList;
 var
-  i: int64;
+  i: integer;
 begin
   if assigned(FWindowList) then
     begin
