@@ -9,7 +9,7 @@ interface
 uses
   WinApi.Windows, System.Classes, System.SysUtils, Winapi.ShlObj, System.Math,
   System.Generics.Collections, System.SyncObjs,
-  uWebUIConstants, uWebUITypes, uWebUILibFunctions;
+  uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
 type
   TWebUI = class
@@ -23,7 +23,8 @@ type
       FError                                  : int64;
       FShowMessageDlg                         : boolean;
       FTimeout                                : NativeUInt;
-      FWindowList                             : TList<IWebUIWindow>;
+      //FWindowList                             : TList<IWebUIWindow>;
+      FWindowList                             : TList;
       FCritSection                            : TCriticalSection;
 
       function  GetErrorMessage : string;
@@ -40,6 +41,7 @@ type
       function  LoadLibProcedures : boolean;
       procedure UnLoadWebUILibrary;
       procedure ShowErrorMessageDlg(const aError : string);
+      function  SearchWindowIndex(windowId: TWebUIWindowID) : int64;
       function  Lock: boolean;
       procedure Unlock;
 
@@ -111,11 +113,11 @@ type
       /// <summary>
       /// Add an IWebUIWindow instance.
       /// </summary>
-      function    AddWindow(window: IWebUIWindow): int64;
+      function    AddWindow(const window: IWebUIWindow): int64;
       /// <summary>
       /// Remove an IWebUIWindow instance.
       /// </summary>
-      procedure   RemoveWindow(window: IWebUIWindow);
+      procedure   RemoveWindow(windowId: TWebUIWindowID);
 
       /// <summary>
       /// Returns the TWVLoader initialization status.
@@ -222,7 +224,8 @@ begin
   inherited AfterConstruction;
 
   FCritSection := TCriticalSection.Create;
-  FWindowList  := TList<IWebUIWindow>.Create;
+  //FWindowList  := TList<IWebUIWindow>.Create;
+  FWindowList  := TList.Create;
   FErrorLog    := TStringList.Create;
 end;
 
@@ -629,62 +632,71 @@ begin
     end;
 end;
 
-function TWebUI.SearchWindow(windowId: TWebUIWindowID) : IWebUIWindow;
+function TWebUI.SearchWindowIndex(windowId: TWebUIWindowID) : int64;
 var
   i, j: int64;
+begin
+  Result := -1;
+
+  if assigned(FWindowList) then
+    begin
+      i := 0;
+      j := FWindowList.Count;
+
+      while (i < j) do
+        begin
+          if assigned(FWindowList[i]) and
+             (IWebUIWindow(FWindowList[i]).ID = windowId) then
+            begin
+              Result := i;
+              break;
+            end;
+
+          inc(i);
+        end;
+    end;
+end;
+
+function TWebUI.SearchWindow(windowId: TWebUIWindowID) : IWebUIWindow;
+var
+  i: int64;
 begin
   Result := nil;
 
   if Lock then
     try
-      if assigned(FWindowList) then
-        begin
-          i := 0;
-          j := FWindowList.Count;
-
-          while (i < j) do
-            begin
-              if assigned(FWindowList[i]) and (FWindowList[i].ID = windowId) then
-                begin
-                  Result := FWindowList[i];
-                  break;
-                end;
-
-              inc(i);
-            end;
-        end;
+      i := SearchWindowIndex(windowId);
+      if (i >= 0) then
+        Result := IWebUIWindow(FWindowList[i]);
     finally
       Unlock;
     end;
 end;
 
-function TWebUI.AddWindow(window: IWebUIWindow): int64;
+function TWebUI.AddWindow(const window: IWebUIWindow): int64;
 begin
   Result := -1;
 
   if Lock then
     try
-      if assigned(FWindowList) and (FWindowList.IndexOf(window) < 0) then
-        FWindowList.Add(window);
+      if assigned(FWindowList) and (SearchWindowIndex(window.ID) < 0) then
+        Result := FWindowList.Add(Pointer(window));
     finally
       Unlock;
     end;
 end;
 
-procedure TWebUI.RemoveWindow(window: IWebUIWindow);
+procedure TWebUI.RemoveWindow(windowId: TWebUIWindowID);
 var
   i : int64;
 begin
   if Lock then
     try
-      if assigned(FWindowList) then
+      i := SearchWindowIndex(windowId);
+      if (i >= 0) then
         begin
-          i := FWindowList.IndexOf(window);
-          if (i >= 0) then
-            begin
-              FWindowList[i] := nil;
-              FWindowList.Delete(i);
-            end;
+          FWindowList[i] := nil;
+          FWindowList.Delete(i);
         end;
     finally
       Unlock;

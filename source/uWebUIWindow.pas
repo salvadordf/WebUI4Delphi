@@ -29,6 +29,8 @@ type
 
       procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 
+      procedure AddWindowID;
+      procedure RemoveWindowID;
       procedure doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 
     public
@@ -287,6 +289,10 @@ type
       class function GetNewWindowID : TWebUIWindowID;
 
       /// <summary>
+      /// Window number or Window ID.
+      /// </summary>
+      property ID                : TWebUIWindowID   read GetID;
+      /// <summary>
       /// Returns true if the Window was created successfully.
       /// </summary>
       property Initialized       : boolean          read GetInitialized;
@@ -372,18 +378,14 @@ procedure TWebUIWindow.AfterConstruction;
 begin
   inherited AfterConstruction;
 
-  if (WebUI <> nil) and WebUI.Initialized and (FID <> 0) then
-    WebUI.AddWindow(Self);
+  AddWindowID;
 end;
 
 procedure TWebUIWindow.BeforeDestruction;
 begin
-  try
-    if (WebUI <> nil) and WebUI.Initialized and (FID <> 0) then
-      WebUI.RemoveWindow(Self);
-  finally
-    inherited BeforeDestruction;
-  end;
+  RemoveWindowID;
+
+  inherited BeforeDestruction;
 end;
 
 procedure TWebUIWindow.DestroyWindow;
@@ -391,8 +393,21 @@ begin
   if Initialized then
     begin
       webui_destroy(FID);
+      RemoveWindowID;
       FID := 0;
     end;
+end;
+
+procedure TWebUIWindow.AddWindowID;
+begin
+  if Initialized then
+    WebUI.AddWindow(Self);
+end;
+
+procedure TWebUIWindow.RemoveWindowID;
+begin
+  if Initialized then
+    WebUI.RemoveWindow(FID);
 end;
 
 function TWebUIWindow.GetID : TWebUIWindowID;

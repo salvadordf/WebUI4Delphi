@@ -1,4 +1,4 @@
-program call_delphi_from_js;
+﻿program call_delphi_from_js;
 
 {$I ..\..\..\source\uWebUI.inc}
 
@@ -28,7 +28,7 @@ begin
   str_1  := LEvent.GetString;
   str_2  := LEvent.GetStringAt(1);
   writeln('my_function_string 1: ' + str_1);
-  writeln('my_function_string 2: ' + str_2);
+  writeln('my_function_string 2: ' + str_2);  // The emoji is badly writen to the console but str_2 has the correct string
   LEvent.Free;
 end;
 
@@ -159,7 +159,7 @@ begin
                    '  <body>' + CRLF +
                    '    <h1>WebUI - Call C from JavaScript</h1>' + CRLF +
                    '    <p>Call C functions with arguments (<em>See the logs in your terminal</em>)</p>' + CRLF +
-                   '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello') + ', ' + quotedstr('World') + ');">Call my_function_string()</button>' + CRLF +
+                   '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello World') + ', ' + quotedstr('\u{1F3DD}') + ');">Call my_function_string()</button>' + CRLF +
                    '    <br>' + CRLF +
                    '    <button onclick="webui.call(' + quotedstr('MyID_Two') + ', 123, 456, 789);">Call my_function_integer()</button>' + CRLF +
                    '    <br>' + CRLF +

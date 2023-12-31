@@ -19,6 +19,7 @@ type
     procedure ShowBrowserBtnClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
+    FWindow : IWebUIWindow;
     procedure LWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
     procedure my_function_string(const aEvent: IWebUIEventHandler);
     procedure my_function_integer(const aEvent: IWebUIEventHandler);
@@ -41,6 +42,7 @@ begin
   if assigned(WebUI) and WebUI.IsAppRunning then
     WebUI.Exit;
 
+  FWindow  := nil;
   CanClose := True;
 end;
 
@@ -50,6 +52,7 @@ begin
   {$IFDEF DEBUG}
   //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
   {$ENDIF}
+  FWindow := nil;
   MainPanel.Enabled := WebUI.Initialize;
 end;
 
@@ -150,9 +153,10 @@ end;
 
 procedure TMainForm.ShowBrowserBtnClick(Sender: TObject);
 var
-  LWindow : IWebUIWindow;
   LMyHTML : string;
 begin
+  if assigned(WebUI) and WebUI.IsAppRunning then exit;
+
   LMyHTML := '<!DOCTYPE html>' + CRLF +
              '<html>' + CRLF +
              '  <head>' + CRLF +
@@ -189,7 +193,7 @@ begin
              '  <body>' + CRLF +
              '    <h1>WebUI - Call C from JavaScript</h1>' + CRLF +
              '    <p>Call C functions with arguments (<em>See the logs in your terminal</em>)</p>' + CRLF +
-             '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello') + ', ' + quotedstr('World') + ');">Call my_function_string()</button>' + CRLF +
+             '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello World') + ', ' + quotedstr('\u{1F3DD}') + ');">Call my_function_string()</button>' + CRLF +
              '    <br>' + CRLF +
              '    <button onclick="webui.call(' + quotedstr('MyID_Two') + ', 123, 456, 789);">Call my_function_integer()</button>' + CRLF +
              '    <br>' + CRLF +
@@ -217,14 +221,14 @@ begin
              '  </body>' + CRLF +
              '</html>';
 
-  LWindow := TWebUIWindow.Create;
-  LWindow.Bind('MyID_One');
-  LWindow.Bind('MyID_Two');
-  LWindow.Bind('MyID_Three');
-  LWindow.Bind('MyID_Four');
-  LWindow.Bind('MyID_RawBinary');
-  LWindow.OnWebUIEvent := LWindow_OnWebUIEvent;
-  LWindow.Show(LMyHTML);
+  FWindow := TWebUIWindow.Create;
+  FWindow.Bind('MyID_One');
+  FWindow.Bind('MyID_Two');
+  FWindow.Bind('MyID_Three');
+  FWindow.Bind('MyID_Four');
+  FWindow.Bind('MyID_RawBinary');
+  FWindow.OnWebUIEvent := LWindow_OnWebUIEvent;
+  FWindow.Show(LMyHTML);
 end;
 
 end.
