@@ -20,7 +20,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FWindow : IWebUIWindow;
-    procedure LWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
+    procedure FWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
     procedure my_function_string(const aEvent: IWebUIEventHandler);
     procedure my_function_integer(const aEvent: IWebUIEventHandler);
     procedure my_function_boolean(const aEvent: IWebUIEventHandler);
@@ -137,7 +137,7 @@ begin
   aEvent.ReturnInt(res);
 end;
 
-procedure TMainForm.LWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
+procedure TMainForm.FWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
 begin
   if (aEvent.Element = 'MyID_One') then
     my_function_string(aEvent)
@@ -227,7 +227,7 @@ begin
   FWindow.Bind('MyID_Three');
   FWindow.Bind('MyID_Four');
   FWindow.Bind('MyID_RawBinary');
-  FWindow.OnWebUIEvent := LWindow_OnWebUIEvent;
+  FWindow.OnWebUIEvent := FWindow_OnWebUIEvent;
   FWindow.Show(LMyHTML);
 end;
 

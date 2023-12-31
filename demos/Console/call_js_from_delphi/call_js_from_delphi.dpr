@@ -22,13 +22,10 @@ end;
 
 procedure my_function_count(e: PWebUIEvent);
 var
-  LEvent : TWebUIEventHandler;
   LResult : string;
   LCount : integer;
 begin
   // This function gets called every time the user clicks on "MyButton1"
-  LEvent := TWebUIEventHandler.Create(e);
-
   if not(LWindow.Script('return GetCount();', 0, LResult, 64)) then
     begin
       if not(LWindow.IsShown) then
@@ -42,8 +39,6 @@ begin
       inc(LCount);
       LWindow.Run('SetCount(' + IntToStr(LCount) + ');');
     end;
-
-  LEvent.Free;
 end;
 
 begin

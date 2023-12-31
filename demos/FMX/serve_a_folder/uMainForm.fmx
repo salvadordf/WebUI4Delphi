@@ -1,0 +1,55 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'serve_a_folder'
+  ClientHeight = 275
+  ClientWidth = 450
+  Padding.Left = 10.000000000000000000
+  Padding.Top = 10.000000000000000000
+  Padding.Right = 10.000000000000000000
+  Padding.Bottom = 10.000000000000000000
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnCloseQuery = FormCloseQuery
+  DesignerMasterStyle = 0
+  object MainPanel: TPanel
+    Align = Client
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 430.000000000000000000
+    Size.Height = 255.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ShowBrowserBtn: TButton
+      Align = Top
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 420.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Show browser'
+      TextSettings.Trimming = None
+      OnClick = ShowBrowserBtnClick
+    end
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Align = Client
+      Margins.Top = 5.000000000000000000
+      Size.Width = 420.000000000000000000
+      Size.Height = 218.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 416.000000000000000000
+      Viewport.Height = 214.000000000000000000
+    end
+  end
+end

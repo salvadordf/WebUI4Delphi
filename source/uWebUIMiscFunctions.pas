@@ -30,9 +30,17 @@ function PathIsUNCUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL 
 function PathIsURLAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLA';
 function PathIsURLUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLW';
 
+function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
+
 implementation
 
 uses
+  {$IFDEF MSWINDOWS}
+  winapi.shellapi,
+  {$ENDIF}
+  {$IFDEF POSIX}
+  Posix.Stdlib,
+  {$ENDIF POSIX}
   uWebUI;
 
 procedure OutputDebugMessage(const aMessage : string);
@@ -114,6 +122,17 @@ begin
   Result := UTF8Decode(IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE))));
   {$ELSE}
   Result := IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE)));
+  {$ENDIF}
+end;
+
+// https://stackoverflow.com/questions/43673143/firemonkey-application-launch-external-app-when-running-under-os-x
+function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
+begin
+  {$IFDEF MSWINDOWS}
+    result := ShellExecute(0, 'Open', PChar(filename), PChar(Params), PChar(DefaultDir), ShowCmd);
+  {$ENDIF}
+  {$IFDEF MACOS}
+    _system(PAnsiChar('open ' + AnsiString(filename)));
   {$ENDIF}
 end;
 

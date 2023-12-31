@@ -1,0 +1,14 @@
+program call_js_from_delphi;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uMainForm in 'uMainForm.pas' {MainForm};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.Run;
+end.

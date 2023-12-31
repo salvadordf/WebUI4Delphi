@@ -72,7 +72,7 @@ begin
         LWindow := TWebUIWindow.Create;
 
         // Bind all events
-        LWindow.Bind('', events);
+        LWindow.BindAllEvents(events);
 
         // Bind HTML elements with C functions
         LWindow.Bind('my_backend_func', my_backend_func);
