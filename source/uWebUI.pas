@@ -25,6 +25,7 @@ type
       FTimeout                                : NativeUInt;
       FWindowList                             : TList;
       FCritSection                            : TCriticalSection;
+      FSyncedEvents                           : boolean;
 
       function  GetErrorMessage : string;
       function  GetInitialized : boolean;
@@ -40,7 +41,7 @@ type
       function  LoadLibProcedures : boolean;
       procedure UnLoadWebUILibrary;
       procedure ShowErrorMessageDlg(const aError : string);
-      function  SearchWindowIndex(windowId: TWebUIWindowID) : int64;
+      function  SearchWindowIndex(windowId: TWebUIWindowID) : integer;
       function  Lock: boolean;
       procedure Unlock;
 
@@ -165,6 +166,10 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_timeout)</see></para>
       /// </remarks>
       property Timeout                                : NativeUInt                         read FTimeout                                 write SetTimeout;
+      /// <summary>
+      /// Execute the events in the main application thread whenever it's possible.
+      /// </summary>
+      property SyncedEvents                           : boolean                            read FSyncedEvents                            write FSyncedEvents;
   end;
 
 var
@@ -216,6 +221,7 @@ begin
   FTimeout                                := WEBUI_DEFAULT_TIMEOUT;
   FWindowList                             := nil;
   FCritSection                            := nil;
+  FSyncedEvents                           := True;
 end;
 
 procedure TWebUI.AfterConstruction;
@@ -630,9 +636,9 @@ begin
     end;
 end;
 
-function TWebUI.SearchWindowIndex(windowId: TWebUIWindowID) : int64;
+function TWebUI.SearchWindowIndex(windowId: TWebUIWindowID) : integer;
 var
-  i, j: int64;
+  i, j: integer;
 begin
   Result := -1;
 
@@ -657,7 +663,7 @@ end;
 
 function TWebUI.SearchWindow(windowId: TWebUIWindowID) : IWebUIWindow;
 var
-  i: int64;
+  i: integer;
 begin
   Result := nil;
 

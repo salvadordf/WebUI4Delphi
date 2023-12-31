@@ -1,5 +1,7 @@
 unit uMainForm;
 
+{$I ..\..\..\source\uWebUI.inc}
+
 interface
 
 uses
@@ -136,7 +138,6 @@ var
   LBuffer : AnsiString;
 begin
   LFilename := UTF8ToString(PAnsiChar(filename));
-  MainForm.Memo1.Lines.Add('File: ' + LFilename);
 
   if (CompareText(LFilename, '/test.txt') = 0) then
     begin

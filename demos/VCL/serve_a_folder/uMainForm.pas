@@ -83,11 +83,7 @@ procedure TMainForm.exit_app(const aEvent: IWebUIEventHandler);
 begin
   WebUI.Exit;
   // You can't create more browsers after the exit call
-  TThread.ForceQueue(nil,
-    procedure
-    begin
-      Close;
-    end);
+  PostMessage(Handle, WM_CLOSE, 0, 0);
 end;
 
 procedure TMainForm.events(const aEvent: IWebUIEventHandler);
@@ -136,7 +132,6 @@ var
   LBuffer : AnsiString;
 begin
   LFilename := UTF8ToString(PAnsiChar(filename));
-  MainForm.Memo1.Lines.Add('File: ' + LFilename);
 
   if (CompareText(LFilename, '/test.txt') = 0) then
     begin

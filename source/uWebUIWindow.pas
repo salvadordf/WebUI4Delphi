@@ -68,6 +68,7 @@ type
       /// <param name="element_">The HTML ID.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
+      /// <para>The OnWebUIEvent event will be executed in the main application thread by default. Set WebUI.SyncedEvents to false in order to execute it in a background thread.</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
       /// </remarks>
       function    Bind(const element_: string): TWebUIBindID; overload;
@@ -78,6 +79,7 @@ type
       /// <param name="func_">The callback function.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
+      /// <para>The callback function will always be executed in a background thread!</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
       /// </remarks>
       function    Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID; overload;
@@ -88,6 +90,7 @@ type
       /// <param name="func_">The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</param>
       /// <returns>Returns unique bind ID.</returns>
       /// <remarks>
+      /// <para>The callback function will always be executed in a background thread!</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_bind)</see></para>
       /// </remarks>
       function    Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID; overload;
@@ -96,6 +99,7 @@ type
       /// </summary>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
+      /// <para>The OnWebUIEvent event will be executed in the main application thread by default. Set WebUI.SyncedEvents to false in order to execute it in a background thread.</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
       /// </remarks>
       function    BindAllEvents: TWebUIBindID; overload;
@@ -105,6 +109,7 @@ type
       /// <param name="func_">The callback function.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
+      /// <para>The callback function will always be executed in a background thread!</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
       /// </remarks>
       function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID; overload;
@@ -157,6 +162,7 @@ type
       /// </summary>
       /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
       /// <remarks>
+      /// <para>The callback function will always be executed in a background thread!</para>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
       /// </remarks>>
       procedure   SetFileHandler(handler: TWebUIFileHandlerCallback);
@@ -465,7 +471,18 @@ end;
 procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 begin
   if assigned(FOnWebUIEvent) then
-    FOnWebUIEvent(self, aEvent);
+    begin
+      if WebUI.SyncedEvents then
+        begin
+          TThread.Synchronize(nil,
+            procedure
+            begin
+              FOnWebUIEvent(self, aEvent);
+            end);
+        end
+       else
+        FOnWebUIEvent(self, aEvent);
+    end;
 end;
 
 class function TWebUIWindow.GetNewWindowID : TWebUIWindowID;
