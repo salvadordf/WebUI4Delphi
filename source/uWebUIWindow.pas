@@ -4,6 +4,11 @@ unit uWebUIWindow;
 
 {$MINENUMSIZE 4}
 
+{$IFNDEF DELPHI12_UP}
+  // Workaround for "Internal error" in old Delphi versions caused by uint64 handling
+  {$R-}
+{$ENDIF}
+
 interface
 
 uses
@@ -441,7 +446,7 @@ end;
 function TWebUIWindow.GetUrl : string;
 begin
   if Initialized then
-    Result := UTF8ToString(PAnsiChar(webui_get_url(FID)))
+    Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_get_url(FID)))
    else
     Result := '';
 end;
@@ -476,6 +481,7 @@ procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 begin
   if assigned(FOnWebUIEvent) then
     begin
+      {$IFDEF DELPHI14_UP}
       if WebUI.SyncedEvents then
         begin
           TThread.Synchronize(nil,
@@ -485,6 +491,7 @@ begin
             end);
         end
        else
+      {$ENDIF}
         FOnWebUIEvent(self, aEvent);
     end;
 end;
@@ -716,7 +723,7 @@ begin
 
       if webui_script(FID, @LScript[1], timeout, LBuffer, buffer_length) then
         begin
-          buffer := UTF8ToString(PAnsiChar(LBuffer));
+          buffer := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
           Result := True;
         end;
     finally

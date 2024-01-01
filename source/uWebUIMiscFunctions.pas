@@ -5,9 +5,13 @@ unit uWebUIMiscFunctions;
 interface
 
 uses
-  {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.UITypes,
-  System.SysUtils, System.Math, System.StrUtils,
-  {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
+  {$IFDEF DELPHI16_UP}
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.UITypes,
+    System.SysUtils, System.Math, System.StrUtils,
+    {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
+  {$ELSE}
+    Windows, Classes, SysUtils, Math, StrUtils,
+  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 const
@@ -72,7 +76,11 @@ implementation
 
 uses
   {$IFDEF MSWINDOWS}
-  winapi.shellapi,
+    {$IFDEF DELPHI16_UP}
+      WinApi.shellapi,
+    {$ELSE}
+      shellapi,
+    {$ENDIF}
   {$ENDIF}
   {$IFDEF POSIX}
   Posix.Stdlib,

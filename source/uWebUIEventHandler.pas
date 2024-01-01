@@ -4,6 +4,11 @@ unit uWebUIEventHandler;
 
 {$MINENUMSIZE 4}
 
+{$IFNDEF DELPHI12_UP}
+  // Workaround for "Internal error" in old Delphi versions caused by uint64 handling
+  {$R-}
+{$ENDIF}
+
 interface
 
 uses
@@ -210,13 +215,7 @@ begin
       FEvent.bind_id      := aEvent^.bind_id;
     end
    else
-    begin
-      FEvent.window       := 0;
-      FEvent.event_type   := WEBUI_EVENT_DISCONNECTED;
-      FEvent.element      := nil;
-      FEvent.event_number := 0;
-      FEvent.bind_id      := 0;
-    end;
+    ZeroMemory(@FEvent, SizeOf(TWebUIEvent));
 end;
 
 constructor TWebUIEventHandler.Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
@@ -255,9 +254,9 @@ end;
 function TWebUIEventHandler.GetElement: string;
 begin
   if assigned(FEvent.Element) then
-    Result := UTF8ToString(PAnsiChar(FEvent.element))
+    Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(FEvent.element))
    else
-    REsult := '';
+    Result := '';
 end;
 
 function TWebUIEventHandler.GetEventID: TWebUIEventID;
@@ -294,7 +293,7 @@ end;
 function TWebUIEventHandler.GetStringAt(index: NativeUInt): string;
 begin
   if Initialized then
-    Result := UTF8ToString(PAnsiChar(webui_get_string_at(@FEvent, index)))
+    Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_get_string_at(@FEvent, index)))
    else
     Result := '';
 end;
@@ -302,7 +301,7 @@ end;
 function TWebUIEventHandler.GetString: string;
 begin
   if Initialized then
-    Result := UTF8ToString(PAnsiChar(webui_get_string(@FEvent)))
+    Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_get_string(@FEvent)))
    else
     Result := '';
 end;

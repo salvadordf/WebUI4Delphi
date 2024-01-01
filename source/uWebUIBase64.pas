@@ -80,7 +80,7 @@ begin
    else
     begin
       LString := UTF8Encode(str + #0);
-      Result  := UTF8ToString(PAnsiChar(Encode(@LString)));
+      Result  := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(Encode(@LString)));
     end;
 end;
 
@@ -101,7 +101,7 @@ begin
    else
     begin
       LString := UTF8Encode(str + #0);
-      Result  := UTF8ToString(PAnsiChar(Decode(@LString)));
+      Result  := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(Decode(@LString)));
     end;
 end;
 

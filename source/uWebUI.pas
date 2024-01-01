@@ -4,6 +4,11 @@ unit uWebUI;
 
 {$MINENUMSIZE 4}
 
+{$IFNDEF DELPHI12_UP}
+  // Workaround for "Internal error" in old Delphi versions caused by uint64 handling
+  {$R-}
+{$ENDIF}
+
 interface
 
 uses
@@ -29,8 +34,9 @@ type
       FTimeout                                : NativeUInt;
       FWindowList                             : TList;
       FCritSection                            : TCriticalSection;
+      {$IFDEF DELPHI14_UP}
       FSyncedEvents                           : boolean;
-
+      {$ENDIF}
       function  GetErrorMessage : string;
       function  GetInitialized : boolean;
       function  GetInitializationError : boolean;
@@ -170,10 +176,12 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_timeout)</see></para>
       /// </remarks>
       property Timeout                                : NativeUInt                         read FTimeout                                 write SetTimeout;
+      {$IFDEF DELPHI14_UP}
       /// <summary>
       /// Execute the events in the main application thread whenever it's possible.
       /// </summary>
       property SyncedEvents                           : boolean                            read FSyncedEvents                            write FSyncedEvents;
+      {$ENDIF}
   end;
 
 var
@@ -225,7 +233,9 @@ begin
   FTimeout                                := WEBUI_DEFAULT_TIMEOUT;
   FWindowList                             := nil;
   FCritSection                            := nil;
+  {$IFDEF DELPHI14_UP}
   FSyncedEvents                           := True;
+  {$ENDIF}
 end;
 
 procedure TWebUI.AfterConstruction;
@@ -330,16 +340,12 @@ begin
          else
           TempLoaderLibPath := WEBUI_LIB;
 
-        {$IFDEF MSWINDOWS}
-        FLibHandle := LoadLibraryW(PWideChar(TempLoaderLibPath));
-        {$ELSE}
-        FLibHandle := LoadLibrary(PWideChar(TempLoaderLibPath));
-        {$ENDIF}
+        FLibHandle := LoadLibrary({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(TempLoaderLibPath));
 
         if (FLibHandle = 0) then
           begin
-            Status   := lsError;
-            FError   := GetLastError;
+            Status := lsError;
+            FError := GetLastError;
 
             AppendErrorLog('Error loading ' + TempLoaderLibPath);
             AppendErrorLog('Error code : 0x' + inttohex(cardinal(FError), 8));
