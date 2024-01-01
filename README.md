@@ -60,7 +60,7 @@ end.
 
 ## Text editor
 
-This [text editor](https://github.com/webui-dev/pascal-webui/tree/main/demos/Console/text_editor) is a lightweight and portable example written in Delphi and JavaScript using WebUI as the GUI.
+This [text_editor](https://github.com/salvadordf/WebUI4Delphi/tree/main/demos/Console/text_editor) is a lightweight and portable example written in Delphi and JavaScript using WebUI as the GUI.
 
 ![text_editor](https://github.com/salvadordf/WebUI4Delphi/assets/17946341/306533de-5885-4bab-9c05-1627ea9b9bc8)
 
