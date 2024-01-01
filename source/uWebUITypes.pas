@@ -7,7 +7,11 @@ unit uWebUITypes;
 interface
 
 uses
-  System.Classes;
+  {$IFDEF DELPHI16_UP}
+    System.Classes;
+  {$ELSE}
+    Classes;
+  {$ENDIF}
 
 type
   IWebUIEventHandler = interface;

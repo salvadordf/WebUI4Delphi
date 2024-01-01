@@ -5,7 +5,9 @@ unit uWebUIMiscFunctions;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.UITypes, Winapi.ActiveX, System.SysUtils, System.Math, System.StrUtils,
+  {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.UITypes,
+  System.SysUtils, System.Math, System.StrUtils,
+  {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 const
@@ -14,13 +16,47 @@ const
 procedure OutputDebugMessage(const aMessage : string);
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
 
+/// <summary>
+/// Returns true if aPath is a relative path.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathisrelativew">See the PathIsRelativeW article.</see></para>
+/// </remarks>
 function CustomPathIsRelative(const aPath : string) : boolean;
+/// <summary>
+/// Simplifies a path by removing navigation elements such as "." and ".." to produce a direct, well-formed path.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathcanonicalizew">See the PathCanonicalizeW article.</see></para>
+/// </remarks>
 function CustomPathCanonicalize(const aOriginalPath : string; var aCanonicalPath : string) : boolean;
+/// <summary>
+/// Returns the absolute path version of aPath.
+/// </summary>
 function CustomAbsolutePath(const aPath : string; aMustExist : boolean = False) : string;
+/// <summary>
+/// Tests aPath to determine if it conforms to a valid URL format.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathisurlw">See the PathIsURLW article.</see></para>
+/// </remarks>
 function CustomPathIsURL(const aPath : string) : boolean;
+/// <summary>
+/// Determines if aPath is a valid Universal Naming Convention (UNC) path, as opposed to a path based on a drive letter.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathisuncw">See the PathIsUNCW article.</see></para>
+/// </remarks>
 function CustomPathIsUNC(const aPath : string) : boolean;
+/// <summary>
+/// Retrieves the fully qualified path for the current module.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew">See the GetModuleFileNameW article.</see></para>
+/// </remarks>
 function GetModulePath : string;
 
+{$IFDEF MSWINDOWS}
 function PathIsRelativeAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsRelativeA';
 function PathIsRelativeUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsRelativeW';
 function PathCanonicalizeAnsi(pszBuf: LPSTR; pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathCanonicalizeA';
@@ -29,7 +65,7 @@ function PathIsUNCAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name
 function PathIsUNCUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsUNCW';
 function PathIsURLAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLA';
 function PathIsURLUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLW';
-
+{$ENDIF}
 function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
 
 implementation
@@ -46,7 +82,28 @@ uses
 procedure OutputDebugMessage(const aMessage : string);
 begin
   {$IFDEF DEBUG}
-  OutputDebugString({$IFNDEF DELPHI16_UP}PAnsiChar{$ELSE}PWideChar{$ENDIF}(aMessage + #0));
+    {$IFDEF MSWINDOWS}
+      {$IFDEF FMX}
+        FMX.Types.Log.d(aMessage);
+      {$ELSE}
+        OutputDebugString({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(aMessage + chr(0)));
+      {$ENDIF}
+    {$ENDIF}
+
+    {$IFDEF LINUX}
+      {$IFDEF FPC}
+        // TO-DO: Find a way to write in the error console using Lazarus in Linux
+      {$ELSE}
+        FMX.Types.Log.d(aMessage);
+      {$ENDIF}
+    {$ENDIF}
+    {$IFDEF MACOSX}
+      {$IFDEF FPC}
+        // TO-DO: Find a way to write in the error console using Lazarus in MacOS
+      {$ELSE}
+        FMX.Types.Log.d(aMessage);
+      {$ENDIF}
+    {$ENDIF}
   {$ENDIF}
 end;
 
@@ -59,22 +116,46 @@ end;
 
 function CustomPathIsRelative(const aPath : string) : boolean;
 begin
-  Result := PathIsRelativeUnicode(PWideChar(aPath));
+  {$IFDEF MSWINDOWS}
+    {$IFDEF DELPHI12_UP}
+    Result := PathIsRelativeUnicode(PChar(aPath));
+    {$ELSE}
+    Result := PathIsRelativeAnsi(PChar(aPath));
+    {$ENDIF}
+  {$ELSE}
+  Result := (length(aPath) > 0) and (aPath[1] <> '/');
+  {$ENDIF}
 end;
 
 function CustomPathIsURL(const aPath : string) : boolean;
 begin
-  Result := PathIsURLUnicode(PWideChar(aPath + #0));
+  {$IFDEF MSWINDOWS}
+    {$IFDEF DELPHI12_UP}
+    Result := PathIsURLUnicode(PChar(aPath + #0));
+    {$ELSE}
+    Result := PathIsURLAnsi(PChar(aPath + #0));
+    {$ENDIF}
+  {$ELSE}
+  Result := False;
+  {$ENDIF}
 end;
 
 function CustomPathIsUNC(const aPath : string) : boolean;
 begin
-  Result := PathIsUNCUnicode(PWideChar(aPath + #0));
+  {$IFDEF MSWINDOWS}
+    {$IFDEF DELPHI12_UP}
+    Result := PathIsUNCUnicode(PChar(aPath + #0));
+    {$ELSE}
+    Result := PathIsUNCAnsi(PChar(aPath + #0));
+    {$ENDIF}
+  {$ELSE}
+  Result := False;
+  {$ENDIF}
 end;
 
 function CustomPathCanonicalize(const aOriginalPath : string; var aCanonicalPath : string) : boolean;
 var
-  TempBuffer: array [0..pred(MAX_PATH)] of WideChar;
+  TempBuffer: array [0..pred(MAX_PATH)] of Char;
 begin
   Result         := False;
   aCanonicalPath := '';
@@ -84,13 +165,23 @@ begin
      CustomPathIsUNC(aOriginalPath) then
     exit;
 
-  FillChar(TempBuffer, MAX_PATH * SizeOf(WideChar), 0);
+  FillChar(TempBuffer, MAX_PATH * SizeOf(Char), 0);
 
-  if PathCanonicalizeUnicode(@TempBuffer[0], PWideChar(aOriginalPath + #0)) then
-    begin
-      aCanonicalPath := TempBuffer;
-      Result         := True;
-    end;
+  {$IFDEF MSWINDOWS}
+    {$IFDEF DELPHI12_UP}
+    if PathCanonicalizeUnicode(@TempBuffer[0], PChar(aOriginalPath + #0)) then
+      begin
+        aCanonicalPath := TempBuffer;
+        Result         := True;
+      end;
+    {$ELSE}
+    if PathCanonicalizeAnsi(@TempBuffer[0], PChar(aOriginalPath + #0)) then
+      begin
+        aCanonicalPath := TempBuffer;
+        Result         := True;
+      end;
+    {$ENDIF}
+  {$ENDIF}
 end;
 
 function CustomAbsolutePath(const aPath : string; aMustExist : boolean) : string;
@@ -117,11 +208,32 @@ begin
 end;
 
 function GetModulePath : string;
+{$IFDEF MACOSX}
+const
+  MAC_APP_POSTFIX = '.app/';
+  MAC_APP_SUBPATH = 'Contents/MacOS/';
+{$ENDIF}
 begin
+  {$IFDEF MSWINDOWS}
+  Result := IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE{$IFDEF FPC}(){$ENDIF})));
+  {$ENDIF}
+
+  {$IFDEF LINUX}
+  Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
+  {$ENDIF}
+
+  {$IFDEF MACOSX}
+  Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
+
   {$IFDEF FPC}
-  Result := UTF8Decode(IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE))));
+  if copy(Result, Length(Result) + 1 - Length(MAC_APP_POSTFIX) - Length(MAC_APP_SUBPATH)) = MAC_APP_POSTFIX + MAC_APP_SUBPATH then
+    SetLength(Result, Length(Result) - Length(MAC_APP_SUBPATH));
+
+  Result := CreateAbsolutePath(Result, GetCurrentDirUTF8);
   {$ELSE}
-  Result := IncludeTrailingPathDelimiter(ExtractFileDir(GetModuleName(HINSTANCE)));
+  if Result.Contains(MAC_APP_POSTFIX + MAC_APP_SUBPATH) then
+    Result := Result.Remove(Result.IndexOf(MAC_APP_SUBPATH));
+  {$ENDIF}
   {$ENDIF}
 end;
 

@@ -1,5 +1,7 @@
 unit uWebUILibFunctions;
 
+{$I uWebUI.inc}
+
 {$MINENUMSIZE 4}
 
 interface

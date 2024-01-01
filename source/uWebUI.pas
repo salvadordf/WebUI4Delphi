@@ -7,8 +7,12 @@ unit uWebUI;
 interface
 
 uses
-  WinApi.Windows, System.Classes, System.SysUtils, Winapi.ShlObj, System.Math,
-  System.Generics.Collections, System.SyncObjs,
+  {$IFDEF DELPHI16_UP}
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
+    System.Math, System.SyncObjs,
+  {$ELSE}
+    Windows, Classes, SysUtils, Math, SyncObjs,
+  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
 type
@@ -326,7 +330,11 @@ begin
          else
           TempLoaderLibPath := WEBUI_LIB;
 
+        {$IFDEF MSWINDOWS}
         FLibHandle := LoadLibraryW(PWideChar(TempLoaderLibPath));
+        {$ELSE}
+        FLibHandle := LoadLibrary(PWideChar(TempLoaderLibPath));
+        {$ENDIF}
 
         if (FLibHandle = 0) then
           begin
@@ -510,8 +518,33 @@ end;
 
 procedure TWebUI.ShowErrorMessageDlg(const aError : string);
 begin
+  OutputDebugMessage(aError);
+
   if FShowMessageDlg then
-    MessageBoxW(0, PWideChar(aError + #0), PWideChar(WideString('Error') + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+    begin
+      {$IFDEF MSWINDOWS}
+      MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+      {$ENDIF}
+
+      {$IFDEF LINUX}
+        {$IFDEF FPC}
+        if (WidgetSet <> nil) then
+          Application.MessageBox(PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK)
+         else
+          ShowX11Message(aError);
+        {$ELSE}
+        // TO-DO: Find a way to show message boxes in FMXLinux
+        {$ENDIF}
+      {$ENDIF}
+
+      {$IFDEF MACOSX}
+        {$IFDEF FPC}
+        // TO-DO: Find a way to show message boxes in Lazarus/FPC for MacOS
+        {$ELSE}
+        ShowMessageCF('Error', aError, 10);
+        {$ENDIF}
+      {$ENDIF}
+    end;
 end;
 
 function TWebUI.GetErrorMessage : string;

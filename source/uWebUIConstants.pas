@@ -1,5 +1,7 @@
 unit uWebUIConstants;
 
+{$I uWebUI.inc}
+
 interface
 
 const
@@ -27,8 +29,18 @@ const
   /// </remarks>
   WEBUI_MAX_ARG = 16;
 
+  {$IFDEF MSWINDOWS}
   WEBUI_LIB = 'webui-2.dll';
   WEBUI_DEBUG_LIB = 'webui-2_debug.dll';
+  {$ENDIF}
+  {$IFDEF LINUX}
+  WEBUI_LIB = 'webui-2.so';
+  WEBUI_DEBUG_LIB = 'webui-2_debug.so';
+  {$ENDIF}
+  {$IFDEF MACOSX}
+  WEBUI_LIB = 'webui-2.dylib';
+  WEBUI_DEBUG_LIB = 'webui-2_debug.dylib';
+  {$ENDIF}
 
   /// <summary>
   /// Default timeout in seconds before the browser starts.

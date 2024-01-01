@@ -7,7 +7,11 @@ unit uWebUIEventHandler;
 interface
 
 uses
-  WinApi.Windows, System.Classes, System.SysUtils,
+  {$IFDEF DELPHI16_UP}
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
+  {$ELSE}
+    Windows, Classes, SysUtils,
+  {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
 type
