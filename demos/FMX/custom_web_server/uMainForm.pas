@@ -59,13 +59,21 @@ begin
 end;
 
 procedure TMainForm.PythonBtnClick(Sender: TObject);
+var
+  LOldDir, LNewDir : string;
 begin
+  LNewDir := CustomAbsolutePath('..\assets\custom_web_server');
+  LOldDir := GetCurrentDir;
+  chdir(GetModulePath);
+
   // Python must be installed
-  if (ExecuteFile('python.exe', CustomAbsolutePath('..\assets\custom_web_server') + '\simple_web_server.py', '', SW_SHOWNORMAL) <> 0) then
+  if (ExecuteFile('python.exe', LNewDir + '\simple_web_server.py', '', SW_SHOWNORMAL) <> 0) then
     begin
       PythonBtn.Enabled      := False;
       ShowBrowserBtn.Enabled := True;
     end;
+
+  chdir(LOldDir);
 end;
 
 procedure TMainForm.my_backend_func(const aEvent: IWebUIEventHandler);
