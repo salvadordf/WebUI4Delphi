@@ -15,6 +15,9 @@ uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
     System.Math, System.SyncObjs,
+    {$IFDEF MACOS}
+    FMX.Helpers.Mac, System.Messaging, Macapi.CoreFoundation, Macapi.Foundation,
+    {$ENDIF}
   {$ELSE}
     Windows, Classes, SysUtils, Math, SyncObjs,
   {$ENDIF}
@@ -521,6 +524,24 @@ begin
       UnLock;
     end;
 end;
+
+{$IFDEF MACOSX}{$IFNDEF FPC}
+procedure ShowMessageCF(const aHeading, aMessage : string; const aTimeoutInSecs : double = 0);
+var
+  TempHeading, TempMessage : CFStringRef;
+  TempResponse : CFOptionFlags;
+begin
+  TempHeading := CFStringCreateWithCharactersNoCopy(nil, PChar(aHeading), Length(AHeading), kCFAllocatorNull);
+  TempMessage := CFStringCreateWithCharactersNoCopy(nil, PChar(aMessage), Length(AMessage), kCFAllocatorNull);
+
+  try
+    CFUserNotificationDisplayAlert(aTimeoutInSecs, kCFUserNotificationNoteAlertLevel, nil, nil, nil, TempHeading, TempMessage, nil, nil, nil, TempResponse);
+  finally
+    CFRelease(TempHeading);
+    CFRelease(TempMessage);
+  end;
+end;
+{$ENDIF}{$ENDIF}
 
 procedure TWebUI.ShowErrorMessageDlg(const aError : string);
 begin

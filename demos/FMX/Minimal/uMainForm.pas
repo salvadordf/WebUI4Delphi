@@ -40,12 +40,26 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
+{$IFDEF MACOS}
+const
+  MAC_APP_POSTFIX = '.app/';
+  MAC_APP_SUBPATH = 'Contents/MacOS/';
+var
+  LPath : string;
+{$ENDIF}
 begin
   WebUI := TWebUI.Create;
   {$IFDEF DEBUG}
   //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
   {$ENDIF}
   FWindow := nil;
+  {$IFDEF MACOS}
+  // Copy "webui-2.dylib" to the "Minimal.app/Contents/Frameworks/" directory before running the demo.
+  LPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
+  if LPath.Contains(MAC_APP_POSTFIX + MAC_APP_SUBPATH) then
+    LPath := LPath.Remove(LPath.IndexOf(MAC_APP_SUBPATH));
+  WebUI.LoaderDllPath := LPath + 'Contents/Frameworks/' + WEBUI_LIB;
+  {$ENDIF}
   MainPanel.Enabled := WebUI.Initialize;
 end;
 

@@ -249,15 +249,16 @@ end;
 function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
 begin
   {$IFDEF MSWINDOWS}
-    result := ShellExecute(0, 'Open', PChar(filename), PChar(Params), PChar(DefaultDir), ShowCmd);
+    Result := ShellExecute(0, 'Open', PChar(filename), PChar(Params), PChar(DefaultDir), ShowCmd);
   {$ENDIF}
 
   {$IFDEF MACOSX}
-    _system(PAnsiChar('open ' + AnsiString(filename)));
+    Result := _system(PAnsiChar('open ' + AnsiString(filename)));
   {$ENDIF}
 
   {$IFDEF LINUX}
      // TO-DO: Find a way to execute a program in Linux
+     Result := 0;
   {$ENDIF}
 end;
 
