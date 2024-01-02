@@ -251,8 +251,13 @@ begin
   {$IFDEF MSWINDOWS}
     result := ShellExecute(0, 'Open', PChar(filename), PChar(Params), PChar(DefaultDir), ShowCmd);
   {$ENDIF}
-  {$IFDEF MACOS}
+
+  {$IFDEF MACOSX}
     _system(PAnsiChar('open ' + AnsiString(filename)));
+  {$ENDIF}
+
+  {$IFDEF LINUX}
+     // TO-DO: Find a way to execute a program in Linux
   {$ENDIF}
 end;
 

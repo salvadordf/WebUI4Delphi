@@ -215,7 +215,11 @@ begin
       FEvent.bind_id      := aEvent^.bind_id;
     end
    else
+    {$IFDEF MSWINDOWS}
     ZeroMemory(@FEvent, SizeOf(TWebUIEvent));
+    {$ELSE}
+    FillChar(FEvent, SizeOf(TWebUIEvent), #0);
+    {$ENDIF}
 end;
 
 constructor TWebUIEventHandler.Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
