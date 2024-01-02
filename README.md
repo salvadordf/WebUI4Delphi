@@ -3,7 +3,7 @@
 # WebUI4Delphi [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Add%20WebUI4Delphi%20to%20your%20applications%20to%20use%20any%20web%20browser%20as%20a%20GUI%20in%20your%20application&url=https://github.com/salvadordf/WebUI4Delphi&via=briskbard&hashtags=WebUI4Delphi,delphi,webui)
 WebUI4Delphi is a [WebUI](https://github.com/webui-dev/webui) wrapper, which allows you to use any web browser as a GUI, with [Delphi](https://www.embarcadero.com/products/delphi/starter) in the backend and HTML5 in the frontend. 
 
-WebUI4Delphi can be used in 64 bit Delphi applications for Windows. Linux and MacOS support needs testing. 
+WebUI4Delphi can be used in 64 bit Delphi applications for Windows, Linux and MacOS. 
 
 WebUI4Delphi was developed and tested on Delphi 12.0 but it also supports Delphi XE2. 
 
