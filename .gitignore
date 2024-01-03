@@ -31,7 +31,6 @@
 *.bpl
 *.bpi
 *.dcp
-*.so
 *.apk
 *.drc
 *.map
