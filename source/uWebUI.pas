@@ -24,6 +24,9 @@ uses
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
 type
+  /// <summary>
+  /// Class used to simplify the WebUI initialization and destruction.
+  /// </summary>
   TWebUI = class
     protected
       FLibHandle                              : THandle;
