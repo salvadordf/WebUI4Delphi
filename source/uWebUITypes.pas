@@ -312,6 +312,24 @@ type
       /// </remarks>
       procedure ReturnString(const aReturnValue: string);
       /// <summary>
+      /// Return the response to JavaScript as a stream.
+      /// </summary>
+      /// <param name="aReturnValue">The stream to be send to JavaScript.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
+      /// </remarks>
+      procedure ReturnStream(const aReturnValue: TMemoryStream); overload;
+      /// <summary>
+      /// Return the response to JavaScript as a stream.
+      /// </summary>
+      /// <param name="aReturnValue">The stream to be send to JavaScript.</param>
+      /// <param name="aOffset">Moves the current stream position by aOffset bytes, relative to the beginning.</param>
+      /// <param name="aCount">Copies aCount bytes from the stream.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
+      /// </remarks>
+      procedure ReturnStream(const aReturnValue: TMemoryStream; aOffset, aCount: int64); overload;
+      /// <summary>
       /// Return the response to JavaScript as boolean.
       /// </summary>
       /// <param name="aReturnValue">The boolean to be send to JavaScript.</param>

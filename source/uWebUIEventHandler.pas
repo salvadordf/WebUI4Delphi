@@ -144,6 +144,24 @@ type
       /// </remarks>
       procedure ReturnString(const aReturnValue: string);
       /// <summary>
+      /// Return the response to JavaScript as a stream.
+      /// </summary>
+      /// <param name="aReturnValue">The stream to be send to JavaScript.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
+      /// </remarks>
+      procedure ReturnStream(const aReturnValue: TMemoryStream); overload;
+      /// <summary>
+      /// Return the response to JavaScript as a stream.
+      /// </summary>
+      /// <param name="aReturnValue">The stream to be send to JavaScript.</param>
+      /// <param name="aOffset">Moves the current stream position by aOffset bytes, relative to the beginning.</param>
+      /// <param name="aCount">Copies aCount bytes from the stream.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
+      /// </remarks>
+      procedure ReturnStream(const aReturnValue: TMemoryStream; aOffset, aCount: int64); overload;
+      /// <summary>
       /// Return the response to JavaScript as boolean.
       /// </summary>
       /// <param name="aReturnValue">The boolean to be send to JavaScript.</param>
@@ -397,6 +415,43 @@ begin
     begin
       LString := UTF8Encode(aReturnValue + #0);
       webui_return_string(@FEvent, @LString[1]);
+    end;
+end;
+
+procedure TWebUIEventHandler.ReturnStream(const aReturnValue: TMemoryStream);
+var
+  LBuffer : PWebUIChar;
+begin
+  LBuffer := nil;
+
+  if assigned(aReturnValue) and (aReturnValue.Size > 0) then
+    try
+      LBuffer := webui_malloc(aReturnValue.Size);
+      aReturnValue.Seek(0, soBeginning);
+      aReturnValue.Read(LBuffer^, aReturnValue.Size);
+      aReturnValue.Seek(0, soBeginning);
+      webui_return_string(@FEvent, LBuffer);
+    finally
+      if (LBuffer <> nil) then
+        webui_free(LBuffer);
+    end;
+end;
+
+procedure TWebUIEventHandler.ReturnStream(const aReturnValue: TMemoryStream; aOffset, aCount: int64);
+var
+  LBuffer : PWebUIChar;
+begin
+  LBuffer := nil;
+
+  if assigned(aReturnValue) and (aOffset >= 0) and (aCount > 0) then
+    try
+      LBuffer := webui_malloc(aCount);
+      aReturnValue.Seek(aOffset, soBeginning);
+      aReturnValue.Read(LBuffer^, aCount);
+      webui_return_string(@FEvent, LBuffer);
+    finally
+      if (LBuffer <> nil) then
+        webui_free(LBuffer);
     end;
 end;
 
