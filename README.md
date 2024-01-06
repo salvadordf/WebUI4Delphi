@@ -1,7 +1,7 @@
 # WebUI4Delphi [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Add%20WebUI4Delphi%20to%20your%20applications%20to%20use%20any%20web%20browser%20as%20a%20GUI%20in%20your%20application&url=https://github.com/salvadordf/WebUI4Delphi&via=briskbard&hashtags=WebUI4Delphi,delphi,webui)
 WebUI4Delphi is a [WebUI](https://github.com/webui-dev/webui) wrapper, which allows you to use any web browser as a GUI, with [Delphi](https://www.embarcadero.com/products/delphi/starter) in the backend and HTML5 in the frontend. 
 
-WebUI allows you to link your Delphi application with a web app. Originally WebUI was created to have all the UI code in the browser and the rest of the code in your hidden Delphi application.
+WebUI allows you to link your Delphi application with a web app that runs in a web browser installed in the operating system. Originally WebUI was created to have all the UI code in the web browser and the rest of the code in your hidden Delphi application.
 However, you can also decide to have a visible Delphi application communicating with a HTML5 app. You can get web browser events in your Delphi application, call Delphi functions from JS, call JS functions from Delphi code, execute JavaScript, etc.
 
 WebUI4Delphi can be used in 64 bit Delphi applications for Windows, Linux and MacOS. 
@@ -10,7 +10,7 @@ WebUI4Delphi was developed and tested on Delphi 12.0 but it also supports Delphi
 
 WebUI4Delphi includes VCL, FireMonkey (FMX) and console examples.
 
-If you need to embed a web browser instead of using the installed web browser then consider using [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) or [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi). 
+WebUI doesn't embed a web browser in your application. It's used as a bridge between a Delphi application and the web browser running an HTML5 app. If you need to embed a web browser instead of using the installed web browser then consider using [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) or [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi). 
 
 
 ## Features
