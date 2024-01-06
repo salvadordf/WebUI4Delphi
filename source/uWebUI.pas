@@ -407,6 +407,7 @@ begin
         webui_set_size                      := GetProcAddress(FLibHandle, 'webui_set_size');
         webui_set_position                  := GetProcAddress(FLibHandle, 'webui_set_position');
         webui_set_profile                   := GetProcAddress(FLibHandle, 'webui_set_profile');
+        webui_set_proxy                     := GetProcAddress(FLibHandle, 'webui_set_proxy');
         webui_get_url                       := GetProcAddress(FLibHandle, 'webui_get_url');
         webui_set_public                    := GetProcAddress(FLibHandle, 'webui_set_public');
         webui_navigate                      := GetProcAddress(FLibHandle, 'webui_navigate');
@@ -466,6 +467,7 @@ begin
            assigned(webui_set_size) and
            assigned(webui_set_position) and
            assigned(webui_set_profile) and
+           assigned(webui_set_proxy) and
            assigned(webui_get_url) and
            assigned(webui_set_public) and
            assigned(webui_navigate) and
@@ -505,7 +507,7 @@ begin
          else
           begin
             Status := lsError;
-            AppendErrorLog('There was a problem loading the library procedures');
+            AppendErrorLog('There was a problem loading the library procedures.');
 
             ShowErrorMessageDlg(ErrorMessage);
           end;

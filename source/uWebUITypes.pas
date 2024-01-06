@@ -562,6 +562,15 @@ type
     /// </remarks>
     procedure   SetProfile(const name, path: string);
     /// <summary>
+    /// Set the web browser proxy_server to use. Need to be called before 'webui_show()'.
+    /// </summary>
+    /// <param name="window">The window number.</param>
+    /// <param name="proxy_server">The web browser proxy_server. For example 'http://127.0.0.1:8888'</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_proxy)</see></para>
+    /// </remarks>
+    procedure   SetProxy(const proxy_server: string);
+    /// <summary>
     /// Allow a specific window address to be accessible from a public network.
     /// </summary>
     /// <param name="status">True or False.</param>

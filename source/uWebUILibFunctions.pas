@@ -273,6 +273,16 @@ var
   webui_set_profile : procedure(window: TWebUIWindowID; const name, path: PWebUIChar); stdcall;
 
   /// <summary>
+  /// Set the web browser proxy_server to use. Need to be called before 'webui_show()'.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="proxy_server">The web browser proxy_server. For example 'http://127.0.0.1:8888'</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_proxy)</see></para>
+  /// </remarks>
+  webui_set_proxy : procedure(window: TWebUIWindowID; const proxy_server: PWebUIChar); stdcall;
+
+  /// <summary>
   /// Get the full current URL.
   /// </summary>
   /// <param name="window">The window number.</param>
