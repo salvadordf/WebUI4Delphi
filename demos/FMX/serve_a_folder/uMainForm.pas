@@ -57,7 +57,7 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   WebUI := TWebUI.Create;
   {$IFDEF DEBUG}
-  //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+  //WebUI.LibraryPath := WEBUI_DEBUG_LIB;
   {$ENDIF}
   FWindow := nil;
   FSecondWindow := nil;

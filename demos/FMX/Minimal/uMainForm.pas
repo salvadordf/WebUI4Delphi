@@ -50,7 +50,7 @@ var
 begin
   WebUI := TWebUI.Create;
   {$IFDEF DEBUG}
-  //WebUI.LoaderDllPath := WEBUI_DEBUG_LIB;
+  //WebUI.LibraryPath := WEBUI_DEBUG_LIB;
   {$ENDIF}
   FWindow := nil;
   {$IFDEF MACOS}
@@ -58,7 +58,7 @@ begin
   LPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
   if LPath.Contains(MAC_APP_POSTFIX + MAC_APP_SUBPATH) then
     LPath := LPath.Remove(LPath.IndexOf(MAC_APP_SUBPATH));
-  WebUI.LoaderDllPath := LPath + 'Contents/Frameworks/' + WEBUI_LIB;
+  WebUI.LibraryPath := LPath + 'Contents/Frameworks/' + WEBUI_LIB;
   {$ENDIF}
   MainPanel.Enabled := WebUI.Initialize;
 end;
