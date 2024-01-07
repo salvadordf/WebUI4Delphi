@@ -1,6 +1,10 @@
 unit uWebUIWindow;
 
-{$I uWebUI.inc}
+{$I uWebUI.inc}    
+
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
 
 {$MINENUMSIZE 4}
 
@@ -15,7 +19,7 @@ uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
   {$ELSE}
-    Windows, Classes, SysUtils,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils,
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 

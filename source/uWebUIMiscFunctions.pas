@@ -1,6 +1,10 @@
 unit uWebUIMiscFunctions;
 
-{$I uWebUI.inc}
+{$I uWebUI.inc}    
+
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
 
 interface
 
@@ -10,7 +14,7 @@ uses
     System.SysUtils, System.Math, System.StrUtils,
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
   {$ELSE}
-    Windows, Classes, SysUtils, Math, StrUtils,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Math, StrUtils,
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
@@ -125,7 +129,7 @@ end;
 function CustomPathIsRelative(const aPath : string) : boolean;
 begin
   {$IFDEF MSWINDOWS}
-    {$IFDEF DELPHI12_UP}
+    {$IF DEFINED(DELPHI12_UP) OR DEFINED(FPC)}
     Result := PathIsRelativeUnicode(PChar(aPath));
     {$ELSE}
     Result := PathIsRelativeAnsi(PChar(aPath));
@@ -138,7 +142,7 @@ end;
 function CustomPathIsURL(const aPath : string) : boolean;
 begin
   {$IFDEF MSWINDOWS}
-    {$IFDEF DELPHI12_UP}
+    {$IF DEFINED(DELPHI12_UP) OR DEFINED(FPC)}
     Result := PathIsURLUnicode(PChar(aPath + #0));
     {$ELSE}
     Result := PathIsURLAnsi(PChar(aPath + #0));
@@ -151,7 +155,7 @@ end;
 function CustomPathIsUNC(const aPath : string) : boolean;
 begin
   {$IFDEF MSWINDOWS}
-    {$IFDEF DELPHI12_UP}
+    {$IF DEFINED(DELPHI12_UP) OR DEFINED(FPC)}
     Result := PathIsUNCUnicode(PChar(aPath + #0));
     {$ELSE}
     Result := PathIsUNCAnsi(PChar(aPath + #0));
@@ -176,7 +180,7 @@ begin
   FillChar(TempBuffer, MAX_PATH * SizeOf(Char), 0);
 
   {$IFDEF MSWINDOWS}
-    {$IFDEF DELPHI12_UP}
+    {$IF DEFINED(DELPHI12_UP) OR DEFINED(FPC)}
     if PathCanonicalizeUnicode(@TempBuffer[0], PChar(aOriginalPath + #0)) then
       begin
         aCanonicalPath := TempBuffer;
@@ -257,8 +261,8 @@ begin
   {$ENDIF}
 
   {$IFDEF LINUX}
-     // TO-DO: Find a way to execute a program in Linux
-     Result := 0;
+    // TO-DO: Find a way to execute a program in Linux
+    Result := 0;
   {$ENDIF}
 end;
 

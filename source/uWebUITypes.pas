@@ -1,6 +1,10 @@
 unit uWebUITypes;
 
-{$I uWebUI.inc}
+{$I uWebUI.inc}    
+
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
 
 {$MINENUMSIZE 4}
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <PathDelim Value="\"/>
+    <Name Value="webui4delphi"/>
+    <Type Value="RunAndDesignTime"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\source"/>
+        <OtherUnitFiles Value="..\source"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Version Major="2" Minor="4" Release="2"/>
+    <Files>
+      <Item>
+        <Filename Value="..\source\uWebUI.inc"/>
+        <Type Value="Include"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUI.pas"/>
+        <UnitName Value="uWebUI"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIBase64.pas"/>
+        <UnitName Value="uWebUIBase64"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIConstants.pas"/>
+        <UnitName Value="uWebUIConstants"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIEventHandler.pas"/>
+        <UnitName Value="uWebUIEventHandler"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUILibFunctions.pas"/>
+        <UnitName Value="uWebUILibFunctions"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIMiscFunctions.pas"/>
+        <UnitName Value="uWebUIMiscFunctions"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUITypes.pas"/>
+        <UnitName Value="uWebUITypes"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIVersion.inc"/>
+        <Type Value="Include"/>
+      </Item>
+      <Item>
+        <Filename Value="..\source\uWebUIWindow.pas"/>
+        <UnitName Value="uWebUIWindow"/>
+      </Item>
+    </Files>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="LCL"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

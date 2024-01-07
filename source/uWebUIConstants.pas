@@ -1,6 +1,10 @@
 unit uWebUIConstants;
 
-{$I uWebUI.inc}
+{$I uWebUI.inc}      
+
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
 
 interface
 

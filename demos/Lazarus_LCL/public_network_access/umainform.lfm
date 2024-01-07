@@ -1,0 +1,44 @@
+object MainForm: TMainForm
+  Left = 350
+  Height = 89
+  Top = 250
+  Width = 320
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'public_network_access'
+  ClientHeight = 89
+  ClientWidth = 320
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '3.0.0.3'
+  object MainPanel: TPanel
+    Left = 0
+    Height = 89
+    Top = 0
+    Width = 320
+    Align = alClient
+    ClientHeight = 89
+    ClientWidth = 320
+    TabOrder = 0
+    object ShowBrowserBtn: TButton
+      Left = 8
+      Height = 32
+      Top = 8
+      Width = 304
+      Caption = '1. Show browser'
+      TabOrder = 0
+      OnClick = ShowBrowserBtnClick
+    end
+    object OpenDefBrowserBtn: TButton
+      Left = 8
+      Height = 33
+      Top = 48
+      Width = 304
+      Caption = '2. Open default web browser'
+      Enabled = False
+      TabOrder = 1
+      OnClick = OpenDefBrowserBtnClick
+    end
+  end
+end

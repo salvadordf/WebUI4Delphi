@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="text_editor.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umainform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMainForm"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="68"/>
+        <CursorPos X="67" Y="83"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="3" Y="27"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUIEventHandler.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="409"/>
+        <CursorPos Y="241"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUIWindow.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="488"/>
+        <CursorPos X="64" Y="498"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="9">
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="3" Column="22"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="22" Column="29"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="38" Column="3" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="44" Column="3" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="24" Column="87" TopLine="8"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="48" Column="40" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="195" Column="26" TopLine="171"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="199" Column="157" TopLine="171"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="254" Column="16" TopLine="225"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUIWindow.pas"/>
+        <Caret Line="47" Column="28" TopLine="36"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

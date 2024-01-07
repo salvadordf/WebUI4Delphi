@@ -1,16 +1,16 @@
 # WebUI4Delphi [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Add%20WebUI4Delphi%20to%20your%20applications%20to%20use%20any%20web%20browser%20as%20a%20GUI%20in%20your%20application&url=https://github.com/salvadordf/WebUI4Delphi&via=briskbard&hashtags=WebUI4Delphi,delphi,webui)
-WebUI4Delphi is a [WebUI](https://github.com/webui-dev/webui) wrapper, which allows you to use any web browser as a GUI, with [Delphi](https://www.embarcadero.com/products/delphi/starter) in the backend and HTML5 in the frontend. 
+WebUI4Delphi is a [WebUI](https://github.com/webui-dev/webui) wrapper, which allows you to use any web browser as a GUI, with [Delphi](https://www.embarcadero.com/products/delphi/starter) or [Lazarus/FPC](https://www.lazarus-ide.org/) in the backend and HTML5 in the frontend. 
 
-WebUI allows you to link your Delphi application with a web app that runs in a web browser installed in the operating system. Originally WebUI was created to have all the UI code in the web browser and the rest of the code in your hidden Delphi application.
-However, you can also decide to have a visible Delphi application communicating with a HTML5 app. You can get web browser events in your Delphi application, call Delphi functions from JS, call JS functions from Delphi code, execute JavaScript, etc.
+WebUI allows you to link your Delphi or Lazarus application with a web app that runs in a web browser installed in the operating system. Originally WebUI was created to have all the UI code in the web browser and the rest of the code in your hidden Delphi or Lazarus application.
+However, you can also decide to have a visible Delphi or Lazarus application communicating with a HTML5 app. You can get web browser events in your desktop application, call Pascal functions from JS, call JS functions from Pascal code, execute JavaScript, etc.
 
-WebUI4Delphi can be used in 64 bit Delphi applications for Windows, Linux and MacOS. 
+WebUI4Delphi can be used in 64 bit Delphi or Lazarus applications for Windows, Linux and MacOS. 
 
-WebUI4Delphi was developed and tested on Delphi 12.0 but it also supports Delphi XE2. 
+WebUI4Delphi was developed and tested on Delphi 12.0 and Lazarus 3.0/FPC 3.2.2 but it also supports Delphi XE2. 
 
-WebUI4Delphi includes VCL, FireMonkey (FMX) and console examples.
+WebUI4Delphi includes VCL, FireMonkey (FMX), LCL and console examples.
 
-WebUI doesn't embed a web browser in your application. It's used as a bridge between a Delphi application and the web browser running an HTML5 app. If you need to embed a web browser instead of using the installed web browser then consider using [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) or [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi). 
+WebUI doesn't embed a web browser in your application. It's used as a bridge between a desktop application and the web browser running an HTML5 app. If you need to embed a web browser instead of using the installed web browser then consider using [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) or [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi). 
 
 
 ## Features
@@ -101,6 +101,11 @@ You can also support this project with Liberapay.
 ## Other resources
 * [Learn Delphi](https://learndelphi.org/)
 * [Essential Pascal by Marco Cantù](https://www.marcocantu.com/epascal/)
+* [Free Pascal Reference guide](https://www.freepascal.org/docs-html/ref/ref.html)
+* [Modern Object Pascal Introduction for Programmers](https://castle-engine.io/modern_pascal)
+* [FreePascal from Square One by Jeff Duntemann](http://www.copperwood.com/pub/FreePascalFromSquareOne.pdf)
+* [Pascal and Lazarus Books and Magazines](https://wiki.freepascal.org/Pascal_and_Lazarus_Books_and_Magazines)
+* [Lazarus Documentation](https://wiki.freepascal.org/Lazarus_Documentation)
 
 
 Additional: Delphinus-Support

@@ -1,0 +1,46 @@
+object MainForm: TMainForm
+  Left = 350
+  Height = 240
+  Top = 250
+  Width = 320
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'call_delphi_from_js'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '3.0.0.3'
+  object MainPanel: TPanel
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Align = alClient
+    Caption = 'MainPanel'
+    ClientHeight = 240
+    ClientWidth = 320
+    TabOrder = 0
+    object ShowBrowserBtn: TButton
+      Left = 1
+      Height = 25
+      Top = 1
+      Width = 318
+      Align = alTop
+      Caption = 'Show browser'
+      TabOrder = 0
+      OnClick = ShowBrowserBtnClick
+    end
+    object Memo1: TMemo
+      Left = 1
+      Height = 213
+      Top = 26
+      Width = 318
+      Align = alClient
+      ReadOnly = True
+      ScrollBars = ssAutoVertical
+      TabOrder = 1
+    end
+  end
+end

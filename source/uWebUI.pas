@@ -2,6 +2,10 @@ unit uWebUI;
 
 {$I uWebUI.inc}
 
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
+
 {$MINENUMSIZE 4}
 
 {$IFNDEF DELPHI12_UP}
@@ -19,7 +23,7 @@ uses
     FMX.Helpers.Mac, System.Messaging, Macapi.CoreFoundation, Macapi.Foundation,
     {$ENDIF}
   {$ELSE}
-    Windows, Classes, SysUtils, Math, SyncObjs,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Math, SyncObjs,
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
@@ -49,6 +53,7 @@ type
       function  GetIsAppRunning : boolean;
       function  GetStatus : TLoaderStatus;
       function  GetLibraryVersion : string;
+      function  DefaultLibraryPath : string;
 
       procedure SetTimeout(aValue: NativeUInt);
       procedure SetStatus(aValue: TLoaderStatus);
@@ -145,7 +150,7 @@ type
       /// </summary>
       property ErrorMessage                           : string                             read GetErrorMessage;
       /// <summary>
-      ///	Used to set the current directory when the WebView2 library is loaded. This is required if the application is launched from a different application.
+      ///  Used to set the current directory when the WebView2 library is loaded. This is required if the application is launched from a different application.
       /// </summary>
       property SetCurrentDir                          : boolean                            read FSetCurrentDir                           write FSetCurrentDir;
       /// <summary>
@@ -204,6 +209,7 @@ procedure global_webui_event_callback(e: PWebUIEvent);
 implementation
 
 uses
+  {$IFDEF LINUXFPC}Forms, InterfaceBase,{$ENDIF}
   uWebUIMiscFunctions, uWebUIEventHandler;
 
 procedure DestroyWebUI;
@@ -340,7 +346,7 @@ begin
       try
         if FSetCurrentDir then
           begin
-            TempOldDir := GetCurrentDir;
+            TempOldDir := {$IFDEF FPC}string({$ENDIF}GetCurrentDir{$IFDEF FPC}){$ENDIF};
             chdir(GetModulePath);
           end;
 
@@ -349,25 +355,47 @@ begin
         if (FLibraryPath <> '') then
           TempLibraryPath := FLibraryPath
          else
-          TempLibraryPath := WEBUI_LIB;
+          TempLibraryPath := DefaultLibraryPath;
 
-        FLibHandle := LoadLibrary({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(TempLibraryPath));
-
-        if (FLibHandle = 0) then
+        if FileExists(TempLibraryPath) then
           begin
-            Status := lsError;
-            FError := GetLastError;
+            {$IFDEF FPC}
+              {$IFDEF MSWINDOWS}
+              FLibHandle := LoadLibraryW(PWideChar(TempLibraryPath));
+              {$ELSE}
+              FLibHandle := LoadLibrary(TempLibraryPath);
+              {$ENDIF}
+            {$ELSE}
+            FLibHandle := LoadLibrary({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(TempLibraryPath));
+            {$ENDIF}
 
-            AppendErrorLog('Error loading ' + TempLibraryPath);
-            AppendErrorLog('Error code : 0x' + inttohex(cardinal(FError), 8));
-            AppendErrorLog(SysErrorMessage(cardinal(FError)));
-
-            ShowErrorMessageDlg(ErrorMessage);
+            if (FLibHandle = 0) then
+              begin
+                Status := lsError;
+                {$IFDEF MSWINDOWS}
+                FError := GetLastError;
+                {$ENDIF}
+                AppendErrorLog('Error loading ' + TempLibraryPath);
+                {$IFDEF MSWINDOWS}
+                AppendErrorLog('Error code : 0x' + {$IFDEF FPC}string({$ENDIF}inttohex(cardinal(FError), 8)){$IFDEF FPC}){$ENDIF};
+                AppendErrorLog({$IFDEF FPC}string({$ENDIF}SysErrorMessage(cardinal(FError)){$IFDEF FPC}){$ENDIF});
+                {$ENDIF}
+                ShowErrorMessageDlg(ErrorMessage);
+              end
+             else
+              begin
+                Status := lsLoaded;
+                Result := True;
+              end;
           end
          else
           begin
-            Status := lsLoaded;
-            Result := True;
+            Status := lsError;
+
+            AppendErrorLog('Error loading ' + TempLibraryPath);
+            AppendErrorLog('The WebUI library is missing.');
+
+            ShowErrorMessageDlg(ErrorMessage);
           end;
       finally
         if FSetCurrentDir then
@@ -529,13 +557,14 @@ begin
   if Lock then
     try
       if assigned(FErrorLog) then
-        FErrorLog.Add(aText);
+        FErrorLog.Add({$IFDEF FPC}UTF8Encode({$ENDIF}aText{$IFDEF FPC}){$ENDIF});
     finally
       UnLock;
     end;
 end;
 
-{$IFDEF MACOSX}{$IFNDEF FPC}
+{$IFNDEF FPC}
+{$IFDEF MACOSX}
 procedure ShowMessageCF(const aHeading, aMessage : string; const aTimeoutInSecs : double = 0);
 var
   TempHeading, TempMessage : CFStringRef;
@@ -551,24 +580,32 @@ begin
     CFRelease(TempMessage);
   end;
 end;
-{$ENDIF}{$ENDIF}
+{$ENDIF}
+{$ENDIF}
 
 procedure TWebUI.ShowErrorMessageDlg(const aError : string);
+{$IFDEF LINUXFPC}
+const
+  MB_OK        = $00000000;
+  MB_ICONERROR = $00000010;
+{$ENDIF}
 begin
   OutputDebugMessage(aError);
 
   if FShowMessageDlg then
     begin
       {$IFDEF MSWINDOWS}
-      MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+        {$IFDEF FPC}
+        MessageBoxW(0, PWideChar(aError + #0), PWideChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+        {$ELSE}
+        MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+        {$ENDIF}
       {$ENDIF}
 
       {$IFDEF LINUX}
         {$IFDEF FPC}
         if (WidgetSet <> nil) then
-          Application.MessageBox(PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK)
-         else
-          ShowX11Message(aError);
+          Application.MessageBox(PAnsiChar(UTF8Encode(aError + #0)), PAnsiChar(AnsiString('Error' + #0)), MB_ICONERROR or MB_OK);
         {$ELSE}
         // TO-DO: Find a way to show message boxes in FMXLinux
         {$ENDIF}
@@ -591,7 +628,7 @@ begin
   if Lock then
     try
       if assigned(FErrorLog) then
-        Result := FErrorLog.Text;
+        Result := {$IFDEF FPC}UTF8Decode({$ENDIF}FErrorLog.Text{$IFDEF FPC}){$ENDIF};
     finally
       UnLock;
     end;
@@ -640,7 +677,18 @@ end;
 
 function TWebUI.GetLibraryVersion : string;
 begin
-  Result := inttostr(WEBUI_VERSION_MAJOR) + '.' + inttostr(WEBUI_VERSION_MINOR) + '.' + inttostr(WEBUI_VERSION_RELEASE);
+  Result := {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_MAJOR){$IFDEF FPC}){$ENDIF} + '.' +
+            {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_MINOR){$IFDEF FPC}){$ENDIF} + '.' +
+            {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_RELEASE){$IFDEF FPC}){$ENDIF};
+end;
+
+function TWebUI.DefaultLibraryPath : string;
+begin
+  {$IFDEF MACOSX}
+  Result := IncludeTrailingPathDelimiter(GetModulePath) + 'Contents/Frameworks/' + WEBUI_LIB;
+  {$ELSE}
+  Result := IncludeTrailingPathDelimiter(GetModulePath) + WEBUI_LIB;
+  {$ENDIF}
 end;
 
 procedure TWebUI.SetTimeout(aValue: NativeUInt);

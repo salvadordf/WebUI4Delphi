@@ -1,6 +1,10 @@
 unit uWebUIEventHandler;
 
-{$I uWebUI.inc}
+{$I uWebUI.inc}     
+
+{$IFDEF FPC}
+  {$MODE delphiunicode}
+{$ENDIF}
 
 {$MINENUMSIZE 4}
 
@@ -15,7 +19,7 @@ uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
   {$ELSE}
-    Windows, Classes, SysUtils,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils,
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions, uWebUIWindow;
 
@@ -233,11 +237,7 @@ begin
       FEvent.bind_id      := aEvent^.bind_id;
     end
    else
-    {$IFDEF MSWINDOWS}
-    ZeroMemory(@FEvent, SizeOf(TWebUIEvent));
-    {$ELSE}
     FillChar(FEvent, SizeOf(TWebUIEvent), #0);
-    {$ENDIF}
 end;
 
 constructor TWebUIEventHandler.Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
