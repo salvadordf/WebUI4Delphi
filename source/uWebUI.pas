@@ -32,7 +32,7 @@ type
       FLibHandle                              : THandle;
       FSetCurrentDir                          : boolean;
       FReRaiseExceptions                      : boolean;
-      FLoaderDllPath                          : string;
+      FLibraryPath                            : string;
       FStatus                                 : TLoaderStatus;
       FErrorLog                               : TStringList;
       FError                                  : int64;
@@ -48,6 +48,7 @@ type
       function  GetInitializationError : boolean;
       function  GetIsAppRunning : boolean;
       function  GetStatus : TLoaderStatus;
+      function  GetLibraryVersion : string;
 
       procedure SetTimeout(aValue: NativeUInt);
       procedure SetStatus(aValue: TLoaderStatus);
@@ -152,9 +153,13 @@ type
       /// </summary>
       property ReRaiseExceptions                      : boolean                            read FReRaiseExceptions                       write FReRaiseExceptions;
       /// <summary>
-      /// Full path to WebView2Loader.dll. Leave empty to load WebView2Loader.dll from the current directory.
+      /// Full path to WebUI library. Leave empty to load the library from the current directory.
       /// </summary>
-      property LoaderDllPath                          : string                             read FLoaderDllPath                           write FLoaderDllPath;
+      property LibraryPath                            : string                             read FLibraryPath                             write FLibraryPath;
+      /// <summary>
+      /// Supported WebUI library version.
+      /// </summary>
+      property LibraryVersion                         : string                             read GetLibraryVersion;
       /// <summary>
       /// Set to true when you need to use a showmessage dialog to show the error messages.
       /// </summary>
@@ -232,7 +237,7 @@ begin
   FLibHandle                              := 0;
   FSetCurrentDir                          := True;
   FReRaiseExceptions                      := False;
-  FLoaderDllPath                          := '';
+  FLibraryPath                          := '';
   FStatus                                 := lsCreated;
   FErrorLog                               := nil;
   FShowMessageDlg                         := True;
@@ -323,8 +328,8 @@ end;
 
 function TWebUI.LoadWebUILibrary : boolean;
 var
-  TempOldDir : string;
-  TempLoaderLibPath : string;
+  TempOldDir      : string;
+  TempLibraryPath : string;
 begin
   Result := False;
 
@@ -341,19 +346,19 @@ begin
 
         Status := lsLoading;
 
-        if (FLoaderDllPath <> '') then
-          TempLoaderLibPath := FLoaderDllPath
+        if (FLibraryPath <> '') then
+          TempLibraryPath := FLibraryPath
          else
-          TempLoaderLibPath := WEBUI_LIB;
+          TempLibraryPath := WEBUI_LIB;
 
-        FLibHandle := LoadLibrary({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(TempLoaderLibPath));
+        FLibHandle := LoadLibrary({$IFDEF DELPHI12_UP}PWideChar{$ELSE}PAnsiChar{$ENDIF}(TempLibraryPath));
 
         if (FLibHandle = 0) then
           begin
             Status := lsError;
             FError := GetLastError;
 
-            AppendErrorLog('Error loading ' + TempLoaderLibPath);
+            AppendErrorLog('Error loading ' + TempLibraryPath);
             AppendErrorLog('Error code : 0x' + inttohex(cardinal(FError), 8));
             AppendErrorLog(SysErrorMessage(cardinal(FError)));
 
@@ -633,9 +638,15 @@ begin
     end;
 end;
 
+function TWebUI.GetLibraryVersion : string;
+begin
+  Result := inttostr(WEBUI_VERSION_MAJOR) + '.' + inttostr(WEBUI_VERSION_MINOR) + '.' + inttostr(WEBUI_VERSION_RELEASE);
+end;
+
 procedure TWebUI.SetTimeout(aValue: NativeUInt);
 begin
   FTimeout := aValue;
+
   if Initialized then
     webui_set_timeout(FTimeout);
 end;

@@ -74,7 +74,7 @@ type
       /// <summary>
       /// <para>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.</para>
       /// </summary>
-      /// <param name="element_">The HTML ID.</param>
+      /// <param name="element_">The HTML element ID.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
       /// <para>The OnWebUIEvent event will be executed in the main application thread by default. Set WebUI.SyncedEvents to false in order to execute it in a background thread.</para>
@@ -84,7 +84,7 @@ type
       /// <summary>
       /// Bind a specific html element click event with a callback function. Empty element means all events.
       /// </summary>
-      /// <param name="element_">The HTML ID.</param>
+      /// <param name="element_">The HTML element ID.</param>
       /// <param name="func_">The callback function.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
@@ -95,7 +95,7 @@ type
       /// <summary>
       /// Bind a specific HTML element click event with a callback function. Empty element means all events.
       /// </summary>
-      /// <param name="element_">The element ID.</param>
+      /// <param name="element_">The HTML element ID.</param>
       /// <param name="func_">The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</param>
       /// <returns>Returns unique bind ID.</returns>
       /// <remarks>
@@ -152,7 +152,6 @@ type
       /// <summary>
       /// Close a specific window only. The window object will still exist.
       /// </summary>
-      /// <param name="window">The window number.</param>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close)</see></para>
       /// </remarks>
@@ -187,7 +186,6 @@ type
       /// <summary>
       /// Safely send raw data to the UI.
       /// </summary>
-      /// <param name="window">The window number.</param>
       /// <param name="function_">The JavaScript function to receive raw data: `function * myFunc(myData){}`.</param>
       /// <param name="raw">The raw data buffer.</param>
       /// <param name="size">The raw data size in bytes.</param>
@@ -233,7 +231,6 @@ type
       /// <summary>
       /// Set the web browser proxy_server to use. Need to be called before 'webui_show()'.
       /// </summary>
-      /// <param name="window">The window number.</param>
       /// <param name="proxy_server">The web browser proxy_server. For example 'http://127.0.0.1:8888'</param>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_proxy)</see></para>

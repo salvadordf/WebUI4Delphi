@@ -5,13 +5,7 @@ unit uWebUIConstants;
 interface
 
 const
-  /// <summary>
-  /// WebUI library version.
-  /// </summary>
-  /// <remarks>
-  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (WEBUI_VERSION)</see></para>
-  /// </remarks>
-  //WEBUI_VERSION = inttostr(WEBUI_VERSION_MAJOR) + '.' + inttostr(WEBUI_VERSION_MINOR) + '.' + inttostr(WEBUI_VERSION_RELEASE);
+  {$I uWebUIVersion.inc}
 
   /// <summary>
   /// Max windows, servers and threads.
@@ -30,15 +24,15 @@ const
   WEBUI_MAX_ARG = 16;
 
   {$IFDEF MSWINDOWS}
-  WEBUI_LIB = 'webui-2.dll';
+  WEBUI_LIB       = 'webui-2.dll';
   WEBUI_DEBUG_LIB = 'webui-2_debug.dll';
   {$ENDIF}
   {$IFDEF LINUX}
-  WEBUI_LIB = 'webui-2.so';
+  WEBUI_LIB       = 'webui-2.so';
   WEBUI_DEBUG_LIB = 'webui-2_debug.so';
   {$ENDIF}
   {$IFDEF MACOSX}
-  WEBUI_LIB = 'webui-2.dylib';
+  WEBUI_LIB       = 'webui-2.dylib';
   WEBUI_DEBUG_LIB = 'webui-2_debug.dylib';
   {$ENDIF}
 
