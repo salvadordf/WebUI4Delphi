@@ -72,9 +72,9 @@ begin
   if not(FWindow.Script('return GetCount();', 0, LResult, 64)) then
     begin
       if not(FWindow.IsShown) then
-        writeln('The window is closed.')
+        showmessage('The window is closed.')
        else
-        writeln('Javascript error : ' + LResult);
+        showmessage('Javascript error : ' + LResult);
     end
    else
     begin

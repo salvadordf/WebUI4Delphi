@@ -22,14 +22,26 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainForm"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="43"/>
-        <CursorPos X="28" Y="65"/>
+        <TopLine Value="19"/>
+        <CursorPos X="36" Y="12"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <EditorIndex Value="1"/>
+        <CursorPos Y="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUI.inc"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="9">
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="umainform.pas"/>
         <Caret Line="3" Column="22"/>
@@ -69,6 +81,18 @@
       <Position>
         <Filename Value="umainform.pas"/>
         <Caret Line="48" Column="5" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="67" Column="47" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="48" Column="37" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="umainform.pas"/>
+        <Caret Line="106" TopLine="96"/>
       </Position>
     </JumpHistory>
     <RunParams>

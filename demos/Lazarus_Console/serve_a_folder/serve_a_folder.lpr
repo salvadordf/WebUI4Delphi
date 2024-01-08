@@ -53,10 +53,10 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// This function gets called every
-	// time the user clicks on "SwitchToSecondPage"
+  // This function gets called every
+  // time the user clicks on "SwitchToSecondPage"
 
-	// Switch to `/second.html` in the same opened window.
+  // Switch to `/second.html` in the same opened window.
   LEvent.Window.Show('second.html');
 
   LEvent.Free;
@@ -64,11 +64,11 @@ end;
 
 procedure show_second_window(e: PWebUIEvent);
 begin
-	// This function gets called every
-	// time the user clicks on "OpenNewWindow"
+  // This function gets called every
+  // time the user clicks on "OpenNewWindow"
 
-	// Show a new window, and navigate to `/second.html`
-	// if it's already open, then switch in the same window
+  // Show a new window, and navigate to `/second.html`
+  // if it's already open, then switch in the same window
   LSecondWindow.Show('second.html');
 end;
 
@@ -149,7 +149,11 @@ begin
         LWindow.SetPosition(200, 200);
 
         // Set the web-server root folder for the first window
+        {$IFDEF MSWINDOWS}
         LRoot := CustomAbsolutePath('..\assets\serve_a_folder\', True);
+        {$ELSE}
+        LRoot := CustomAbsolutePath('../assets/serve_a_folder/', True);
+        {$ENDIF}
         LWindow.SetRootFolder(LRoot);
         LSecondWindow.SetRootFolder(LRoot);
 

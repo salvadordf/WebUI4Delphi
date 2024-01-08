@@ -4,7 +4,7 @@ object MainForm: TMainForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'public_network_access'
-  ClientHeight = 275
+  ClientHeight = 87
   ClientWidth = 450
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object MainForm: TMainForm
     Left = 10
     Top = 10
     Width = 430
-    Height = 255
+    Height = 67
     Align = alClient
     BevelOuter = bvNone
     Padding.Left = 5
@@ -32,9 +32,7 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 0
-    DesignSize = (
-      430
-      255)
+    ExplicitHeight = 255
     object ShowBrowserBtn: TButton
       Left = 5
       Top = 5
@@ -44,29 +42,19 @@ object MainForm: TMainForm
       Caption = '1. Show browser'
       TabOrder = 0
       OnClick = ShowBrowserBtnClick
-      ExplicitTop = 6
-    end
-    object Memo1: TMemo
-      Left = 5
-      Top = 70
-      Width = 420
-      Height = 180
-      Align = alBottom
-      ReadOnly = True
-      ScrollBars = ssVertical
-      TabOrder = 1
-      ExplicitTop = 71
+      ExplicitTop = 0
     end
     object OpenDefBrowserBtn: TButton
       Left = 5
       Top = 37
       Width = 420
       Height = 25
-      Anchors = [akLeft, akTop, akRight, akBottom]
+      Align = alBottom
       Caption = '2. Open default web browser'
       Enabled = False
-      TabOrder = 2
+      TabOrder = 1
       OnClick = OpenDefBrowserBtnClick
+      ExplicitTop = 73
     end
   end
 end

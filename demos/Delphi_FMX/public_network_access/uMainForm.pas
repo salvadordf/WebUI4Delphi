@@ -3,7 +3,7 @@ unit uMainForm;
 interface
 
 uses
-  WinApi.Windows, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
   FMX.Memo,
@@ -14,7 +14,6 @@ type
   TMainForm = class(TForm)
     MainPanel: TPanel;
     ShowBrowserBtn: TButton;
-    Memo1: TMemo;
     OpenDefBrowserBtn: TButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -81,7 +80,9 @@ end;
 
 procedure TMainForm.OpenDefBrowserBtnClick(Sender: TObject);
 begin
+  {$IFDEF MSWINDOWS}
   ExecuteFile(FPubUrl, '', '', SW_SHOWNORMAL);
+  {$ENDIF}
 end;
 
 procedure TMainForm.ShowBrowserBtnClick(Sender: TObject);

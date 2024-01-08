@@ -147,20 +147,20 @@ end;
 
 procedure TMainForm.switch_to_second_page(const aEvent: IWebUIEventHandler);
 begin
-	// This function gets called every
-	// time the user clicks on "SwitchToSecondPage"
+  // This function gets called every
+  // time the user clicks on "SwitchToSecondPage"
 
-	// Switch to `/second.html` in the same opened window.
+  // Switch to `/second.html` in the same opened window.
   aEvent.Window.Show('second.html');
 end;
 
 procedure TMainForm.show_second_window(const aEvent: IWebUIEventHandler);
 begin
-	// This function gets called every
-	// time the user clicks on "OpenNewWindow"
+  // This function gets called every
+  // time the user clicks on "OpenNewWindow"
 
-	// Show a new window, and navigate to `/second.html`
-	// if it's already open, then switch in the same window
+  // Show a new window, and navigate to `/second.html`
+  // if it's already open, then switch in the same window
   FSecondWindow.Show('second.html');
 end;
 

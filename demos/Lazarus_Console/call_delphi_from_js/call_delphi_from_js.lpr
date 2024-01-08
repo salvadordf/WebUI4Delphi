@@ -22,8 +22,8 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// JavaScript:
-	// webui.call('MyID_One', 'Hello', 'World`);
+  // JavaScript:
+  // webui.call('MyID_One', 'Hello', 'World`);
 
   str_1  := LEvent.GetString;
   str_2  := LEvent.GetStringAt(1);
@@ -39,8 +39,8 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// JavaScript:
-	// webui.call('MyID_Two', 123, 456, 789);
+  // JavaScript:
+  // webui.call('MyID_Two', 123, 456, 789);
 
   number_1 := LEvent.GetInt;
   number_2 := LEvent.GetIntAt(1);
@@ -58,8 +58,8 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// JavaScript:
-	// webui.call('MyID_Three', true, false);
+  // JavaScript:
+  // webui.call('MyID_Three', true, false);
 
   status_1  := LEvent.GetBool;
   status_2  := LEvent.GetBoolAt(1);
@@ -78,8 +78,8 @@ begin
   LEvent  := TWebUIEventHandler.Create(e);
   LStream := TMemoryStream.Create;
 
-	// JavaScript:
-	// webui.call('MyID_RawBinary', new Uint8Array([0x41,0x42,0x43]), big_arr);
+  // JavaScript:
+  // webui.call('MyID_RawBinary', new Uint8Array([0x41,0x42,0x43]), big_arr);
 
   if LEvent.GetStream(LStream) then
     begin
@@ -105,8 +105,8 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// JavaScript:
-	// webui.call('MyID_Four', number, 2).then(...)
+  // JavaScript:
+  // webui.call('MyID_Four', number, 2).then(...)
 
   number := LEvent.GetInt;
   times  := LEvent.GetIntAt(1);

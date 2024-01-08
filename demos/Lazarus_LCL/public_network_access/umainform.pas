@@ -41,7 +41,7 @@ implementation
 { TMainForm }
 
 uses
-  Windows,
+  {$IFDEF MSWINDOWS}Windows,{$ENDIF}
   uWebUIMiscFunctions;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -87,7 +87,9 @@ end;
 
 procedure TMainForm.OpenDefBrowserBtnClick(Sender: TObject);
 begin
+  {$IFDEF MSWINDOWS}
   ExecuteFile(FPubUrl, '', '', SW_SHOWNORMAL);
+  {$ENDIF}
 end;
 
 procedure TMainForm.ShowBrowserBtnClick(Sender: TObject);

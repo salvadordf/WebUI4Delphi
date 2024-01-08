@@ -4,7 +4,7 @@ object MainForm: TMainForm
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
   Caption = 'public_network_access'
-  ClientHeight = 275
+  ClientHeight = 80
   ClientWidth = 450
   Padding.Left = 10.000000000000000000
   Padding.Top = 10.000000000000000000
@@ -24,7 +24,7 @@ object MainForm: TMainForm
     Padding.Right = 5.000000000000000000
     Padding.Bottom = 5.000000000000000000
     Size.Width = 430.000000000000000000
-    Size.Height = 255.000000000000000000
+    Size.Height = 60.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object ShowBrowserBtn: TButton
@@ -39,18 +39,6 @@ object MainForm: TMainForm
       TextSettings.Trimming = None
       OnClick = ShowBrowserBtnClick
     end
-    object Memo1: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Align = Client
-      Margins.Top = 5.000000000000000000
-      Size.Width = 420.000000000000000000
-      Size.Height = 191.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      Viewport.Width = 416.000000000000000000
-      Viewport.Height = 187.000000000000000000
-    end
     object OpenDefBrowserBtn: TButton
       Align = Top
       Enabled = False
@@ -60,7 +48,7 @@ object MainForm: TMainForm
       Size.Width = 420.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      TabOrder = 1
       Text = '2. Open default web browser'
       TextSettings.Trimming = None
       OnClick = OpenDefBrowserBtnClick

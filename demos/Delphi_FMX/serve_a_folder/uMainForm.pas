@@ -209,7 +209,11 @@ begin
   FWindow.SetPosition(200, 200);
 
   // Set the web-server root folder for the first window
+  {$IFDEF MSWINDOWS}
   LRoot := CustomAbsolutePath('..\assets\serve_a_folder\', True);
+  {$ELSE}
+  LRoot := CustomAbsolutePath('../assets/serve_a_folder/', True);
+  {$ENDIF}
   FWindow.SetRootFolder(LRoot);
   FSecondWindow.SetRootFolder(LRoot);
 

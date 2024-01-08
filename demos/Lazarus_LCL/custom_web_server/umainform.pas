@@ -2,6 +2,8 @@ unit uMainForm;
 
 {$mode delphiunicode}
 
+{$I ..\..\..\source\uWebUI.inc}
+
 interface
 
 uses
@@ -45,7 +47,7 @@ implementation
 { TMainForm }
 
 uses
-  Windows,
+  {$IFDEF MSWINDOWS}Windows,{$ENDIF}
   uWebUIMiscFunctions;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -91,21 +93,32 @@ begin
 end;
 
 procedure TMainForm.PythonBtnClick(Sender: TObject);
+{$IFDEF MSWINDOWS}
 var
   LOldDir, LNewDir : string;
+  {$ENDIF}
 begin
+  {$IFDEF MSWINDOWS}
   LNewDir := CustomAbsolutePath('..\assets\custom_web_server');
   LOldDir := GetCurrentDir;
   chdir(GetModulePath);
 
   // Python must be installed
-  if (ExecuteFile('python.exe', LNewDir + '\simple_web_server.py', LNewDir, SW_SHOWNORMAL) <> 0) then
-    begin
-      PythonBtn.Enabled      := False;
-      ShowBrowserBtn.Enabled := True;
-    end;
+  ExecuteFile('python.exe', LNewDir + '\simple_web_server.py', LNewDir, SW_SHOWNORMAL);
 
   chdir(LOldDir);
+  {$ENDIF}
+
+  {$IFDEF LINUX}
+  // TO-DO: Find a way to run simple_web_server.py in Linux
+  {$ENDIF}
+
+  {$IFDEF MACOSX}
+  // TO-DO: Find a way to run simple_web_server.py in MacOS
+  {$ENDIF}
+
+  PythonBtn.Enabled      := False;
+  ShowBrowserBtn.Enabled := True;
 end;
 procedure TMainForm.my_backend_func(const aEvent: IWebUIEventHandler);
 var

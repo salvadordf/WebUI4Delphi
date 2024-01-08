@@ -21,9 +21,9 @@ var
 begin
   LEvent := TWebUIEventHandler.Create(e);
 
-	// JavaScript:
-	// my_backend_func(123, 456, 789);
-	// or webui.my_backend_func(...);
+  // JavaScript:
+  // my_backend_func(123, 456, 789);
+  // or webui.my_backend_func(...);
 
   number_1 := LEvent.GetIntAt(0);
   number_2 := LEvent.GetIntAt(1);

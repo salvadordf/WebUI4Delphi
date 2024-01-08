@@ -209,7 +209,9 @@ procedure global_webui_event_callback(e: PWebUIEvent);
 implementation
 
 uses
-  {$IFDEF LINUXFPC}Forms, InterfaceBase,{$ENDIF}
+  {$IFDEF LINUXFPC}
+    {$IFDEF CONSOLE}dynlibs,{$ELSE}Forms, InterfaceBase,{$ENDIF}
+  {$ENDIF}
   uWebUIMiscFunctions, uWebUIEventHandler;
 
 procedure DestroyWebUI;
@@ -594,28 +596,32 @@ begin
 
   if FShowMessageDlg then
     begin
-      {$IFDEF MSWINDOWS}
-        {$IFDEF FPC}
-        MessageBoxW(0, PWideChar(aError + #0), PWideChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
-        {$ELSE}
-        MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+      {$IFDEF CONSOLE}
+        writeln(aError);
+      {$ELSE}
+        {$IFDEF MSWINDOWS}
+          {$IFDEF FPC}
+          MessageBoxW(0, PWideChar(aError + #0), PWideChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+          {$ELSE}
+          MessageBox(0, PChar(aError + #0), PChar('Error' + #0), MB_ICONERROR or MB_OK or MB_TOPMOST);
+          {$ENDIF}
         {$ENDIF}
-      {$ENDIF}
 
-      {$IFDEF LINUX}
-        {$IFDEF FPC}
-        if (WidgetSet <> nil) then
-          Application.MessageBox(PAnsiChar(UTF8Encode(aError + #0)), PAnsiChar(AnsiString('Error' + #0)), MB_ICONERROR or MB_OK);
-        {$ELSE}
-        // TO-DO: Find a way to show message boxes in FMXLinux
+        {$IFDEF LINUX}
+          {$IFDEF FPC}
+          if (WidgetSet <> nil) then
+            Application.MessageBox(PAnsiChar(UTF8Encode(aError + #0)), PAnsiChar(AnsiString('Error' + #0)), MB_ICONERROR or MB_OK);
+          {$ELSE}
+          // TO-DO: Find a way to show message boxes in FMXLinux
+          {$ENDIF}
         {$ENDIF}
-      {$ENDIF}
 
-      {$IFDEF MACOSX}
-        {$IFDEF FPC}
-        // TO-DO: Find a way to show message boxes in Lazarus/FPC for MacOS
-        {$ELSE}
-        ShowMessageCF('Error', aError, 10);
+        {$IFDEF MACOSX}
+          {$IFDEF FPC}
+          // TO-DO: Find a way to show message boxes in Lazarus/FPC for MacOS
+          {$ELSE}
+          ShowMessageCF('Error', aError, 10);
+          {$ENDIF}
         {$ENDIF}
       {$ENDIF}
     end;

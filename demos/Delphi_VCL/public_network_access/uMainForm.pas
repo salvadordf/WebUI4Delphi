@@ -14,7 +14,6 @@ type
   TMainForm = class(TForm)
     MainPanel: TPanel;
     ShowBrowserBtn: TButton;
-    Memo1: TMemo;
     OpenDefBrowserBtn: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ShowBrowserBtnClick(Sender: TObject);

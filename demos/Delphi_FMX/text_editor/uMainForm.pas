@@ -71,7 +71,11 @@ begin
   FWindow := TWebUIWindow.Create;
 
   // Set the web-server root folder for the first window
+  {$IFDEF MSWINDOWS}
   FWindow.SetRootFolder(CustomAbsolutePath('..\assets\text_editor\', True));
+  {$ELSE}
+  FWindow.SetRootFolder(CustomAbsolutePath('../assets/text_editor/', True));
+  {$ENDIF}
 
   // Bind HTML elements with the specified ID to C functions
   FWindow.Bind('__close-btn');

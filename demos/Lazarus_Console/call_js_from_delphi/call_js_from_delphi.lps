@@ -9,10 +9,10 @@
         <Filename Value="call_js_from_delphi.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="21" Y="3"/>
+        <TopLine Value="47"/>
+        <CursorPos X="16" Y="32"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="-1"/>
@@ -21,5 +21,4 @@
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <SkipCheckLCLInterfaces Value="True"/>
 </CONFIG>

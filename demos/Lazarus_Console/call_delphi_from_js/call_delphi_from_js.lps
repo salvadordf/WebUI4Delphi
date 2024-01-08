@@ -8,15 +8,30 @@
       <Unit>
         <Filename Value="call_delphi_from_js.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="68"/>
-        <CursorPos X="65" Y="142"/>
+        <TopLine Value="109"/>
+        <CursorPos X="3" Y="109"/>
         <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="355"/>
+        <CursorPos X="47" Y="375"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\inc\dynlibh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="39"/>
+        <CursorPos X="10" Y="52"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="2">
+    <JumpHistory HistoryIndex="7">
       <Position>
         <Filename Value="call_delphi_from_js.lpr"/>
         <Caret Line="3" Column="21"/>
@@ -29,11 +44,30 @@
         <Filename Value="call_delphi_from_js.lpr"/>
         <Caret Line="91" Column="32" TopLine="76"/>
       </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="65" Column="34" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="212" Column="76" TopLine="189"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="366" Column="34" TopLine="353"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="213" Column="29" TopLine="189"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="368" TopLine="355"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <SkipCheckLCLInterfaces Value="True"/>
 </CONFIG>
