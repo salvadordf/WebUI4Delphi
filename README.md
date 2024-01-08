@@ -10,6 +10,8 @@ WebUI4Delphi was developed and tested on Delphi 12.0 and Lazarus 3.0/FPC 3.2.2 b
 
 WebUI4Delphi includes VCL, FireMonkey (FMX), LCL and console examples.
 
+WebUI4Delphi demos have been tested in Windows 10, Windows 11, Linux Mint 21.2 and Raspberry Pi OS.
+
 WebUI doesn't embed a web browser in your application. It's used as a bridge between a desktop application and the web browser running an HTML5 app. If you need to embed a web browser instead of using the installed web browser then consider using [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) or [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi). 
 
 
