@@ -15,6 +15,7 @@ uses
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Math, StrUtils,
+    {$IFDEF FPC}LCLType, LazFileUtils,{$ENDIF}
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
@@ -257,7 +258,11 @@ begin
   {$ENDIF}
 
   {$IFDEF MACOSX}
+    {$IFDEF FPC}
+    // TO-DO: Find a way to execute commands using Lazarus in macOS
+    {$ELSE}
     Result := _system(PAnsiChar('open ' + AnsiString(filename)));
+    {$ENDIF}
   {$ENDIF}
 
   {$IFDEF LINUX}
