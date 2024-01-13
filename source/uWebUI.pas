@@ -78,7 +78,11 @@ type
       /// <summary>
       /// Append aText to the ErrorMessage property.
       /// </summary>
-      procedure   AppendErrorLog(const aText : string);
+      procedure   AppendErrorLog(const aText : string); overload;
+      /// <summary>
+      /// Append aTextLines to the ErrorMessage property.
+      /// </summary>
+      procedure   AppendErrorLog(const aTextLines : TStringList); overload;
       /// <summary>
       /// Wait until all opened windows get closed.
       /// </summary>
@@ -359,7 +363,7 @@ begin
          else
           TempLibraryPath := DefaultLibraryPath;
 
-        if FileExists(TempLibraryPath) then
+        if LibraryExists(TempLibraryPath) then
           begin
             {$IFDEF FPC}
               {$IFDEF MSWINDOWS}
@@ -410,147 +414,160 @@ begin
 end;
 
 function TWebUI.LoadLibProcedures : boolean;
+var
+  LMissing : TStringList;
 begin
-  Result := False;
+  Result   := False;
+  LMissing := nil;
 
-  if (FLibHandle <> 0) then
+  if (FLibHandle = 0) then exit;
+
+  try
     try
-      begin
-        webui_new_window                    := GetProcAddress(FLibHandle, 'webui_new_window');
-        webui_new_window_id                 := GetProcAddress(FLibHandle, 'webui_new_window_id');
-        webui_get_new_window_id             := GetProcAddress(FLibHandle, 'webui_get_new_window_id');
-        webui_bind                          := GetProcAddress(FLibHandle, 'webui_bind');
-        webui_show                          := GetProcAddress(FLibHandle, 'webui_show');
-        webui_show_browser                  := GetProcAddress(FLibHandle, 'webui_show_browser');
-        webui_set_kiosk                     := GetProcAddress(FLibHandle, 'webui_set_kiosk');
-        webui_wait                          := GetProcAddress(FLibHandle, 'webui_wait');
-        webui_close                         := GetProcAddress(FLibHandle, 'webui_close');
-        webui_destroy                       := GetProcAddress(FLibHandle, 'webui_destroy');
-        webui_exit                          := GetProcAddress(FLibHandle, 'webui_exit');
-        webui_set_root_folder               := GetProcAddress(FLibHandle, 'webui_set_root_folder');
-        webui_set_default_root_folder       := GetProcAddress(FLibHandle, 'webui_set_default_root_folder');
-        webui_set_file_handler              := GetProcAddress(FLibHandle, 'webui_set_file_handler');
-        webui_is_shown                      := GetProcAddress(FLibHandle, 'webui_is_shown');
-        webui_set_timeout                   := GetProcAddress(FLibHandle, 'webui_set_timeout');
-        webui_set_icon                      := GetProcAddress(FLibHandle, 'webui_set_icon');
-        webui_encode                        := GetProcAddress(FLibHandle, 'webui_encode');
-        webui_decode                        := GetProcAddress(FLibHandle, 'webui_decode');
-        webui_free                          := GetProcAddress(FLibHandle, 'webui_free');
-        webui_malloc                        := GetProcAddress(FLibHandle, 'webui_malloc');
-        webui_send_raw                      := GetProcAddress(FLibHandle, 'webui_send_raw');
-        webui_set_hide                      := GetProcAddress(FLibHandle, 'webui_set_hide');
-        webui_set_size                      := GetProcAddress(FLibHandle, 'webui_set_size');
-        webui_set_position                  := GetProcAddress(FLibHandle, 'webui_set_position');
-        webui_set_profile                   := GetProcAddress(FLibHandle, 'webui_set_profile');
-        webui_set_proxy                     := GetProcAddress(FLibHandle, 'webui_set_proxy');
-        webui_get_url                       := GetProcAddress(FLibHandle, 'webui_get_url');
-        webui_set_public                    := GetProcAddress(FLibHandle, 'webui_set_public');
-        webui_navigate                      := GetProcAddress(FLibHandle, 'webui_navigate');
-        webui_clean                         := GetProcAddress(FLibHandle, 'webui_clean');
-        webui_delete_all_profiles           := GetProcAddress(FLibHandle, 'webui_delete_all_profiles');
-        webui_delete_profile                := GetProcAddress(FLibHandle, 'webui_delete_profile');
-        webui_get_parent_process_id         := GetProcAddress(FLibHandle, 'webui_get_parent_process_id');
-        webui_get_child_process_id          := GetProcAddress(FLibHandle, 'webui_get_child_process_id');
-        webui_set_port                      := GetProcAddress(FLibHandle, 'webui_set_port');
-        webui_set_tls_certificate           := GetProcAddress(FLibHandle, 'webui_set_tls_certificate');
-        webui_run                           := GetProcAddress(FLibHandle, 'webui_run');
-        webui_script                        := GetProcAddress(FLibHandle, 'webui_script');
-        webui_set_runtime                   := GetProcAddress(FLibHandle, 'webui_set_runtime');
-        webui_get_int_at                    := GetProcAddress(FLibHandle, 'webui_get_int_at');
-        webui_get_int                       := GetProcAddress(FLibHandle, 'webui_get_int');
-        webui_get_string_at                 := GetProcAddress(FLibHandle, 'webui_get_string_at');
-        webui_get_string                    := GetProcAddress(FLibHandle, 'webui_get_string');
-        webui_get_bool_at                   := GetProcAddress(FLibHandle, 'webui_get_bool_at');
-        webui_get_bool                      := GetProcAddress(FLibHandle, 'webui_get_bool');
-        webui_get_size_at                   := GetProcAddress(FLibHandle, 'webui_get_size_at');
-        webui_get_size                      := GetProcAddress(FLibHandle, 'webui_get_size');
-        webui_return_int                    := GetProcAddress(FLibHandle, 'webui_return_int');
-        webui_return_string                 := GetProcAddress(FLibHandle, 'webui_return_string');
-        webui_return_bool                   := GetProcAddress(FLibHandle, 'webui_return_bool');
-        webui_interface_bind                := GetProcAddress(FLibHandle, 'webui_interface_bind');
-        webui_interface_set_response        := GetProcAddress(FLibHandle, 'webui_interface_set_response');
-        webui_interface_is_app_running      := GetProcAddress(FLibHandle, 'webui_interface_is_app_running');
-        webui_interface_get_window_id       := GetProcAddress(FLibHandle, 'webui_interface_get_window_id');
-        webui_interface_get_string_at       := GetProcAddress(FLibHandle, 'webui_interface_get_string_at');
-        webui_interface_get_int_at          := GetProcAddress(FLibHandle, 'webui_interface_get_int_at');
-        webui_interface_get_bool_at         := GetProcAddress(FLibHandle, 'webui_interface_get_bool_at');
-        webui_interface_get_size_at         := GetProcAddress(FLibHandle, 'webui_interface_get_size_at');
+      LMissing := TStringList.Create;
 
-        if assigned(webui_new_window) and
-           assigned(webui_new_window_id) and
-           assigned(webui_get_new_window_id) and
-           assigned(webui_bind) and
-           assigned(webui_show) and
-           assigned(webui_show_browser) and
-           assigned(webui_set_kiosk) and
-           assigned(webui_wait) and
-           assigned(webui_close) and
-           assigned(webui_destroy) and
-           assigned(webui_exit) and
-           assigned(webui_set_root_folder) and
-           assigned(webui_set_default_root_folder) and
-           assigned(webui_set_file_handler) and
-           assigned(webui_is_shown) and
-           assigned(webui_set_timeout) and
-           assigned(webui_set_icon) and
-           assigned(webui_encode) and
-           assigned(webui_decode) and
-           assigned(webui_free) and
-           assigned(webui_malloc) and
-           assigned(webui_send_raw) and
-           assigned(webui_set_hide) and
-           assigned(webui_set_size) and
-           assigned(webui_set_position) and
-           assigned(webui_set_profile) and
-           assigned(webui_set_proxy) and
-           assigned(webui_get_url) and
-           assigned(webui_set_public) and
-           assigned(webui_navigate) and
-           assigned(webui_clean) and
-           assigned(webui_delete_all_profiles) and
-           assigned(webui_delete_profile) and
-           assigned(webui_get_parent_process_id) and
-           assigned(webui_get_child_process_id) and
-           assigned(webui_set_port) and
-           assigned(webui_set_tls_certificate) and
-           assigned(webui_run) and
-           assigned(webui_script) and
-           assigned(webui_set_runtime) and
-           assigned(webui_get_int_at) and
-           assigned(webui_get_int) and
-           assigned(webui_get_string_at) and
-           assigned(webui_get_string) and
-           assigned(webui_get_bool_at) and
-           assigned(webui_get_bool) and
-           assigned(webui_get_size_at) and
-           assigned(webui_get_size) and
-           assigned(webui_return_int) and
-           assigned(webui_return_string) and
-           assigned(webui_return_bool) and
-           assigned(webui_interface_bind) and
-           assigned(webui_interface_set_response) and
-           assigned(webui_interface_is_app_running) and
-           assigned(webui_interface_get_window_id) and
-           assigned(webui_interface_get_string_at) and
-           assigned(webui_interface_get_int_at) and
-           assigned(webui_interface_get_bool_at) and
-           assigned(webui_interface_get_size_at) then
-          begin
-            Result := True;
-            Status := lsInitialized;
-          end
-         else
-          begin
-            Status := lsError;
-            AppendErrorLog('There was a problem loading the library procedures.');
+      webui_new_window                    := GetProcAddress(FLibHandle, 'webui_new_window');
+      webui_new_window_id                 := GetProcAddress(FLibHandle, 'webui_new_window_id');
+      webui_get_new_window_id             := GetProcAddress(FLibHandle, 'webui_get_new_window_id');
+      webui_bind                          := GetProcAddress(FLibHandle, 'webui_bind');
+      webui_show                          := GetProcAddress(FLibHandle, 'webui_show');
+      webui_show_browser                  := GetProcAddress(FLibHandle, 'webui_show_browser');
+      webui_set_kiosk                     := GetProcAddress(FLibHandle, 'webui_set_kiosk');
+      webui_wait                          := GetProcAddress(FLibHandle, 'webui_wait');
+      webui_close                         := GetProcAddress(FLibHandle, 'webui_close');
+      webui_destroy                       := GetProcAddress(FLibHandle, 'webui_destroy');
+      webui_exit                          := GetProcAddress(FLibHandle, 'webui_exit');
+      webui_set_root_folder               := GetProcAddress(FLibHandle, 'webui_set_root_folder');
+      webui_set_default_root_folder       := GetProcAddress(FLibHandle, 'webui_set_default_root_folder');
+      webui_set_file_handler              := GetProcAddress(FLibHandle, 'webui_set_file_handler');
+      webui_is_shown                      := GetProcAddress(FLibHandle, 'webui_is_shown');
+      webui_set_timeout                   := GetProcAddress(FLibHandle, 'webui_set_timeout');
+      webui_set_icon                      := GetProcAddress(FLibHandle, 'webui_set_icon');
+      webui_encode                        := GetProcAddress(FLibHandle, 'webui_encode');
+      webui_decode                        := GetProcAddress(FLibHandle, 'webui_decode');
+      webui_free                          := GetProcAddress(FLibHandle, 'webui_free');
+      webui_malloc                        := GetProcAddress(FLibHandle, 'webui_malloc');
+      webui_send_raw                      := GetProcAddress(FLibHandle, 'webui_send_raw');
+      webui_set_hide                      := GetProcAddress(FLibHandle, 'webui_set_hide');
+      webui_set_size                      := GetProcAddress(FLibHandle, 'webui_set_size');
+      webui_set_position                  := GetProcAddress(FLibHandle, 'webui_set_position');
+      webui_set_profile                   := GetProcAddress(FLibHandle, 'webui_set_profile');
+      webui_set_proxy                     := GetProcAddress(FLibHandle, 'webui_set_proxy');
+      webui_get_url                       := GetProcAddress(FLibHandle, 'webui_get_url');
+      webui_set_public                    := GetProcAddress(FLibHandle, 'webui_set_public');
+      webui_navigate                      := GetProcAddress(FLibHandle, 'webui_navigate');
+      webui_clean                         := GetProcAddress(FLibHandle, 'webui_clean');
+      webui_delete_all_profiles           := GetProcAddress(FLibHandle, 'webui_delete_all_profiles');
+      webui_delete_profile                := GetProcAddress(FLibHandle, 'webui_delete_profile');
+      webui_get_parent_process_id         := GetProcAddress(FLibHandle, 'webui_get_parent_process_id');
+      webui_get_child_process_id          := GetProcAddress(FLibHandle, 'webui_get_child_process_id');
+      webui_set_port                      := GetProcAddress(FLibHandle, 'webui_set_port');
+      webui_set_tls_certificate           := GetProcAddress(FLibHandle, 'webui_set_tls_certificate');
+      webui_run                           := GetProcAddress(FLibHandle, 'webui_run');
+      webui_script                        := GetProcAddress(FLibHandle, 'webui_script');
+      webui_set_runtime                   := GetProcAddress(FLibHandle, 'webui_set_runtime');
+      webui_get_int_at                    := GetProcAddress(FLibHandle, 'webui_get_int_at');
+      webui_get_int                       := GetProcAddress(FLibHandle, 'webui_get_int');
+      webui_get_string_at                 := GetProcAddress(FLibHandle, 'webui_get_string_at');
+      webui_get_string                    := GetProcAddress(FLibHandle, 'webui_get_string');
+      webui_get_bool_at                   := GetProcAddress(FLibHandle, 'webui_get_bool_at');
+      webui_get_bool                      := GetProcAddress(FLibHandle, 'webui_get_bool');
+      webui_get_size_at                   := GetProcAddress(FLibHandle, 'webui_get_size_at');
+      webui_get_size                      := GetProcAddress(FLibHandle, 'webui_get_size');
+      webui_return_int                    := GetProcAddress(FLibHandle, 'webui_return_int');
+      webui_return_string                 := GetProcAddress(FLibHandle, 'webui_return_string');
+      webui_return_bool                   := GetProcAddress(FLibHandle, 'webui_return_bool');
+      webui_interface_bind                := GetProcAddress(FLibHandle, 'webui_interface_bind');
+      webui_interface_set_response        := GetProcAddress(FLibHandle, 'webui_interface_set_response');
+      webui_interface_is_app_running      := GetProcAddress(FLibHandle, 'webui_interface_is_app_running');
+      webui_interface_get_window_id       := GetProcAddress(FLibHandle, 'webui_interface_get_window_id');
+      webui_interface_get_string_at       := GetProcAddress(FLibHandle, 'webui_interface_get_string_at');
+      webui_interface_get_int_at          := GetProcAddress(FLibHandle, 'webui_interface_get_int_at');
+      webui_interface_get_bool_at         := GetProcAddress(FLibHandle, 'webui_interface_get_bool_at');
+      webui_interface_get_size_at         := GetProcAddress(FLibHandle, 'webui_interface_get_size_at');
 
-            ShowErrorMessageDlg(ErrorMessage);
-          end;
-      end;
+      if not(assigned(webui_new_window))               then LMissing.Add('webui_new_window');
+      if not(assigned(webui_new_window_id))            then LMissing.Add('webui_new_window_id');
+      if not(assigned(webui_get_new_window_id))        then LMissing.Add('webui_get_new_window_id');
+      if not(assigned(webui_bind))                     then LMissing.Add('webui_bind');
+      if not(assigned(webui_show))                     then LMissing.Add('webui_show');
+      if not(assigned(webui_show_browser))             then LMissing.Add('webui_show_browser');
+      if not(assigned(webui_set_kiosk))                then LMissing.Add('webui_set_kiosk');
+      if not(assigned(webui_wait))                     then LMissing.Add('webui_wait');
+      if not(assigned(webui_close))                    then LMissing.Add('webui_close');
+      if not(assigned(webui_destroy))                  then LMissing.Add('webui_destroy');
+      if not(assigned(webui_exit))                     then LMissing.Add('webui_exit');
+      if not(assigned(webui_set_root_folder))          then LMissing.Add('webui_set_root_folder');
+      if not(assigned(webui_set_default_root_folder))  then LMissing.Add('webui_set_default_root_folder');
+      if not(assigned(webui_set_file_handler))         then LMissing.Add('webui_set_file_handler');
+      if not(assigned(webui_is_shown))                 then LMissing.Add('webui_is_shown');
+      if not(assigned(webui_set_timeout))              then LMissing.Add('webui_set_timeout');
+      if not(assigned(webui_set_icon))                 then LMissing.Add('webui_set_icon');
+      if not(assigned(webui_encode))                   then LMissing.Add('webui_encode');
+      if not(assigned(webui_decode))                   then LMissing.Add('webui_decode');
+      if not(assigned(webui_free))                     then LMissing.Add('webui_free');
+      if not(assigned(webui_malloc))                   then LMissing.Add('webui_malloc');
+      if not(assigned(webui_send_raw))                 then LMissing.Add('webui_send_raw');
+      if not(assigned(webui_set_hide))                 then LMissing.Add('webui_set_hide');
+      if not(assigned(webui_set_size))                 then LMissing.Add('webui_set_size');
+      if not(assigned(webui_set_position))             then LMissing.Add('webui_set_position');
+      if not(assigned(webui_set_profile))              then LMissing.Add('webui_set_profile');
+      if not(assigned(webui_set_proxy))                then LMissing.Add('webui_set_proxy');
+      if not(assigned(webui_get_url))                  then LMissing.Add('webui_get_url');
+      if not(assigned(webui_set_public))               then LMissing.Add('webui_set_public');
+      if not(assigned(webui_navigate))                 then LMissing.Add('webui_navigate');
+      if not(assigned(webui_clean))                    then LMissing.Add('webui_clean');
+      if not(assigned(webui_delete_all_profiles))      then LMissing.Add('webui_delete_all_profiles');
+      if not(assigned(webui_delete_profile))           then LMissing.Add('webui_delete_profile');
+      if not(assigned(webui_get_parent_process_id))    then LMissing.Add('webui_get_parent_process_id');
+      if not(assigned(webui_get_child_process_id))     then LMissing.Add('webui_get_child_process_id');
+      if not(assigned(webui_set_port))                 then LMissing.Add('webui_set_port');
+      if not(assigned(webui_set_tls_certificate))      then LMissing.Add('webui_set_tls_certificate');
+      if not(assigned(webui_run))                      then LMissing.Add('webui_run');
+      if not(assigned(webui_script))                   then LMissing.Add('webui_script');
+      if not(assigned(webui_set_runtime))              then LMissing.Add('webui_set_runtime');
+      if not(assigned(webui_get_int_at))               then LMissing.Add('webui_get_int_at');
+      if not(assigned(webui_get_int))                  then LMissing.Add('webui_get_int');
+      if not(assigned(webui_get_string_at))            then LMissing.Add('webui_get_string_at');
+      if not(assigned(webui_get_string))               then LMissing.Add('webui_get_string');
+      if not(assigned(webui_get_bool_at))              then LMissing.Add('webui_get_bool_at');
+      if not(assigned(webui_get_bool))                 then LMissing.Add('webui_get_bool');
+      if not(assigned(webui_get_size_at))              then LMissing.Add('webui_get_size_at');
+      if not(assigned(webui_get_size))                 then LMissing.Add('webui_get_size');
+      if not(assigned(webui_return_int))               then LMissing.Add('webui_return_int');
+      if not(assigned(webui_return_string))            then LMissing.Add('webui_return_string');
+      if not(assigned(webui_return_bool))              then LMissing.Add('webui_return_bool');
+      if not(assigned(webui_interface_bind))           then LMissing.Add('webui_interface_bind');
+      if not(assigned(webui_interface_set_response))   then LMissing.Add('webui_interface_set_response');
+      if not(assigned(webui_interface_is_app_running)) then LMissing.Add('webui_interface_is_app_running');
+      if not(assigned(webui_interface_get_window_id))  then LMissing.Add('webui_interface_get_window_id');
+      if not(assigned(webui_interface_get_string_at))  then LMissing.Add('webui_interface_get_string_at');
+      if not(assigned(webui_interface_get_int_at))     then LMissing.Add('webui_interface_get_int_at');
+      if not(assigned(webui_interface_get_bool_at))    then LMissing.Add('webui_interface_get_bool_at');
+      if not(assigned(webui_interface_get_size_at))    then LMissing.Add('webui_interface_get_size_at');
+
+      if (LMissing.Count = 0) then
+        begin
+          Result := True;
+          Status := lsInitialized;
+        end
+       else
+        begin
+          Status := lsError;
+          AppendErrorLog('There was a problem loading the library procedures.');
+          AppendErrorLog(inttostr(LMissing.Count) + ' missing procedures: ');
+          AppendErrorLog(LMissing);
+
+          ShowErrorMessageDlg(ErrorMessage);
+        end;
     except
       on e : exception do
         if CustomExceptionHandler('TWebUI.LoadLibProcedures', e) then raise;
     end;
+  finally
+    if assigned(LMissing) then
+      FreeAndNil(LMissing);
+  end;
 end;
 
 procedure TWebUI.AppendErrorLog(const aText : string);
@@ -560,6 +577,24 @@ begin
     try
       if assigned(FErrorLog) then
         FErrorLog.Add({$IFDEF FPC}UTF8Encode({$ENDIF}aText{$IFDEF FPC}){$ENDIF});
+    finally
+      UnLock;
+    end;
+end;
+
+procedure TWebUI.AppendErrorLog(const aTextLines : TStringList);
+var
+  i: integer;
+begin
+  if assigned(aTextLines) and
+     (aTextLines.Count > 0) and
+     Lock then
+    try
+      if assigned(FErrorLog) then
+        FErrorLog.AddStrings(aTextLines);
+
+      for i := 0 to pred(aTextLines.Count) do
+        OutputDebugMessage(aTextLines[i]);
     finally
       UnLock;
     end;
@@ -691,7 +726,7 @@ end;
 function TWebUI.DefaultLibraryPath : string;
 begin
   {$IFDEF MACOSX}
-  Result := IncludeTrailingPathDelimiter(GetModulePath) + 'Contents/Frameworks/' + WEBUI_LIB;
+  Result := IncludeTrailingPathDelimiter(GetModulePath) + WEBUI_FRAMEWORK + WEBUI_LIB;
   {$ELSE}
   Result := IncludeTrailingPathDelimiter(GetModulePath) + WEBUI_LIB;
   {$ENDIF}

@@ -38,6 +38,7 @@ const
   {$IFDEF MACOSX}
   WEBUI_LIB       = 'webui-2.dylib';
   WEBUI_DEBUG_LIB = 'webui-2_debug.dylib';
+  WEBUI_FRAMEWORK = 'Contents/Frameworks/';
   {$ENDIF}
 
   /// <summary>

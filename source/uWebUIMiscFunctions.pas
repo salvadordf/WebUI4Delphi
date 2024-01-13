@@ -11,20 +11,34 @@ interface
 uses
   {$IFDEF DELPHI16_UP}
     {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.UITypes,
-    System.SysUtils, System.Math, System.StrUtils,
+    System.SysUtils, System.Math, System.StrUtils, System.Types, System.IOUtils,
     {$IFDEF FMX}FMX.Types, FMX.Platform,{$ENDIF}
+    {$IFDEF MACOS}
+    FMX.Helpers.Mac, System.Messaging, Macapi.CoreFoundation, Macapi.Foundation,
+    {$ENDIF}
   {$ELSE}
     {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, Math, StrUtils,
-    {$IFDEF FPC}LCLType, LazFileUtils,{$ENDIF}
+    {$IFDEF FPC}LCLType, LazFileUtils, fileutil,{$ENDIF}
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
 const
   SHLWAPIDLL  = 'shlwapi.dll';
 
+/// <summary>
+/// Sends a string to the debugger for display.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw">See the OutputDebugStringW article.</see></para>
+/// </remarks>
 procedure OutputDebugMessage(const aMessage : string);
+/// <summary>
+/// Sends the function and exception names to the debugger for display and raises the exception.
+/// </summary>
+/// <param name="aFunctionName">Function that registered the exception.</param>
+/// <param name="aException">Exception information.</param>
+/// <returns>Returns true if the exception was raised.</returns>
 function  CustomExceptionHandler(const aFunctionName : string; const aException : exception) : boolean;
-
 /// <summary>
 /// Returns true if aPath is a relative path.
 /// </summary>
@@ -64,6 +78,28 @@ function CustomPathIsUNC(const aPath : string) : boolean;
 /// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew">See the GetModuleFileNameW article.</see></para>
 /// </remarks>
 function GetModulePath : string;
+/// <summary>
+/// Performs an operation on a specified file.
+/// </summary>
+/// <remarks>
+/// <para><see href="https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecutew">See the ShellExecuteW article.</see></para>
+/// </remarks>
+function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
+{$IFDEF MACOSX}
+/// <summary>
+/// Copies the WebUI framework from the source path to the destination path.
+/// </summary>
+/// <param name="aSrcPath">Function that registered the exception.</param>
+/// <param name="aDstPath">Exception information.</param>
+/// <returns>Returns true if the framwork was copied successfully.</returns>
+function CopyWebUIFramework(const aSrcPath, aDstPath: string): boolean;
+{$ENDIF}
+/// <summary>
+/// Checks that the WebUI library exists.
+/// </summary>
+/// <param name="aPath">Path to the WebUI library.</param>
+/// <returns>Returns true if it exists.</returns>
+function LibraryExists(const aPath : string) : boolean;
 
 {$IFDEF MSWINDOWS}
 function PathIsRelativeAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsRelativeA';
@@ -75,7 +111,7 @@ function PathIsUNCUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL 
 function PathIsURLAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLA';
 function PathIsURLUnicode(pszPath: LPCWSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsURLW';
 {$ENDIF}
-function ExecuteFile(const filename, Params, DefaultDir: string; ShowCmd: integer): THandle;
+
 
 implementation
 
@@ -269,6 +305,56 @@ begin
     // TO-DO: Find a way to execute a program in Linux
     Result := 0;
   {$ENDIF}
+end;
+
+{$IFDEF MACOSX}
+function CopyWebUIFramework(const aSrcPath, aDstPath: string): boolean;  
+var
+  LDir: string;
+begin
+  Result := False;
+
+  try
+    if FileExists(aSrcPath) then
+      begin          
+        LDir := ExtractFileDir(aDstPath);
+        {$IFDEF FPC}
+        if not(DirectoryExists(LDir)) then
+          CreateDir(LDir);
+
+        CopyFile(aSrcPath, aDstPath, False);
+        {$ELSE}
+        if not(TDirectory.Exists(LDir)) then
+          TDirectory.CreateDirectory(LDir);
+
+        TFile.Copy(aSrcPath, aDstPath);
+        TFile.SetAttributes(aDstPath, TFile.GetAttributes(aSrcPath));
+        {$ENDIF}
+        Result := True;
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('CopyWebUIFramework', e) then raise;
+  end;
+end;
+{$ENDIF}
+
+function LibraryExists(const aPath : string) : boolean;
+begin
+  Result := False;
+  try
+    if FileExists(aPath) then
+      Result := True
+     else
+      begin
+        {$IFDEF MACOSX}{$IFDEF DEBUG}
+        Result := CopyWebUIFramework(IncludeTrailingPathDelimiter(GetModulePath) + WEBUI_LIB, aPath);
+        {$ENDIF}{$ENDIF}
+      end;
+  except
+    on e : exception do
+      if CustomExceptionHandler('LibraryExists', e) then raise;
+  end;
 end;
 
 end.
