@@ -33,7 +33,7 @@ type
   /// </summary>
   TWebUI = class
     protected
-      FLibHandle                              : THandle;
+      FLibHandle                              : {$IFDEF FPC}TLibHandle{$ELSE}THandle{$ENDIF};
       FSetCurrentDir                          : boolean;
       FReRaiseExceptions                      : boolean;
       FLibraryPath                            : string;
