@@ -555,7 +555,7 @@ begin
         begin
           Status := lsError;
           AppendErrorLog('There was a problem loading the library procedures.');
-          AppendErrorLog(inttostr(LMissing.Count) + ' missing procedures: ');
+          AppendErrorLog({$IFDEF FPC}string({$ENDIF}inttostr(LMissing.Count){$IFDEF FPC}){$ENDIF} + ' missing procedures: ');
           AppendErrorLog(LMissing);
 
           ShowErrorMessageDlg(ErrorMessage);
@@ -594,7 +594,7 @@ begin
         FErrorLog.AddStrings(aTextLines);
 
       for i := 0 to pred(aTextLines.Count) do
-        OutputDebugMessage(aTextLines[i]);
+        OutputDebugMessage({$IFDEF FPC}string({$ENDIF}aTextLines[i]{$IFDEF FPC}){$ENDIF});
     finally
       UnLock;
     end;
