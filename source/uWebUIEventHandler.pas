@@ -180,7 +180,25 @@ type
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
       /// </remarks>
-      procedure SetResponse(const response: string);
+      procedure SetResponse(const response: string); overload;
+      /// <summary>
+      /// When using `webui_interface_bind()`, you may need this function to easily set a response.
+      /// </summary>
+      /// <param name="response">The response as a stream to be send to JavaScript.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
+      /// </remarks>
+      procedure SetResponse(const response: TMemoryStream); overload;
+      /// <summary>
+      /// When using `webui_interface_bind()`, you may need this function to easily set a response.
+      /// </summary>
+      /// <param name="response">The response as a stream to be send to JavaScript.</param>
+      /// <param name="aOffset">Moves the current stream position by aOffset bytes, relative to the beginning.</param>
+      /// <param name="aCount">Copies aCount bytes from the stream.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
+      /// </remarks>
+      procedure SetResponse(const response: TMemoryStream; aOffset, aCount: int64); overload;
 
       /// <summary>
       /// Returns true if the Window was created successfully.
@@ -424,7 +442,7 @@ var
 begin
   LBuffer := nil;
 
-  if assigned(aReturnValue) and (aReturnValue.Size > 0) then
+  if Initialized and assigned(aReturnValue) and (aReturnValue.Size > 0) then
     try
       LBuffer := webui_malloc(aReturnValue.Size);
       aReturnValue.Seek(0, soBeginning);
@@ -443,7 +461,7 @@ var
 begin
   LBuffer := nil;
 
-  if assigned(aReturnValue) and (aOffset >= 0) and (aCount > 0) then
+  if Initialized and assigned(aReturnValue) and (aOffset >= 0) and (aCount > 0) then
     try
       LBuffer := webui_malloc(aCount);
       aReturnValue.Seek(aOffset, soBeginning);
@@ -469,6 +487,43 @@ begin
     begin
       LResponse := UTF8Encode(response + #0);
       webui_interface_set_response(FEvent.window, FEvent.event_number, @LResponse[1]);
+    end;
+end;
+
+procedure TWebUIEventHandler.SetResponse(const response: TMemoryStream);
+var
+  LBuffer : PWebUIChar;
+begin
+  LBuffer := nil;
+
+  if Initialized and assigned(response) and (response.Size > 0) then
+    try
+      LBuffer := webui_malloc(response.Size);
+      response.Seek(0, soBeginning);
+      response.Read(LBuffer^, response.Size);
+      response.Seek(0, soBeginning);
+      webui_interface_set_response(FEvent.window, FEvent.event_number, LBuffer);
+    finally
+      if (LBuffer <> nil) then
+        webui_free(LBuffer);
+    end;
+end;
+
+procedure TWebUIEventHandler.SetResponse(const response: TMemoryStream; aOffset, aCount: int64);
+var
+  LBuffer : PWebUIChar;
+begin
+  LBuffer := nil;
+
+  if Initialized and assigned(response) and (aOffset >= 0) and (aCount > 0) then
+    try
+      LBuffer := webui_malloc(aCount);
+      response.Seek(aOffset, soBeginning);
+      response.Read(LBuffer^, aCount);
+      webui_interface_set_response(FEvent.window, FEvent.event_number, LBuffer);
+    finally
+      if (LBuffer <> nil) then
+        webui_free(LBuffer);
     end;
 end;
 
