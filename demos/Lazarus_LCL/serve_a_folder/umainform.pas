@@ -167,7 +167,6 @@ end;
 function my_files_handler(const filename: PWebUIChar; len: PInteger): PWebUIChar;
 var
   LFilename, LResult : string;
-  LBuffer : AnsiString;
 begin
   LFilename := UTF8ToString(PAnsiChar(filename));
 
@@ -176,10 +175,8 @@ begin
       // Const static file example
       // Note: The connection will drop if the content
       // does not have `<script src="webui.js"></script>`
-      LResult := 'This is a embedded file content example.' + #0;
-      LBuffer := UTF8Encode(LResult);
-      len^    := length(LBuffer);
-      Result  := PWebUIChar(@LBuffer[1]);
+      LResult := 'This is a embedded file content example.';
+      Result  := StringToPWebUIChar(LResult, len^);
     end
    else
     if (CompareText(LFilename, '/dynamic.html') = 0) then
@@ -191,11 +188,8 @@ begin
                    '   This is a dynamic file content example. <br>' + CRLF +
                    '   Count: ' + inttostr(LCount) + ' <a href="dynamic.html">[Refresh]</a><br>' + CRLF +
                    '   <script src="webui.js"></script>' + CRLF + // To keep connection with WebUI
-                   '</html>' + #0;
-
-        LBuffer := UTF8Encode(LResult);
-        len^    := length(LBuffer);
-        Result  := PWebUIChar(@LBuffer[1]);
+                   '</html>';
+        Result  := StringToPWebUIChar(LResult, len^);
       end
      else
       begin
