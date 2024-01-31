@@ -6,6 +6,11 @@ unit uWebUIMiscFunctions;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF DELPHI12_UP}
+  // Workaround for "Internal error" in old Delphi versions caused by uint64 handling
+  {$R-}
+{$ENDIF}
+
 interface
 
 uses
@@ -178,7 +183,7 @@ begin
     Result := PathIsRelativeUnicode(PChar(aPath));
     {$ELSE}
     Result := PathIsRelativeAnsi(PChar(aPath));
-    {$ENDIF}
+    {$IFEND}
   {$ELSE}
   Result := (length(aPath) > 0) and (aPath[1] <> '/');
   {$ENDIF}
@@ -191,7 +196,7 @@ begin
     Result := PathIsURLUnicode(PChar(aPath + #0));
     {$ELSE}
     Result := PathIsURLAnsi(PChar(aPath + #0));
-    {$ENDIF}
+    {$IFEND}
   {$ELSE}
   Result := False;
   {$ENDIF}
@@ -204,7 +209,7 @@ begin
     Result := PathIsUNCUnicode(PChar(aPath + #0));
     {$ELSE}
     Result := PathIsUNCAnsi(PChar(aPath + #0));
-    {$ENDIF}
+    {$IFEND}
   {$ELSE}
   Result := False;
   {$ENDIF}
@@ -237,7 +242,7 @@ begin
         aCanonicalPath := TempBuffer;
         Result         := True;
       end;
-    {$ENDIF}
+    {$IFEND}
   {$ENDIF}
 end;
 
