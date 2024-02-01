@@ -235,7 +235,7 @@ begin
       LEvent  := TWebUIEventHandler.Create(e);
       LWindow := WebUI.SearchWindow(LEvent.WindowID);
 
-      if assigned(LWindow) then
+      if assigned(LWindow) and LWindow.HasBindID(e^.bind_id) then
         LWindow.doOnWebUIEvent(LEvent);
     finally
       LEvent  := nil;

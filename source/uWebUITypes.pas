@@ -636,7 +636,11 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
     /// </remarks>
     procedure   SetRuntime(runtime: TWebUIRuntime);
-
+    /// <summary>
+    /// Returns true if the bind id belongs to this window.
+    /// </summary>
+    /// <param name="aID">Bind ID that supposedly belongs to this window.</param>
+    function    HasBindID(aID : TWebUIBindID): boolean;
     /// <summary>
     /// Window number or Window ID.
     /// </summary>

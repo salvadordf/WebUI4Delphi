@@ -18,9 +18,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils,
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes, System.SysUtils, System.SyncObjs,
   {$ELSE}
-    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils,
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes, SysUtils, SyncObjs,
   {$ENDIF}
   uWebUIConstants, uWebUITypes, uWebUILibFunctions;
 
@@ -32,6 +32,8 @@ type
     protected
       FID           : TWebUIWindowID;
       FOnWebUIEvent : TOnWebUIEvent;
+      FBindIDList   : TList;
+      FCritSect     : TCriticalSection;
 
       function  GetID : TWebUIWindowID;
       function  GetInitialized : boolean;
@@ -43,6 +45,9 @@ type
 
       procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 
+      function  Lock : boolean;
+      procedure UnLock;
+      procedure AddBindID(aID : TWebUIBindID);
       procedure AddWindowID;
       procedure RemoveWindowID;
       procedure doOnWebUIEvent(const aEvent: IWebUIEventHandler);
@@ -306,6 +311,11 @@ type
       /// </remarks>
       procedure   SetRuntime(runtime: TWebUIRuntime);
       /// <summary>
+      /// Returns true if the bind id belongs to this window.
+      /// </summary>
+      /// <param name="aID">Bind ID that supposedly belongs to this window.</param>
+      function    HasBindID(aID : TWebUIBindID): boolean;
+      /// <summary>
       /// Get a free window number that can be used with `webui_new_window_id()`.
       /// </summary>
       /// <returns>Returns the first available free window number. Starting from 1.</returns>
@@ -366,6 +376,8 @@ begin
   inherited Create;
 
   FOnWebUIEvent := nil;
+  FCritSect     := nil;
+  FBindIDList   := nil;
 
   if (WebUI <> nil) and WebUI.Initialized then
     FID := webui_new_window()
@@ -378,6 +390,8 @@ begin
   inherited Create;
 
   FOnWebUIEvent := nil;
+  FCritSect     := nil;
+  FBindIDList   := nil;
 
   if (WebUI <> nil) and WebUI.Initialized then
     begin
@@ -395,6 +409,12 @@ begin
   try
     Close;
     DestroyWindow;
+
+    if assigned(FBindIDList) then
+      FreeAndNil(FBindIDList);
+
+    if assigned(FCritSect) then
+      FreeAndNil(FCritSect);
   finally
     inherited Destroy;
   end;
@@ -403,6 +423,9 @@ end;
 procedure TWebUIWindow.AfterConstruction;
 begin
   inherited AfterConstruction;
+
+  FCritSect   := TCriticalSection.Create;
+  FBindIDList := TList.Create;
 
   AddWindowID;
 end;
@@ -428,6 +451,47 @@ procedure TWebUIWindow.AddWindowID;
 begin
   if Initialized then
     WebUI.AddWindow(Self);
+end;
+
+function TWebUIWindow.Lock : boolean;
+begin
+  Result := False;
+
+  if assigned(FCritSect) then
+    begin
+      FCritSect.Acquire;
+      Result := True;
+    end;
+end;
+
+procedure TWebUIWindow.UnLock;
+begin
+  if assigned(FCritSect) then
+    FCritSect.Release;
+end;
+
+procedure TWebUIWindow.AddBindID(aID : TWebUIBindID);
+begin
+  if Lock then
+    try
+      if assigned(FBindIDList) then
+        FBindIDList.Add(Pointer(aID));
+    finally
+      UnLock;
+    end;
+end;
+
+function TWebUIWindow.HasBindID(aID : TWebUIBindID): boolean;
+begin
+  Result := False;
+
+  if Lock then
+    try
+      Result := assigned(FBindIDList) and
+                (FBindIDList.IndexOf(Pointer(aID)) >= 0);
+    finally
+      UnLock;
+    end;
 end;
 
 procedure TWebUIWindow.RemoveWindowID;
@@ -530,6 +594,7 @@ begin
     begin
       LElement := UTF8Encode(element_ + #0);
       Result   := webui_bind(FID, @LElement[1], func_);
+      AddBindID(Result);
     end;
 end;
 
@@ -543,6 +608,7 @@ begin
     begin
       LElement := UTF8Encode(element_ + #0);
       Result   := webui_interface_bind(FID, @LElement[1], func_);
+      AddBindID(Result);
     end;
 end;
 
@@ -561,6 +627,7 @@ begin
     begin
       LElement := UTF8Encode(#0);
       Result   := webui_bind(FID, @LElement[1], func_);
+      AddBindID(Result);
     end;
 end;
 
