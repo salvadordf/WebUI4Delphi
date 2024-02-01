@@ -4,7 +4,7 @@ WebUI4Delphi is a [WebUI](https://github.com/webui-dev/webui) wrapper, which all
 WebUI allows you to link your Delphi or Lazarus application with a web app that runs in a web browser installed in the operating system. Originally WebUI was created to have all the UI code in the web browser and the rest of the code in your hidden Delphi or Lazarus application.
 However, you can also decide to have a visible Delphi or Lazarus application communicating with a HTML5 app. You can get web browser events in your desktop application, call Pascal functions from JS, call JS functions from Pascal code, execute JavaScript, etc.
 
-WebUI4Delphi can be used in 64 bit Delphi or Lazarus applications for Windows, Linux and MacOS. 
+WebUI4Delphi can be used in Delphi or Lazarus applications for Windows, Linux and MacOS. 
 
 WebUI4Delphi was developed and tested on Delphi 12.0 and Lazarus 3.0/FPC 3.2.2 but it also supports Delphi XE2. 
 
