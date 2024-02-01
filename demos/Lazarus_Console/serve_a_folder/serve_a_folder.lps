@@ -9,13 +9,30 @@
         <Filename Value="serve_a_folder.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="133"/>
-        <CursorPos Y="152"/>
+        <TopLine Value="40"/>
+        <CursorPos X="41" Y="24"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="3">
+      <Position>
+        <Filename Value="serve_a_folder.lpr"/>
+        <Caret Line="152" TopLine="128"/>
+      </Position>
+      <Position>
+        <Filename Value="serve_a_folder.lpr"/>
+        <Caret Line="75" Column="83" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="serve_a_folder.lpr"/>
+        <Caret Line="125" Column="65" TopLine="107"/>
+      </Position>
+      <Position>
+        <Filename Value="serve_a_folder.lpr"/>
+        <Caret Line="127" Column="38" TopLine="109"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

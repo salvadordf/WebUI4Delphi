@@ -14,7 +14,7 @@ uses
 var
   LWindow : IWebUIWindow;
 
-procedure my_backend_func(e: PWebUIEvent);
+procedure my_backend_func(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   number_1, number_2, number_3 : int64;
@@ -35,7 +35,7 @@ begin
   LEvent.Free;
 end;
 
-procedure events(e: PWebUIEvent);
+procedure events(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   LUrl : string;

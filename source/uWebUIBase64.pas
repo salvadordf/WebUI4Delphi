@@ -6,6 +6,7 @@ unit uWebUIBase64;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
 
 interface

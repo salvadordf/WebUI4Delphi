@@ -6,6 +6,7 @@ unit uWebUIWindow;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
 
 {$IFNDEF DELPHI12_UP}

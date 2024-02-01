@@ -6,6 +6,7 @@ unit uWebUITypes;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
 
 interface
@@ -193,9 +194,9 @@ type
   end;
   PWebUIEvent = ^TWebUIEvent;
 
-  TWebUIBindCallback           = procedure(e: PWebUIEvent);
-  TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): PWebUIChar;
-  TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
+  TWebUIBindCallback           = procedure(e: PWebUIEvent); cdecl;
+  TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): PWebUIChar; cdecl;
+  TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); cdecl;
 
   TOnWebUIEvent = procedure(Sender: TObject; const aEvent: IWebUIEventHandler) of object;
 

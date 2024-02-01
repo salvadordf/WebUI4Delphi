@@ -16,12 +16,12 @@ var
   LCount : integer;
   LRoot : string;
 
-procedure exit_app(e: PWebUIEvent);
+procedure exit_app(e: PWebUIEvent); cdecl;
 begin
   WebUI.Exit;
 end;
 
-procedure events(e: PWebUIEvent);
+procedure events(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   LUrl : string;
@@ -47,7 +47,7 @@ begin
   LEvent.Free;
 end;
 
-procedure switch_to_second_page(e: PWebUIEvent);
+procedure switch_to_second_page(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
 begin
@@ -62,7 +62,7 @@ begin
   LEvent.Free;
 end;
 
-procedure show_second_window(e: PWebUIEvent);
+procedure show_second_window(e: PWebUIEvent); cdecl;
 begin
   // This function gets called every
   // time the user clicks on "OpenNewWindow"
@@ -72,7 +72,7 @@ begin
   LSecondWindow.Show('second.html');
 end;
 
-function my_files_handler(const filename: PWebUIChar; len: PInteger): PWebUIChar;
+function my_files_handler(const filename: PWebUIChar; len: PInteger): PWebUIChar; cdecl;
 var
   LFilename, LResult : string;
 begin

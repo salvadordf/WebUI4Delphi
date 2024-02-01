@@ -6,6 +6,7 @@ unit uWebUILibFunctions;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
 
 interface
@@ -21,7 +22,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_new_window)</see></para>
   /// </remarks>
-  webui_new_window : function(): TWebUIWindowID; stdcall;
+  webui_new_window : function(): TWebUIWindowID; cdecl;
 
   /// <summary>
   /// Create a new webui window object using a specified window number.
@@ -31,7 +32,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_new_window_id)</see></para>
   /// </remarks>
-  webui_new_window_id : function(window_number : TWebUIWindowID): TWebUIWindowID; stdcall;
+  webui_new_window_id : function(window_number : TWebUIWindowID): TWebUIWindowID; cdecl;
 
   /// <summary>
   /// Get a free window number that can be used with `webui_new_window_id()`.
@@ -40,7 +41,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_new_window_id)</see></para>
   /// </remarks>
-  webui_get_new_window_id : function(): TWebUIWindowID; stdcall;
+  webui_get_new_window_id : function(): TWebUIWindowID; cdecl;
 
   /// <summary>
   /// Bind a specific html element click event with a function. Empty element means all events.
@@ -52,7 +53,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_bind)</see></para>
   /// </remarks>
-  webui_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIBindCallback): TWebUIBindID; stdcall;
+  webui_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIBindCallback): TWebUIBindID; cdecl;
 
   /// <summary>
   /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
@@ -63,7 +64,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show)</see></para>
   /// </remarks>
-  webui_show : function(window: TWebUIWindowID; const content: PWebUIChar): boolean; stdcall;
+  webui_show : function(window: TWebUIWindowID; const content: PWebUIChar): boolean; cdecl;
 
   /// <summary>
   /// Same as `webui_show()`. But using a specific web browser.
@@ -75,7 +76,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_browser)</see></para>
   /// </remarks>
-  webui_show_browser : function(window: TWebUIWindowID; const content: PWebUIChar; browser: TWebUIBrowsers): boolean; stdcall;
+  webui_show_browser : function(window: TWebUIWindowID; const content: PWebUIChar; browser: TWebUIBrowsers): boolean; cdecl;
 
   /// <summary>
   /// Set the window in Kiosk mode (Full screen).
@@ -85,7 +86,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_kiosk)</see></para>
   /// </remarks>
-  webui_set_kiosk : procedure(window: TWebUIWindowID; status: boolean); stdcall;
+  webui_set_kiosk : procedure(window: TWebUIWindowID; status: boolean); cdecl;
 
   /// <summary>
   /// Wait until all opened windows get closed.
@@ -93,7 +94,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_wait)</see></para>
   /// </remarks>
-  webui_wait : procedure(); stdcall;
+  webui_wait : procedure(); cdecl;
 
   /// <summary>
   /// Close a specific window only. The window object will still exist.
@@ -102,7 +103,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close)</see></para>
   /// </remarks>
-  webui_close : procedure(window: TWebUIWindowID); stdcall;
+  webui_close : procedure(window: TWebUIWindowID); cdecl;
 
   /// <summary>
   /// Close a specific window and free all memory resources.
@@ -111,7 +112,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_destroy)</see></para>
   /// </remarks>
-  webui_destroy : procedure(window: TWebUIWindowID); stdcall;
+  webui_destroy : procedure(window: TWebUIWindowID); cdecl;
 
   /// <summary>
   /// Close all open windows. `webui_wait()` will return (Break).
@@ -119,7 +120,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_exit)</see></para>
   /// </remarks>
-  webui_exit : procedure(); stdcall;
+  webui_exit : procedure(); cdecl;
 
   /// <summary>
   /// Set the web-server root folder path for a specific window.
@@ -130,7 +131,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_root_folder)</see></para>
   /// </remarks>
-  webui_set_root_folder : function(window: TWebUIWindowID; const path: PWebUIChar): boolean; stdcall;
+  webui_set_root_folder : function(window: TWebUIWindowID; const path: PWebUIChar): boolean; cdecl;
 
   /// <summary>
   /// Set the web-server root folder path for all windows. Should be used before `webui_show()`.
@@ -140,7 +141,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_default_root_folder)</see></para>
   /// </remarks>
-  webui_set_default_root_folder : function(const path: PWebUIChar): boolean; stdcall;
+  webui_set_default_root_folder : function(const path: PWebUIChar): boolean; cdecl;
 
   /// <summary>
   /// Set a custom handler to serve files.
@@ -150,7 +151,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
   /// </remarks>
-  webui_set_file_handler : procedure(window: TWebUIWindowID; handler: TWebUIFileHandlerCallback); stdcall;
+  webui_set_file_handler : procedure(window: TWebUIWindowID; handler: TWebUIFileHandlerCallback); cdecl;
 
   /// <summary>
   /// Check if the specified window is still running.
@@ -160,7 +161,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_is_shown)</see></para>
   /// </remarks>
-  webui_is_shown : function(window: TWebUIWindowID): boolean; stdcall;
+  webui_is_shown : function(window: TWebUIWindowID): boolean; cdecl;
 
   /// <summary>
   /// Set the maximum time in seconds to wait for the browser to start.
@@ -169,7 +170,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_timeout)</see></para>
   /// </remarks>
-  webui_set_timeout : procedure(second: NativeUInt); stdcall;
+  webui_set_timeout : procedure(second: NativeUInt); cdecl;
 
   /// <summary>
   /// Set the default embedded HTML favicon.
@@ -180,7 +181,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_icon)</see></para>
   /// </remarks>
-  webui_set_icon : procedure(window: TWebUIWindowID; const icon, icon_type: PWebUIChar); stdcall;
+  webui_set_icon : procedure(window: TWebUIWindowID; const icon, icon_type: PWebUIChar); cdecl;
 
   /// <summary>
   /// Base64 encoding. Use this to safely send text based data to the UI. If it fails it will return NULL.
@@ -190,7 +191,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_encode)</see></para>
   /// </remarks>
-  webui_encode : function(const str: PWebUIChar): PWebUIChar; stdcall;
+  webui_encode : function(const str: PWebUIChar): PWebUIChar; cdecl;
 
   /// <summary>
   /// Base64 decoding. Use this to safely decode received Base64 text from the UI. If it fails it will return NULL.
@@ -200,7 +201,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_decode)</see></para>
   /// </remarks>
-  webui_decode : function(const str: PWebUIChar): PWebUIChar; stdcall;
+  webui_decode : function(const str: PWebUIChar): PWebUIChar; cdecl;
 
   /// <summary>
   /// Safely free a buffer allocated by WebUI using `webui_malloc()`.
@@ -209,7 +210,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_free)</see></para>
   /// </remarks>
-  webui_free : procedure(ptr: Pointer); stdcall;
+  webui_free : procedure(ptr: Pointer); cdecl;
 
   /// <summary>
   /// Safely allocate memory using the WebUI memory management system. It can be safely freed using `webui_free()` at any time.
@@ -219,7 +220,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_malloc)</see></para>
   /// </remarks>
-  webui_malloc : function(size: NativeUInt): Pointer; stdcall;
+  webui_malloc : function(size: NativeUInt): Pointer; cdecl;
 
   /// <summary>
   /// Safely send raw data to the UI.
@@ -231,7 +232,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_send_raw)</see></para>
   /// </remarks>
-  webui_send_raw : procedure(window: TWebUIWindowID; const function_: PWebUIChar; const raw: Pointer; size: NativeUInt); stdcall;
+  webui_send_raw : procedure(window: TWebUIWindowID; const function_: PWebUIChar; const raw: Pointer; size: NativeUInt); cdecl;
 
   /// <summary>
   /// Set a window in hidden mode. Should be called before `webui_show()`.
@@ -241,7 +242,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_hide)</see></para>
   /// </remarks>
-  webui_set_hide : procedure(window: TWebUIWindowID; status: boolean); stdcall;
+  webui_set_hide : procedure(window: TWebUIWindowID; status: boolean); cdecl;
 
   /// <summary>
   /// Set the window size.
@@ -252,7 +253,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_size)</see></para>
   /// </remarks>
-  webui_set_size : procedure(window: TWebUIWindowID; width, height: cardinal); stdcall;
+  webui_set_size : procedure(window: TWebUIWindowID; width, height: cardinal); cdecl;
 
   /// <summary>
   /// Set the window position.
@@ -263,7 +264,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_position)</see></para>
   /// </remarks>
-  webui_set_position : procedure(window: TWebUIWindowID; x, y: cardinal); stdcall;
+  webui_set_position : procedure(window: TWebUIWindowID; x, y: cardinal); cdecl;
 
   /// <summary>
   /// Set the web browser profile to use. An empty `name` and `path` means the default user profile. Need to be called before `webui_show()`.
@@ -274,7 +275,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_profile)</see></para>
   /// </remarks>
-  webui_set_profile : procedure(window: TWebUIWindowID; const name, path: PWebUIChar); stdcall;
+  webui_set_profile : procedure(window: TWebUIWindowID; const name, path: PWebUIChar); cdecl;
 
   /// <summary>
   /// Set the web browser proxy_server to use. Need to be called before 'webui_show()'.
@@ -284,7 +285,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_proxy)</see></para>
   /// </remarks>
-  webui_set_proxy : procedure(window: TWebUIWindowID; const proxy_server: PWebUIChar); stdcall;
+  webui_set_proxy : procedure(window: TWebUIWindowID; const proxy_server: PWebUIChar); cdecl;
 
   /// <summary>
   /// Get the full current URL.
@@ -294,7 +295,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_url)</see></para>
   /// </remarks>
-  webui_get_url : function(window: TWebUIWindowID): PWebUIChar; stdcall;
+  webui_get_url : function(window: TWebUIWindowID): PWebUIChar; cdecl;
 
   /// <summary>
   /// Allow a specific window address to be accessible from a public network.
@@ -304,7 +305,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_public)</see></para>
   /// </remarks>
-  webui_set_public : procedure(window: TWebUIWindowID; status: boolean); stdcall;
+  webui_set_public : procedure(window: TWebUIWindowID; status: boolean); cdecl;
 
   /// <summary>
   /// Navigate to a specific URL.
@@ -314,7 +315,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_navigate)</see></para>
   /// </remarks>
-  webui_navigate : procedure(window: TWebUIWindowID; const url: PWebUIChar); stdcall;
+  webui_navigate : procedure(window: TWebUIWindowID; const url: PWebUIChar); cdecl;
 
   /// <summary>
   /// Free all memory resources. Should be called only at the end.
@@ -322,7 +323,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_clean)</see></para>
   /// </remarks>
-  webui_clean : procedure(); stdcall;
+  webui_clean : procedure(); cdecl;
 
   /// <summary>
   /// Delete all local web-browser profiles folder. It should called at the end.
@@ -330,7 +331,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_delete_all_profiles)</see></para>
   /// </remarks>
-  webui_delete_all_profiles : procedure(); stdcall;
+  webui_delete_all_profiles : procedure(); cdecl;
 
   /// <summary>
   /// Delete a specific window web-browser local folder profile.
@@ -340,7 +341,7 @@ var
   /// <para>This can break functionality of other windows if using the same web-browser.</para>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_delete_profile)</see></para>
   /// </remarks>
-  webui_delete_profile : procedure(window: TWebUIWindowID); stdcall;
+  webui_delete_profile : procedure(window: TWebUIWindowID); cdecl;
 
   /// <summary>
   /// Get the ID of the parent process (The web browser may re-create another new process).
@@ -350,7 +351,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_parent_process_id)</see></para>
   /// </remarks>
-  webui_get_parent_process_id : function(window: TWebUIWindowID): NativeUInt; stdcall;
+  webui_get_parent_process_id : function(window: TWebUIWindowID): NativeUInt; cdecl;
 
   /// <summary>
   /// Get the ID of the last child process.
@@ -360,7 +361,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
   /// </remarks>
-  webui_get_child_process_id : function(window: TWebUIWindowID): NativeUInt; stdcall;
+  webui_get_child_process_id : function(window: TWebUIWindowID): NativeUInt; cdecl;
 
   /// <summary>
   /// Set a custom web-server network port to be used by WebUI.
@@ -373,7 +374,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_port)</see></para>
   /// </remarks>
-  webui_set_port : function(window: TWebUIWindowID; port: NativeUInt): boolean; stdcall;
+  webui_set_port : function(window: TWebUIWindowID; port: NativeUInt): boolean; cdecl;
 
   /// <summary>
   /// Set the SSL/TLS certificate and the private key content, both in PEM
@@ -386,7 +387,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_tls_certificate)</see></para>
   /// </remarks>
-  webui_set_tls_certificate : function(const certificate_pem, private_key_pem: PWebUIChar): boolean; stdcall;
+  webui_set_tls_certificate : function(const certificate_pem, private_key_pem: PWebUIChar): boolean; cdecl;
 
   /// <summary>
   /// Run JavaScript without waiting for the response.
@@ -396,7 +397,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_run)</see></para>
   /// </remarks>
-  webui_run : procedure(window: TWebUIWindowID; const script: PWebUIChar); stdcall;
+  webui_run : procedure(window: TWebUIWindowID; const script: PWebUIChar); cdecl;
 
   /// <summary>
   /// Run JavaScript and get the response back.
@@ -411,7 +412,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_script)</see></para>
   /// </remarks>
-  webui_script : function(window: TWebUIWindowID; const script: PWebUIChar; timeout: NativeUInt; buffer: PWebUIChar; buffer_length: NativeUInt): boolean; stdcall;
+  webui_script : function(window: TWebUIWindowID; const script: PWebUIChar; timeout: NativeUInt; buffer: PWebUIChar; buffer_length: NativeUInt): boolean; cdecl;
 
   /// <summary>
   /// Chose between Deno and Nodejs as runtime for .js and .ts files.
@@ -421,7 +422,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
   /// </remarks>
-  webui_set_runtime : procedure(window: TWebUIWindowID; runtime: TWebUIRuntime); stdcall;
+  webui_set_runtime : procedure(window: TWebUIWindowID; runtime: TWebUIRuntime); cdecl;
 
   /// <summary>
   /// Get an argument as integer at a specific index.
@@ -432,7 +433,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int_at)</see></para>
   /// </remarks>
-  webui_get_int_at : function(e: PWebUIEvent; index: NativeUInt): int64; stdcall;
+  webui_get_int_at : function(e: PWebUIEvent; index: NativeUInt): int64; cdecl;
 
   /// <summary>
   /// Get the first argument as integer.
@@ -442,7 +443,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int)</see></para>
   /// </remarks>
-  webui_get_int : function(e: PWebUIEvent): int64; stdcall;
+  webui_get_int : function(e: PWebUIEvent): int64; cdecl;
 
   /// <summary>
   /// Get an argument as string at a specific index.
@@ -453,7 +454,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string_at)</see></para>
   /// </remarks>
-  webui_get_string_at : function(e: PWebUIEvent; index: NativeUInt): PWebUIChar; stdcall;
+  webui_get_string_at : function(e: PWebUIEvent; index: NativeUInt): PWebUIChar; cdecl;
 
   /// <summary>
   /// Get the first argument as string.
@@ -463,7 +464,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_string)</see></para>
   /// </remarks>
-  webui_get_string : function(e: PWebUIEvent): PWebUIChar; stdcall;
+  webui_get_string : function(e: PWebUIEvent): PWebUIChar; cdecl;
 
   /// <summary>
   /// Get an argument as boolean at a specific index.
@@ -474,7 +475,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_bool_at)</see></para>
   /// </remarks>
-  webui_get_bool_at : function(e: PWebUIEvent; index: NativeUInt): boolean; stdcall;
+  webui_get_bool_at : function(e: PWebUIEvent; index: NativeUInt): boolean; cdecl;
 
   /// <summary>
   /// Get the first argument as boolean.
@@ -484,7 +485,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_bool)</see></para>
   /// </remarks>
-  webui_get_bool : function(e: PWebUIEvent): boolean; stdcall;
+  webui_get_bool : function(e: PWebUIEvent): boolean; cdecl;
 
   /// <summary>
   /// Get the size in bytes of an argument at a specific index.
@@ -495,7 +496,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_size_at)</see></para>
   /// </remarks>
-  webui_get_size_at : function(e: PWebUIEvent; index: NativeUInt): NativeUInt; stdcall;
+  webui_get_size_at : function(e: PWebUIEvent; index: NativeUInt): NativeUInt; cdecl;
 
   /// <summary>
   /// Get size in bytes of the first argument.
@@ -505,7 +506,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_size)</see></para>
   /// </remarks>
-  webui_get_size : function(e: PWebUIEvent): NativeUInt; stdcall;
+  webui_get_size : function(e: PWebUIEvent): NativeUInt; cdecl;
 
   /// <summary>
   /// Return the response to JavaScript as integer.
@@ -515,7 +516,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_int)</see></para>
   /// </remarks>
-  webui_return_int : procedure(e: PWebUIEvent; n: int64); stdcall;
+  webui_return_int : procedure(e: PWebUIEvent; n: int64); cdecl;
 
   /// <summary>
   /// Return the response to JavaScript as string.
@@ -525,7 +526,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_string)</see></para>
   /// </remarks>
-  webui_return_string : procedure(e: PWebUIEvent; const s: PWebUIChar); stdcall;
+  webui_return_string : procedure(e: PWebUIEvent; const s: PWebUIChar); cdecl;
 
   /// <summary>
   /// Return the response to JavaScript as boolean.
@@ -535,7 +536,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_bool)</see></para>
   /// </remarks>
-  webui_return_bool : procedure(e: PWebUIEvent; b: boolean); stdcall;
+  webui_return_bool : procedure(e: PWebUIEvent; b: boolean); cdecl;
 
   /// <summary>
   /// Bind a specific HTML element click event with a function. Empty element means all events.
@@ -547,7 +548,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_bind)</see></para>
   /// </remarks>
-  webui_interface_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIInterfaceEventCallback): TWebUIBindID; stdcall;
+  webui_interface_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIInterfaceEventCallback): TWebUIBindID; cdecl;
 
   /// <summary>
   /// When using `webui_interface_bind()`, you may need this function to easily set a response.
@@ -558,7 +559,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
   /// </remarks>
-  webui_interface_set_response : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const response: PWebUIChar); stdcall;
+  webui_interface_set_response : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const response: PWebUIChar); cdecl;
 
   /// <summary>
   /// Check if the app still running.
@@ -567,7 +568,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_is_app_running)</see></para>
   /// </remarks>
-  webui_interface_is_app_running : function(): boolean; stdcall;
+  webui_interface_is_app_running : function(): boolean; cdecl;
 
   /// <summary>
   /// Get a unique window ID.
@@ -577,7 +578,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_window_id)</see></para>
   /// </remarks>
-  webui_interface_get_window_id : function(window: TWebUIWindowID): TWebUIWindowID; stdcall;
+  webui_interface_get_window_id : function(window: TWebUIWindowID): TWebUIWindowID; cdecl;
 
   /// <summary>
   /// Get an argument as string at a specific index.
@@ -589,7 +590,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_string_at)</see></para>
   /// </remarks>
-  webui_interface_get_string_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): PWebUIChar; stdcall;
+  webui_interface_get_string_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): PWebUIChar; cdecl;
 
   /// <summary>
   /// Get an argument as integer at a specific index.
@@ -601,7 +602,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_int_at)</see></para>
   /// </remarks>
-  webui_interface_get_int_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): int64; stdcall;
+  webui_interface_get_int_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): int64; cdecl;
 
   /// <summary>
   /// Get an argument as boolean at a specific index.
@@ -613,7 +614,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_bool_at)</see></para>
   /// </remarks>
-  webui_interface_get_bool_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): boolean; stdcall;
+  webui_interface_get_bool_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): boolean; cdecl;
 
   /// <summary>
   /// Get the size in bytes of an argument at a specific index.
@@ -625,7 +626,7 @@ var
   /// <remarks>
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_size_at)</see></para>
   /// </remarks>
-  webui_interface_get_size_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): NativeUInt; stdcall;
+  webui_interface_get_size_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): NativeUInt; cdecl;
 
 implementation
 

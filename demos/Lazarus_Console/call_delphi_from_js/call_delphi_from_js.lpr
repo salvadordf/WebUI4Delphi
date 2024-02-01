@@ -15,7 +15,7 @@ var
   LWindow : IWebUIWindow;
   LMyHTML : string;
 
-procedure my_function_string(e: PWebUIEvent);
+procedure my_function_string(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   str_1, str_2 : string;
@@ -32,7 +32,7 @@ begin
   LEvent.Free;
 end;
 
-procedure my_function_integer(e: PWebUIEvent);
+procedure my_function_integer(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   number_1, number_2, number_3 : int64;
@@ -51,7 +51,7 @@ begin
   LEvent.Free;
 end;
 
-procedure my_function_boolean(e: PWebUIEvent);
+procedure my_function_boolean(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   status_1, status_2 : boolean;
@@ -68,7 +68,7 @@ begin
   LEvent.Free;
 end;
 
-procedure my_function_raw_binary(e: PWebUIEvent);
+procedure my_function_raw_binary(e: PWebUIEvent); cdecl;
 var
   LEvent  : TWebUIEventHandler;
   LStream : TMemoryStream;
@@ -98,7 +98,7 @@ begin
   LEvent.Free;
 end;
 
-procedure my_function_with_response(e: PWebUIEvent);
+procedure my_function_with_response(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
   number, times, res : int64;

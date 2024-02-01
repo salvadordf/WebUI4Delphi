@@ -15,12 +15,12 @@ var
   LPrvWindow, LPubWindow : IWebUIWindow;
   LPrvHTML, LPubHTML, LPubUrl, LJavascript : string;
 
-procedure app_exit(e: PWebUIEvent);
+procedure app_exit(e: PWebUIEvent); cdecl;
 begin
 	WebUI.Exit;
 end;
 
-procedure public_window_events(e: PWebUIEvent);
+procedure public_window_events(e: PWebUIEvent); cdecl;
 var
   LEvent : TWebUIEventHandler;
 begin

@@ -6,6 +6,7 @@ unit uWebUI;
   {$MODE delphiunicode}
 {$ENDIF}
 
+{$IFNDEF TARGET_64BITS}{$ALIGN ON}{$ENDIF}
 {$MINENUMSIZE 4}
 
 {$IFNDEF DELPHI12_UP}
@@ -208,7 +209,7 @@ var
   WebUI : TWebUI = nil;
 
 procedure DestroyWebUI;
-procedure global_webui_event_callback(e: PWebUIEvent);
+procedure global_webui_event_callback(e: PWebUIEvent); cdecl;
 
 implementation
 
@@ -224,7 +225,7 @@ begin
     FreeAndNil(WebUI);
 end;
 
-procedure global_webui_event_callback(e: PWebUIEvent);
+procedure global_webui_event_callback(e: PWebUIEvent); cdecl;
 var
   LWindow : IWebUIWindow;
   LEvent  : IWebUIEventHandler;
@@ -249,7 +250,7 @@ begin
   FLibHandle                              := 0;
   FSetCurrentDir                          := True;
   FReRaiseExceptions                      := False;
-  FLibraryPath                          := '';
+  FLibraryPath                            := '';
   FStatus                                 := lsCreated;
   FErrorLog                               := nil;
   FShowMessageDlg                         := True;

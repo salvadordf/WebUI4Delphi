@@ -14,7 +14,7 @@ uses
 var
   LWindow : IWebUIWindow;
 
-procedure Close(e: PWebUIEvent);
+procedure Close(e: PWebUIEvent); cdecl;
 begin
 	writeln('Exit.');
 

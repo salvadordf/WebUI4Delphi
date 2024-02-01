@@ -15,12 +15,12 @@ var
   LWindow : IWebUIWindow;
   LMyHTML : string;
 
-procedure my_function_exit(e: PWebUIEvent);
+procedure my_function_exit(e: PWebUIEvent); cdecl;
 begin
   WebUI.Exit;
 end;
 
-procedure my_function_count(e: PWebUIEvent);
+procedure my_function_count(e: PWebUIEvent); cdecl;
 var
   LResult : string;
   LCount : integer;

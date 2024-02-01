@@ -8,20 +8,19 @@
       <Unit>
         <Filename Value="call_delphi_from_js.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="109"/>
-        <CursorPos X="3" Y="109"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="91"/>
+        <CursorPos X="60" Y="101"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\source\uWebUI.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="355"/>
+        <TopLine Value="213"/>
         <CursorPos X="47" Y="375"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.2.2\rtl\inc\dynlibh.inc"/>
@@ -31,7 +30,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="7">
+    <JumpHistory HistoryIndex="9">
       <Position>
         <Filename Value="call_delphi_from_js.lpr"/>
         <Caret Line="3" Column="21"/>
@@ -63,6 +62,14 @@
       <Position>
         <Filename Value="..\..\..\source\uWebUI.pas"/>
         <Caret Line="368" TopLine="355"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\..\source\uWebUI.pas"/>
+        <Caret Line="375" Column="47" TopLine="213"/>
+      </Position>
+      <Position>
+        <Filename Value="call_delphi_from_js.lpr"/>
+        <Caret Line="194" Column="52" TopLine="171"/>
       </Position>
     </JumpHistory>
     <RunParams>
