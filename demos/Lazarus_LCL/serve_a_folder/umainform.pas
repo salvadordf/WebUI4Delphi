@@ -164,7 +164,7 @@ begin
   FSecondWindow.Show('second.html');
 end;
 
-function my_files_handler(const filename: PWebUIChar; len: PInteger): PWebUIChar; cdecl;
+function my_files_handler(const filename: PWebUIChar; len: PInteger): Pointer; cdecl;
 var
   LFilename, LResult : string;
 begin

@@ -195,7 +195,7 @@ type
   PWebUIEvent = ^TWebUIEvent;
 
   TWebUIBindCallback           = procedure(e: PWebUIEvent); cdecl;
-  TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): PWebUIChar; cdecl;
+  TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): Pointer; cdecl;
   TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); cdecl;
 
   TOnWebUIEvent = procedure(Sender: TObject; const aEvent: IWebUIEventHandler) of object;
