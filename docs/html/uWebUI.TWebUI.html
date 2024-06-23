@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebUI4Delphi: uWebUI: Class TWebUI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0-snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<span id="TWebUI"></span><h1 class="cio">Class TWebUI</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uWebUI.html">uWebUI</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TWebUI = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Class used to simplify the WebUI initialization and destruction. </p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TWebUI</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FLibHandle">FLibHandle</a></strong>: TLibHandle;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FSetCurrentDir">FSetCurrentDir</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FReRaiseExceptions">FReRaiseExceptions</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FLibraryPath">FLibraryPath</a></strong>: string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FStatus">FStatus</a></strong>: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FErrorLog">FErrorLog</a></strong>: TStringList;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FError">FError</a></strong>: int64;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FShowMessageDlg">FShowMessageDlg</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FTimeout">FTimeout</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FWindowList">FWindowList</a></strong>: TList;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUI.TWebUI.html#FCritSection">FCritSection</a></strong>: TCriticalSection;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetErrorMessage">GetErrorMessage</a></strong>: string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetInitializationError">GetInitializationError</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetIsAppRunning">GetIsAppRunning</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetStatus">GetStatus</a></strong>: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetLibraryVersion">GetLibraryVersion</a></strong>: string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#DefaultLibraryPath">DefaultLibraryPath</a></strong>: string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a></strong>(aValue: NativeUInt);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetStatus-TLoaderStatus-">SetStatus</a></strong>(aValue: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#DestroyWindowList">DestroyWindowList</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#LoadWebUILibrary">LoadWebUILibrary</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#LoadLibProcedures">LoadLibProcedures</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#UnLoadWebUILibrary">UnLoadWebUILibrary</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#ShowErrorMessageDlg-string-">ShowErrorMessageDlg</a></strong>(const aError : string);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#SearchWindowIndex-TWebUIWindowID-">SearchWindowIndex</a></strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>) : integer;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#Lock">Lock</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#Unlock">Unlock</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="uWebUI.TWebUI.html#Create">Create</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#AfterConstruction">AfterConstruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#BeforeDestruction">BeforeDestruction</a></strong>; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#Initialize">Initialize</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#AppendErrorLog-string-">AppendErrorLog</a></strong>(const aText : string); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#AppendErrorLog-TStringList-">AppendErrorLog</a></strong>(const aTextLines : TStringList); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#Wait">Wait</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#Clean">Clean</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#Exit">Exit</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#DeleteAllProfiles">DeleteAllProfiles</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#SetDefaultRootFolder-string-">SetDefaultRootFolder</a></strong>(const path : string) : boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#SetTLSCertificate-string-string-">SetTLSCertificate</a></strong>(const certificate_pem, private_key_pem : string): boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#SearchWindow-TWebUIWindowID-">SearchWindow</a></strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>) : <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#AddWindow-IWebUIWindow-">AddWindow</a></strong>(const window: <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>): int64;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#RemoveWindow-TWebUIWindowID-">RemoveWindow</a></strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetConfig-TWebUIConfig-boolean-">SetConfig</a></strong>(option: <a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a>; status: boolean);</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#Status">Status</a></strong>                                 : <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>                      read <a href="uWebUI.TWebUI.html#GetStatus">GetStatus</a>                                write <a href="uWebUI.TWebUI.html#SetStatus-TLoaderStatus-">SetStatus</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#ErrorMessage">ErrorMessage</a></strong>                           : string                             read <a href="uWebUI.TWebUI.html#GetErrorMessage">GetErrorMessage</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#SetCurrentDir">SetCurrentDir</a></strong>                          : boolean                            read <a href="uWebUI.TWebUI.html#FSetCurrentDir">FSetCurrentDir</a>                           write <a href="uWebUI.TWebUI.html#FSetCurrentDir">FSetCurrentDir</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#ReRaiseExceptions">ReRaiseExceptions</a></strong>                      : boolean                            read <a href="uWebUI.TWebUI.html#FReRaiseExceptions">FReRaiseExceptions</a>                       write <a href="uWebUI.TWebUI.html#FReRaiseExceptions">FReRaiseExceptions</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#LibraryPath">LibraryPath</a></strong>                            : string                             read <a href="uWebUI.TWebUI.html#FLibraryPath">FLibraryPath</a>                             write <a href="uWebUI.TWebUI.html#FLibraryPath">FLibraryPath</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#LibraryVersion">LibraryVersion</a></strong>                         : string                             read <a href="uWebUI.TWebUI.html#GetLibraryVersion">GetLibraryVersion</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#ShowMessageDlg">ShowMessageDlg</a></strong>                         : boolean                            read <a href="uWebUI.TWebUI.html#FShowMessageDlg">FShowMessageDlg</a>                          write <a href="uWebUI.TWebUI.html#FShowMessageDlg">FShowMessageDlg</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#Initialized">Initialized</a></strong>                            : boolean                            read <a href="uWebUI.TWebUI.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#InitializationError">InitializationError</a></strong>                    : boolean                            read <a href="uWebUI.TWebUI.html#GetInitializationError">GetInitializationError</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#IsAppRunning">IsAppRunning</a></strong>                           : boolean                            read <a href="uWebUI.TWebUI.html#GetIsAppRunning">GetIsAppRunning</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#Timeout">Timeout</a></strong>                                : NativeUInt                         read <a href="uWebUI.TWebUI.html#FTimeout">FTimeout</a>                                 write <a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FLibHandle"></span><code><strong>FLibHandle</strong>: TLibHandle;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FSetCurrentDir"></span><code><strong>FSetCurrentDir</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FReRaiseExceptions"></span><code><strong>FReRaiseExceptions</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FLibraryPath"></span><code><strong>FLibraryPath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FStatus"></span><code><strong>FStatus</strong>: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FErrorLog"></span><code><strong>FErrorLog</strong>: TStringList;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FError"></span><code><strong>FError</strong>: int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FShowMessageDlg"></span><code><strong>FShowMessageDlg</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FTimeout"></span><code><strong>FTimeout</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FWindowList"></span><code><strong>FWindowList</strong>: TList;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FCritSection"></span><code><strong>FCritSection</strong>: TCriticalSection;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetErrorMessage"></span><code>function <strong>GetErrorMessage</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetInitializationError"></span><code>function <strong>GetInitializationError</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetIsAppRunning"></span><code>function <strong>GetIsAppRunning</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetStatus"></span><code>function <strong>GetStatus</strong>: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetLibraryVersion"></span><code>function <strong>GetLibraryVersion</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="DefaultLibraryPath"></span><code>function <strong>DefaultLibraryPath</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="SetTimeout-NativeUInt-"></span><code>procedure <strong>SetTimeout</strong>(aValue: NativeUInt);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="SetStatus-TLoaderStatus-"></span><code>procedure <strong>SetStatus</strong>(aValue: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="DestroyWindowList"></span><code>procedure <strong>DestroyWindowList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="LoadWebUILibrary"></span><code>function <strong>LoadWebUILibrary</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="LoadLibProcedures"></span><code>function <strong>LoadLibProcedures</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="UnLoadWebUILibrary"></span><code>procedure <strong>UnLoadWebUILibrary</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="ShowErrorMessageDlg-string-"></span><code>procedure <strong>ShowErrorMessageDlg</strong>(const aError : string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="SearchWindowIndex-TWebUIWindowID-"></span><code>function <strong>SearchWindowIndex</strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>) : integer;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="Lock"></span><code>function <strong>Lock</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="Unlock"></span><code>procedure <strong>Unlock</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AfterConstruction"></span><code>procedure <strong>AfterConstruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="BeforeDestruction"></span><code>procedure <strong>BeforeDestruction</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Initialize"></span><code>function <strong>Initialize</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Initialize the WebUI library. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AppendErrorLog-string-"></span><code>procedure <strong>AppendErrorLog</strong>(const aText : string); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Append aText to the ErrorMessage property. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AppendErrorLog-TStringList-"></span><code>procedure <strong>AppendErrorLog</strong>(const aTextLines : TStringList); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Append aTextLines to the ErrorMessage property. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Wait"></span><code>procedure <strong>Wait</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Wait until all opened windows get closed. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_wait))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Clean"></span><code>procedure <strong>Clean</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Free all memory resources. Should be called only at the end. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_clean))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Exit"></span><code>procedure <strong>Exit</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Close all open windows. `webui_wait()` will return (Break). </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_exit))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="DeleteAllProfiles"></span><code>procedure <strong>DeleteAllProfiles</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Delete all local web-browser profiles folder. It should called at the end. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_delete_all_profiles))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetDefaultRootFolder-string-"></span><code>function <strong>SetDefaultRootFolder</strong>(const path : string) : boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the web-server root folder path for all windows. Should be used before `webui_show()`. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_default_root_folder))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>path</dt>
+<dd>The local folder full path.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns True if the function was successful.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetTLSCertificate-string-string-"></span><code>function <strong>SetTLSCertificate</strong>(const certificate_pem, private_key_pem : string): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the SSL/TLS certificate and the private key content, both in PEM format. This works only with `webui-2-secure` library. If set empty WebUI will generate a self-signed certificate. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_tls_certificate))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>certificate_pem</dt>
+<dd>The SSL/TLS certificate content in PEM format.</dd>
+<dt>private_key_pem</dt>
+<dd>The private key content in PEM format.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns True if the certificate and the key are valid.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SearchWindow-TWebUIWindowID-"></span><code>function <strong>SearchWindow</strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>) : <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Search an IWebUIWindow instance. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AddWindow-IWebUIWindow-"></span><code>function <strong>AddWindow</strong>(const window: <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>): int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Add an IWebUIWindow instance. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RemoveWindow-TWebUIWindowID-"></span><code>procedure <strong>RemoveWindow</strong>(windowId: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Remove an IWebUIWindow instance. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetConfig-TWebUIConfig-boolean-"></span><code>procedure <strong>SetConfig</strong>(option: <a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a>; status: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Control the WebUI behaviour. It's better to call at the beginning. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_config))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>option</dt>
+<dd>The desired option from `webui_config` enum.</dd>
+<dt>status</dt>
+<dd>The status of the option, `true` or `false`.</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Status"></span><code>property <strong>Status</strong>                                 : <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>                      read <a href="uWebUI.TWebUI.html#GetStatus">GetStatus</a>                                write <a href="uWebUI.TWebUI.html#SetStatus-TLoaderStatus-">SetStatus</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns the TWVLoader initialization status. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ErrorMessage"></span><code>property <strong>ErrorMessage</strong>                           : string                             read <a href="uWebUI.TWebUI.html#GetErrorMessage">GetErrorMessage</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns all the text appended to the error log with AppendErrorLog. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetCurrentDir"></span><code>property <strong>SetCurrentDir</strong>                          : boolean                            read <a href="uWebUI.TWebUI.html#FSetCurrentDir">FSetCurrentDir</a>                           write <a href="uWebUI.TWebUI.html#FSetCurrentDir">FSetCurrentDir</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Used to set the current directory when the WebView2 library is loaded. This is required if the application is launched from a different application. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReRaiseExceptions"></span><code>property <strong>ReRaiseExceptions</strong>                      : boolean                            read <a href="uWebUI.TWebUI.html#FReRaiseExceptions">FReRaiseExceptions</a>                       write <a href="uWebUI.TWebUI.html#FReRaiseExceptions">FReRaiseExceptions</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set to true to raise all exceptions. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="LibraryPath"></span><code>property <strong>LibraryPath</strong>                            : string                             read <a href="uWebUI.TWebUI.html#FLibraryPath">FLibraryPath</a>                             write <a href="uWebUI.TWebUI.html#FLibraryPath">FLibraryPath</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Full path to WebUI library. Leave empty to load the library from the current directory. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="LibraryVersion"></span><code>property <strong>LibraryVersion</strong>                         : string                             read <a href="uWebUI.TWebUI.html#GetLibraryVersion">GetLibraryVersion</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Supported WebUI library version. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ShowMessageDlg"></span><code>property <strong>ShowMessageDlg</strong>                         : boolean                            read <a href="uWebUI.TWebUI.html#FShowMessageDlg">FShowMessageDlg</a>                          write <a href="uWebUI.TWebUI.html#FShowMessageDlg">FShowMessageDlg</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set to true when you need to use a showmessage dialog to show the error messages. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>                            : boolean                            read <a href="uWebUI.TWebUI.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if the Status is lsInitialized. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="InitializationError"></span><code>property <strong>InitializationError</strong>                    : boolean                            read <a href="uWebUI.TWebUI.html#GetInitializationError">GetInitializationError</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if the Status is lsError. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsAppRunning"></span><code>property <strong>IsAppRunning</strong>                           : boolean                            read <a href="uWebUI.TWebUI.html#GetIsAppRunning">GetIsAppRunning</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Check if the app still running. </p>
+<p>
+ @returns(Returns True if app is running.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_is_app_running))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Timeout"></span><code>property <strong>Timeout</strong>                                : NativeUInt                         read <a href="uWebUI.TWebUI.html#FTimeout">FTimeout</a>                                 write <a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_timeout))</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>
+</span>
+</body></html>

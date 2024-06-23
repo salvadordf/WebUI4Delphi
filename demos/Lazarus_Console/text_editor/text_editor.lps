@@ -9,8 +9,8 @@
         <Filename Value="text_editor.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="7"/>
-        <CursorPos X="40" Y="17"/>
+        <TopLine Value="21"/>
+        <CursorPos X="32" Y="43"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>

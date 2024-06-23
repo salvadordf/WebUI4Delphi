@@ -84,7 +84,7 @@ begin
   {$ENDIF}
 
   // Bind HTML elements with the specified ID to C functions
-  FWindow.Bind('__close-btn');
+  FWindow.Bind('close_app');
   FWindow.OnWebUIEvent := FWindow_OnWebUIEvent;
 
   // Show the window, preferably in a chromium based browser

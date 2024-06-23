@@ -32,7 +32,6 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 0
-    ExplicitHeight = 255
     object ShowBrowserBtn: TButton
       Left = 5
       Top = 5
@@ -42,9 +41,6 @@ object MainForm: TMainForm
       Caption = 'Show browser'
       TabOrder = 0
       OnClick = ShowBrowserBtnClick
-      ExplicitLeft = 0
-      ExplicitTop = 3
-      ExplicitHeight = 25
     end
   end
 end

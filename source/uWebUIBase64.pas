@@ -26,37 +26,37 @@ type
   TWebUIBase64 = class
     public
       /// <summary>
-      /// Base64 encoding. Use this to safely send text based data to the UI. If it fails it will return NULL.
+      /// Encode text to Base64. The returned buffer need to be freed.
       /// </summary>
       /// <param name="str">The string to encode (Should be null terminated).</param>
-      /// <returns>Returns a encoded string.</returns>
+      /// <returns>Returns the base64 encoded string.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_encode)</see></para>
       /// </remarks>
       class function Encode(const str : PWebUIChar) : PWebUIChar; overload;
       /// <summary>
-      /// Base64 encoding. Use this to safely send text based data to the UI. If it fails it will return an empty string.
+      /// Encode text to Base64. If it fails it will return an empty string.
       /// </summary>
       /// <param name="str">The string to encode.</param>
-      /// <returns>Returns a encoded string.</returns>
+      /// <returns>Returns the base64 encoded string.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_encode)</see></para>
       /// </remarks>
       class function Encode(const str : string) : string; overload;
       /// <summary>
-      /// Base64 decoding. Use this to safely decode received Base64 text from the UI. If it fails it will return NULL.
+      /// Decode a Base64 encoded text. The returned buffer need to be freed.
       /// </summary>
       /// <param name="str">The string to decode (Should be null terminated).</param>
-      /// <returns>Returns a decoded string.</returns>
+      /// <returns>Returns the base64 decoded string.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_decode)</see></para>
       /// </remarks>
       class function Decode(const str : PWebUIChar) : PWebUIChar; overload;
       /// <summary>
-      /// Base64 decoding. Use this to safely decode received Base64 text from the UI. If it fails it will return an empty string.
+      /// Decode a Base64 encoded text. If it fails it will return an empty string.
       /// </summary>
       /// <param name="str">The string to decode.</param>
-      /// <returns>Returns a decoded string.</returns>
+      /// <returns>Returns the base64 decoded string.</returns>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_decode)</see></para>
       /// </remarks>
@@ -79,13 +79,21 @@ end;
 class function TWebUIBase64.Encode(const str : string) : string;
 var
   LString: AnsiString;
+  LBuffer: PWebUIChar;
 begin
   if (length(str) = 0) then
     Result := ''
    else
     begin
       LString := UTF8Encode(str + #0);
-      Result  := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(Encode(@LString)));
+      LBuffer := Encode(@LString);
+
+      if assigned(LBuffer) then
+        try
+          Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
+        finally
+          webui_free(LBuffer);
+        end;
     end;
 end;
 
@@ -100,13 +108,21 @@ end;
 class function TWebUIBase64.Decode(const str : string) : string;
 var
   LString: AnsiString;
+  LBuffer: PWebUIChar;
 begin
   if (length(str) = 0) then
     Result := ''
    else
     begin
       LString := UTF8Encode(str + #0);
-      Result  := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(Decode(@LString)));
+      LBuffer := Decode(@LString);
+
+      if assigned(LBuffer) then
+        try
+          Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
+        finally
+          webui_free(LBuffer);
+        end;
     end;
 end;
 

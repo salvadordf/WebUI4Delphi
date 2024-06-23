@@ -148,9 +148,9 @@ begin
 
   FWindow.OnWebUIEvent := FWindow_OnWebUIEvent;
 
-  // Set web server network port WebUI should use
-  // this mean `webui.js` will be available at:
-  // http://localhost:8081/webui.js
+  // Set the web-server/WebSocket port that WebUI should
+  // use. This means `webui.js` will be available at:
+  // http://localhost:MY_PORT_NUMBER/webui.js
   FWindow.SetPort(8081);
 
   // Show a new window and show our custom web server

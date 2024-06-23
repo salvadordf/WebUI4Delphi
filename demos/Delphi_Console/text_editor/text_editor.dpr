@@ -14,7 +14,7 @@ uses
 var
   LWindow : IWebUIWindow;
 
-procedure Close(e: PWebUIEvent); cdecl;
+procedure close_app(e: PWebUIEvent); cdecl;
 begin
 	writeln('Exit.');
 
@@ -40,7 +40,7 @@ begin
         {$ENDIF}
 
         // Bind HTML elements with the specified ID to C functions
-        LWindow.Bind('__close-btn', Close);
+        LWindow.Bind('close_app', close_app);
 
         // Show the window, preferably in a chromium based browser
         if not(LWindow.ShowBrowser('index.html', ChromiumBased)) then

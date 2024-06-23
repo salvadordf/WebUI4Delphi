@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebUI4Delphi: uWebUITypes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0-snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<h1 class="unit">Unit uWebUITypes</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section">Functions and Procedures</div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="uWebUITypes.TWebUIEvent.html"><code>TWebUIEvent</code></a></td>
+<td class="itemdesc"> WebUI event. </td>
+</tr>
+<tr class="list2">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uWebUITypes.IWebUIEventHandler.html"><code>IWebUIEventHandler</code></a></td>
+<td class="itemdesc">&nbsp;</td>
+</tr>
+<tr class="list">
+<td class="itemname">Interface&nbsp;<a class="bold" href="uWebUITypes.IWebUIWindow.html"><code>IWebUIWindow</code></a></td>
+<td class="itemdesc">&nbsp;</td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a></strong> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIRuntime">TWebUIRuntime</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a></strong> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a></strong> = type NativeUInt;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a></strong> = type NativeUInt;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a></strong> = type NativeUInt;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIChar">TWebUIChar</a></strong> = type AnsiChar;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a></strong> = &circ;<a href="uWebUITypes.html#TWebUIChar">TWebUIChar</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a></strong> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a></strong> = &circ;<a href="uWebUITypes.TWebUIEvent.html">TWebUIEvent</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a></strong> = procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIFileHandlerCallback">TWebUIFileHandlerCallback</a></strong> = function(const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a></strong> = procedure(window : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a></strong> = procedure(Sender: TObject; const aEvent: <a href="uWebUITypes.IWebUIEventHandler.html">IWebUIEventHandler</a>) of object;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TLoaderStatus"></span><code><strong>TLoaderStatus</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ TWebUILoader status values </p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="lsCreated">lsCreated</span></li>
+<li>
+<span id="lsLoading">lsLoading</span></li>
+<li>
+<span id="lsLoaded">lsLoaded</span></li>
+<li>
+<span id="lsInitialized">lsInitialized</span></li>
+<li>
+<span id="lsError">lsError</span></li>
+<li>
+<span id="lsUnloaded">lsUnloaded</span></li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIBrowser"></span><code><strong>TWebUIBrowser</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Supported web browsers. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_browser))</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="NoBrowser">NoBrowser = 0</span>:  No web browser. </li>
+<li>
+<span id="AnyBrowser">AnyBrowser</span>:  Default web browser. </li>
+<li>
+<span id="Chrome">Chrome</span>:  Google Chrome. </li>
+<li>
+<span id="Firefox">Firefox</span>:  Mozilla Firefox. </li>
+<li>
+<span id="Edge">Edge</span>:  Microsoft Edge. </li>
+<li>
+<span id="Safari">Safari</span>:  Apple Safari. </li>
+<li>
+<span id="Chromium">Chromium</span>:  Chromium. </li>
+<li>
+<span id="Opera">Opera</span>:  Opera. </li>
+<li>
+<span id="Brave">Brave</span>:  Brave. </li>
+<li>
+<span id="Vivaldi">Vivaldi</span>:  Vivaldi. </li>
+<li>
+<span id="Epic">Epic</span>:  Epic. </li>
+<li>
+<span id="Yandex">Yandex</span>:  Yandex. </li>
+<li>
+<span id="ChromiumBased">ChromiumBased</span>:  Any Chromium based browser. </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIRuntime"></span><code><strong>TWebUIRuntime</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Supported runtimes. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_runtime))</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="None">None = 0</span>:  Prevent WebUI from using any runtime for .js and .ts files. </li>
+<li>
+<span id="Deno">Deno</span>:  Use Deno runtime for .js and .ts files. </li>
+<li>
+<span id="NodeJS">NodeJS</span>:  Use Nodejs runtime for .js files. </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIEventType"></span><code><strong>TWebUIEventType</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Event types. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_event))</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="WEBUI_EVENT_DISCONNECTED">WEBUI_EVENT_DISCONNECTED = 0</span>:  Window disconnection event. </li>
+<li>
+<span id="WEBUI_EVENT_CONNECTED">WEBUI_EVENT_CONNECTED</span>:  Window connection event. </li>
+<li>
+<span id="WEBUI_EVENT_MOUSE_CLICK">WEBUI_EVENT_MOUSE_CLICK</span>:  Mouse click event. </li>
+<li>
+<span id="WEBUI_EVENT_NAVIGATION">WEBUI_EVENT_NAVIGATION</span>:  Window navigation event. </li>
+<li>
+<span id="WEBUI_EVENT_CALLBACK">WEBUI_EVENT_CALLBACK</span>:  Function call event. </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIWindowID"></span><code><strong>TWebUIWindowID</strong> = type NativeUInt;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Window number or Window ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIBindID"></span><code><strong>TWebUIBindID</strong> = type NativeUInt;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Bind ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIEventID"></span><code><strong>TWebUIEventID</strong> = type NativeUInt;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ The event number or event ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIChar"></span><code><strong>TWebUIChar</strong> = type AnsiChar;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ WebUI char type. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="PWebUIChar"></span><code><strong>PWebUIChar</strong> = &circ;<a href="uWebUITypes.html#TWebUIChar">TWebUIChar</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIConfig"></span><code><strong>TWebUIConfig</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ WebUI configuration. </p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="show_wait_connection">show_wait_connection = 0</span>:  Control if `webui_show()`, `webui_show_browser()` and `webui_show_wv()` should wait for the window to connect before returns or not. Default: True. </li>
+<li>
+<span id="ui_event_blocking">ui_event_blocking</span>:  Control if WebUI should block and process the UI events one a time in a single thread `True`, or process every event in a new non-blocking thread `False`. This updates all windows. You can use `webui_set_event_blocking()` for a specific single window update. Default: False. </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="PWebUIEvent"></span><code><strong>PWebUIEvent</strong> = &circ;<a href="uWebUITypes.TWebUIEvent.html">TWebUIEvent</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIBindCallback"></span><code><strong>TWebUIBindCallback</strong> = procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIFileHandlerCallback"></span><code><strong>TWebUIFileHandlerCallback</strong> = function(const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIInterfaceEventCallback"></span><code><strong>TWebUIInterfaceEventCallback</strong> = procedure(window : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TOnWebUIEvent"></span><code><strong>TOnWebUIEvent</strong> = procedure(Sender: TObject; const aEvent: <a href="uWebUITypes.IWebUIEventHandler.html">IWebUIEventHandler</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>
+</span>
+</body></html>

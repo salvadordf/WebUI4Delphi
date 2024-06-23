@@ -25,7 +25,7 @@ var
   LResult : string;
   LCount : integer;
 begin
-  // This function gets called every time the user clicks on "MyButton1"
+  // This function gets called every time the user clicks on "my_function_count"
   if not(LWindow.Script('return GetCount();', 0, LResult, 64)) then
     begin
       if not(LWindow.IsShown) then
@@ -87,11 +87,11 @@ begin
                    '    <br>' + CRLF +
                    '    <h1 id="count">0</h1>' + CRLF +
                    '    <br>' + CRLF +
-                   '    <button id="MyButton1">Manual Count</button>' + CRLF +
+                   '    <button OnClick="my_function_count();">Manual Count</button>' + CRLF +
                    '    <br>' + CRLF +
                    '    <button id="MyTest" OnClick="AutoTest();">Auto Count (Every 500ms)</button>' + CRLF +
                    '    <br>' + CRLF +
-                   '    <button id="MyButton2">Exit</button>' + CRLF +
+                   '    <button OnClick="my_function_exit();">Exit</button>' + CRLF +
                    '    <script>' + CRLF +
                    '      let count = 0;' + CRLF +
                    '      function GetCount() {' + CRLF +
@@ -102,15 +102,15 @@ begin
                    '        count = number;' + CRLF +
                    '      }' + CRLF +
                    '      function AutoTest(number) {' + CRLF +
-                   '        setInterval(function(){ webui.call(' + quotedstr('MyButton1') + '); }, 500);' + CRLF +
+                   '        setInterval(function(){ my_function_count(); }, 500);' + CRLF +
                    '      }' + CRLF +
                    '    </script>' + CRLF +
                    '  </body>' + CRLF +
                    '</html>';
 
         LWindow := TWebUIWindow.Create;
-        LWindow.Bind('MyButton1', my_function_count);
-        LWindow.Bind('MyButton2', my_function_exit);
+        LWindow.Bind('my_function_count', my_function_count);
+        LWindow.Bind('my_function_exit', my_function_exit);
         LWindow.Show(LMyHTML);
         WebUI.Wait;
       end;

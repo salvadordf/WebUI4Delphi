@@ -145,6 +145,15 @@ type
       /// Remove an IWebUIWindow instance.
       /// </summary>
       procedure   RemoveWindow(windowId: TWebUIWindowID);
+      /// <summary>
+      /// Control the WebUI behaviour. It's better to call at the beginning.
+      /// </summary>
+      /// <param name="option">The desired option from `webui_config` enum.</param>
+      /// <param name="status">The status of the option, `true` or `false`.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_config)</see></para>
+      /// </remarks>
+      procedure   SetConfig(option: TWebUIConfig; status: boolean);
 
       /// <summary>
       /// Returns the TWVLoader initialization status.
@@ -191,7 +200,7 @@ type
       /// </remarks>
       property IsAppRunning                           : boolean                            read GetIsAppRunning;
       /// <summary>
-      /// Timeout in seconds before the browser starts. 0 means wait forever.
+      /// Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_timeout)</see></para>
@@ -431,8 +440,10 @@ begin
       webui_new_window_id                 := GetProcAddress(FLibHandle, 'webui_new_window_id');
       webui_get_new_window_id             := GetProcAddress(FLibHandle, 'webui_get_new_window_id');
       webui_bind                          := GetProcAddress(FLibHandle, 'webui_bind');
+      webui_get_best_browser              := GetProcAddress(FLibHandle, 'webui_get_best_browser');
       webui_show                          := GetProcAddress(FLibHandle, 'webui_show');
       webui_show_browser                  := GetProcAddress(FLibHandle, 'webui_show_browser');
+      webui_show_wv                       := GetProcAddress(FLibHandle, 'webui_show_wv');
       webui_set_kiosk                     := GetProcAddress(FLibHandle, 'webui_set_kiosk');
       webui_wait                          := GetProcAddress(FLibHandle, 'webui_wait');
       webui_close                         := GetProcAddress(FLibHandle, 'webui_close');
@@ -463,12 +474,17 @@ begin
       webui_get_parent_process_id         := GetProcAddress(FLibHandle, 'webui_get_parent_process_id');
       webui_get_child_process_id          := GetProcAddress(FLibHandle, 'webui_get_child_process_id');
       webui_set_port                      := GetProcAddress(FLibHandle, 'webui_set_port');
+      webui_set_config                    := GetProcAddress(FLibHandle, 'webui_set_config');
+      webui_set_event_blocking            := GetProcAddress(FLibHandle, 'webui_set_event_blocking');
       webui_set_tls_certificate           := GetProcAddress(FLibHandle, 'webui_set_tls_certificate');
       webui_run                           := GetProcAddress(FLibHandle, 'webui_run');
       webui_script                        := GetProcAddress(FLibHandle, 'webui_script');
       webui_set_runtime                   := GetProcAddress(FLibHandle, 'webui_set_runtime');
+      webui_get_count                     := GetProcAddress(FLibHandle, 'webui_get_count');
       webui_get_int_at                    := GetProcAddress(FLibHandle, 'webui_get_int_at');
       webui_get_int                       := GetProcAddress(FLibHandle, 'webui_get_int');
+      webui_get_float_at                  := GetProcAddress(FLibHandle, 'webui_get_float_at');
+      webui_get_float                     := GetProcAddress(FLibHandle, 'webui_get_float');
       webui_get_string_at                 := GetProcAddress(FLibHandle, 'webui_get_string_at');
       webui_get_string                    := GetProcAddress(FLibHandle, 'webui_get_string');
       webui_get_bool_at                   := GetProcAddress(FLibHandle, 'webui_get_bool_at');
@@ -476,6 +492,7 @@ begin
       webui_get_size_at                   := GetProcAddress(FLibHandle, 'webui_get_size_at');
       webui_get_size                      := GetProcAddress(FLibHandle, 'webui_get_size');
       webui_return_int                    := GetProcAddress(FLibHandle, 'webui_return_int');
+      webui_return_float                  := GetProcAddress(FLibHandle, 'webui_return_float');
       webui_return_string                 := GetProcAddress(FLibHandle, 'webui_return_string');
       webui_return_bool                   := GetProcAddress(FLibHandle, 'webui_return_bool');
       webui_interface_bind                := GetProcAddress(FLibHandle, 'webui_interface_bind');
@@ -491,8 +508,10 @@ begin
       if not(assigned(webui_new_window_id))            then LMissing.Add('webui_new_window_id');
       if not(assigned(webui_get_new_window_id))        then LMissing.Add('webui_get_new_window_id');
       if not(assigned(webui_bind))                     then LMissing.Add('webui_bind');
+      if not(assigned(webui_get_best_browser))         then LMissing.Add('webui_get_best_browser');
       if not(assigned(webui_show))                     then LMissing.Add('webui_show');
       if not(assigned(webui_show_browser))             then LMissing.Add('webui_show_browser');
+      if not(assigned(webui_show_wv))                  then LMissing.Add('webui_show_wv');
       if not(assigned(webui_set_kiosk))                then LMissing.Add('webui_set_kiosk');
       if not(assigned(webui_wait))                     then LMissing.Add('webui_wait');
       if not(assigned(webui_close))                    then LMissing.Add('webui_close');
@@ -523,12 +542,17 @@ begin
       if not(assigned(webui_get_parent_process_id))    then LMissing.Add('webui_get_parent_process_id');
       if not(assigned(webui_get_child_process_id))     then LMissing.Add('webui_get_child_process_id');
       if not(assigned(webui_set_port))                 then LMissing.Add('webui_set_port');
+      if not(assigned(webui_set_config))               then LMissing.Add('webui_set_config');
+      if not(assigned(webui_set_event_blocking))       then LMissing.Add('webui_set_event_blocking');
       if not(assigned(webui_set_tls_certificate))      then LMissing.Add('webui_set_tls_certificate');
       if not(assigned(webui_run))                      then LMissing.Add('webui_run');
       if not(assigned(webui_script))                   then LMissing.Add('webui_script');
       if not(assigned(webui_set_runtime))              then LMissing.Add('webui_set_runtime');
+      if not(assigned(webui_get_count))                then LMissing.Add('webui_get_count');
       if not(assigned(webui_get_int_at))               then LMissing.Add('webui_get_int_at');
       if not(assigned(webui_get_int))                  then LMissing.Add('webui_get_int');
+      if not(assigned(webui_get_float_at))             then LMissing.Add('webui_get_float_at');
+      if not(assigned(webui_get_float))                then LMissing.Add('webui_get_float');
       if not(assigned(webui_get_string_at))            then LMissing.Add('webui_get_string_at');
       if not(assigned(webui_get_string))               then LMissing.Add('webui_get_string');
       if not(assigned(webui_get_bool_at))              then LMissing.Add('webui_get_bool_at');
@@ -536,6 +560,7 @@ begin
       if not(assigned(webui_get_size_at))              then LMissing.Add('webui_get_size_at');
       if not(assigned(webui_get_size))                 then LMissing.Add('webui_get_size');
       if not(assigned(webui_return_int))               then LMissing.Add('webui_return_int');
+      if not(assigned(webui_return_float))             then LMissing.Add('webui_return_float');
       if not(assigned(webui_return_string))            then LMissing.Add('webui_return_string');
       if not(assigned(webui_return_bool))              then LMissing.Add('webui_return_bool');
       if not(assigned(webui_interface_bind))           then LMissing.Add('webui_interface_bind');
@@ -722,6 +747,9 @@ begin
   Result := {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_MAJOR){$IFDEF FPC}){$ENDIF} + '.' +
             {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_MINOR){$IFDEF FPC}){$ENDIF} + '.' +
             {$IFDEF FPC}string({$ENDIF}inttostr(WEBUI_VERSION_RELEASE){$IFDEF FPC}){$ENDIF};
+
+  if WEBUI_VERSION_STAGE <> '' then
+    Result := Result + '-' + WEBUI_VERSION_STAGE;
 end;
 
 function TWebUI.DefaultLibraryPath : string;
@@ -871,6 +899,12 @@ begin
     finally
       Unlock;
     end;
+end;
+
+procedure TWebUI.SetConfig(option: TWebUIConfig; status: boolean);
+begin
+  if Initialized then
+    webui_set_config(option, status);
 end;
 
 initialization

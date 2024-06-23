@@ -40,6 +40,7 @@ type
       function GetEventID: TWebUIEventID;
       function GetBindID: TWebUIBindID;
       function GetWindow: IWebUIWindow;
+      function GetCount: NativeUInt;
 
     public
       constructor Create(const aEvent: PWebUIEvent); overload;
@@ -62,6 +63,21 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int)</see></para>
       /// </remarks>
       function GetInt: int64;
+      /// <summary>
+      /// Get an argument as float at a specific index.
+      /// </summary>
+      /// <param name="index">The argument position starting from 0.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_float_at)</see></para>
+      /// </remarks>
+      function GetFloatAt(index: NativeUInt): double;
+      /// <summary>
+      /// Get the first argument as float.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_float)</see></para>
+      /// </remarks>
+      function GetFloat: double;
       /// <summary>
       /// Get an argument as string at a specific index.
       /// </summary>
@@ -140,6 +156,14 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_int)</see></para>
       /// </remarks>
       procedure ReturnInt(aReturnValue: int64);
+      /// <summary>
+      /// Return the response to JavaScript as float.
+      /// </summary>
+      /// <param name="aReturnValue">The float to be send to JavaScript.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_float)</see></para>
+      /// </remarks>
+      procedure ReturnFloat(aReturnValue: double);
       /// <summary>
       /// Return the response to JavaScript as string.
       /// </summary>
@@ -236,6 +260,13 @@ type
       /// Bind ID.
       /// </summary>
       property BindID            : TWebUIBindID     read GetBindID;
+      /// <summary>
+      /// Get how many arguments there are in an event.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_count)</see></para>
+      /// </remarks>
+      property Count             : NativeUInt       read GetCount;
   end;
 
 implementation
@@ -315,6 +346,14 @@ begin
   Result := WebUI.SearchWindow(FEvent.window);
 end;
 
+function TWebUIEventHandler.GetCount: NativeUInt;
+begin
+  if Initialized then
+    Result := webui_get_count(@FEvent)
+   else
+    Result := 0;
+end;
+
 function TWebUIEventHandler.GetIntAt(index: NativeUInt): int64;
 begin
   if Initialized then
@@ -327,6 +366,22 @@ function TWebUIEventHandler.GetInt: int64;
 begin
   if Initialized then
     Result := webui_get_int(@FEvent)
+   else
+    Result := 0;
+end;
+
+function TWebUIEventHandler.GetFloatAt(index: NativeUInt): double;
+begin
+  if Initialized then
+    Result := webui_get_float_at(@FEvent, index)
+   else
+    Result := 0;
+end;
+
+function TWebUIEventHandler.GetFloat: double;
+begin
+  if Initialized then
+    Result := webui_get_float(@FEvent)
    else
     Result := 0;
 end;
@@ -424,6 +479,12 @@ procedure TWebUIEventHandler.ReturnInt(aReturnValue: int64);
 begin
   if Initialized then
     webui_return_int(@FEvent, aReturnValue);
+end;
+
+procedure TWebUIEventHandler.ReturnFloat(aReturnValue: double);
+begin
+  if Initialized then
+    webui_return_float(@FEvent, aReturnValue);
 end;
 
 procedure TWebUIEventHandler.ReturnString(const aReturnValue: string);

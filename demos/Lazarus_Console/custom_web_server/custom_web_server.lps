@@ -9,18 +9,13 @@
         <Filename Value="custom_web_server.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="46"/>
-        <CursorPos X="41" Y="38"/>
+        <TopLine Value="63"/>
+        <CursorPos X="52" Y="82"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory>
-      <Position>
-        <Filename Value="custom_web_server.lpr"/>
-        <Caret Line="26" Column="3" TopLine="57"/>
-      </Position>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

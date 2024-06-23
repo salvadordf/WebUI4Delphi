@@ -90,7 +90,7 @@ var
   LResult : string;
   LCount : integer;
 begin
-  // This function gets called every time the user clicks on "MyButton1"
+  // This function gets called every time the user clicks on "my_function_count"
   if not(FWindow.Script('return GetCount();', 0, LResult, 64)) then
     begin
       if not(FWindow.IsShown) then
@@ -108,9 +108,9 @@ end;
 
 procedure TMainForm.FWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
 begin
-  if (aEvent.Element = 'MyButton1') then
+  if (aEvent.Element = 'my_function_count') then
     my_function_count(aEvent)
-  else if (aEvent.Element = 'MyButton2') then
+  else if (aEvent.Element = 'my_function_exit') then
     my_function_exit(aEvent);
 end;
 
@@ -158,11 +158,11 @@ begin
              '    <br>' + CRLF +
              '    <h1 id="count">0</h1>' + CRLF +
              '    <br>' + CRLF +
-             '    <button id="MyButton1">Manual Count</button>' + CRLF +
+             '    <button OnClick="my_function_count();">Manual Count</button>' + CRLF +
              '    <br>' + CRLF +
              '    <button id="MyTest" OnClick="AutoTest();">Auto Count (Every 500ms)</button>' + CRLF +
              '    <br>' + CRLF +
-             '    <button id="MyButton2">Exit</button>' + CRLF +
+             '    <button OnClick="my_function_exit();">Exit</button>' + CRLF +
              '    <script>' + CRLF +
              '      let count = 0;' + CRLF +
              '      function GetCount() {' + CRLF +
@@ -173,15 +173,15 @@ begin
              '        count = number;' + CRLF +
              '      }' + CRLF +
              '      function AutoTest(number) {' + CRLF +
-             '        setInterval(function(){ webui.call(' + quotedstr('MyButton1') + '); }, 500);' + CRLF +
+             '        setInterval(function(){ my_function_count(); }, 500);' + CRLF +
              '      }' + CRLF +
              '    </script>' + CRLF +
              '  </body>' + CRLF +
              '</html>';
 
   FWindow := TWebUIWindow.Create;
-  FWindow.Bind('MyButton1');
-  FWindow.Bind('MyButton2');
+  FWindow.Bind('my_function_count');
+  FWindow.Bind('my_function_exit');
   FWindow.OnWebUIEvent := FWindow_OnWebUIEvent;
   FWindow.Show(LMyHTML);
 end;

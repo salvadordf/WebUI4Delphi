@@ -36,9 +36,9 @@ type
   /// Supported web browsers.
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_browsers)</see></para>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_browser)</see></para>
   /// </remarks>
-  TWebUIBrowsers = (
+  TWebUIBrowser = (
     /// <summary>
     /// No web browser.
     /// </summary>
@@ -97,7 +97,7 @@ type
   /// Supported runtimes.
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_runtimes)</see></para>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_runtime)</see></para>
   /// </remarks>
   TWebUIRuntime = (
     /// <summary>
@@ -118,7 +118,7 @@ type
   /// Event types.
   /// </summary>
   /// <remarks>
-  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_events)</see></para>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_event)</see></para>
   /// </remarks>
   TWebUIEventType = (
     /// <summary>
@@ -163,6 +163,26 @@ type
   /// </summary>
   TWebUIChar = type AnsiChar;
   PWebUIChar = ^TWebUIChar;
+
+  /// <summary>
+  /// WebUI configuration.
+  /// </summary>
+  TWebUIConfig = (
+    /// <summary>
+    /// Control if `webui_show()`, `webui_show_browser()` and
+    /// `webui_show_wv()` should wait for the window to connect
+    /// before returns or not. Default: True.
+    /// </summary>
+    show_wait_connection = 0,
+    /// <summary>
+    /// Control if WebUI should block and process the UI events
+    /// one a time in a single thread `True`, or process every
+    /// event in a new non-blocking thread `False`. This updates
+    /// all windows. You can use `webui_set_event_blocking()` for
+    /// a specific single window update. Default: False.
+    /// </summary>
+    ui_event_blocking
+  );
 
   /// <summary>
   /// WebUI event.
@@ -212,6 +232,7 @@ type
       function GetEventID: TWebUIEventID;
       function GetBindID: TWebUIBindID;
       function GetWindow: IWebUIWindow;
+      function GetCount: NativeUInt;
 
       /// <summary>
       /// Get an argument as integer at a specific index.
@@ -230,6 +251,21 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_int)</see></para>
       /// </remarks>
       function GetInt: int64;
+      /// <summary>
+      /// Get an argument as float at a specific index.
+      /// </summary>
+      /// <param name="index">The argument position starting from 0.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_float_at)</see></para>
+      /// </remarks>
+      function GetFloatAt(index: NativeUInt): double;
+      /// <summary>
+      /// Get the first argument as float.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_float)</see></para>
+      /// </remarks>
+      function GetFloat: double;
       /// <summary>
       /// Get an argument as string at a specific index.
       /// </summary>
@@ -309,6 +345,14 @@ type
       /// </remarks>
       procedure ReturnInt(aReturnValue: int64);
       /// <summary>
+      /// Return the response to JavaScript as float.
+      /// </summary>
+      /// <param name="aReturnValue">The float to be send to JavaScript.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_return_float)</see></para>
+      /// </remarks>
+      procedure ReturnFloat(aReturnValue: double);
+      /// <summary>
       /// Return the response to JavaScript as string.
       /// </summary>
       /// <param name="aReturnValue">The string to be send to JavaScript.</param>
@@ -386,6 +430,13 @@ type
       /// Bind ID.
       /// </summary>
       property BindID            : TWebUIBindID     read GetBindID;
+      /// <summary>
+      /// Get how many arguments there are in an event.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_count)</see></para>
+      /// </remarks>
+      property Count             : NativeUInt       read GetCount;
   end;
 
   IWebUIWindow = interface
@@ -476,7 +527,7 @@ type
     /// <remarks>
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_browser)</see></para>
     /// </remarks>
-    function    ShowBrowser(const content : string; browser : TWebUIBrowsers) : boolean;
+    function    ShowBrowser(const content : string; browser : TWebUIBrowser) : boolean;
     /// <summary>
     /// Set the window in Kiosk mode (Full screen).
     /// </summary>
@@ -597,7 +648,7 @@ type
     /// </remarks>
     procedure   DeleteProfile;
     /// <summary>
-    /// Set a custom web-server network port to be used by WebUI.
+    /// Set a custom web-server/websocket network port to be used by WebUI.
     /// This can be useful to determine the HTTP link of `webui.js` in case
     /// you are trying to use WebUI with an external web-server like NGNIX
     /// </summary>
@@ -631,7 +682,7 @@ type
     /// <summary>
     /// Chose between Deno and Nodejs as runtime for .js and .ts files.
     /// </summary>
-    /// <param name="runtime">Deno or Nodejs.</param>
+    /// <param name="runtime">Deno, Nodejs or None.</param>
     /// <remarks>
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
     /// </remarks>
@@ -641,6 +692,16 @@ type
     /// </summary>
     /// <param name="aID">Bind ID that supposedly belongs to this window.</param>
     function    HasBindID(aID : TWebUIBindID): boolean;
+    /// <summary>
+    /// Control if UI events comming from this window should be processed
+    /// one a time in a single blocking thread `True`, or process every event in
+    /// a new non-blocking thread `False`. This update single window. You can use
+    /// `webui_set_config(ui_event_blocking, ...)` to update all windows.
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_event_blocking)</see></para>
+    /// </remarks>
+    procedure   SetEventBlocking(status: boolean);
     /// <summary>
     /// Window number or Window ID.
     /// </summary>

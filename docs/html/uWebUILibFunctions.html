@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebUI4Delphi: uWebUILibFunctions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0-snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<h1 class="unit">Unit uWebUILibFunctions</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section">Functions and Procedures</div><div class="one_section">Types</div><div class="one_section">Constants</div><div class="one_section"><a class="section" href="#PasDoc-Variables">Variables</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p class="nodescription">This item has no description.</p><span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-Variables"></span><h3 class="summary">Variables</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_new_window">webui_new_window</a></strong>: function(): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_new_window_id">webui_new_window_id</a></strong>: function(window_number : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_new_window_id">webui_get_new_window_id</a></strong>: function(): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_bind">webui_bind</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; func: <a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_best_browser">webui_get_best_browser</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_show">webui_show</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_show_browser">webui_show_browser</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; browser: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_show_wv">webui_show_wv</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_kiosk">webui_set_kiosk</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_wait">webui_wait</a></strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_close">webui_close</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_destroy">webui_destroy</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_exit">webui_exit</a></strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_root_folder">webui_set_root_folder</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_default_root_folder">webui_set_default_root_folder</a></strong>: function(const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_file_handler">webui_set_file_handler</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; handler: <a href="uWebUITypes.html#TWebUIFileHandlerCallback">TWebUIFileHandlerCallback</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_is_shown">webui_is_shown</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_timeout">webui_set_timeout</a></strong>: procedure(second: NativeUInt); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_icon">webui_set_icon</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const icon, icon_type: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_encode">webui_encode</a></strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_decode">webui_decode</a></strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_free">webui_free</a></strong>: procedure(ptr: Pointer); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_malloc">webui_malloc</a></strong>: function(size: NativeUInt): Pointer; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_send_raw">webui_send_raw</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_hide">webui_set_hide</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_size">webui_set_size</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; width, height: cardinal); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_position">webui_set_position</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; x, y: cardinal); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_profile">webui_set_profile</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const name, path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_proxy">webui_set_proxy</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const proxy_server: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_url">webui_get_url</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_public">webui_set_public</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_navigate">webui_navigate</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_clean">webui_clean</a></strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_delete_all_profiles">webui_delete_all_profiles</a></strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_delete_profile">webui_delete_profile</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_parent_process_id">webui_get_parent_process_id</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_child_process_id">webui_get_child_process_id</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_port">webui_set_port</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; port: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_config">webui_set_config</a></strong>: procedure(option: <a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_event_blocking">webui_set_event_blocking</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_tls_certificate">webui_set_tls_certificate</a></strong>: function(const certificate_pem, private_key_pem: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_run">webui_run</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_script">webui_script</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; timeout: NativeUInt; buffer: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; buffer_length: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_runtime">webui_set_runtime</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; runtime: <a href="uWebUITypes.html#TWebUIRuntime">TWebUIRuntime</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_count">webui_get_count</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_int_at">webui_get_int_at</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): int64; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_int">webui_get_int</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): int64; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_float_at">webui_get_float_at</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): double; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_float">webui_get_float</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): double; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_string_at">webui_get_string_at</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_string">webui_get_string</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_bool_at">webui_get_bool_at</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_bool">webui_get_bool</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_size_at">webui_get_size_at</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_size">webui_get_size</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_return_int">webui_return_int</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; n: int64); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_return_float">webui_return_float</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; f: double); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_return_string">webui_return_string</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; const s: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_return_bool">webui_return_bool</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; b: boolean); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_bind">webui_interface_bind</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; func: <a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_set_response">webui_interface_set_response</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const response: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_is_app_running">webui_interface_is_app_running</a></strong>: function(): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_window_id">webui_interface_get_window_id</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_string_at">webui_interface_get_string_at</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_int_at">webui_interface_get_int_at</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): int64; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_bool_at">webui_interface_get_bool_at</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_size_at">webui_interface_get_size_at</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): NativeUInt; cdecl;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Variables</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_new_window"></span><code><strong>webui_new_window</strong>: function(): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Create a new WebUI window object. </p>
+<p>
+ @returns(Returns the window number.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_new_window))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_new_window_id"></span><code><strong>webui_new_window_id</strong>: function(window_number : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Create a new webui window object using a specified window number. </p>
+<p>
+ 
+
+<p>@returns(Returns the same window number if success.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_new_window_id))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window_number</dt>
+<dd>The window number (should be &gt; 0, and &lt; WEBUI_MAX_IDS).</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_new_window_id"></span><code><strong>webui_get_new_window_id</strong>: function(): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get a free window number that can be used with `webui_new_window_id()`. </p>
+<p>
+ @returns(Returns the first available free window number. Starting from 1.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_new_window_id))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_bind"></span><code><strong>webui_bind</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; func: <a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Bind a specific html element click event with a function. Empty element means all events. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns a unique bind ID.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_bind))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>element</dt>
+<dd>The HTML ID.</dd>
+<dt>func</dt>
+<dd>The callback function.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_best_browser"></span><code><strong>webui_get_best_browser</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the recommended web browser ID to use. If you are already using one, this function will return the same ID. </p>
+<p>
+ 
+
+<p>@returns(Returns a web browser ID.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_best_browser))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_show"></span><code><strong>webui_show</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns True if showing the window is successed.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_show))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>content</dt>
+<dd>The HTML, URL, Or a local file.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_show_browser"></span><code><strong>webui_show_browser</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; browser: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Same as `webui_show()`. But using a specific web browser. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns True if showing the window is successed.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_show_browser))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>content</dt>
+<dd>The HTML, URL, Or a local file.</dd>
+<dt>browser</dt>
+<dd>The web browser to be used.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_show_wv"></span><code><strong>webui_show_wv</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Show a WebView window using embedded HTML, or a file. If the window is already open, it will be refreshed. Note: Win32 need `WebView2Loader.dll`. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns True if showing the window is successed.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_show_wv))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>content</dt>
+<dd>The HTML, URL, Or a local file.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_kiosk"></span><code><strong>webui_set_kiosk</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the window in Kiosk mode (Full screen). </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_kiosk))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>status</dt>
+<dd>True or False.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_wait"></span><code><strong>webui_wait</strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Wait until all opened windows get closed. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_wait))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_close"></span><code><strong>webui_close</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Close a specific window only. The window object will still exist. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_close))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_destroy"></span><code><strong>webui_destroy</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Close a specific window and free all memory resources. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_destroy))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_exit"></span><code><strong>webui_exit</strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Close all open windows. `webui_wait()` will return (Break). </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_exit))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_root_folder"></span><code><strong>webui_set_root_folder</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the web-server root folder path for a specific window. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns True if the function was successful.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_root_folder))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>path</dt>
+<dd>The local folder full path.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_default_root_folder"></span><code><strong>webui_set_default_root_folder</strong>: function(const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the web-server root folder path for all windows. Should be used before `webui_show()`. </p>
+<p>
+ 
+
+<p>@returns(Returns True if the function was successful.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_default_root_folder))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>path</dt>
+<dd>The local folder full path.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_file_handler"></span><code><strong>webui_set_file_handler</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; handler: <a href="uWebUITypes.html#TWebUIFileHandlerCallback">TWebUIFileHandlerCallback</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set a custom handler to serve files. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_file_handler))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>handler</dt>
+<dd>The handler function: `void myHandler(const char* filename, * int* length)`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_is_shown"></span><code><strong>webui_is_shown</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Check if the specified window is still running. </p>
+<p>
+ 
+
+<p>@returns(Returns True if the window is still running.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_is_shown))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_timeout"></span><code><strong>webui_set_timeout</strong>: procedure(second: NativeUInt); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_timeout))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>second</dt>
+<dd>The timeout in seconds.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_icon"></span><code><strong>webui_set_icon</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const icon, icon_type: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the default embedded HTML favicon. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_icon))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>icon</dt>
+<dd>The icon as string: `&lt;svg&gt;...&lt;/svg&gt;`.</dd>
+<dt>icon_type</dt>
+<dd>The icon type: `image/svg+xml`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_encode"></span><code><strong>webui_encode</strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Encode text to Base64. The returned buffer need to be freed. </p>
+<p>
+ 
+
+<p>@returns(Returns the base64 encoded string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_encode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to encode (Should be null terminated).</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_decode"></span><code><strong>webui_decode</strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Decode a Base64 encoded text. The returned buffer need to be freed. </p>
+<p>
+ 
+
+<p>@returns(Returns the base64 decoded string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_decode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to decode (Should be null terminated).</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_free"></span><code><strong>webui_free</strong>: procedure(ptr: Pointer); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Safely free a buffer allocated by WebUI using `webui_malloc()`. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_free))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ptr</dt>
+<dd>The buffer to be freed.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_malloc"></span><code><strong>webui_malloc</strong>: function(size: NativeUInt): Pointer; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Safely allocate memory using the WebUI memory management system. It can be safely freed using `webui_free()` at any time. </p>
+<p>
+ 
+
+<p>@returns(Returns a pointer to the allocated memory.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_malloc))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>size</dt>
+<dd>The size of memory in bytes.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_send_raw"></span><code><strong>webui_send_raw</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Safely send raw data to the UI. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_send_raw))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>function_</dt>
+<dd>The JavaScript function to receive raw data: `function * myFunc(myData){}`.</dd>
+<dt>raw</dt>
+<dd>The raw data buffer.</dd>
+<dt>size</dt>
+<dd>The raw data size in bytes.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_hide"></span><code><strong>webui_set_hide</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set a window in hidden mode. Should be called before `webui_show()`. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_hide))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>status</dt>
+<dd>The status: True or False.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_size"></span><code><strong>webui_set_size</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; width, height: cardinal); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the window size. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_size))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>width</dt>
+<dd>The window width.</dd>
+<dt>height</dt>
+<dd>The window height.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_position"></span><code><strong>webui_set_position</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; x, y: cardinal); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the window position. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_position))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>x</dt>
+<dd>The window X.</dd>
+<dt>y</dt>
+<dd>The window Y.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_profile"></span><code><strong>webui_set_profile</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const name, path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the web browser profile to use. An empty `name` and `path` means the default user profile. Need to be called before `webui_show()`. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_profile))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>name</dt>
+<dd>The web browser profile name.</dd>
+<dt>path</dt>
+<dd>The web browser profile full path.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_proxy"></span><code><strong>webui_set_proxy</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const proxy_server: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the web browser proxy server to use. Need to be called before `webui_show()`. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_proxy))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>proxy_server</dt>
+<dd>The web browser proxy_server.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_url"></span><code><strong>webui_get_url</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the full current URL. </p>
+<p>
+ 
+
+<p>@returns(Returns the full URL string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_url))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_public"></span><code><strong>webui_set_public</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Allow a specific window address to be accessible from a public network. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_public))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>status</dt>
+<dd>True or False.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_navigate"></span><code><strong>webui_navigate</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Navigate to a specific URL. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_navigate))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>url</dt>
+<dd>Full HTTP URL.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_clean"></span><code><strong>webui_clean</strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Free all memory resources. Should be called only at the end. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_clean))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_delete_all_profiles"></span><code><strong>webui_delete_all_profiles</strong>: procedure(); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Delete all local web-browser profiles folder. It should called at the end. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_delete_all_profiles))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_delete_profile"></span><code><strong>webui_delete_profile</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Delete a specific window web-browser local folder profile. </p>
+<p>
+ 
+
+<p>This can break functionality of other windows if using the same web-browser.
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_delete_profile))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_parent_process_id"></span><code><strong>webui_get_parent_process_id</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the ID of the parent process (The web browser may re-create another new process). </p>
+<p>
+ 
+
+<p>@returns(Returns the the parent process id as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_parent_process_id))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_child_process_id"></span><code><strong>webui_get_child_process_id</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the ID of the last child process. </p>
+<p>
+ 
+
+<p>@returns(Returns the the child process id as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_child_process_id))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_port"></span><code><strong>webui_set_port</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; port: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set a custom web-server/websocket network port to be used by WebUI. This can be useful to determine the HTTP link of `webui.js` in case you are trying to use WebUI with an external web-server like NGNIX </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns True if the port is free and usable by WebUI.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_port))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>port</dt>
+<dd>The web-server network port WebUI should use.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_config"></span><code><strong>webui_set_config</strong>: procedure(option: <a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Control the WebUI behaviour. It's better to call at the beginning. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_config))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>option</dt>
+<dd>The desired option from `webui_config` enum.</dd>
+<dt>status</dt>
+<dd>The status of the option, `true` or `false`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_event_blocking"></span><code><strong>webui_set_event_blocking</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Control if UI events comming from this window should be processed one a time in a single blocking thread `True`, or process every event in a new non-blocking thread `False`. This update single window. You can use `webui_set_config(ui_event_blocking, ...)` to update all windows. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_event_blocking))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>status</dt>
+<dd>The blocking status `true` or `false`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_tls_certificate"></span><code><strong>webui_set_tls_certificate</strong>: function(const certificate_pem, private_key_pem: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the SSL/TLS certificate and the private key content, both in PEM format. This works only with `webui-2-secure` library. If set empty WebUI will generate a self-signed certificate. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns True if the certificate and the key are valid.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_tls_certificate))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>certificate_pem</dt>
+<dd>The SSL/TLS certificate content in PEM format.</dd>
+<dt>private_key_pem</dt>
+<dd>The private key content in PEM format.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_run"></span><code><strong>webui_run</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Run JavaScript without waiting for the response. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_run))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>script</dt>
+<dd>The JavaScript to be run.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_script"></span><code><strong>webui_script</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; timeout: NativeUInt; buffer: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; buffer_length: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Run JavaScript and get the response back. Make sure your local buffer can hold the response. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>@returns(Returns True if there is no execution error.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_script))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>script</dt>
+<dd>The JavaScript to be run.</dd>
+<dt>timeout</dt>
+<dd>The execution timeout.</dd>
+<dt>buffer</dt>
+<dd>The local buffer to hold the response.</dd>
+<dt>buffer_length</dt>
+<dd>The local buffer size.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_runtime"></span><code><strong>webui_set_runtime</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; runtime: <a href="uWebUITypes.html#TWebUIRuntime">TWebUIRuntime</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Chose between Deno and Nodejs as runtime for .js and .ts files. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_runtime))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>runtime</dt>
+<dd>Deno, Nodejs or None.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_count"></span><code><strong>webui_get_count</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get how many arguments there are in an event. </p>
+<p>
+ 
+
+<p>@returns(Returns the arguments count.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_count))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_int_at"></span><code><strong>webui_get_int_at</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): int64; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as integer at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns argument as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_int_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_int"></span><code><strong>webui_get_int</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): int64; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the first argument as integer. </p>
+<p>
+ 
+
+<p>@returns(Returns argument as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_int))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_float_at"></span><code><strong>webui_get_float_at</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): double; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as float at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns argument as float.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_float_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_float"></span><code><strong>webui_get_float</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): double; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the first argument as float. </p>
+<p>
+ 
+
+<p>@returns(Returns argument as float.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_float))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_string_at"></span><code><strong>webui_get_string_at</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as string at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns argument as string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_string"></span><code><strong>webui_get_string</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the first argument as string. </p>
+<p>
+ 
+
+<p>@returns(Returns argument as string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_bool_at"></span><code><strong>webui_get_bool_at</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as boolean at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns argument as boolean.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_bool_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_bool"></span><code><strong>webui_get_bool</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the first argument as boolean. </p>
+<p>
+ 
+
+<p>@returns(Returns argument as boolean.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_bool))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_size_at"></span><code><strong>webui_get_size_at</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; index: NativeUInt): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the size in bytes of an argument at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>@returns(Returns size in bytes.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_size_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_size"></span><code><strong>webui_get_size</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get size in bytes of the first argument. </p>
+<p>
+ 
+
+<p>@returns(Returns size in bytes.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_size))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_return_int"></span><code><strong>webui_return_int</strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; n: int64); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return the response to JavaScript as integer. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_int))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>n</dt>
+<dd>The integer to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_return_float"></span><code><strong>webui_return_float</strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; f: double); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return the response to JavaScript as float. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_float))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>f</dt>
+<dd>The float number to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_return_string"></span><code><strong>webui_return_string</strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; const s: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return the response to JavaScript as string. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>s</dt>
+<dd>The string to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_return_bool"></span><code><strong>webui_return_bool</strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; b: boolean); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Return the response to JavaScript as boolean. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_bool))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
+<dt>b</dt>
+<dd>The boolean to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_bind"></span><code><strong>webui_interface_bind</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; func: <a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Bind a specific HTML element click event with a function. Empty element means all events. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns unique bind ID.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_bind))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>element</dt>
+<dd>The element ID.</dd>
+<dt>func</dt>
+<dd>The callback as myFunc(Window, EventType, Element, EventNumber, BindID).</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_set_response"></span><code><strong>webui_interface_set_response</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const response: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ When using `webui_interface_bind()`, you may need this function to easily set a response. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_set_response))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>response</dt>
+<dd>The response as string to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_is_app_running"></span><code><strong>webui_interface_is_app_running</strong>: function(): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Check if the app still running. </p>
+<p>
+ @returns(Returns True if app is running.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_is_app_running))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_get_window_id"></span><code><strong>webui_interface_get_window_id</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get a unique window ID. </p>
+<p>
+ 
+
+<p>@returns(Returns the unique window ID as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_get_window_id))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_get_string_at"></span><code><strong>webui_interface_get_string_at</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as string at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns argument as string.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_get_string_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>index</dt>
+<dd>The argument position.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_get_int_at"></span><code><strong>webui_interface_get_int_at</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): int64; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as integer at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns argument as integer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_get_int_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>index</dt>
+<dd>The argument position.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_get_bool_at"></span><code><strong>webui_interface_get_bool_at</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get an argument as boolean at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns argument as boolean.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_get_bool_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>index</dt>
+<dd>The argument position.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_get_size_at"></span><code><strong>webui_interface_get_size_at</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): NativeUInt; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get the size in bytes of an argument at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns size in bytes.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_get_size_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>index</dt>
+<dd>The argument position.</dd>
+</dl>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>
+</span>
+</body></html>

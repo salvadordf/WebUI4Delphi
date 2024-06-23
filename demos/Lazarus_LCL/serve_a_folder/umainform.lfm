@@ -8,7 +8,7 @@ object MainForm: TMainForm
   ClientWidth = 320
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '3.0.0.3'
+  LCLVersion = '3.2.0.0'
   object MainPanel: TPanel
     Left = 0
     Height = 243

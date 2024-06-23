@@ -1,0 +1,45 @@
+[OPTIONS]
+Binary TOC=Yes
+Compatibility=1.1 or later
+Compiled file=WebUI4Delphi.chm
+Contents file=WebUI4Delphi.hhc
+Default Window=Default
+Default topic=AllUnits.html
+Display compile progress=Yes
+Error log file=WebUI4Delphi.log
+Full-text search=Yes
+Index file=WebUI4Delphi.hhk
+Title=WebUI4Delphi
+
+[WINDOWS]
+Default="WebUI4Delphi","WebUI4Delphi.hhc","WebUI4Delphi.hhk",,,,,,,0x23520,,0x300e,,,,,,,,0
+
+[FILES]
+Legend.html
+AllUnits.html
+ClassHierarchy.html
+AllClasses.html
+AllTypes.html
+AllVariables.html
+AllConstants.html
+AllFunctions.html
+AllIdentifiers.html
+uWebUI.html
+uWebUI.TWebUI.html
+uWebUIBase64.html
+uWebUIBase64.TWebUIBase64.html
+uWebUIConstants.html
+uWebUIEventHandler.html
+uWebUIEventHandler.TWebUIEventHandler.html
+uWebUILibFunctions.html
+uWebUIMiscFunctions.html
+uWebUITypes.html
+uWebUITypes.TWebUIEvent.html
+uWebUITypes.IWebUIEventHandler.html
+uWebUITypes.IWebUIWindow.html
+uWebUIWindow.html
+uWebUIWindow.TWebUIWindow.html
+
+[INFOTYPES]
+
+[MERGE FILES]

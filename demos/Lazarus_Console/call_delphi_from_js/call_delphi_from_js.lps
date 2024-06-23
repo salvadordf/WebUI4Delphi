@@ -9,8 +9,8 @@
         <Filename Value="call_delphi_from_js.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="91"/>
-        <CursorPos X="60" Y="101"/>
+        <TopLine Value="179"/>
+        <CursorPos X="72" Y="209"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>

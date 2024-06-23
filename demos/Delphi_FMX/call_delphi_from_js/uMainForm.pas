@@ -61,7 +61,7 @@ var
   str_1, str_2 : string;
 begin
 	// JavaScript:
-	// webui.call('MyID_One', 'Hello', 'World`);
+	// my_function_string('Hello World', '\u{1F3DD}');
 
   str_1  := aEvent.GetString;
   str_2  := aEvent.GetStringAt(1);
@@ -72,16 +72,26 @@ end;
 procedure TMainForm.my_function_integer(const aEvent: IWebUIEventHandler);
 var
   number_1, number_2, number_3 : int64;
+  count : NativeUInt;
+  float_1 : double;
 begin
 	// JavaScript:
-	// webui.call('MyID_Two', 123, 456, 789);
+	// my_function_integer(123, 456, 789, 12345.6789);
+
+  count := aEvent.Count;
+  Memo1.Lines.Add('my_function_integer: There are ' + inttostr(count) + ' arguments in this event.'); // 4
 
   number_1 := aEvent.GetInt;
   number_2 := aEvent.GetIntAt(1);
   number_3 := aEvent.GetIntAt(2);
+
   Memo1.Lines.Add('my_function_integer 1: ' + inttostr(number_1));
   Memo1.Lines.Add('my_function_integer 2: ' + inttostr(number_2));
   Memo1.Lines.Add('my_function_integer 3: ' + inttostr(number_3));
+
+  float_1 := aEvent.GetFloatAt(3);
+
+  Memo1.Lines.Add('my_function_integer 4: ' + floattostr(float_1));
 end;
 
 procedure TMainForm.my_function_boolean(const aEvent: IWebUIEventHandler);
@@ -89,7 +99,7 @@ var
   status_1, status_2 : boolean;
 begin
 	// JavaScript:
-	// webui.call('MyID_Three', true, false);
+	// my_function_boolean(true, false);
 
   status_1  := aEvent.GetBool;
   status_2  := aEvent.GetBoolAt(1);
@@ -106,7 +116,7 @@ begin
   LStream := TMemoryStream.Create;
 
 	// JavaScript:
-	// webui.call('MyID_RawBinary', new Uint8Array([0x41,0x42,0x43]), big_arr);
+	// my_function_raw_binary(new Uint8Array([0x41]), new Uint8Array([0x42, 0x43]));
 
   if aEvent.GetStream(LStream) then
     begin
@@ -126,7 +136,7 @@ var
   number, times, res : int64;
 begin
 	// JavaScript:
-	// webui.call('MyID_Four', number, 2).then(...)
+	// my_function_with_response(number, 2).then(...)
 
   number := aEvent.GetInt;
   times  := aEvent.GetIntAt(1);
@@ -139,15 +149,15 @@ end;
 
 procedure TMainForm.LWindow_OnWebUIEvent(Sender: TObject; const aEvent: IWebUIEventHandler);
 begin
-  if (aEvent.Element = 'MyID_One') then
+  if (aEvent.Element = 'my_function_string') then
     my_function_string(aEvent)
-  else if (aEvent.Element = 'MyID_Two') then
+  else if (aEvent.Element = 'my_function_integer') then
     my_function_integer(aEvent)
-  else if (aEvent.Element = 'MyID_Three') then
+  else if (aEvent.Element = 'my_function_boolean') then
     my_function_boolean(aEvent)
-  else if (aEvent.Element = 'MyID_Four') then
+  else if (aEvent.Element = 'my_function_with_response') then
     my_function_with_response(aEvent)
-  else if (aEvent.Element = 'MyID_RawBinary') then
+  else if (aEvent.Element = 'my_function_raw_binary') then
     my_function_raw_binary(aEvent);
 end;
 
@@ -193,13 +203,13 @@ begin
              '  <body>' + CRLF +
              '    <h1>WebUI - Call C from JavaScript</h1>' + CRLF +
              '    <p>Call C functions with arguments (<em>See the logs in your terminal</em>)</p>' + CRLF +
-             '    <button onclick="webui.call(' + quotedstr('MyID_One') + ', ' + quotedstr('Hello World') + ', ' + quotedstr('\u{1F3DD}') + ');">Call my_function_string()</button>' + CRLF +
+             '    <button onclick="my_function_string(' + quotedstr('Hello World') + ', ' + quotedstr('\u{1F3DD}') + ');">Call my_function_string()</button>' + CRLF +
              '    <br>' + CRLF +
-             '    <button onclick="webui.call(' + quotedstr('MyID_Two') + ', 123, 456, 789);">Call my_function_integer()</button>' + CRLF +
+             '    <button onclick="my_function_integer(123, 456, 789, 12345.6789);">Call my_function_integer()</button>' + CRLF +
              '    <br>' + CRLF +
-             '    <button onclick="webui.call(' + quotedstr('MyID_Three') + ', true, false);">Call my_function_boolean()</button>' + CRLF +
+             '    <button onclick="my_function_boolean(true, false);">Call my_function_boolean()</button>' + CRLF +
              '    <br>' + CRLF +
-             '    <button onclick="webui.call(' + quotedstr('MyID_RawBinary') + ', new Uint8Array([0x41,0x42,0x43]), big_arr);"> ' + CRLF +
+             '    <button onclick="my_function_raw_binary(new Uint8Array([0x41,0x42,0x43]), big_arr);"> ' + CRLF +
              '     Call my_function_raw_binary()</button>' + CRLF +
              '    <br>' + CRLF +
              '    <p>Call a C function that returns a response</p>' + CRLF +
@@ -213,7 +223,7 @@ begin
              '      function MyJS() {' + CRLF +
              '        const MyInput = document.getElementById(' + quotedstr('MyInputID') + ');' + CRLF +
              '        const number = MyInput.value;' + CRLF +
-             '        webui.call(' + quotedstr('MyID_Four') + ', number, 2).then((response) => {' + CRLF +
+             '        my_function_with_response(number, 2).then((response) => {' + CRLF +
              '            MyInput.value = response;' + CRLF +
              '        });' + CRLF +
              '      }' + CRLF +
@@ -222,11 +232,11 @@ begin
              '</html>';
 
   FWindow := TWebUIWindow.Create;
-  FWindow.Bind('MyID_One');
-  FWindow.Bind('MyID_Two');
-  FWindow.Bind('MyID_Three');
-  FWindow.Bind('MyID_Four');
-  FWindow.Bind('MyID_RawBinary');
+  FWindow.Bind('my_function_string');
+  FWindow.Bind('my_function_integer');
+  FWindow.Bind('my_function_boolean');
+  FWindow.Bind('my_function_with_response');
+  FWindow.Bind('my_function_raw_binary');
   FWindow.OnWebUIEvent := LWindow_OnWebUIEvent;
   FWindow.Show(LMyHTML);
 end;

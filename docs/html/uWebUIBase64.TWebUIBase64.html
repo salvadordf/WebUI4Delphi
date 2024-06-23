@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebUI4Delphi: uWebUIBase64: Class TWebUIBase64</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0-snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<span id="TWebUIBase64"></span><h1 class="cio">Class TWebUIBase64</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section">Properties</div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uWebUIBase64.html">uWebUIBase64</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TWebUIBase64 = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Wrapper class for the Base64 conversion functions in WebUI. </p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TWebUIBase64</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="uWebUIBase64.TWebUIBase64.html#Encode-PWebUIChar-">Encode</a></strong>(const str : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>) : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="uWebUIBase64.TWebUIBase64.html#Encode-string-">Encode</a></strong>(const str : string) : string; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="uWebUIBase64.TWebUIBase64.html#Decode-PWebUIChar-">Decode</a></strong>(const str : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>) : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="uWebUIBase64.TWebUIBase64.html#Decode-string-">Decode</a></strong>(const str : string) : string; overload;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Encode-PWebUIChar-"></span><code>class function <strong>Encode</strong>(const str : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>) : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Encode text to Base64. The returned buffer need to be freed. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_encode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to encode (Should be null terminated).</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the base64 encoded string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Encode-string-"></span><code>class function <strong>Encode</strong>(const str : string) : string; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Encode text to Base64. If it fails it will return an empty string. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_encode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to encode.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the base64 encoded string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Decode-PWebUIChar-"></span><code>class function <strong>Decode</strong>(const str : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>) : <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Decode a Base64 encoded text. The returned buffer need to be freed. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_decode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to decode (Should be null terminated).</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the base64 decoded string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Decode-string-"></span><code>class function <strong>Decode</strong>(const str : string) : string; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Decode a Base64 encoded text. If it fails it will return an empty string. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_decode))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>The string to decode.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the base64 decoded string.</p></td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>
+</span>
+</body></html>

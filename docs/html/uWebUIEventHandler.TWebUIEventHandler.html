@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebUI4Delphi: uWebUIEventHandler: Class TWebUIEventHandler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0-snapshot">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<span id="TWebUIEventHandler"></span><h1 class="cio">Class TWebUIEventHandler</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section"><a class="section" href="#PasDoc-Fields">Fields</a></div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="uWebUIEventHandler.html">uWebUIEventHandler</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TWebUIEventHandler = class(TInterfacedObject, <a class="normal" href="uWebUITypes.IWebUIEventHandler.html">IWebUIEventHandler</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+ Event wrapper for Event objects in WebUI. </p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TInterfacedObject</li>
+<li class="thisitem">TWebUIEventHandler</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Fields"></span><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#FEvent">FEvent</a></strong>: <a href="uWebUITypes.TWebUIEvent.html">TWebUIEvent</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetInitialized">GetInitialized</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEvent">GetEvent</a></strong>: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindowID">GetWindowID</a></strong>: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventType">GetEventType</a></strong>: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetElement">GetElement</a></strong>: string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventID">GetEventID</a></strong>: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetBindID">GetBindID</a></strong>: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindow">GetWindow</a></strong>: <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetCount">GetCount</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Create-PWebUIEvent-">Create</a></strong>(const aEvent: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-">Create</a></strong>(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetIntAt-NativeUInt-">GetIntAt</a></strong>(index: NativeUInt): int64;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetInt">GetInt</a></strong>: int64;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetFloatAt-NativeUInt-">GetFloatAt</a></strong>(index: NativeUInt): double;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetFloat">GetFloat</a></strong>: double;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetStringAt-NativeUInt-">GetStringAt</a></strong>(index: NativeUInt): string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetString">GetString</a></strong>: string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetStreamAt-TMemoryStream-NativeUInt-">GetStreamAt</a></strong>(var aResultStream: TMemoryStream; index: NativeUInt): boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetStream-TMemoryStream-">GetStream</a></strong>(var aResultStream: TMemoryStream): boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetBoolAt-NativeUInt-">GetBoolAt</a></strong>(index: NativeUInt): boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetBool">GetBool</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetSizeAt-NativeUInt-">GetSizeAt</a></strong>(index: NativeUInt): NativeUInt;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#GetSize">GetSize</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnInt-int64-">ReturnInt</a></strong>(aReturnValue: int64);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnFloat-double-">ReturnFloat</a></strong>(aReturnValue: double);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnString-string-">ReturnString</a></strong>(const aReturnValue: string);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnStream-TMemoryStream-">ReturnStream</a></strong>(const aReturnValue: TMemoryStream); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnStream-TMemoryStream-int64-int64-">ReturnStream</a></strong>(const aReturnValue: TMemoryStream; aOffset, aCount: int64); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#ReturnBool-boolean-">ReturnBool</a></strong>(aReturnValue: boolean);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#SetResponse-string-">SetResponse</a></strong>(const response: string); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#SetResponse-TMemoryStream-">SetResponse</a></strong>(const response: TMemoryStream); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#SetResponse-TMemoryStream-int64-int64-">SetResponse</a></strong>(const response: TMemoryStream; aOffset, aCount: int64); overload;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Initialized">Initialized</a></strong>       : boolean          read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Event">Event</a></strong>             : <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>      read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEvent">GetEvent</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Window">Window</a></strong>            : <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>     read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindow">GetWindow</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#WindowID">WindowID</a></strong>          : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>   read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindowID">GetWindowID</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#EventType">EventType</a></strong>         : <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>  read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventType">GetEventType</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Element">Element</a></strong>           : string           read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetElement">GetElement</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#EventID">EventID</a></strong>           : <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>    read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventID">GetEventID</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#BindID">BindID</a></strong>            : <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>     read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetBindID">GetBindID</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIEventHandler.TWebUIEventHandler.html#Count">Count</a></strong>             : NativeUInt       read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetCount">GetCount</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FEvent"></span><code><strong>FEvent</strong>: <a href="uWebUITypes.TWebUIEvent.html">TWebUIEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetInitialized"></span><code>function <strong>GetInitialized</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetEvent"></span><code>function <strong>GetEvent</strong>: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetWindowID"></span><code>function <strong>GetWindowID</strong>: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetEventType"></span><code>function <strong>GetEventType</strong>: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetElement"></span><code>function <strong>GetElement</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetEventID"></span><code>function <strong>GetEventID</strong>: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetBindID"></span><code>function <strong>GetBindID</strong>: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetWindow"></span><code>function <strong>GetWindow</strong>: <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetCount"></span><code>function <strong>GetCount</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create-PWebUIEvent-"></span><code>constructor <strong>Create</strong>(const aEvent: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-"></span><code>constructor <strong>Create</strong>(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetIntAt-NativeUInt-"></span><code>function <strong>GetIntAt</strong>(index: NativeUInt): int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an argument as integer at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_int_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as integer.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetInt"></span><code>function <strong>GetInt</strong>: int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the first argument as integer. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_int))</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as integer.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetFloatAt-NativeUInt-"></span><code>function <strong>GetFloatAt</strong>(index: NativeUInt): double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an argument as float at a specific index. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_float_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetFloat"></span><code>function <strong>GetFloat</strong>: double;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the first argument as float. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_float))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetStringAt-NativeUInt-"></span><code>function <strong>GetStringAt</strong>(index: NativeUInt): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an argument as string at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetString"></span><code>function <strong>GetString</strong>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the first argument as string. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string))</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetStreamAt-TMemoryStream-NativeUInt-"></span><code>function <strong>GetStreamAt</strong>(var aResultStream: TMemoryStream; index: NativeUInt): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an argument as a stream at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aResultStream</dt>
+<dd>The stream with the returned data.</dd>
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns true if the stream has data.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetStream-TMemoryStream-"></span><code>function <strong>GetStream</strong>(var aResultStream: TMemoryStream): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the first argument as a stream. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aResultStream</dt>
+<dd>The stream with the returned data.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns true if the stream has data.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetBoolAt-NativeUInt-"></span><code>function <strong>GetBoolAt</strong>(index: NativeUInt): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an argument as boolean at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_bool_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as boolean.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetBool"></span><code>function <strong>GetBool</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the first argument as boolean. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_bool))</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns argument as boolean.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetSizeAt-NativeUInt-"></span><code>function <strong>GetSizeAt</strong>(index: NativeUInt): NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the size in bytes of an argument at a specific index. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_size_at))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>index</dt>
+<dd>The argument position starting from 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns size in bytes.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetSize"></span><code>function <strong>GetSize</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get size in bytes of the first argument. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_size))</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns size in bytes.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnInt-int64-"></span><code>procedure <strong>ReturnInt</strong>(aReturnValue: int64);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as integer. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_int))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The integer to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnFloat-double-"></span><code>procedure <strong>ReturnFloat</strong>(aReturnValue: double);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as float. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_float))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The float to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnString-string-"></span><code>procedure <strong>ReturnString</strong>(const aReturnValue: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as string. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The string to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnStream-TMemoryStream-"></span><code>procedure <strong>ReturnStream</strong>(const aReturnValue: TMemoryStream); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as a stream. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The stream to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnStream-TMemoryStream-int64-int64-"></span><code>procedure <strong>ReturnStream</strong>(const aReturnValue: TMemoryStream; aOffset, aCount: int64); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as a stream. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_string))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The stream to be send to JavaScript.</dd>
+<dt>aOffset</dt>
+<dd>Moves the current stream position by aOffset bytes, relative to the beginning.</dd>
+<dt>aCount</dt>
+<dd>Copies aCount bytes from the stream.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ReturnBool-boolean-"></span><code>procedure <strong>ReturnBool</strong>(aReturnValue: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Return the response to JavaScript as boolean. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_return_bool))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aReturnValue</dt>
+<dd>The boolean to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetResponse-string-"></span><code>procedure <strong>SetResponse</strong>(const response: string); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ When using `webui_interface_bind()`, you may need this function to easily set a response. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_set_response))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>response</dt>
+<dd>The response as string to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetResponse-TMemoryStream-"></span><code>procedure <strong>SetResponse</strong>(const response: TMemoryStream); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ When using `webui_interface_bind()`, you may need this function to easily set a response. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_set_response))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>response</dt>
+<dd>The response as a stream to be send to JavaScript.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetResponse-TMemoryStream-int64-int64-"></span><code>procedure <strong>SetResponse</strong>(const response: TMemoryStream; aOffset, aCount: int64); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ When using `webui_interface_bind()`, you may need this function to easily set a response. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_set_response))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>response</dt>
+<dd>The response as a stream to be send to JavaScript.</dd>
+<dt>aOffset</dt>
+<dd>Moves the current stream position by aOffset bytes, relative to the beginning.</dd>
+<dt>aCount</dt>
+<dd>Copies aCount bytes from the stream.</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Initialized"></span><code>property <strong>Initialized</strong>       : boolean          read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetInitialized">GetInitialized</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Returns true if the Window was created successfully. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Event"></span><code>property <strong>Event</strong>             : <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>      read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEvent">GetEvent</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Pointer to WebUI event record. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_event_t))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Window"></span><code>property <strong>Window</strong>            : <a href="uWebUITypes.IWebUIWindow.html">IWebUIWindow</a>     read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindow">GetWindow</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Window wrapper for the Window object of this event. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="WindowID"></span><code>property <strong>WindowID</strong>          : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>   read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetWindowID">GetWindowID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ The window object number or ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="EventType"></span><code>property <strong>EventType</strong>         : <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>  read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventType">GetEventType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Event type. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Element"></span><code>property <strong>Element</strong>           : string           read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetElement">GetElement</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ HTML element ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="EventID"></span><code>property <strong>EventID</strong>           : <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>    read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetEventID">GetEventID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Event number or Event ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="BindID"></span><code>property <strong>BindID</strong>            : <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>     read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetBindID">GetBindID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Bind ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Count"></span><code>property <strong>Count</strong>             : NativeUInt       read <a href="uWebUIEventHandler.TWebUIEventHandler.html#GetCount">GetCount</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get how many arguments there are in an event. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_count))</p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>
+</span>
+</body></html>

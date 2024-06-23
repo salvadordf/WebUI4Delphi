@@ -30,10 +30,10 @@ type
   /// </summary>
   TWebUIWindow = class(TInterfacedObject, IWebUIWindow)
     protected
-      FID           : TWebUIWindowID;
-      FOnWebUIEvent : TOnWebUIEvent;
-      FBindIDList   : TList;
-      FCritSect     : TCriticalSection;
+      FID            : TWebUIWindowID;
+      FOnWebUIEvent  : TOnWebUIEvent;
+      FBindIDList    : TList;
+      FCritSect      : TCriticalSection;
 
       function  GetID : TWebUIWindowID;
       function  GetInitialized : boolean;
@@ -42,6 +42,7 @@ type
       function  GetParentProcessID : NativeUInt;
       function  GetChildProcessID : NativeUInt;
       function  GetOnWebUIEvent : TOnWebUIEvent;
+      function  GetBestBrowser : TWebUIBrowser;
 
       procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 
@@ -150,7 +151,16 @@ type
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_browser)</see></para>
       /// </remarks>
-      function    ShowBrowser(const content : string; browser : TWebUIBrowsers) : boolean;
+      function    ShowBrowser(const content : string; browser : TWebUIBrowser) : boolean;
+      /// <summary>
+      /// Show a WebView window using embedded HTML, or a file. If the window is already
+      /// open, it will be refreshed. Note: Win32 need `WebView2Loader.dll`.
+      /// </summary>
+      /// <param name="content">The HTML, URL, Or a local file.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_wv)</see></para>
+      /// </remarks>
+      function    ShowWV(const content : string) : boolean;
       /// <summary>
       /// Set the window in Kiosk mode (Full screen).
       /// </summary>
@@ -271,7 +281,7 @@ type
       /// </remarks>
       procedure   DeleteProfile;
       /// <summary>
-      /// Set a custom web-server network port to be used by WebUI.
+      /// Set a custom web-server/websocket network port to be used by WebUI.
       /// This can be useful to determine the HTTP link of `webui.js` in case
       /// you are trying to use WebUI with an external web-server like NGNIX
       /// </summary>
@@ -305,7 +315,7 @@ type
       /// <summary>
       /// Chose between Deno and Nodejs as runtime for .js and .ts files.
       /// </summary>
-      /// <param name="runtime">Deno or Nodejs.</param>
+      /// <param name="runtime">Deno, Nodejs or None.</param>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
       /// </remarks>
@@ -315,6 +325,16 @@ type
       /// </summary>
       /// <param name="aID">Bind ID that supposedly belongs to this window.</param>
       function    HasBindID(aID : TWebUIBindID): boolean;
+      /// <summary>
+      /// Control if UI events comming from this window should be processed
+      /// one a time in a single blocking thread `True`, or process every event in
+      /// a new non-blocking thread `False`. This update single window. You can use
+      /// `webui_set_config(ui_event_blocking, ...)` to update all windows.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_event_blocking)</see></para>
+      /// </remarks>
+      procedure   SetEventBlocking(status: boolean);
       /// <summary>
       /// Get a free window number that can be used with `webui_new_window_id()`.
       /// </summary>
@@ -360,6 +380,14 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
       /// </remarks>
       property ChildProcessID   : NativeUInt        read GetChildProcessID;
+      /// <summary>
+      /// Get the recommended web browser ID to use. If you are already using one,
+      /// this function will return the same ID.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_best_browser)</see></para>
+      /// </remarks>
+      property BestBrowser      : TWebUIBrowser     read GetBestBrowser;
       /// <summary>
       /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
       /// </summary>
@@ -547,9 +575,23 @@ begin
   Result := FOnWebUIEvent;
 end;
 
+function TWebUIWindow.GetBestBrowser : TWebUIBrowser;
+begin
+  if Initialized then
+    Result := webui_get_best_browser(FID)
+   else
+    Result := NoBrowser;
+end;
+
 procedure TWebUIWindow.SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 begin
   FOnWebUIEvent := aEvent;
+end;
+
+procedure TWebUIWindow.SetEventBlocking(status: boolean);
+begin
+  if Initialized then
+    webui_set_event_blocking(FID, status);
 end;
 
 procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
@@ -649,7 +691,7 @@ begin
     end;
 end;
 
-function TWebUIWindow.ShowBrowser(const content : string; browser : TWebUIBrowsers) : boolean;
+function TWebUIWindow.ShowBrowser(const content : string; browser : TWebUIBrowser) : boolean;
 var
   LContent: AnsiString;
 begin
@@ -659,6 +701,19 @@ begin
     begin
       LContent := UTF8Encode(content + #0);
       Result   := webui_show_browser(FID, @LContent[1], browser);
+    end;
+end;
+
+function TWebUIWindow.ShowWV(const content : string) : boolean;
+var
+  LContent: AnsiString;
+begin
+  Result := False;
+
+  if Initialized then
+    begin
+      LContent := UTF8Encode(content + #0);
+      Result   := webui_show_wv(FID, @LContent[1]);
     end;
 end;
 
