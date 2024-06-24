@@ -448,6 +448,7 @@ type
     function  GetParentProcessID : NativeUInt;
     function  GetChildProcessID : NativeUInt;
     function  GetOnWebUIEvent : TOnWebUIEvent;
+    function  GetBestBrowser : TWebUIBrowser;
     function  GetAllowWebView : boolean;
 
     procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
@@ -742,6 +743,14 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
     /// </remarks>
     property ChildProcessID   : NativeUInt        read GetChildProcessID;
+    /// <summary>
+    /// Get the recommended web browser ID to use. If you are already using one,
+    /// this function will return the same ID.
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_best_browser)</see></para>
+    /// </remarks>
+    property BestBrowser      : TWebUIBrowser     read GetBestBrowser;
     /// <summary>
     /// Allow using WebView to show a browser with TWebUIWindow.Show.
     /// </summary>
