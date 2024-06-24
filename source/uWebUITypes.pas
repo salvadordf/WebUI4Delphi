@@ -534,6 +534,15 @@ type
     /// </remarks>
     function    ShowBrowser(const content : string; browser : TWebUIBrowser) : boolean;
     /// <summary>
+    /// Show a WebView window using embedded HTML, or a file. If the window is already
+    /// open, it will be refreshed. Note: Win32 need `WebView2Loader.dll`.
+    /// </summary>
+    /// <param name="content">The HTML, URL, Or a local file.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_wv)</see></para>
+    /// </remarks>
+    function    ShowWV(const content : string) : boolean;
+    /// <summary>
     /// Set the window in Kiosk mode (Full screen).
     /// </summary>
     /// <param name="status">True or False.</param>
