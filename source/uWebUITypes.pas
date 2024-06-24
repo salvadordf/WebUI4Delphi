@@ -448,7 +448,11 @@ type
     function  GetParentProcessID : NativeUInt;
     function  GetChildProcessID : NativeUInt;
     function  GetOnWebUIEvent : TOnWebUIEvent;
+    function  GetAllowWebView : boolean;
+
     procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
+    procedure SetAllowWebView(aAllow : boolean);
+
     procedure doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 
     /// <summary>
@@ -738,6 +742,10 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
     /// </remarks>
     property ChildProcessID   : NativeUInt        read GetChildProcessID;
+    /// <summary>
+    /// Allow using WebView to show a browser with TWebUIWindow.Show.
+    /// </summary>
+    property AllowWebView     : boolean           read GetAllowWebView     write SetAllowWebView;
     /// <summary>
     /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
     /// </summary>

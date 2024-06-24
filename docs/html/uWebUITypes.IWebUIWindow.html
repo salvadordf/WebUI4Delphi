@@ -58,7 +58,15 @@
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetOnWebUIEvent-TOnWebUIEvent-">SetOnWebUIEvent</a></strong>(const aEvent : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a></strong>(aAllow : boolean);</code></td>
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
@@ -205,6 +213,10 @@
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUITypes.IWebUIWindow.html#AllowWebView">AllowWebView</a></strong>     : boolean           read <a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>property <strong><a href="uWebUITypes.IWebUIWindow.html#OnWebUIEvent">OnWebUIEvent</a></strong>     : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>     read <a href="uWebUITypes.IWebUIWindow.html#GetOnWebUIEvent">GetOnWebUIEvent</a>     write <a href="uWebUITypes.IWebUIWindow.html#SetOnWebUIEvent-TOnWebUIEvent-">SetOnWebUIEvent</a>;</code></td>
 </tr>
 </table>
@@ -269,7 +281,23 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetAllowWebView"></span><code>function <strong>GetAllowWebView</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="SetOnWebUIEvent-TOnWebUIEvent-"></span><code>procedure <strong>SetOnWebUIEvent</strong>(const aEvent : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetAllowWebView-boolean-"></span><code>procedure <strong>SetAllowWebView</strong>(aAllow : boolean);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -962,6 +990,16 @@
 
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_child_process_id))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AllowWebView"></span><code>property <strong>AllowWebView</strong>     : boolean           read <a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Allow using WebView to show a browser with TWebUIWindow.Show. </p>
 </td></tr>
 </table>
 <table class="detail wide_list">

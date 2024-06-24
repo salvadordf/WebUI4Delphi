@@ -41,6 +41,10 @@
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><code><strong><a href="uWebUIWindow.TWebUIWindow.html#FCritSect">FCritSect</a></strong>: TCriticalSection;</code></td>
 </tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code><strong><a href="uWebUIWindow.TWebUIWindow.html#FAllowWebView">FAllowWebView</a></strong>: boolean;</code></td>
+</tr>
 </table>
 <span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
 <table class="summary wide_list">
@@ -78,7 +82,15 @@
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">GetAllowWebView</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUIWindow.TWebUIWindow.html#SetOnWebUIEvent-TOnWebUIEvent-">SetOnWebUIEvent</a></strong>(const aEvent : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUIWindow.TWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a></strong>(aAllow : boolean);</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
@@ -277,6 +289,10 @@
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUIWindow.TWebUIWindow.html#AllowWebView">AllowWebView</a></strong>     : boolean           read <a href="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUIWindow.TWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>property <strong><a href="uWebUIWindow.TWebUIWindow.html#OnWebUIEvent">OnWebUIEvent</a></strong>     : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>     read <a href="uWebUIWindow.TWebUIWindow.html#GetOnWebUIEvent">GetOnWebUIEvent</a>     write <a href="uWebUIWindow.TWebUIWindow.html#SetOnWebUIEvent-TOnWebUIEvent-">SetOnWebUIEvent</a>;</code></td>
 </tr>
 </table>
@@ -310,6 +326,14 @@
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><span id="FCritSect"></span><code><strong>FCritSect</strong>: TCriticalSection;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="FAllowWebView"></span><code><strong>FAllowWebView</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -382,7 +406,23 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetAllowWebView"></span><code>function <strong>GetAllowWebView</strong>: boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><span id="SetOnWebUIEvent-TOnWebUIEvent-"></span><code>procedure <strong>SetOnWebUIEvent</strong>(const aEvent : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="SetAllowWebView-boolean-"></span><code>procedure <strong>SetAllowWebView</strong>(aAllow : boolean);</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -1226,6 +1266,16 @@
 
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_best_browser))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AllowWebView"></span><code>property <strong>AllowWebView</strong>     : boolean           read <a href="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUIWindow.TWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Allow using WebView to show a browser with TWebUIWindow.Show. </p>
 </td></tr>
 </table>
 <table class="detail wide_list">

@@ -34,6 +34,7 @@ type
       FOnWebUIEvent  : TOnWebUIEvent;
       FBindIDList    : TList;
       FCritSect      : TCriticalSection;
+      FAllowWebView  : boolean;
 
       function  GetID : TWebUIWindowID;
       function  GetInitialized : boolean;
@@ -43,8 +44,10 @@ type
       function  GetChildProcessID : NativeUInt;
       function  GetOnWebUIEvent : TOnWebUIEvent;
       function  GetBestBrowser : TWebUIBrowser;
+      function  GetAllowWebView : boolean;
 
       procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
+      procedure SetAllowWebView(aAllow : boolean);
 
       function  Lock : boolean;
       procedure UnLock;
@@ -389,6 +392,10 @@ type
       /// </remarks>
       property BestBrowser      : TWebUIBrowser     read GetBestBrowser;
       /// <summary>
+      /// Allow using WebView to show a browser with TWebUIWindow.Show.
+      /// </summary>
+      property AllowWebView     : boolean           read GetAllowWebView     write SetAllowWebView;
+      /// <summary>
       /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
       /// </summary>
       property OnWebUIEvent     : TOnWebUIEvent     read GetOnWebUIEvent     write SetOnWebUIEvent;
@@ -406,6 +413,7 @@ begin
   FOnWebUIEvent := nil;
   FCritSect     := nil;
   FBindIDList   := nil;
+  FAllowWebView := {$IFDEF MSWINDOWS}True{$ELSE}False{$ENDIF};
 
   if (WebUI <> nil) and WebUI.Initialized then
     FID := webui_new_window()
@@ -583,9 +591,19 @@ begin
     Result := NoBrowser;
 end;
 
+function TWebUIWindow.GetAllowWebView : boolean;
+begin
+  Result := FAllowWebView;
+end;
+
 procedure TWebUIWindow.SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 begin
   FOnWebUIEvent := aEvent;
+end;
+
+procedure TWebUIWindow.SetAllowWebView(aAllow : boolean);
+begin
+  FAllowWebView := aAllow;
 end;
 
 procedure TWebUIWindow.SetEventBlocking(status: boolean);
@@ -675,7 +693,8 @@ end;
 
 function TWebUIWindow.Show(const content : string) : boolean;
 var
-  LContent: AnsiString;
+  LContent    : AnsiString;
+  LContentPtr : PWebUIChar;
 begin
   Result := False;
 
@@ -683,11 +702,16 @@ begin
     begin
       if (length(content) > 0) then
         begin
-          LContent := UTF8Encode(content + #0);
-          Result   := webui_show(FID, @LContent[1]);
+          LContent    := UTF8Encode(content + #0);
+          LContentPtr := @LContent[1];
         end
        else
-        Result := webui_show(FID, nil);
+        LContentPtr := nil;
+
+      if FAllowWebView then
+        Result := webui_show(FID, LContentPtr)
+       else
+        Result := webui_show_browser(FID, LContentPtr, AnyBrowser);
     end;
 end;
 

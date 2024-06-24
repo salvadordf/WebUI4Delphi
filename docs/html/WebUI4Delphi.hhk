@@ -211,6 +211,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#AllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Bind">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#Bind-string-TWebUIBindCallback-">
 </object>
@@ -261,6 +265,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="doOnWebUIEvent">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#doOnWebUIEvent-IWebUIEventHandler-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetChildProcessID">
@@ -329,6 +337,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SendRaw">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SendRaw-string-Pointer-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetEventBlocking">
@@ -476,16 +488,16 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="AppendErrorLog">
-<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-TStringList-">
+<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-string-">
 </object>
 <ul>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUI - uWebUI Unit">
-<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-TStringList-">
+<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUI - uWebUI Unit">
-<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-string-">
+<param name="Local" value="uWebUI.TWebUI.html#AppendErrorLog-TStringList-">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -995,6 +1007,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#AfterConstruction">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#AllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="BeforeDestruction">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#BeforeDestruction">
 </object>
@@ -1073,6 +1089,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#doOnWebUIEvent-IWebUIEventHandler-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#FAllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FBindIDList">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#FBindIDList">
 </object>
@@ -1087,6 +1107,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="FOnWebUIEvent">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#FOnWebUIEvent">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBestBrowser">
@@ -1171,6 +1195,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SendRaw">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SendRaw-string-Pointer-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetAllowWebView-boolean-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetEventBlocking">

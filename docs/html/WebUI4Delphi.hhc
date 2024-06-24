@@ -944,6 +944,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ChildProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#AllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnWebUIEvent">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#OnWebUIEvent">
 </object>
@@ -982,8 +986,16 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetOnWebUIEvent">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetAllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetOnWebUIEvent">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="doOnWebUIEvent">
@@ -1207,6 +1219,10 @@
 <param name="Name" value="FCritSect">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#FCritSect">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="FAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#FAllowWebView">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Properties">
@@ -1240,6 +1256,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="BestBrowser">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#BestBrowser">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#AllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="OnWebUIEvent">
@@ -1284,8 +1304,16 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetBestBrowser">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetOnWebUIEvent">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Lock">
@@ -1642,6 +1670,10 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#AllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ChildProcessID">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ChildProcessID">
 </object>
@@ -1694,6 +1726,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="BindAllEvents">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#BindAllEvents">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetChildProcessID">
@@ -1774,6 +1810,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SendRaw">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SendRaw">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetEventBlocking">
@@ -2332,6 +2372,10 @@
 </object>
 <ul>
 <li><object type="text/sitemap">
+<param name="Name" value="FAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#FAllowWebView">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FBindIDList">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#FBindIDList">
 </object>
@@ -2353,6 +2397,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#@Properties">
 </object>
 <ul>
+<li><object type="text/sitemap">
+<param name="Name" value="AllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#AllowWebView">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="BestBrowser">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#BestBrowser">
@@ -2454,6 +2502,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ShowWV">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#ShowWV">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetBestBrowser">
@@ -2582,6 +2634,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="RemoveWindowID">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#RemoveWindowID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetAllowWebView">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetAllowWebView">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
