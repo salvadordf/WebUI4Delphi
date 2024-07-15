@@ -431,6 +431,13 @@ type
       /// </summary>
       property AllowWebView     : boolean           read GetAllowWebView     write SetAllowWebView;
       /// <summary>
+      /// Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js`
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
+      /// </remarks>
+      property Port             : NativeUInt        read GetPort             write SetPort2;
+      /// <summary>
       /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
       /// </summary>
       property OnWebUIEvent     : TOnWebUIEvent     read GetOnWebUIEvent     write SetOnWebUIEvent;
