@@ -13,7 +13,7 @@
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
-    <Version Major="2" Minor="4" Release="2"/>
+    <Version Major="2" Minor="5"/>
     <Files>
       <Item>
         <Filename Value="..\source\uWebUI.inc"/>

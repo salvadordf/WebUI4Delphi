@@ -98,19 +98,27 @@
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#DefaultLibraryPath">DefaultLibraryPath</a></strong>: string;</code></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetFreePort">GetFreePort</a></strong>: NativeUInt;</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a></strong>(aValue: NativeUInt);</code></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetIsHighContrast">GetIsHighContrast</a></strong>: boolean;</code></td>
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetStatus-TLoaderStatus-">SetStatus</a></strong>(aValue: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>);</code></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a></strong>(aValue: NativeUInt);</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetStatus-TLoaderStatus-">SetStatus</a></strong>(aValue: <a href="uWebUITypes.html#TLoaderStatus">TLoaderStatus</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#DestroyWindowList">DestroyWindowList</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#DefaultLibraryPath">DefaultLibraryPath</a></strong>: string;</code></td>
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
@@ -204,6 +212,18 @@
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#SetConfig-TWebUIConfig-boolean-">SetConfig</a></strong>(option: <a href="uWebUITypes.html#TWebUIConfig">TWebUIConfig</a>; status: boolean);</code></td>
 </tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#BrowserExist-TWebUIBrowser-">BrowserExist</a></strong>(browser: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>): boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUI.TWebUI.html#GetMimeType-string-">GetMimeType</a></strong>(const file_: string): string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUI.TWebUI.html#OpenURL-string-">OpenURL</a></strong>(const url: string);</code></td>
+</tr>
 </table>
 <span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
 <table class="summary wide_list">
@@ -250,6 +270,14 @@
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#Timeout">Timeout</a></strong>                                : NativeUInt                         read <a href="uWebUI.TWebUI.html#FTimeout">FTimeout</a>                                 write <a href="uWebUI.TWebUI.html#SetTimeout-NativeUInt-">SetTimeout</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#IsHighContrast">IsHighContrast</a></strong>                         : boolean                            read <a href="uWebUI.TWebUI.html#GetIsHighContrast">GetIsHighContrast</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUI.TWebUI.html#FreePort">FreePort</a></strong>                               : NativeUInt                         read <a href="uWebUI.TWebUI.html#GetFreePort">GetFreePort</a>;</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
@@ -394,7 +422,15 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
-<td class="itemcode"><span id="DefaultLibraryPath"></span><code>function <strong>DefaultLibraryPath</strong>: string;</code></td>
+<td class="itemcode"><span id="GetFreePort"></span><code>function <strong>GetFreePort</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="GetIsHighContrast"></span><code>function <strong>GetIsHighContrast</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -419,6 +455,14 @@
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
 <td class="itemcode"><span id="DestroyWindowList"></span><code>procedure <strong>DestroyWindowList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="DefaultLibraryPath"></span><code>function <strong>DefaultLibraryPath</strong>: string;</code></td>
 </tr>
 <tr><td colspan="2">
 <p class="nodescription">This item has no description.</p></td></tr>
@@ -674,7 +718,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Control the WebUI behaviour. It's better to call at the beginning. </p>
+ Control the WebUI behaviour. It's recommended to be called at the beginning. </p>
 <p>
  
 
@@ -687,6 +731,69 @@
 <dd>The desired option from `webui_config` enum.</dd>
 <dt>status</dt>
 <dd>The status of the option, `true` or `false`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="BrowserExist-TWebUIBrowser-"></span><code>function <strong>BrowserExist</strong>(browser: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Check if a web browser is installed. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_is_high_contrast))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>browser</dt>
+<dd>The web browser to be found.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns True if the specified browser is available.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetMimeType-string-"></span><code>function <strong>GetMimeType</strong>(const file_: string): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the HTTP mime type of a file. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_mime_type))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>file_</dt>
+<dd>The file name.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the HTTP mime string.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="OpenURL-string-"></span><code>procedure <strong>OpenURL</strong>(const url: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Open an URL in the native default web browser. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_open_url))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>url</dt>
+<dd>The URL to open.</dd>
 </dl>
 </td></tr>
 </table>
@@ -802,11 +909,39 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`. </p>
+ Set the maximum time in seconds to wait for the window to connect. This effect `show()` and `wait()`. Value of `0` means wait forever. </p>
 <p>
 
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_timeout))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsHighContrast"></span><code>property <strong>IsHighContrast</strong>                         : boolean                            read <a href="uWebUI.TWebUI.html#GetIsHighContrast">GetIsHighContrast</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get OS high contrast preference. </p>
+<p>
+ @returns(Returns True if OS is using high contrast theme.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_is_high_contrast))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="FreePort"></span><code>property <strong>FreePort</strong>                               : NativeUInt                         read <a href="uWebUI.TWebUI.html#GetFreePort">GetFreePort</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get an available usable free network port. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_free_port))</p>
 </td></tr>
 </table>
 <hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0-snapshot</a>. </em>

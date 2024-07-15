@@ -58,51 +58,59 @@
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
-<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a></strong>: boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#GetBestBrowser">GetBestBrowser</a></strong>: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>;</code></td>
 </tr>
 <tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a></strong>: boolean;</code></td>
+</tr>
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetOnWebUIEvent-TOnWebUIEvent-">SetOnWebUIEvent</a></strong>(const aEvent : <a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a>);</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a></strong>(aAllow : boolean);</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#doOnWebUIEvent-IWebUIEventHandler-">doOnWebUIEvent</a></strong>(const aEvent: <a href="uWebUITypes.IWebUIEventHandler.html">IWebUIEventHandler</a>);</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#DestroyWindow">DestroyWindow</a></strong>;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#Bind-string-">Bind</a></strong>(const element_: string): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; overload;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#Bind-string-TWebUIBindCallback-">Bind</a></strong>(const element_: string; func_: <a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; overload;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#Bind-string-TWebUIInterfaceEventCallback-">Bind</a></strong>(const element_: string; func_: <a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; overload;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#BindAllEvents">BindAllEvents</a></strong>: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; overload;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#BindAllEvents-TWebUIBindCallback-">BindAllEvents</a></strong>(func_: <a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; overload;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#Show-string-">Show</a></strong>(const content : string) : boolean;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#ShowBrowser-string-TWebUIBrowser-">ShowBrowser</a></strong>(const content : string; browser : <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>) : boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#ShowWV-string-">ShowWV</a></strong>(const content : string) : boolean;</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
@@ -162,7 +170,15 @@
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#GetPort">GetPort</a></strong>: NativeUInt;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#SetPort-NativeUInt-">SetPort</a></strong>(port : NativeUInt): boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetPort2-NativeUInt-">SetPort2</a></strong>(port : NativeUInt);</code></td>
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
@@ -183,6 +199,14 @@
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetEventBlocking-boolean-">SetEventBlocking</a></strong>(status: boolean);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="uWebUITypes.IWebUIWindow.html#StartServer-string-">StartServer</a></strong>(const path: string): string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="uWebUITypes.IWebUIWindow.html#SetHighContrast-boolean-">SetHighContrast</a></strong>(status: boolean);</code></td>
 </tr>
 </table>
 <span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
@@ -213,7 +237,15 @@
 </tr>
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUITypes.IWebUIWindow.html#BestBrowser">BestBrowser</a></strong>      : <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>     read <a href="uWebUITypes.IWebUIWindow.html#GetBestBrowser">GetBestBrowser</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><code>property <strong><a href="uWebUITypes.IWebUIWindow.html#AllowWebView">AllowWebView</a></strong>     : boolean           read <a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="uWebUITypes.IWebUIWindow.html#Port">Port</a></strong>             : NativeUInt        read <a href="uWebUITypes.IWebUIWindow.html#GetPort">GetPort</a>             write <a href="uWebUITypes.IWebUIWindow.html#SetPort2-NativeUInt-">SetPort2</a>;</code></td>
 </tr>
 <tr class="list2">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
@@ -281,6 +313,14 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetBestBrowser"></span><code>function <strong>GetBestBrowser</strong>: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="GetAllowWebView"></span><code>function <strong>GetAllowWebView</strong>: boolean;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -333,7 +373,7 @@
 <p>
 
 
-<p>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.
+<p>Bind an HTML element and a JavaScript object with a backend function. Empty element name means all events.
 
 <p></p>
 <p>
@@ -347,7 +387,7 @@
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
 <dt>element_</dt>
-<dd>The HTML element ID.</dd>
+<dd>The HTML element / JavaScript object.</dd>
 </dl>
 <h6 class="description_section">Returns</h6>
 <p class="return">Returns a unique bind ID.</p></td></tr>
@@ -460,7 +500,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. </p>
+ Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. This will refresh all windows in multi-client mode. </p>
 <p>
  
 
@@ -504,6 +544,25 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ShowWV-string-"></span><code>function <strong>ShowWV</strong>(const content : string) : boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Show a WebView window using embedded HTML, or a file. If the window is already open, it will be refreshed. Note: Win32 need `WebView2Loader.dll`. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_show_wv))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>content</dt>
+<dd>The HTML, URL, Or a local file.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="SetKiosk-boolean-"></span><code>procedure <strong>SetKiosk</strong>(status: boolean);</code></td>
 </tr>
 <tr><td colspan="2">
@@ -527,7 +586,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Close a specific window only. The window object will still exist. </p>
+ Close a specific window only. The window object will still exist. All clients. </p>
 <p>
 
 
@@ -563,7 +622,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Set a custom handler to serve files. </p>
+ Set a custom handler to serve files. This custom handler should return full HTTP header and body. </p>
 <p>
  
 
@@ -609,7 +668,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Safely send raw data to the UI. </p>
+ Safely send raw data to the UI. All clients. </p>
 <p>
  
 
@@ -762,7 +821,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Navigate to a specific URL. </p>
+ Navigate to a specific URL. All clients. </p>
 <p>
  
 
@@ -793,6 +852,21 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetPort"></span><code>function <strong>GetPort</strong>: NativeUInt;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js` </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_port))</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the network port of the window.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="SetPort-NativeUInt-"></span><code>function <strong>SetPort</strong>(port : NativeUInt): boolean;</code></td>
 </tr>
 <tr><td colspan="2">
@@ -815,11 +889,30 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetPort2-NativeUInt-"></span><code>procedure <strong>SetPort2</strong>(port : NativeUInt);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set a custom web-server/websocket network port to be used by WebUI. This can be useful to determine the HTTP link of `webui.js` in case you are trying to use WebUI with an external web-server like NGNIX </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_port))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>port</dt>
+<dd>The web-server network port WebUI should use.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="Run-string-"></span><code>procedure <strong>Run</strong>(const script_: string);</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
- Run JavaScript without waiting for the response. </p>
+ Run JavaScript without waiting for the response. All clients. </p>
 <p>
  
 
@@ -838,7 +931,7 @@
 </tr>
 <tr><td colspan="2">
 <p>
- Run JavaScript and get the response back. Make sure your local buffer can hold the response. </p>
+ Run JavaScript and get the response back. Work only in single client mode. Make sure your local buffer can hold the response. </p>
 <p>
  
 
@@ -856,7 +949,7 @@
 <dt>script_</dt>
 <dd>The JavaScript to be run.</dd>
 <dt>timeout</dt>
-<dd>The execution timeout.</dd>
+<dd>The execution timeout in seconds.</dd>
 <dt>buffer</dt>
 <dd>The local buffer to hold the response.</dd>
 <dt>buffer_length</dt>
@@ -880,7 +973,7 @@
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
 <dt>runtime</dt>
-<dd>Deno, Nodejs or None.</dd>
+<dd>Deno, Bun, Nodejs or None.</dd>
 </dl>
 </td></tr>
 </table>
@@ -913,6 +1006,47 @@
 
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_event_blocking))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="StartServer-string-"></span><code>function <strong>StartServer</strong>(const path: string): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Start only the web server and return the URL. This is useful for web app. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_start_server))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>path</dt>
+<dd>The local root folder full path.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Returns the url of this window server.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetHighContrast-boolean-"></span><code>procedure <strong>SetHighContrast</strong>(status: boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Set the window with high-contrast support. Useful when you want to build a better high-contrast theme with CSS. </p>
+<p>
+ 
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_high_contrast))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>status</dt>
+<dd>True or False.</dd>
+</dl>
 </td></tr>
 </table>
 <h3 class="detail">Properties</h3>
@@ -995,11 +1129,39 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="BestBrowser"></span><code>property <strong>BestBrowser</strong>      : <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>     read <a href="uWebUITypes.IWebUIWindow.html#GetBestBrowser">GetBestBrowser</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the recommended web browser ID to use. If you are already using one, this function will return the same ID. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_best_browser))</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
 <td class="itemcode"><span id="AllowWebView"></span><code>property <strong>AllowWebView</strong>     : boolean           read <a href="uWebUITypes.IWebUIWindow.html#GetAllowWebView">GetAllowWebView</a>     write <a href="uWebUITypes.IWebUIWindow.html#SetAllowWebView-boolean-">SetAllowWebView</a>;</code></td>
 </tr>
 <tr><td colspan="2">
 <p>
  Allow using WebView to show a browser with TWebUIWindow.Show. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Port"></span><code>property <strong>Port</strong>             : NativeUInt        read <a href="uWebUITypes.IWebUIWindow.html#GetPort">GetPort</a>             write <a href="uWebUITypes.IWebUIWindow.html#SetPort2-NativeUInt-">SetPort2</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js` </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_port))</p>
 </td></tr>
 </table>
 <table class="detail wide_list">

@@ -115,7 +115,15 @@ function LibraryExists(const aPath : string) : boolean;
 /// </summary>
 /// <param name="aSrcString">The original unicode string.</param>
 /// <param name="aRsltLength">The length of the result string.</param>
-function StringToPWebUIChar(const aSrcString: string; var aRsltLength: integer): PWebUIChar;
+function StringToPWebUIChar(const aSrcString: string; var aRsltLength: integer): PWebUIChar; overload;
+/// <summary>
+/// Converts a unicode string to a WebUI string.
+/// This function should only be used by the file handler callback.
+/// By allocating resources using webui_malloc() WebUI will automaticaly free the resources.
+/// </summary>
+/// <param name="aSrcString">The original unicode string.</param>
+/// <param name="aRsltLength">The length of the result string.</param>
+function StringToPWebUIChar(const aSrcString: AnsiString; var aRsltLength: integer): PWebUIChar; overload;
 
 {$IFDEF MSWINDOWS}
 function PathIsRelativeAnsi(pszPath: LPCSTR): BOOL; stdcall; external SHLWAPIDLL name 'PathIsRelativeA';
@@ -379,6 +387,22 @@ var
   LRsltBuffer : PWebUIChar;
 begin
   LRsltString := UTF8Encode(aSrcString + #0);
+  aRsltLength := length(LRsltString);
+  LRsltBuffer := webui_malloc(aRsltLength);
+  {$IFDEF MSWINDOWS}
+  CopyMemory(LRsltBuffer, @LRsltString[1], aRsltLength);
+  {$ELSE}
+  Move(LRsltString[1], LRsltBuffer^, aRsltLength);
+  {$ENDIF}
+  Result      := LRsltBuffer;
+end;
+
+function StringToPWebUIChar(const aSrcString: AnsiString; var aRsltLength: integer): PWebUIChar;
+var
+  LRsltString : AnsiString;
+  LRsltBuffer : PWebUIChar;
+begin
+  LRsltString := aSrcString + AnsiChar(#0);
   aRsltLength := length(LRsltString);
   LRsltBuffer := webui_malloc(aRsltLength);
   {$IFDEF MSWINDOWS}

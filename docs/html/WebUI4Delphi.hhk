@@ -57,6 +57,22 @@
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#BindID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ClientID">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ClientID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CloseClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#CloseClient">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ConnectionID">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Cookies">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Cookies">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Count">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Count">
 </object>
@@ -87,6 +103,18 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetBoolAt">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetBoolAt-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetClientID">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetClientID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetConnectionID">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetCookies">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetCookies">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetCount">
@@ -165,6 +193,10 @@
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Initialized">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="NavigateClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#NavigateClient-string-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ReturnBool">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ReturnBool-boolean-">
 </object>
@@ -195,8 +227,24 @@
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ReturnString-string-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="RunClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#RunClient-string-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ScriptClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ScriptClient-string-NativeUInt-string-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SendRawClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#SendRawClient-string-Pointer-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetResponse">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#SetResponse-string-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ShowClient">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ShowClient-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Window">
@@ -213,6 +261,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="AllowWebView">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#AllowWebView">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="BestBrowser">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#BestBrowser">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Bind">
@@ -271,6 +323,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetAllowWebView">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetBestBrowser">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetBestBrowser">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetChildProcessID">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetChildProcessID">
 </object>
@@ -293,6 +349,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetParentProcessID">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetParentProcessID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetPort">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetPort">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetUrl">
@@ -327,6 +387,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ParentProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Port">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#Port">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Run">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#Run-string-">
 </object>
@@ -355,6 +419,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetHide-boolean-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetHighContrast">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetHighContrast-boolean-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetIcon">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetIcon-string-string-">
 </object>
@@ -369,6 +437,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPort">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetPort-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetPort2">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetPort2-NativeUInt-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetPosition">
@@ -405,6 +477,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ShowBrowser">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ShowBrowser-string-TWebUIBrowser-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ShowWV">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#ShowWV-string-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="StartServer">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#StartServer-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Url">
@@ -464,8 +544,18 @@
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="StringToPWebUIChar">
+<param name="Local" value="uWebUIMiscFunctions.html#StringToPWebUIChar-AnsiString-integer-">
+</object>
+<ul>
+<li><object type="text/sitemap">
+<param name="Name" value="uWebUIMiscFunctions Unit">
+<param name="Local" value="uWebUIMiscFunctions.html#StringToPWebUIChar-AnsiString-integer-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="uWebUIMiscFunctions Unit">
 <param name="Local" value="uWebUIMiscFunctions.html#StringToPWebUIChar-string-integer-">
 </object>
+</ul>
 <li><object type="text/sitemap">
 <param name="Name" value="TLoaderStatus">
 <param name="Local" value="uWebUITypes.html#TLoaderStatus">
@@ -503,6 +593,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="BeforeDestruction">
 <param name="Local" value="uWebUI.TWebUI.html#BeforeDestruction">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="BrowserExist">
+<param name="Local" value="uWebUI.TWebUI.html#BrowserExist-TWebUIBrowser-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Clean">
@@ -553,6 +647,10 @@
 <param name="Local" value="uWebUI.TWebUI.html#FLibraryPath">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="FreePort">
+<param name="Local" value="uWebUI.TWebUI.html#FreePort">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="FReRaiseExceptions">
 <param name="Local" value="uWebUI.TWebUI.html#FReRaiseExceptions">
 </object>
@@ -581,6 +679,10 @@
 <param name="Local" value="uWebUI.TWebUI.html#GetErrorMessage">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetFreePort">
+<param name="Local" value="uWebUI.TWebUI.html#GetFreePort">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetInitializationError">
 <param name="Local" value="uWebUI.TWebUI.html#GetInitializationError">
 </object>
@@ -593,8 +695,16 @@
 <param name="Local" value="uWebUI.TWebUI.html#GetIsAppRunning">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetIsHighContrast">
+<param name="Local" value="uWebUI.TWebUI.html#GetIsHighContrast">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetLibraryVersion">
 <param name="Local" value="uWebUI.TWebUI.html#GetLibraryVersion">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetMimeType">
+<param name="Local" value="uWebUI.TWebUI.html#GetMimeType-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetStatus">
@@ -617,6 +727,10 @@
 <param name="Local" value="uWebUI.TWebUI.html#IsAppRunning">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="IsHighContrast">
+<param name="Local" value="uWebUI.TWebUI.html#IsHighContrast">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="LibraryPath">
 <param name="Local" value="uWebUI.TWebUI.html#LibraryPath">
 </object>
@@ -635,6 +749,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="Lock">
 <param name="Local" value="uWebUI.TWebUI.html#Lock">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="OpenURL">
+<param name="Local" value="uWebUI.TWebUI.html#OpenURL-string-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="RemoveWindow">
@@ -724,16 +842,16 @@
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Encode">
-<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-string-">
+<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-PWebUIChar-">
 </object>
 <ul>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIBase64 - uWebUIBase64 Unit">
-<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-string-">
+<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-PWebUIChar-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIBase64 - uWebUIBase64 Unit">
-<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-PWebUIChar-">
+<param name="Local" value="uWebUIBase64.TWebUIBase64.html#Encode-string-">
 </object>
 </ul>
 <li><object type="text/sitemap">
@@ -753,8 +871,16 @@
 <param name="Local" value="uWebUITypes.html#TWebUIChar">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="TWebUIClientID">
+<param name="Local" value="uWebUITypes.html#TWebUIClientID">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="TWebUIConfig">
 <param name="Local" value="uWebUITypes.html#TWebUIConfig">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TWebUIConnectionID">
+<param name="Local" value="uWebUITypes.html#TWebUIConnectionID">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIEvent">
@@ -763,6 +889,18 @@
 <li><object type="text/sitemap">
 <param name="Name" value="bind_id">
 <param name="Local" value="uWebUITypes.TWebUIEvent.html#bind_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="client_id">
+<param name="Local" value="uWebUITypes.TWebUIEvent.html#client_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="connection_id">
+<param name="Local" value="uWebUITypes.TWebUIEvent.html#connection_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="cookies">
+<param name="Local" value="uWebUITypes.TWebUIEvent.html#cookies">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="element">
@@ -789,17 +927,33 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#BindID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="ClientID">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ClientID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="CloseClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#CloseClient">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ConnectionID">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Cookies">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Cookies">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Count">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Count">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Create">
-<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-TWebUIClientID-TWebUIConnectionID-PWebUIChar-">
 </object>
 <ul>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIEventHandler - uWebUIEventHandler Unit">
-<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Create-TWebUIWindowID-TWebUIEventType-PWebUIChar-TWebUIEventID-TWebUIBindID-TWebUIClientID-TWebUIConnectionID-PWebUIChar-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIEventHandler - uWebUIEventHandler Unit">
@@ -837,6 +991,18 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetBoolAt">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetBoolAt-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetClientID">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetClientID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetConnectionID">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetCookies">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetCookies">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetCount">
@@ -915,6 +1081,10 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Initialized">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="NavigateClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#NavigateClient-string-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ReturnBool">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ReturnBool-boolean-">
 </object>
@@ -945,6 +1115,18 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ReturnString-string-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="RunClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#RunClient-string-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="ScriptClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ScriptClient-string-NativeUInt-string-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SendRawClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#SendRawClient-string-Pointer-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetResponse">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#SetResponse-TMemoryStream-int64-int64-">
 </object>
@@ -962,6 +1144,10 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#SetResponse-string-">
 </object>
 </ul>
+<li><object type="text/sitemap">
+<param name="Name" value="ShowClient">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#ShowClient-string-">
+</object>
 <li><object type="text/sitemap">
 <param name="Name" value="Window">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Window">
@@ -1145,6 +1331,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetParentProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetPort">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetPort">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetUrl">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetUrl">
 </object>
@@ -1213,6 +1403,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetHide-boolean-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetHighContrast">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetHighContrast-boolean-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetIcon">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetIcon-string-string-">
 </object>
@@ -1227,6 +1421,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPort">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetPort-NativeUInt-">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetPort2">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetPort2-NativeUInt-">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetPosition">
@@ -1269,6 +1467,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#ShowWV-string-">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="StartServer">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#StartServer-string-">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="UnLock">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#UnLock">
 </object>
@@ -1289,12 +1491,20 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_bind">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_browser_exist">
+<param name="Local" value="uWebUILibFunctions.html#webui_browser_exist">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_clean">
 <param name="Local" value="uWebUILibFunctions.html#webui_clean">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_close">
 <param name="Local" value="uWebUILibFunctions.html#webui_close">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_close_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_close_client">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="WEBUI_DEBUG_LIB">
@@ -1361,6 +1571,10 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_get_float_at">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_get_free_port">
+<param name="Local" value="uWebUILibFunctions.html#webui_get_free_port">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_get_int">
 <param name="Local" value="uWebUILibFunctions.html#webui_get_int">
 </object>
@@ -1369,12 +1583,20 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_get_int_at">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_get_mime_type">
+<param name="Local" value="uWebUILibFunctions.html#webui_get_mime_type">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_get_new_window_id">
 <param name="Local" value="uWebUILibFunctions.html#webui_get_new_window_id">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_get_parent_process_id">
 <param name="Local" value="uWebUILibFunctions.html#webui_get_parent_process_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_get_port">
+<param name="Local" value="uWebUILibFunctions.html#webui_get_port">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_get_size">
@@ -1405,6 +1627,10 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_interface_get_bool_at">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_interface_get_float_at">
+<param name="Local" value="uWebUILibFunctions.html#webui_interface_get_float_at">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_interface_get_int_at">
 <param name="Local" value="uWebUILibFunctions.html#webui_interface_get_int_at">
 </object>
@@ -1427,6 +1653,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="webui_interface_set_response">
 <param name="Local" value="uWebUILibFunctions.html#webui_interface_set_response">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_is_high_contrast">
+<param name="Local" value="uWebUILibFunctions.html#webui_is_high_contrast">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_is_shown">
@@ -1453,12 +1683,20 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_navigate">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_navigate_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_navigate_client">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_new_window">
 <param name="Local" value="uWebUILibFunctions.html#webui_new_window">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_new_window_id">
 <param name="Local" value="uWebUILibFunctions.html#webui_new_window_id">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_open_url">
+<param name="Local" value="uWebUILibFunctions.html#webui_open_url">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_return_bool">
@@ -1481,12 +1719,24 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_run">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_run_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_run_client">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_script">
 <param name="Local" value="uWebUILibFunctions.html#webui_script">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_script_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_script_client">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_send_raw">
 <param name="Local" value="uWebUILibFunctions.html#webui_send_raw">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_send_raw_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_send_raw_client">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_set_config">
@@ -1507,6 +1757,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="webui_set_hide">
 <param name="Local" value="uWebUILibFunctions.html#webui_set_hide">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_set_high_contrast">
+<param name="Local" value="uWebUILibFunctions.html#webui_set_high_contrast">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="webui_set_icon">
@@ -1565,8 +1819,16 @@
 <param name="Local" value="uWebUILibFunctions.html#webui_show_browser">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="webui_show_client">
+<param name="Local" value="uWebUILibFunctions.html#webui_show_client">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="webui_show_wv">
 <param name="Local" value="uWebUILibFunctions.html#webui_show_wv">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="webui_start_server">
+<param name="Local" value="uWebUILibFunctions.html#webui_start_server">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="WEBUI_VERSION_BUILD">

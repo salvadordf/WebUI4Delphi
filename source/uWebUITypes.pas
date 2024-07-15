@@ -90,7 +90,11 @@ type
     /// <summary>
     /// Any Chromium based browser.
     /// </summary>
-    ChromiumBased
+    ChromiumBased,
+    /// <summary>
+    /// WebView (Non-web-browser).
+    /// </summary>
+    Webview
   );
 
   /// <summary>
@@ -111,7 +115,11 @@ type
     /// <summary>
     /// Use Nodejs runtime for .js files.
     /// </summary>
-    NodeJS
+    NodeJS,
+    /// <summary>
+    /// Use Bun runtime for .js and .ts files
+    /// </summary>
+    Bun
   );
 
   /// <summary>
@@ -154,9 +162,19 @@ type
   TWebUIBindID = type NativeUInt;
 
   /// <summary>
+  /// Client's  unique ID.
+  /// </summary>
+  TWebUIClientID = type NativeUInt;
+
+  /// <summary>
   /// The event number or event ID.
   /// </summary>
   TWebUIEventID = type NativeUInt;
+
+  /// <summary>
+  /// Client's connection ID.
+  /// </summary>
+  TWebUIConnectionID = type NativeUInt;
 
   /// <summary>
   /// WebUI char type.
@@ -167,6 +185,9 @@ type
   /// <summary>
   /// WebUI configuration.
   /// </summary>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_config)</see></para>
+  /// </remarks>
   TWebUIConfig = (
     /// <summary>
     /// Control if `webui_show()`, `webui_show_browser()` and
@@ -181,7 +202,27 @@ type
     /// all windows. You can use `webui_set_event_blocking()` for
     /// a specific single window update. Default: False.
     /// </summary>
-    ui_event_blocking
+    ui_event_blocking,
+    /// <summary>
+    /// Automatically refresh the window UI when any file in the
+    /// root folder gets changed.
+    /// Default: False
+    /// </summary>
+    folder_monitor,
+    /// <summary>
+    /// Allow multiple clients to connect to the same window,
+    /// This is helpful for web apps (non-desktop software),
+    /// Please see the documentation for more details.
+    /// Default: False
+    /// </summary>
+    multi_client,
+    /// <summary>
+    /// Allow multiple clients to connect to the same window,
+    /// This is helpful for web apps (non-desktop software),
+    /// Please see the documentation for more details.
+    /// Default: False
+    /// </summary>
+    use_cookies
   );
 
   /// <summary>
@@ -194,23 +235,35 @@ type
     /// <summary>
     /// The window object number.
     /// </summary>
-    window       : TWebUIWindowID;
+    window        : TWebUIWindowID;
     /// <summary>
     /// Event type.
     /// </summary>
-    event_type   : TWebUIEventType;
+    event_type    : TWebUIEventType;
     /// <summary>
     /// HTML element ID.
     /// </summary>
-    element      : PWebUIChar;
+    element       : PWebUIChar;
     /// <summary>
     /// Internal WebUI. Event number or Event ID.
     /// </summary>
-    event_number : TWebUIEventID;
+    event_number  : TWebUIEventID;
     /// <summary>
     /// Bind ID.
     /// </summary>
-    bind_id      : TWebUIBindID;
+    bind_id       : TWebUIBindID;
+    /// <summary>
+    /// Client's unique ID.
+    /// </summary>
+    client_id     : TWebUIClientID;
+    /// <summary>
+    /// Client's connection ID.
+    /// </summary>
+    connection_id : TWebUIConnectionID;
+    /// <summary>
+    /// Client's full cookies.
+    /// </summary>
+    cookies       : PWebUIChar;
   end;
   PWebUIEvent = ^TWebUIEvent;
 
@@ -233,6 +286,9 @@ type
       function GetBindID: TWebUIBindID;
       function GetWindow: IWebUIWindow;
       function GetCount: NativeUInt;
+      function GetClientID: TWebUIClientID;
+      function GetConnectionID : TWebUIConnectionID;
+      function GetCookies : string;
 
       /// <summary>
       /// Get an argument as integer at a specific index.
@@ -394,49 +450,116 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
       /// </remarks>
       procedure SetResponse(const response: string);
+      /// <summary>
+      /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. Single client.
+      /// </summary>
+      /// <param name="content">The HTML, URL, Or a local file.</param>
+      /// <returns>Returns True if showing the window is successed.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_client)</see></para>
+      /// </remarks>
+      function  ShowClient(const content : string) : boolean;
+      /// <summary>
+      /// Close a specific client.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close_client)</see></para>
+      /// </remarks>
+      procedure   CloseClient;
+      /// <summary>
+      /// Safely send raw data to the UI. Single client.
+      /// </summary>
+      /// <param name="function_">The JavaScript function to receive raw data: `function * myFunc(myData){}`.</param>
+      /// <param name="raw">The raw data buffer.</param>
+      /// <param name="size">The raw data size in bytes.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_send_raw_client)</see></para>
+      /// </remarks>
+      procedure   SendRawClient(const function_: string; const raw: Pointer; size: NativeUInt);
+      /// <summary>
+      /// Navigate to a specific URL. Single client.
+      /// </summary>
+      /// <param name="url">Full HTTP URL.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_navigate_client)</see></para>
+      /// </remarks>
+      procedure   NavigateClient(const Url: string);
+      /// <summary>
+      /// Run JavaScript without waiting for the response. Single client.
+      /// </summary>
+      /// <param name="script_">The JavaScript to be run.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_run)</see></para>
+      /// </remarks>
+      procedure   RunClient(const script_: string);
+      /// <summary>
+      /// Run JavaScript and get the response back. Single client.
+      /// Make sure your local buffer can hold the response.
+      /// </summary>
+      /// <param name="script_">The JavaScript to be run.</param>
+      /// <param name="timeout">The execution timeout in seconds.</param>
+      /// <param name="buffer">The local buffer to hold the response.</param>
+      /// <param name="buffer_length">The local buffer size.</param>
+      /// <returns>Returns True if there is no execution error.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_script)</see></para>
+      /// </remarks>
+      function    ScriptClient(const script_: string; timeout: NativeUInt; var buffer: string; buffer_length: NativeUInt): boolean;
 
       /// <summary>
       /// Returns true if the Window was created successfully.
       /// </summary>
-      property Initialized       : boolean          read GetInitialized;
+      property Initialized       : boolean            read GetInitialized;
       /// <summary>
       /// Pointer to WebUI event record.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_event_t)</see></para>
       /// </remarks>
-      property Event             : PWebUIEvent      read GetEvent;
+      property Event             : PWebUIEvent        read GetEvent;
       /// <summary>
       /// Window wrapper for the Window object of this event.
       /// </summary>
-      property Window            : IWebUIWindow     read GetWindow;
+      property Window            : IWebUIWindow       read GetWindow;
       /// <summary>
       /// The window object number or ID.
       /// </summary>
-      property WindowID          : TWebUIWindowID   read GetWindowID;
+      property WindowID          : TWebUIWindowID     read GetWindowID;
       /// <summary>
       /// Event type.
       /// </summary>
-      property EventType         : TWebUIEventType  read GetEventType;
+      property EventType         : TWebUIEventType    read GetEventType;
       /// <summary>
       /// HTML element ID.
       /// </summary>
-      property Element           : string           read GetElement;
+      property Element           : string             read GetElement;
       /// <summary>
       /// Event number or Event ID.
       /// </summary>
-      property EventID           : TWebUIEventID    read GetEventID;
+      property EventID           : TWebUIEventID      read GetEventID;
       /// <summary>
       /// Bind ID.
       /// </summary>
-      property BindID            : TWebUIBindID     read GetBindID;
+      property BindID            : TWebUIBindID       read GetBindID;
       /// <summary>
       /// Get how many arguments there are in an event.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_count)</see></para>
       /// </remarks>
-      property Count             : NativeUInt       read GetCount;
+      property Count             : NativeUInt         read GetCount;
+      /// <summary>
+      /// Client's unique ID.
+      /// </summary>
+      property ClientID          : TWebUIClientID     read GetClientID;
+      /// <summary>
+      /// Client's connection ID.
+      /// </summary>
+      property ConnectionID      : TWebUIConnectionID read GetConnectionID;
+      /// <summary>
+      /// Client's full cookies.
+      /// </summary>
+      property Cookies           : string             read GetCookies;
   end;
 
   IWebUIWindow = interface
@@ -464,9 +587,9 @@ type
     /// </remarks>
     procedure   DestroyWindow;
     /// <summary>
-    /// <para>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.</para>
+    /// <para>Bind an HTML element and a JavaScript object with a backend function. Empty element name means all events.</para>
     /// </summary>
-    /// <param name="element_">The HTML element ID.</param>
+    /// <param name="element_">The HTML element / JavaScript object.</param>
     /// <returns>Returns a unique bind ID.</returns>
     /// <remarks>
     /// <para>The OnWebUIEvent event will be executed in the main application thread by default. Set WebUI.SyncedEvents to false in order to execute it in a background thread.</para>
@@ -515,7 +638,7 @@ type
     /// </remarks>
     function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID; overload;
     /// <summary>
-    /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
+    /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. This will refresh all windows in multi-client mode.
     /// </summary>
     /// <param name="content">The HTML, URL, Or a local file.</param>
     /// <returns>Returns True if showing the window is successed.</returns>
@@ -551,7 +674,7 @@ type
     /// </remarks>
     procedure   SetKiosk(status: boolean);
     /// <summary>
-    /// Close a specific window only. The window object will still exist.
+    /// Close a specific window only. The window object will still exist. All clients.
     /// </summary>
     /// <remarks>
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close)</see></para>
@@ -567,7 +690,7 @@ type
     /// </remarks>
     function    SetRootFolder(const path : string) : boolean;
     /// <summary>
-    /// Set a custom handler to serve files.
+    /// Set a custom handler to serve files. This custom handler should return full HTTP header and body.
     /// </summary>
     /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
     /// <remarks>
@@ -585,7 +708,7 @@ type
     /// </remarks>
     procedure   SetIcon(const icon, icon_type : string);
     /// <summary>
-    /// Safely send raw data to the UI.
+    /// Safely send raw data to the UI. All clients.
     /// </summary>
     /// <param name="function_">The JavaScript function to receive raw data: `function * myFunc(myData){}`.</param>
     /// <param name="raw">The raw data buffer.</param>
@@ -646,7 +769,7 @@ type
     /// </remarks>
     procedure   SetPublic(status: boolean);
     /// <summary>
-    /// Navigate to a specific URL.
+    /// Navigate to a specific URL. All clients.
     /// </summary>
     /// <param name="url">Full HTTP URL.</param>
     /// <remarks>
@@ -662,6 +785,14 @@ type
     /// </remarks>
     procedure   DeleteProfile;
     /// <summary>
+    /// Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js`
+    /// </summary>
+    /// <returns>Returns the network port of the window.</returns>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
+    /// </remarks>
+    function    GetPort : NativeUInt;
+    /// <summary>
     /// Set a custom web-server/websocket network port to be used by WebUI.
     /// This can be useful to determine the HTTP link of `webui.js` in case
     /// you are trying to use WebUI with an external web-server like NGNIX
@@ -673,7 +804,17 @@ type
     /// </remarks>
     function    SetPort(port : NativeUInt): boolean;
     /// <summary>
-    /// Run JavaScript without waiting for the response.
+    /// Set a custom web-server/websocket network port to be used by WebUI.
+    /// This can be useful to determine the HTTP link of `webui.js` in case
+    /// you are trying to use WebUI with an external web-server like NGNIX
+    /// </summary>
+    /// <param name="port">The web-server network port WebUI should use.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_port)</see></para>
+    /// </remarks>
+    procedure   SetPort2(port : NativeUInt);
+    /// <summary>
+    /// Run JavaScript without waiting for the response. All clients.
     /// </summary>
     /// <param name="script_">The JavaScript to be run.</param>
     /// <remarks>
@@ -681,11 +822,11 @@ type
     /// </remarks>
     procedure   Run(const script_: string);
     /// <summary>
-    /// Run JavaScript and get the response back.
+    /// Run JavaScript and get the response back. Work only in single client mode.
     /// Make sure your local buffer can hold the response.
     /// </summary>
     /// <param name="script_">The JavaScript to be run.</param>
-    /// <param name="timeout">The execution timeout.</param>
+    /// <param name="timeout">The execution timeout in seconds.</param>
     /// <param name="buffer">The local buffer to hold the response.</param>
     /// <param name="buffer_length">The local buffer size.</param>
     /// <returns>Returns True if there is no execution error.</returns>
@@ -696,7 +837,7 @@ type
     /// <summary>
     /// Chose between Deno and Nodejs as runtime for .js and .ts files.
     /// </summary>
-    /// <param name="runtime">Deno, Nodejs or None.</param>
+    /// <param name="runtime">Deno, Bun, Nodejs or None.</param>
     /// <remarks>
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
     /// </remarks>
@@ -716,6 +857,23 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_event_blocking)</see></para>
     /// </remarks>
     procedure   SetEventBlocking(status: boolean);
+    /// <summary>
+    /// Start only the web server and return the URL. This is useful for web app.
+    /// </summary>
+    /// <param name="path">The local root folder full path.</param>
+    /// <returns>Returns the url of this window server.</returns>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_start_server)</see></para>
+    /// </remarks>
+    function    StartServer(const path: string): string;
+    /// <summary>
+    /// Set the window with high-contrast support. Useful when you want to build a better high-contrast theme with CSS.
+    /// </summary>
+    /// <param name="status">True or False.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_high_contrast)</see></para>
+    /// </remarks>
+    procedure   SetHighContrast(status: boolean);
     /// <summary>
     /// Window number or Window ID.
     /// </summary>
@@ -764,6 +922,13 @@ type
     /// Allow using WebView to show a browser with TWebUIWindow.Show.
     /// </summary>
     property AllowWebView     : boolean           read GetAllowWebView     write SetAllowWebView;
+    /// <summary>
+    /// Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js`
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
+    /// </remarks>
+    property Port             : NativeUInt        read GetPort             write SetPort2;
     /// <summary>
     /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
     /// </summary>

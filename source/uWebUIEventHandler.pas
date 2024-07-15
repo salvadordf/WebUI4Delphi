@@ -41,10 +41,13 @@ type
       function GetBindID: TWebUIBindID;
       function GetWindow: IWebUIWindow;
       function GetCount: NativeUInt;
+      function GetClientID: TWebUIClientID;
+      function GetConnectionID : TWebUIConnectionID;
+      function GetCookies : string;
 
     public
       constructor Create(const aEvent: PWebUIEvent); overload;
-      constructor Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); overload;
+      constructor Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID; client_id: TWebUIClientID; connection_id: TWebUIConnectionID; const cookies: PWebUIChar); overload;
 
       /// <summary>
       /// Get an argument as integer at a specific index.
@@ -224,49 +227,116 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response)</see></para>
       /// </remarks>
       procedure SetResponse(const response: TMemoryStream; aOffset, aCount: int64); overload;
+      /// <summary>
+      /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. Single client.
+      /// </summary>
+      /// <param name="content">The HTML, URL, Or a local file.</param>
+      /// <returns>Returns True if showing the window is successed.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_show_client)</see></para>
+      /// </remarks>
+      function  ShowClient(const content : string) : boolean;
+      /// <summary>
+      /// Close a specific client.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close_client)</see></para>
+      /// </remarks>
+      procedure CloseClient;
+      /// <summary>
+      /// Safely send raw data to the UI. Single client.
+      /// </summary>
+      /// <param name="function_">The JavaScript function to receive raw data: `function * myFunc(myData){}`.</param>
+      /// <param name="raw">The raw data buffer.</param>
+      /// <param name="size">The raw data size in bytes.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_send_raw_client)</see></para>
+      /// </remarks>
+      procedure   SendRawClient(const function_: string; const raw: Pointer; size: NativeUInt);
+      /// <summary>
+      /// Navigate to a specific URL. Single client.
+      /// </summary>
+      /// <param name="url">Full HTTP URL.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_navigate_client)</see></para>
+      /// </remarks>
+      procedure   NavigateClient(const Url: string);
+      /// <summary>
+      /// Run JavaScript without waiting for the response. Single client.
+      /// </summary>
+      /// <param name="script_">The JavaScript to be run.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_run)</see></para>
+      /// </remarks>
+      procedure   RunClient(const script_: string);
+      /// <summary>
+      /// Run JavaScript and get the response back. Single client.
+      /// Make sure your local buffer can hold the response.
+      /// </summary>
+      /// <param name="script_">The JavaScript to be run.</param>
+      /// <param name="timeout">The execution timeout in seconds.</param>
+      /// <param name="buffer">The local buffer to hold the response.</param>
+      /// <param name="buffer_length">The local buffer size.</param>
+      /// <returns>Returns True if there is no execution error.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_script)</see></para>
+      /// </remarks>
+      function    ScriptClient(const script_: string; timeout: NativeUInt; var buffer: string; buffer_length: NativeUInt): boolean;
 
       /// <summary>
       /// Returns true if the Window was created successfully.
       /// </summary>
-      property Initialized       : boolean          read GetInitialized;
+      property Initialized       : boolean            read GetInitialized;
       /// <summary>
       /// Pointer to WebUI event record.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_event_t)</see></para>
       /// </remarks>
-      property Event             : PWebUIEvent      read GetEvent;
+      property Event             : PWebUIEvent        read GetEvent;
       /// <summary>
       /// Window wrapper for the Window object of this event.
       /// </summary>
-      property Window            : IWebUIWindow     read GetWindow;
+      property Window            : IWebUIWindow       read GetWindow;
       /// <summary>
       /// The window object number or ID.
       /// </summary>
-      property WindowID          : TWebUIWindowID   read GetWindowID;
+      property WindowID          : TWebUIWindowID     read GetWindowID;
       /// <summary>
       /// Event type.
       /// </summary>
-      property EventType         : TWebUIEventType  read GetEventType;
+      property EventType         : TWebUIEventType    read GetEventType;
       /// <summary>
       /// HTML element ID.
       /// </summary>
-      property Element           : string           read GetElement;
+      property Element           : string             read GetElement;
       /// <summary>
       /// Event number or Event ID.
       /// </summary>
-      property EventID           : TWebUIEventID    read GetEventID;
+      property EventID           : TWebUIEventID      read GetEventID;
       /// <summary>
       /// Bind ID.
       /// </summary>
-      property BindID            : TWebUIBindID     read GetBindID;
+      property BindID            : TWebUIBindID       read GetBindID;
       /// <summary>
       /// Get how many arguments there are in an event.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_count)</see></para>
       /// </remarks>
-      property Count             : NativeUInt       read GetCount;
+      property Count             : NativeUInt         read GetCount;
+      /// <summary>
+      /// Client's unique ID.
+      /// </summary>
+      property ClientID          : TWebUIClientID     read GetClientID;
+      /// <summary>
+      /// Client's connection ID.
+      /// </summary>
+      property ConnectionID      : TWebUIConnectionID read GetConnectionID;
+      /// <summary>
+      /// Client's full cookies.
+      /// </summary>
+      property Cookies           : string             read GetCookies;
   end;
 
 implementation
@@ -280,25 +350,38 @@ begin
 
   if assigned(aEvent) then
     begin
-      FEvent.window       := aEvent^.window;
-      FEvent.event_type   := aEvent^.event_type;
-      FEvent.element      := aEvent^.element;
-      FEvent.event_number := aEvent^.event_number;
-      FEvent.bind_id      := aEvent^.bind_id;
+      FEvent.window        := aEvent^.window;
+      FEvent.event_type    := aEvent^.event_type;
+      FEvent.element       := aEvent^.element;
+      FEvent.event_number  := aEvent^.event_number;
+      FEvent.bind_id       := aEvent^.bind_id;
+      FEvent.client_id     := aEvent^.client_id;
+      FEvent.connection_id := aEvent^.connection_id;
+      FEvent.cookies       := aEvent^.cookies;
     end
    else
     FillChar(FEvent, SizeOf(TWebUIEvent), #0);
 end;
 
-constructor TWebUIEventHandler.Create(window: TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID);
+constructor TWebUIEventHandler.Create(      window        : TWebUIWindowID;
+                                            event_type    : TWebUIEventType;
+                                      const element       : PWebUIChar;
+                                            event_number  : TWebUIEventID;
+                                            bind_id       : TWebUIBindID;
+                                            client_id     : TWebUIClientID;
+                                            connection_id : TWebUIConnectionID;
+                                      const cookies       : PWebUIChar);
 begin
   inherited Create;
 
-  FEvent.window       := window;
-  FEvent.event_type   := event_type;
-  FEvent.element      := element;
-  FEvent.event_number := event_number;
-  FEvent.bind_id      := bind_id;
+  FEvent.window        := window;
+  FEvent.event_type    := event_type;
+  FEvent.element       := element;
+  FEvent.event_number  := event_number;
+  FEvent.bind_id       := bind_id;
+  FEvent.client_id     := client_id;
+  FEvent.connection_id := connection_id;
+  FEvent.cookies       := cookies;
 end;
 
 function TWebUIEventHandler.GetInitialized: boolean;
@@ -352,6 +435,24 @@ begin
     Result := webui_get_count(@FEvent)
    else
     Result := 0;
+end;
+
+function TWebUIEventHandler.GetClientID: TWebUIClientID;
+begin
+  Result := FEvent.client_id;
+end;
+
+function TWebUIEventHandler.GetConnectionID : TWebUIConnectionID;
+begin
+  Result := FEvent.connection_id;
+end;
+
+function TWebUIEventHandler.GetCookies : string;
+begin
+  if assigned(FEvent.cookies) then
+    Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(FEvent.cookies))
+   else
+    Result := '';
 end;
 
 function TWebUIEventHandler.GetIntAt(index: NativeUInt): int64;
@@ -583,6 +684,90 @@ begin
       response.Seek(aOffset, soBeginning);
       response.Read(LBuffer^, aCount);
       webui_interface_set_response(FEvent.window, FEvent.event_number, LBuffer);
+    finally
+      if (LBuffer <> nil) then
+        webui_free(LBuffer);
+    end;
+end;
+
+function TWebUIEventHandler.ShowClient(const content : string) : boolean;
+var
+  LContent    : AnsiString;
+  LContentPtr : PWebUIChar;
+begin
+  Result := False;
+
+  if Initialized then
+    begin
+      if (length(content) > 0) then
+        begin
+          LContent    := UTF8Encode(content + #0);
+          LContentPtr := @LContent[1];
+        end
+       else
+        LContentPtr := nil;
+
+      Result := webui_show_client(@FEvent, LContentPtr);
+    end;
+end;
+
+procedure TWebUIEventHandler.CloseClient;
+begin
+  if Initialized then
+    webui_close_client(@FEvent);
+end;
+
+procedure TWebUIEventHandler.SendRawClient(const function_: string; const raw: Pointer; size: NativeUInt);
+var
+  LFunction: AnsiString;
+begin
+  if Initialized then
+    begin
+      LFunction := UTF8Encode(function_ + #0);
+      webui_send_raw_client(@FEvent, @LFunction[1], raw, size);
+    end;
+end;
+
+procedure TWebUIEventHandler.NavigateClient(const Url: string);
+var
+  LUrl: AnsiString;
+begin
+  if Initialized then
+    begin
+      LUrl := UTF8Encode(Url + #0);
+      webui_navigate_client(@FEvent, @LUrl[1]);
+    end;
+end;
+
+procedure TWebUIEventHandler.RunClient(const script_: string);
+var
+  LScript : AnsiString;
+begin
+  if Initialized then
+    begin
+      LScript := UTF8Encode(script_ + #0);
+      webui_run_client(@FEvent, @LScript[1]);
+    end;
+end;
+
+function TWebUIEventHandler.ScriptClient(const script_: string; timeout: NativeUInt; var buffer: string; buffer_length: NativeUInt): boolean;
+var
+  LScript : AnsiString;
+  LBuffer : PWebUIChar;
+begin
+  Result  := False;
+  LBuffer := nil;
+
+  if Initialized then
+    try
+      LBuffer := webui_malloc(buffer_length);
+      LScript := UTF8Encode(script_ + #0);
+
+      if webui_script_client(@FEvent, @LScript[1], timeout, LBuffer, buffer_length) then
+        begin
+          buffer := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
+          Result := True;
+        end;
     finally
       if (LBuffer <> nil) then
         webui_free(LBuffer);

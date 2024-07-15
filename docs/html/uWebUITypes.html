@@ -53,7 +53,13 @@
 <td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a></strong> = type NativeUInt;</code></td>
 </tr>
 <tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIClientID">TWebUIClientID</a></strong> = type NativeUInt;</code></td>
+</tr>
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a></strong> = type NativeUInt;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIConnectionID">TWebUIConnectionID</a></strong> = type NativeUInt;</code></td>
 </tr>
 <tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIChar">TWebUIChar</a></strong> = type AnsiChar;</code></td>
@@ -145,6 +151,8 @@
 <span id="Yandex">Yandex</span>:  Yandex. </li>
 <li>
 <span id="ChromiumBased">ChromiumBased</span>:  Any Chromium based browser. </li>
+<li>
+<span id="Webview">Webview</span>:  WebView (Non-web-browser). </li>
 </ul>
 </td></tr>
 </table>
@@ -167,6 +175,8 @@
 <span id="Deno">Deno</span>:  Use Deno runtime for .js and .ts files. </li>
 <li>
 <span id="NodeJS">NodeJS</span>:  Use Nodejs runtime for .js files. </li>
+<li>
+<span id="Bun">Bun</span>:  Use Bun runtime for .js and .ts files </li>
 </ul>
 </td></tr>
 </table>
@@ -216,11 +226,29 @@
 </table>
 <table class="detail wide_list">
 <tr class="list">
+<td class="itemcode"><span id="TWebUIClientID"></span><code><strong>TWebUIClientID</strong> = type NativeUInt;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Client's unique ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
 <td class="itemcode"><span id="TWebUIEventID"></span><code><strong>TWebUIEventID</strong> = type NativeUInt;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
  The event number or event ID. </p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIConnectionID"></span><code><strong>TWebUIConnectionID</strong> = type NativeUInt;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Client's connection ID. </p>
 </td></tr>
 </table>
 <table class="detail wide_list">
@@ -246,12 +274,22 @@
 <tr><td colspan="1">
 <p>
  WebUI configuration. </p>
+<p>
+
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_config))</p>
 <h6 class="description_section">Values</h6>
 <ul>
 <li>
 <span id="show_wait_connection">show_wait_connection = 0</span>:  Control if `webui_show()`, `webui_show_browser()` and `webui_show_wv()` should wait for the window to connect before returns or not. Default: True. </li>
 <li>
 <span id="ui_event_blocking">ui_event_blocking</span>:  Control if WebUI should block and process the UI events one a time in a single thread `True`, or process every event in a new non-blocking thread `False`. This updates all windows. You can use `webui_set_event_blocking()` for a specific single window update. Default: False. </li>
+<li>
+<span id="folder_monitor">folder_monitor</span>:  Automatically refresh the window UI when any file in the root folder gets changed. Default: False </li>
+<li>
+<span id="multi_client">multi_client</span>:  Allow multiple clients to connect to the same window, This is helpful for web apps (non-desktop software), Please see the documentation for more details. Default: False </li>
+<li>
+<span id="use_cookies">use_cookies</span>:  Allow multiple clients to connect to the same window, This is helpful for web apps (non-desktop software), Please see the documentation for more details. Default: False </li>
 </ul>
 </td></tr>
 </table>

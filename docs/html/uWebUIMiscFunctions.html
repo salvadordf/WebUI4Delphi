@@ -46,30 +46,33 @@
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#LibraryExists-string-">LibraryExists</a></strong>(const aPath : string) : boolean;</code></td>
 </tr>
 <tr class="list">
-<td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#StringToPWebUIChar-string-integer-">StringToPWebUIChar</a></strong>(const aSrcString: string; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>;</code></td>
+<td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#StringToPWebUIChar-string-integer-">StringToPWebUIChar</a></strong>(const aSrcString: string; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
 </tr>
 <tr class="list2">
+<td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#StringToPWebUIChar-AnsiString-integer-">StringToPWebUIChar</a></strong>(const aSrcString: AnsiString; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr class="list">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsRelativeAnsi-LPCSTR-">PathIsRelativeAnsi</a></strong>(pszPath: LPCSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsRelativeA';</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsRelativeUnicode-LPCWSTR-">PathIsRelativeUnicode</a></strong>(pszPath: LPCWSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsRelativeW';</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathCanonicalizeAnsi-LPSTR-LPCSTR-">PathCanonicalizeAnsi</a></strong>(pszBuf: LPSTR; pszPath: LPCSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathCanonicalizeA';</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathCanonicalizeUnicode-LPWSTR-LPCWSTR-">PathCanonicalizeUnicode</a></strong>(pszBuf: LPWSTR; pszPath: LPCWSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathCanonicalizeW';</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsUNCAnsi-LPCSTR-">PathIsUNCAnsi</a></strong>(pszPath: LPCSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsUNCA';</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsUNCUnicode-LPCWSTR-">PathIsUNCUnicode</a></strong>(pszPath: LPCWSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsUNCW';</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsURLAnsi-LPCSTR-">PathIsURLAnsi</a></strong>(pszPath: LPCSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsURLA';</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code>function <strong><a href="uWebUIMiscFunctions.html#PathIsURLUnicode-LPCWSTR-">PathIsURLUnicode</a></strong>(pszPath: LPCWSTR): BOOL; stdcall; external <a href="uWebUIMiscFunctions.html#SHLWAPIDLL">SHLWAPIDLL</a> name 'PathIsURLW';</code></td>
 </tr>
 </table>
@@ -225,7 +228,27 @@
 </table>
 <table class="detail wide_list">
 <tr class="list">
-<td class="itemcode"><span id="StringToPWebUIChar-string-integer-"></span><code>function <strong>StringToPWebUIChar</strong>(const aSrcString: string; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>;</code></td>
+<td class="itemcode"><span id="StringToPWebUIChar-string-integer-"></span><code>function <strong>StringToPWebUIChar</strong>(const aSrcString: string; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Converts a unicode string to a WebUI string. This function should only be used by the file handler callback. By allocating resources using webui_malloc() WebUI will automaticaly free the resources. </p>
+<p>
+ 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>aSrcString</dt>
+<dd>The original unicode string.</dd>
+<dt>aRsltLength</dt>
+<dd>The length of the result string.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToPWebUIChar-AnsiString-integer-"></span><code>function <strong>StringToPWebUIChar</strong>(const aSrcString: AnsiString; var aRsltLength: integer): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; overload;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>

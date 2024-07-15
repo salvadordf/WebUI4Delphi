@@ -86,9 +86,9 @@ type
       /// </remarks>
       procedure   DestroyWindow;
       /// <summary>
-      /// <para>Bind a specific html element click event with the OnWebUIEvent event. Empty element means all events.</para>
+      /// <para>Bind an HTML element and a JavaScript object with a backend function. Empty element name means all events.</para>
       /// </summary>
-      /// <param name="element_">The HTML element ID.</param>
+      /// <param name="element_">The HTML element / JavaScript object.</param>
       /// <returns>Returns a unique bind ID.</returns>
       /// <remarks>
       /// <para>The OnWebUIEvent event will be executed in the main application thread by default. Set WebUI.SyncedEvents to false in order to execute it in a background thread.</para>
@@ -137,7 +137,7 @@ type
       /// </remarks>
       function    BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID; overload;
       /// <summary>
-      /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed.
+      /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. This will refresh all windows in multi-client mode.
       /// </summary>
       /// <param name="content">The HTML, URL, Or a local file.</param>
       /// <returns>Returns True if showing the window is successed.</returns>
@@ -173,7 +173,7 @@ type
       /// </remarks>
       procedure   SetKiosk(status: boolean);
       /// <summary>
-      /// Close a specific window only. The window object will still exist.
+      /// Close a specific window only. The window object will still exist. All clients.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_close)</see></para>
@@ -189,7 +189,7 @@ type
       /// </remarks>
       function    SetRootFolder(const path : string) : boolean;
       /// <summary>
-      /// Set a custom handler to serve files.
+      /// Set a custom handler to serve files. This custom handler should return full HTTP header and body.
       /// </summary>
       /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
       /// <remarks>
@@ -207,7 +207,7 @@ type
       /// </remarks>
       procedure   SetIcon(const icon, icon_type : string);
       /// <summary>
-      /// Safely send raw data to the UI.
+      /// Safely send raw data to the UI. All clients.
       /// </summary>
       /// <param name="function_">The JavaScript function to receive raw data: `function * myFunc(myData){}`.</param>
       /// <param name="raw">The raw data buffer.</param>
@@ -268,7 +268,7 @@ type
       /// </remarks>
       procedure   SetPublic(status: boolean);
       /// <summary>
-      /// Navigate to a specific URL.
+      /// Navigate to a specific URL. All clients.
       /// </summary>
       /// <param name="url">Full HTTP URL.</param>
       /// <remarks>
@@ -284,6 +284,14 @@ type
       /// </remarks>
       procedure   DeleteProfile;
       /// <summary>
+      /// Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js`
+      /// </summary>
+      /// <returns>Returns the network port of the window.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
+      /// </remarks>
+      function    GetPort : NativeUInt;
+      /// <summary>
       /// Set a custom web-server/websocket network port to be used by WebUI.
       /// This can be useful to determine the HTTP link of `webui.js` in case
       /// you are trying to use WebUI with an external web-server like NGNIX
@@ -295,7 +303,17 @@ type
       /// </remarks>
       function    SetPort(port : NativeUInt): boolean;
       /// <summary>
-      /// Run JavaScript without waiting for the response.
+      /// Set a custom web-server/websocket network port to be used by WebUI.
+      /// This can be useful to determine the HTTP link of `webui.js` in case
+      /// you are trying to use WebUI with an external web-server like NGNIX
+      /// </summary>
+      /// <param name="port">The web-server network port WebUI should use.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_port)</see></para>
+      /// </remarks>
+      procedure   SetPort2(port : NativeUInt);
+      /// <summary>
+      /// Run JavaScript without waiting for the response. All clients.
       /// </summary>
       /// <param name="script_">The JavaScript to be run.</param>
       /// <remarks>
@@ -303,11 +321,11 @@ type
       /// </remarks>
       procedure   Run(const script_: string);
       /// <summary>
-      /// Run JavaScript and get the response back.
+      /// Run JavaScript and get the response back. Work only in single client mode.
       /// Make sure your local buffer can hold the response.
       /// </summary>
       /// <param name="script_">The JavaScript to be run.</param>
-      /// <param name="timeout">The execution timeout.</param>
+      /// <param name="timeout">The execution timeout in seconds.</param>
       /// <param name="buffer">The local buffer to hold the response.</param>
       /// <param name="buffer_length">The local buffer size.</param>
       /// <returns>Returns True if there is no execution error.</returns>
@@ -318,7 +336,7 @@ type
       /// <summary>
       /// Chose between Deno and Nodejs as runtime for .js and .ts files.
       /// </summary>
-      /// <param name="runtime">Deno, Nodejs or None.</param>
+      /// <param name="runtime">Deno, Bun, Nodejs or None.</param>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_runtime)</see></para>
       /// </remarks>
@@ -338,6 +356,23 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_event_blocking)</see></para>
       /// </remarks>
       procedure   SetEventBlocking(status: boolean);
+      /// <summary>
+      /// Start only the web server and return the URL. This is useful for web app.
+      /// </summary>
+      /// <param name="path">The local root folder full path.</param>
+      /// <returns>Returns the url of this window server.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_start_server)</see></para>
+      /// </remarks>
+      function    StartServer(const path: string): string;
+      /// <summary>
+      /// Set the window with high-contrast support. Useful when you want to build a better high-contrast theme with CSS.
+      /// </summary>
+      /// <param name="status">True or False.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_high_contrast)</see></para>
+      /// </remarks>
+      procedure   SetHighContrast(status: boolean);
       /// <summary>
       /// Get a free window number that can be used with `webui_new_window_id()`.
       /// </summary>
@@ -612,6 +647,25 @@ begin
     webui_set_event_blocking(FID, status);
 end;
 
+function TWebUIWindow.StartServer(const path: string): string;
+var
+  LPath: AnsiString;
+begin
+  Result := '';
+
+  if Initialized then
+    begin
+      LPath  := UTF8Encode(path + #0);
+      Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_start_server(FID, @LPath[1])))
+    end;
+end;
+
+procedure TWebUIWindow.SetHighContrast(status: boolean);
+begin
+  if Initialized then
+    webui_set_high_contrast(FID, status);
+end;
+
 procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
 begin
   if assigned(FOnWebUIEvent) then
@@ -859,10 +913,23 @@ begin
     webui_delete_profile(FID);
 end;
 
+function TWebUIWindow.GetPort : NativeUInt;
+begin
+  if Initialized then
+    Result := webui_get_port(FID)
+   else
+    Result := 0;
+end;
+
 function TWebUIWindow.SetPort(port : NativeUInt): boolean;
 begin
   Result := Initialized and
             webui_set_port(FID, port);
+end;
+
+procedure TWebUIWindow.SetPort2(port : NativeUInt);
+begin
+  SetPort(port);
 end;
 
 procedure TWebUIWindow.Run(const script_: string);

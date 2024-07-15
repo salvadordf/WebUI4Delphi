@@ -54,12 +54,14 @@ type
       function  GetIsAppRunning : boolean;
       function  GetStatus : TLoaderStatus;
       function  GetLibraryVersion : string;
-      function  DefaultLibraryPath : string;
+      function  GetFreePort: NativeUInt;
+      function  GetIsHighContrast : boolean;
 
       procedure SetTimeout(aValue: NativeUInt);
       procedure SetStatus(aValue: TLoaderStatus);
 
       procedure DestroyWindowList;
+      function  DefaultLibraryPath : string;
       function  LoadWebUILibrary : boolean;
       function  LoadLibProcedures : boolean;
       procedure UnLoadWebUILibrary;
@@ -146,7 +148,7 @@ type
       /// </summary>
       procedure   RemoveWindow(windowId: TWebUIWindowID);
       /// <summary>
-      /// Control the WebUI behaviour. It's better to call at the beginning.
+      /// Control the WebUI behaviour. It's recommended to be called at the beginning.
       /// </summary>
       /// <param name="option">The desired option from `webui_config` enum.</param>
       /// <param name="status">The status of the option, `true` or `false`.</param>
@@ -154,6 +156,32 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_config)</see></para>
       /// </remarks>
       procedure   SetConfig(option: TWebUIConfig; status: boolean);
+      /// <summary>
+      /// Check if a web browser is installed.
+      /// </summary>
+      /// <param name="browser">The web browser to be found.</param>
+      /// <returns>Returns True if the specified browser is available.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_is_high_contrast)</see></para>
+      /// </remarks>
+      function    BrowserExist(browser: TWebUIBrowser): boolean;
+      /// <summary>
+      /// Get the HTTP mime type of a file.
+      /// </summary>
+      /// <param name="file_">The file name.</param>
+      /// <returns>Returns the HTTP mime string.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_mime_type)</see></para>
+      /// </remarks>
+      function    GetMimeType(const file_: string): string;
+      /// <summary>
+      /// Open an URL in the native default web browser.
+      /// </summary>
+      /// <param name="url">The URL to open.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_open_url)</see></para>
+      /// </remarks>
+      procedure   OpenURL(const url: string);
 
       /// <summary>
       /// Returns the TWVLoader initialization status.
@@ -200,7 +228,7 @@ type
       /// </remarks>
       property IsAppRunning                           : boolean                            read GetIsAppRunning;
       /// <summary>
-      /// Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`.
+      /// Set the maximum time in seconds to wait for the window to connect. This effect `show()` and `wait()`. Value of `0` means wait forever.
       /// </summary>
       /// <remarks>
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_timeout)</see></para>
@@ -212,6 +240,21 @@ type
       /// </summary>
       property SyncedEvents                           : boolean                            read FSyncedEvents                            write FSyncedEvents;
       {$ENDIF}
+      /// <summary>
+      /// Get OS high contrast preference.
+      /// </summary>
+      /// <returns>Returns True if OS is using high contrast theme.</returns>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_is_high_contrast)</see></para>
+      /// </remarks>
+      property IsHighContrast                         : boolean                            read GetIsHighContrast;
+      /// <summary>
+      /// Get an available usable free network port.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_free_port)</see></para>
+      /// </remarks>
+      property FreePort                               : NativeUInt                         read GetFreePort;
   end;
 
 var
@@ -442,11 +485,17 @@ begin
       webui_bind                          := GetProcAddress(FLibHandle, 'webui_bind');
       webui_get_best_browser              := GetProcAddress(FLibHandle, 'webui_get_best_browser');
       webui_show                          := GetProcAddress(FLibHandle, 'webui_show');
+      webui_show_client                   := GetProcAddress(FLibHandle, 'webui_show_client');
       webui_show_browser                  := GetProcAddress(FLibHandle, 'webui_show_browser');
+      webui_start_server                  := GetProcAddress(FLibHandle, 'webui_start_server');
       webui_show_wv                       := GetProcAddress(FLibHandle, 'webui_show_wv');
       webui_set_kiosk                     := GetProcAddress(FLibHandle, 'webui_set_kiosk');
+      webui_set_high_contrast             := GetProcAddress(FLibHandle, 'webui_set_high_contrast');
+      webui_is_high_contrast              := GetProcAddress(FLibHandle, 'webui_is_high_contrast');
+      webui_browser_exist                 := GetProcAddress(FLibHandle, 'webui_browser_exist');
       webui_wait                          := GetProcAddress(FLibHandle, 'webui_wait');
       webui_close                         := GetProcAddress(FLibHandle, 'webui_close');
+      webui_close_client                  := GetProcAddress(FLibHandle, 'webui_close_client');
       webui_destroy                       := GetProcAddress(FLibHandle, 'webui_destroy');
       webui_exit                          := GetProcAddress(FLibHandle, 'webui_exit');
       webui_set_root_folder               := GetProcAddress(FLibHandle, 'webui_set_root_folder');
@@ -460,25 +509,33 @@ begin
       webui_free                          := GetProcAddress(FLibHandle, 'webui_free');
       webui_malloc                        := GetProcAddress(FLibHandle, 'webui_malloc');
       webui_send_raw                      := GetProcAddress(FLibHandle, 'webui_send_raw');
+      webui_send_raw_client               := GetProcAddress(FLibHandle, 'webui_send_raw_client');
       webui_set_hide                      := GetProcAddress(FLibHandle, 'webui_set_hide');
       webui_set_size                      := GetProcAddress(FLibHandle, 'webui_set_size');
       webui_set_position                  := GetProcAddress(FLibHandle, 'webui_set_position');
       webui_set_profile                   := GetProcAddress(FLibHandle, 'webui_set_profile');
       webui_set_proxy                     := GetProcAddress(FLibHandle, 'webui_set_proxy');
       webui_get_url                       := GetProcAddress(FLibHandle, 'webui_get_url');
+      webui_open_url                      := GetProcAddress(FLibHandle, 'webui_open_url');
       webui_set_public                    := GetProcAddress(FLibHandle, 'webui_set_public');
       webui_navigate                      := GetProcAddress(FLibHandle, 'webui_navigate');
+      webui_navigate_client               := GetProcAddress(FLibHandle, 'webui_navigate_client');
       webui_clean                         := GetProcAddress(FLibHandle, 'webui_clean');
       webui_delete_all_profiles           := GetProcAddress(FLibHandle, 'webui_delete_all_profiles');
       webui_delete_profile                := GetProcAddress(FLibHandle, 'webui_delete_profile');
       webui_get_parent_process_id         := GetProcAddress(FLibHandle, 'webui_get_parent_process_id');
       webui_get_child_process_id          := GetProcAddress(FLibHandle, 'webui_get_child_process_id');
+      webui_get_port                      := GetProcAddress(FLibHandle, 'webui_get_port');
       webui_set_port                      := GetProcAddress(FLibHandle, 'webui_set_port');
+      webui_get_free_port                 := GetProcAddress(FLibHandle, 'webui_get_free_port');
       webui_set_config                    := GetProcAddress(FLibHandle, 'webui_set_config');
       webui_set_event_blocking            := GetProcAddress(FLibHandle, 'webui_set_event_blocking');
+      webui_get_mime_type                 := GetProcAddress(FLibHandle, 'webui_get_mime_type');
       webui_set_tls_certificate           := GetProcAddress(FLibHandle, 'webui_set_tls_certificate');
       webui_run                           := GetProcAddress(FLibHandle, 'webui_run');
+      webui_run_client                    := GetProcAddress(FLibHandle, 'webui_run_client');
       webui_script                        := GetProcAddress(FLibHandle, 'webui_script');
+      webui_script_client                 := GetProcAddress(FLibHandle, 'webui_script_client');
       webui_set_runtime                   := GetProcAddress(FLibHandle, 'webui_set_runtime');
       webui_get_count                     := GetProcAddress(FLibHandle, 'webui_get_count');
       webui_get_int_at                    := GetProcAddress(FLibHandle, 'webui_get_int_at');
@@ -501,6 +558,7 @@ begin
       webui_interface_get_window_id       := GetProcAddress(FLibHandle, 'webui_interface_get_window_id');
       webui_interface_get_string_at       := GetProcAddress(FLibHandle, 'webui_interface_get_string_at');
       webui_interface_get_int_at          := GetProcAddress(FLibHandle, 'webui_interface_get_int_at');
+      webui_interface_get_float_at        := GetProcAddress(FLibHandle, 'webui_interface_get_float_at');
       webui_interface_get_bool_at         := GetProcAddress(FLibHandle, 'webui_interface_get_bool_at');
       webui_interface_get_size_at         := GetProcAddress(FLibHandle, 'webui_interface_get_size_at');
 
@@ -510,11 +568,17 @@ begin
       if not(assigned(webui_bind))                     then LMissing.Add('webui_bind');
       if not(assigned(webui_get_best_browser))         then LMissing.Add('webui_get_best_browser');
       if not(assigned(webui_show))                     then LMissing.Add('webui_show');
+      if not(assigned(webui_show_client))              then LMissing.Add('webui_show_client');
       if not(assigned(webui_show_browser))             then LMissing.Add('webui_show_browser');
+      if not(assigned(webui_start_server))             then LMissing.Add('webui_start_server');
       if not(assigned(webui_show_wv))                  then LMissing.Add('webui_show_wv');
       if not(assigned(webui_set_kiosk))                then LMissing.Add('webui_set_kiosk');
+      if not(assigned(webui_set_high_contrast))        then LMissing.Add('webui_set_high_contrast');
+      if not(assigned(webui_is_high_contrast))         then LMissing.Add('webui_is_high_contrast');
+      if not(assigned(webui_browser_exist))            then LMissing.Add('webui_browser_exist');
       if not(assigned(webui_wait))                     then LMissing.Add('webui_wait');
       if not(assigned(webui_close))                    then LMissing.Add('webui_close');
+      if not(assigned(webui_close_client))             then LMissing.Add('webui_close_client');
       if not(assigned(webui_destroy))                  then LMissing.Add('webui_destroy');
       if not(assigned(webui_exit))                     then LMissing.Add('webui_exit');
       if not(assigned(webui_set_root_folder))          then LMissing.Add('webui_set_root_folder');
@@ -528,25 +592,33 @@ begin
       if not(assigned(webui_free))                     then LMissing.Add('webui_free');
       if not(assigned(webui_malloc))                   then LMissing.Add('webui_malloc');
       if not(assigned(webui_send_raw))                 then LMissing.Add('webui_send_raw');
+      if not(assigned(webui_send_raw_client))          then LMissing.Add('webui_send_raw_client');
       if not(assigned(webui_set_hide))                 then LMissing.Add('webui_set_hide');
       if not(assigned(webui_set_size))                 then LMissing.Add('webui_set_size');
       if not(assigned(webui_set_position))             then LMissing.Add('webui_set_position');
       if not(assigned(webui_set_profile))              then LMissing.Add('webui_set_profile');
       if not(assigned(webui_set_proxy))                then LMissing.Add('webui_set_proxy');
       if not(assigned(webui_get_url))                  then LMissing.Add('webui_get_url');
+      if not(assigned(webui_open_url))                 then LMissing.Add('webui_open_url');
       if not(assigned(webui_set_public))               then LMissing.Add('webui_set_public');
       if not(assigned(webui_navigate))                 then LMissing.Add('webui_navigate');
+      if not(assigned(webui_navigate_client))          then LMissing.Add('webui_navigate_client');
       if not(assigned(webui_clean))                    then LMissing.Add('webui_clean');
       if not(assigned(webui_delete_all_profiles))      then LMissing.Add('webui_delete_all_profiles');
       if not(assigned(webui_delete_profile))           then LMissing.Add('webui_delete_profile');
       if not(assigned(webui_get_parent_process_id))    then LMissing.Add('webui_get_parent_process_id');
       if not(assigned(webui_get_child_process_id))     then LMissing.Add('webui_get_child_process_id');
+      if not(assigned(webui_get_port))                 then LMissing.Add('webui_get_port');
       if not(assigned(webui_set_port))                 then LMissing.Add('webui_set_port');
+      if not(assigned(webui_get_free_port))            then LMissing.Add('webui_get_free_port');
       if not(assigned(webui_set_config))               then LMissing.Add('webui_set_config');
       if not(assigned(webui_set_event_blocking))       then LMissing.Add('webui_set_event_blocking');
+      if not(assigned(webui_get_mime_type))            then LMissing.Add('webui_get_mime_type');
       if not(assigned(webui_set_tls_certificate))      then LMissing.Add('webui_set_tls_certificate');
       if not(assigned(webui_run))                      then LMissing.Add('webui_run');
+      if not(assigned(webui_run_client))               then LMissing.Add('webui_run_client');
       if not(assigned(webui_script))                   then LMissing.Add('webui_script');
+      if not(assigned(webui_script_client))            then LMissing.Add('webui_script_client');
       if not(assigned(webui_set_runtime))              then LMissing.Add('webui_set_runtime');
       if not(assigned(webui_get_count))                then LMissing.Add('webui_get_count');
       if not(assigned(webui_get_int_at))               then LMissing.Add('webui_get_int_at');
@@ -569,6 +641,7 @@ begin
       if not(assigned(webui_interface_get_window_id))  then LMissing.Add('webui_interface_get_window_id');
       if not(assigned(webui_interface_get_string_at))  then LMissing.Add('webui_interface_get_string_at');
       if not(assigned(webui_interface_get_int_at))     then LMissing.Add('webui_interface_get_int_at');
+      if not(assigned(webui_interface_get_float_at))   then LMissing.Add('webui_interface_get_float_at');
       if not(assigned(webui_interface_get_bool_at))    then LMissing.Add('webui_interface_get_bool_at');
       if not(assigned(webui_interface_get_size_at))    then LMissing.Add('webui_interface_get_size_at');
 
@@ -752,6 +825,14 @@ begin
     Result := Result + '-' + WEBUI_VERSION_STAGE;
 end;
 
+function TWebUI.GetFreePort: NativeUInt;
+begin
+  if Initialized then
+    Result := webui_get_free_port()
+   else
+    Result := 0;
+end;
+
 function TWebUI.DefaultLibraryPath : string;
 begin
   {$IFDEF MACOSX}
@@ -759,6 +840,12 @@ begin
   {$ELSE}
   Result := IncludeTrailingPathDelimiter(GetModulePath) + WEBUI_LIB;
   {$ENDIF}
+end;
+
+function TWebUI.GetIsHighContrast : boolean;
+begin
+  Result := Initialized and
+            webui_is_high_contrast();
 end;
 
 procedure TWebUI.SetTimeout(aValue: NativeUInt);
@@ -906,6 +993,37 @@ begin
   if Initialized then
     webui_set_config(option, status);
 end;
+
+function TWebUI.BrowserExist(browser: TWebUIBrowser): boolean;
+begin
+  Result := Initialized and
+            webui_browser_exist(browser);
+end;
+
+function TWebUI.GetMimeType(const file_: string): string;
+var
+  LFile : AnsiString;
+begin
+  Result := '';
+
+  if Initialized then
+    begin
+      LFile  := UTF8Encode(file_ + #0);
+      Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_get_mime_type(@LFile[1])));
+    end;
+end;
+
+procedure TWebUI.OpenURL(const url: string);
+var
+  LUrl : AnsiString;
+begin
+  if Initialized then
+    begin
+      LUrl := UTF8Encode(url + #0);
+      webui_open_url(@LUrl[1]);
+    end;
+end;
+
 
 initialization
 

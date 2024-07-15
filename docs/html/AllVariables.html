@@ -23,17 +23,27 @@
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_bind">webui_bind</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Bind a specific html element click event with a function. Empty element means all events. </p></td>
+<td class="itemdesc"><p> Bind an HTML element and a JavaScript object with a backend function. Empty element name means all events. </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_browser_exist">webui_browser_exist</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Check if a web browser is installed. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_clean">webui_clean</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Free all memory resources. Should be called only at the end. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_close">webui_close</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Close a specific window only. The window object will still exist. </p></td>
+<td class="itemdesc"><p> Close a specific window only. The window object will still exist. All clients. </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_close_client">webui_close_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Close a specific client. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_decode">webui_decode</a></td>
@@ -106,14 +116,24 @@
 <td class="itemdesc"><p> Get an argument as float at a specific index. </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_free_port">webui_get_free_port</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Get an available usable free network port. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_int">webui_get_int</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get the first argument as integer. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_int_at">webui_get_int_at</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get an argument as integer at a specific index. </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_mime_type">webui_get_mime_type</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Get the HTTP mime type of a file. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_new_window_id">webui_get_new_window_id</a></td>
@@ -126,39 +146,49 @@
 <td class="itemdesc"><p> Get the ID of the parent process (The web browser may re-create another new process). </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_port">webui_get_port</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js` </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_size">webui_get_size</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get size in bytes of the first argument. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_size_at">webui_get_size_at</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get the size in bytes of an argument at a specific index. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_string">webui_get_string</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get the first argument as string. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_string_at">webui_get_string_at</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get an argument as string at a specific index. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_get_url">webui_get_url</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get the full current URL. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_interface_bind">webui_interface_bind</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Bind a specific HTML element click event with a function. Empty element means all events. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_interface_get_bool_at">webui_interface_get_bool_at</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Get an argument as boolean at a specific index. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_interface_get_float_at">webui_interface_get_float_at</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Get an argument as float at a specific index. </p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_interface_get_int_at">webui_interface_get_int_at</a></td>
@@ -191,19 +221,29 @@
 <td class="itemdesc"><p> When using `webui_interface_bind()`, you may need this function to easily set a response. </p></td>
 </tr>
 <tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_is_high_contrast">webui_is_high_contrast</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Get OS high contrast preference. </p></td>
+</tr>
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_is_shown">webui_is_shown</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Check if the specified window is still running. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_malloc">webui_malloc</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Safely allocate memory using the WebUI memory management system. It can be safely freed using `webui_free()` at any time. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_navigate">webui_navigate</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Navigate to a specific URL. </p></td>
+<td class="itemdesc"><p> Navigate to a specific URL. All clients. </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_navigate_client">webui_navigate_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Navigate to a specific URL. Single client. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_new_window">webui_new_window</a></td>
@@ -216,44 +256,64 @@
 <td class="itemdesc"><p> Create a new webui window object using a specified window number. </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_open_url">webui_open_url</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Open an URL in the native default web browser. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_return_bool">webui_return_bool</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Return the response to JavaScript as boolean. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_return_float">webui_return_float</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Return the response to JavaScript as float. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_return_int">webui_return_int</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Return the response to JavaScript as integer. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_return_string">webui_return_string</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Return the response to JavaScript as string. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_run">webui_run</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Run JavaScript without waiting for the response. </p></td>
+<td class="itemdesc"><p> Run JavaScript without waiting for the response. All clients. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_run_client">webui_run_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Run JavaScript without waiting for the response. Single client. </p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_script">webui_script</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Run JavaScript and get the response back. Make sure your local buffer can hold the response. </p></td>
+<td class="itemdesc"><p> Run JavaScript and get the response back. Work only in single client mode. Make sure your local buffer can hold the response. </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_script_client">webui_script_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Run JavaScript and get the response back. Single client. Make sure your local buffer can hold the response. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_send_raw">webui_send_raw</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Safely send raw data to the UI. </p></td>
+<td class="itemdesc"><p> Safely send raw data to the UI. All clients. </p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_send_raw_client">webui_send_raw_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Safely send raw data to the UI. Single client. </p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_config">webui_set_config</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Control the WebUI behaviour. It's better to call at the beginning. </p></td>
+<td class="itemdesc"><p> Control the WebUI behaviour. It's recommended to be called at the beginning. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_default_root_folder">webui_set_default_root_folder</a></td>
@@ -268,7 +328,7 @@
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_file_handler">webui_set_file_handler</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Set a custom handler to serve files. </p></td>
+<td class="itemdesc"><p> Set a custom handler to serve files. This custom handler should return full HTTP header and body. </p></td>
 </tr>
 <tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_hide">webui_set_hide</a></td>
@@ -276,74 +336,84 @@
 <td class="itemdesc"><p> Set a window in hidden mode. Should be called before `webui_show()`. </p></td>
 </tr>
 <tr class="list">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_high_contrast">webui_set_high_contrast</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Set the window with high-contrast support. Useful when you want to build a better high-contrast theme with CSS. </p></td>
+</tr>
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_icon">webui_set_icon</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the default embedded HTML favicon. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_kiosk">webui_set_kiosk</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the window in Kiosk mode (Full screen). </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_port">webui_set_port</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set a custom web-server/websocket network port to be used by WebUI. This can be useful to determine the HTTP link of `webui.js` in case you are trying to use WebUI with an external web-server like NGNIX </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_position">webui_set_position</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the window position. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_profile">webui_set_profile</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the web browser profile to use. An empty `name` and `path` means the default user profile. Need to be called before `webui_show()`. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_proxy">webui_set_proxy</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the web browser proxy server to use. Need to be called before `webui_show()`. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_public">webui_set_public</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Allow a specific window address to be accessible from a public network. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_root_folder">webui_set_root_folder</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the web-server root folder path for a specific window. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_runtime">webui_set_runtime</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Chose between Deno and Nodejs as runtime for .js and .ts files. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_size">webui_set_size</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the window size. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_timeout">webui_set_timeout</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Set the maximum time in seconds to wait for the window to connect. This affects `show()` and `wait()`. </p></td>
+<td class="itemdesc"><p> Set the maximum time in seconds to wait for the window to connect. This effect `show()` and `wait()`. Value of `0` means wait forever. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_set_tls_certificate">webui_set_tls_certificate</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Set the SSL/TLS certificate and the private key content, both in PEM format. This works only with `webui-2-secure` library. If set empty WebUI will generate a self-signed certificate. </p></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_show">webui_show</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
-<td class="itemdesc"><p> Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. </p></td>
+<td class="itemdesc"><p> Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. This will refresh all windows in multi-client mode. </p></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_show_browser">webui_show_browser</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Same as `webui_show()`. But using a specific web browser. </p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_show_client">webui_show_client</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. Single client. </p></td>
 </tr>
 <tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_show_wv">webui_show_wv</a></td>
@@ -351,6 +421,11 @@
 <td class="itemdesc"><p> Show a WebView window using embedded HTML, or a file. If the window is already open, it will be refreshed. Note: Win32 need `WebView2Loader.dll`. </p></td>
 </tr>
 <tr class="list2">
+<td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_start_server">webui_start_server</a></td>
+<td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
+<td class="itemdesc"><p> Start only the web server and return the URL. This is useful for web app. </p></td>
+</tr>
+<tr class="list">
 <td class="itemname"><a class="bold" href="uWebUILibFunctions.html#webui_wait">webui_wait</a></td>
 <td class="itemunit"><a class="bold" href="uWebUILibFunctions.html">uWebUILibFunctions</a></td>
 <td class="itemdesc"><p> Wait until all opened windows get closed. </p></td>
