@@ -896,7 +896,7 @@ var
 begin
   Result := False;
 
-  if Initialized then
+  if Initialized and (length(path) > 0) then
     begin
       LPath  := UTF8Encode(path + #0);
       Result := webui_set_default_root_folder(@LPath[1]);
@@ -909,7 +909,7 @@ var
 begin
   Result := False;
 
-  if Initialized then
+  if Initialized and (length(certificate_pem) > 0) and (length(private_key_pem) > 0) then
     begin
       LCertificate  := UTF8Encode(certificate_pem + #0);
       LPrivateKey   := UTF8Encode(private_key_pem + #0);
@@ -1004,9 +1004,9 @@ function TWebUI.GetMimeType(const file_: string): string;
 var
   LFile : AnsiString;
 begin
-  Result := '';
+  Result := 'text/plain';
 
-  if Initialized then
+  if Initialized and (length(file_) > 0) then
     begin
       LFile  := UTF8Encode(file_ + #0);
       Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_get_mime_type(@LFile[1])));
@@ -1015,15 +1015,22 @@ end;
 
 procedure TWebUI.OpenURL(const url: string);
 var
-  LUrl : AnsiString;
+  LUrl    : AnsiString;
+  LUrlPtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LUrl := UTF8Encode(url + #0);
-      webui_open_url(@LUrl[1]);
+      if (length(Url) > 0) then
+        begin
+          LUrl    := UTF8Encode(Url + #0);
+          LUrlPtr := @LUrl[1];
+        end
+       else
+        LUrlPtr := nil;
+
+      webui_open_url(LUrlPtr);
     end;
 end;
-
 
 initialization
 

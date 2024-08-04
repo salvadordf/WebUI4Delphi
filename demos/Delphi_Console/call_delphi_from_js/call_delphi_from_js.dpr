@@ -7,7 +7,11 @@
 {$R *.res}
 
 uses
+  {$IFDEF DELPHI16_UP}
   System.SysUtils, System.Classes,
+  {$ELSE}
+  SysUtils, Classes,
+  {$ENDIF}
   uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
   uWebUIConstants;
 
@@ -96,7 +100,7 @@ begin
     begin
       LHexStr := 'my_function_raw_binary 1: ';
 
-      while (LStream.ReadData(LData, 1) > 0) do
+      while (LStream.Read(LData, 1) > 0) do
         LHexStr := LHexStr + uppercase(inttohex(LData, 2));
 
       writeln(LHexStr);

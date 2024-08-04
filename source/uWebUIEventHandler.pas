@@ -592,7 +592,7 @@ procedure TWebUIEventHandler.ReturnString(const aReturnValue: string);
 var
   LString: AnsiString;
 begin
-  if Initialized then
+  if Initialized and (length(aReturnValue) > 0) then
     begin
       LString := UTF8Encode(aReturnValue + #0);
       webui_return_string(@FEvent, @LString[1]);
@@ -644,12 +644,20 @@ end;
 
 procedure TWebUIEventHandler.SetResponse(const response: string);
 var
-  LResponse: AnsiString;
+  LResponse    : AnsiString;
+  LResponsePtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LResponse := UTF8Encode(response + #0);
-      webui_interface_set_response(FEvent.window, FEvent.event_number, @LResponse[1]);
+      if (length(response) > 0) then
+        begin
+          LResponse    := UTF8Encode(response + #0);
+          LResponsePtr := @LResponse[1];
+        end
+       else
+        LResponsePtr := nil;
+
+      webui_interface_set_response(FEvent.window, FEvent.event_number, LResponsePtr);
     end;
 end;
 
@@ -721,7 +729,7 @@ procedure TWebUIEventHandler.SendRawClient(const function_: string; const raw: P
 var
   LFunction: AnsiString;
 begin
-  if Initialized then
+  if Initialized and (length(function_) > 0) then
     begin
       LFunction := UTF8Encode(function_ + #0);
       webui_send_raw_client(@FEvent, @LFunction[1], raw, size);
@@ -730,12 +738,20 @@ end;
 
 procedure TWebUIEventHandler.NavigateClient(const Url: string);
 var
-  LUrl: AnsiString;
+  LUrl    : AnsiString;
+  LUrlPtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LUrl := UTF8Encode(Url + #0);
-      webui_navigate_client(@FEvent, @LUrl[1]);
+      if (length(Url) > 0) then
+        begin
+          LUrl    := UTF8Encode(Url + #0);
+          LUrlPtr := @LUrl[1];
+        end
+       else
+        LUrlPtr := nil;
+
+      webui_navigate_client(@FEvent, LUrlPtr);
     end;
 end;
 
@@ -743,7 +759,7 @@ procedure TWebUIEventHandler.RunClient(const script_: string);
 var
   LScript : AnsiString;
 begin
-  if Initialized then
+  if Initialized and (length(script_) > 0) then
     begin
       LScript := UTF8Encode(script_ + #0);
       webui_run_client(@FEvent, @LScript[1]);
@@ -758,7 +774,7 @@ begin
   Result  := False;
   LBuffer := nil;
 
-  if Initialized then
+  if Initialized and (length(script_) > 0) then
     try
       LBuffer := webui_malloc(buffer_length);
       LScript := UTF8Encode(script_ + #0);

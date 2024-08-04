@@ -7,7 +7,11 @@ program web_app_multi_client;
 {$R *.res}
 
 uses
+  {$IFDEF DELPHI16_UP}
   System.SysUtils, System.Classes,
+  {$ELSE}
+  SysUtils, Classes,
+  {$ENDIF}
   uWebUI, uWebUIWindow, uWebUITypes, uWebUIEventHandler, uWebUILibFunctions,
   uWebUIConstants, uWebUIMiscFunctions;
 

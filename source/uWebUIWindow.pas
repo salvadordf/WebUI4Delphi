@@ -660,7 +660,7 @@ var
 begin
   Result := '';
 
-  if Initialized then
+  if Initialized and (length(path) > 0) then
     begin
       LPath  := UTF8Encode(path + #0);
       Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(webui_start_server(FID, @LPath[1])))
@@ -707,28 +707,44 @@ end;
 
 function TWebUIWindow.Bind(const element_: string; func_: TWebUIBindCallback): TWebUIBindID;
 var
-  LElement: AnsiString;
+  LElement    : AnsiString;
+  LElementPtr : PWebUIChar;
 begin
   Result := 0;
 
   if Initialized then
     begin
-      LElement := UTF8Encode(element_ + #0);
-      Result   := webui_bind(FID, @LElement[1], func_);
+      if (length(element_) > 0) then
+        begin
+          LElement    := UTF8Encode(element_ + #0);
+          LElementPtr := @LElement[1];
+        end
+       else
+        LElementPtr := nil;
+
+      Result := webui_bind(FID, LElementPtr, func_);
       AddBindID(Result);
     end;
 end;
 
 function TWebUIWindow.Bind(const element_: string; func_: TWebUIInterfaceEventCallback): TWebUIBindID;
 var
-  LElement: AnsiString;
+  LElement    : AnsiString;
+  LElementPtr : PWebUIChar;
 begin
   Result := 0;
 
   if Initialized then
     begin
-      LElement := UTF8Encode(element_ + #0);
-      Result   := webui_interface_bind(FID, @LElement[1], func_);
+      if (length(element_) > 0) then
+        begin
+          LElement    := UTF8Encode(element_ + #0);
+          LElementPtr := @LElement[1];
+        end
+       else
+        LElementPtr := nil;
+
+      Result := webui_interface_bind(FID, LElementPtr, func_);
       AddBindID(Result);
     end;
 end;
@@ -739,15 +755,12 @@ begin
 end;
 
 function TWebUIWindow.BindAllEvents(func_: TWebUIBindCallback): TWebUIBindID;
-var
-  LElement: AnsiString;
 begin
   Result := 0;
 
   if Initialized then
     begin
-      LElement := UTF8Encode(#0);
-      Result   := webui_bind(FID, @LElement[1], func_);
+      Result := webui_bind(FID, nil, func_);
       AddBindID(Result);
     end;
 end;
@@ -778,14 +791,22 @@ end;
 
 function TWebUIWindow.ShowBrowser(const content : string; browser : TWebUIBrowser) : boolean;
 var
-  LContent: AnsiString;
+  LContent    : AnsiString;
+  LContentPtr : PWebUIChar;
 begin
   Result := False;
 
   if Initialized then
     begin
-      LContent := UTF8Encode(content + #0);
-      Result   := webui_show_browser(FID, @LContent[1], browser);
+      if (length(content) > 0) then
+        begin
+          LContent    := UTF8Encode(content + #0);
+          LContentPtr := @LContent[1];
+        end
+       else
+        LContentPtr := nil;
+
+      Result := webui_show_browser(FID, LContentPtr, browser);
     end;
 end;
 
@@ -795,7 +816,7 @@ var
 begin
   Result := False;
 
-  if Initialized then
+  if Initialized and (length(content) > 0) then
     begin
       LContent := UTF8Encode(content + #0);
       Result   := webui_show_wv(FID, @LContent[1]);
@@ -820,7 +841,7 @@ var
 begin
   Result := False;
 
-  if Initialized then
+  if Initialized and (length(path) > 0) then
     begin
       LPath  := UTF8Encode(path + #0);
       Result := webui_set_root_folder(FID, @LPath[1]);
@@ -836,12 +857,27 @@ end;
 procedure TWebUIWindow.SetIcon(const icon, icon_type : string);
 var
   LIcon, LIconType: AnsiString;
+  LIconPtr, LIconTypePtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LIcon     := UTF8Encode(icon + #0);
-      LIconType := UTF8Encode(icon_type + #0);
-      webui_set_icon(FID, @LIcon[1], @LIconType[1]);
+      if (length(icon) > 0) then
+        begin
+          LIcon    := UTF8Encode(icon + #0);
+          LIconPtr := @LIcon[1];
+        end
+       else
+        LIconPtr := nil;
+
+      if (length(icon_type) > 0) then
+        begin
+          LIconType    := UTF8Encode(icon_type + #0);
+          LIconTypePtr := @LIconType[1];
+        end
+       else
+        LIconTypePtr := nil;
+
+      webui_set_icon(FID, LIconPtr, LIconTypePtr);
     end;
 end;
 
@@ -849,7 +885,7 @@ procedure TWebUIWindow.SendRaw(const function_: string; const raw: Pointer; size
 var
   LFunction: AnsiString;
 begin
-  if Initialized then
+  if Initialized and (length(function_) > 0) then
     begin
       LFunction := UTF8Encode(function_ + #0);
       webui_send_raw(FID, @LFunction[1], raw, size);
@@ -877,23 +913,46 @@ end;
 procedure TWebUIWindow.SetProfile(const name, path: string);
 var
   LName, LPath: AnsiString;
+  LNamePtr, LPathPtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LName := UTF8Encode(name + #0);
-      LPath := UTF8Encode(path + #0);
-      webui_set_profile(FID, @LName[1], @LPath[1]);
+      if (length(name) > 0) then
+        begin
+          LName    := UTF8Encode(name + #0);
+          LNamePtr := @LName[1];
+        end
+       else
+        LNamePtr := nil;
+
+      if (length(path) > 0) then
+        begin
+          LPath    := UTF8Encode(path + #0);
+          LPathPtr := @LPath[1];
+        end
+       else
+        LPathPtr := nil;
+
+      webui_set_profile(FID, LNamePtr, LPathPtr);
     end;
 end;
 
 procedure TWebUIWindow.SetProxy(const proxy_server: string);
 var
-  LProxyServer: AnsiString;
+  LProxyServer    : AnsiString;
+  LProxyServerPtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LProxyServer := UTF8Encode(proxy_server + #0);
-      webui_set_proxy(FID, @LProxyServer[1]);
+      if (length(proxy_server) > 0) then
+        begin
+          LProxyServer    := UTF8Encode(proxy_server + #0);
+          LProxyServerPtr := @LProxyServer[1];
+        end
+       else
+        LProxyServerPtr := nil;
+
+      webui_set_proxy(FID, LProxyServerPtr);
     end;
 end;
 
@@ -905,12 +964,20 @@ end;
 
 procedure TWebUIWindow.Navigate(const Url: string);
 var
-  LUrl: AnsiString;
+  LUrl    : AnsiString;
+  LUrlPtr : PWebUIChar;
 begin
   if Initialized then
     begin
-      LUrl := UTF8Encode(Url + #0);
-      webui_navigate(FID, @LUrl[1]);
+      if (length(Url) > 0) then
+        begin
+          LUrl    := UTF8Encode(Url + #0);
+          LUrlPtr := @LUrl[1];
+        end
+       else
+        LUrlPtr := nil;
+
+      webui_navigate(FID, LUrlPtr);
     end;
 end;
 
@@ -943,7 +1010,7 @@ procedure TWebUIWindow.Run(const script_: string);
 var
   LScript : AnsiString;
 begin
-  if Initialized then
+  if Initialized and (length(script_) > 0) then
     begin
       LScript := UTF8Encode(script_ + #0);
       webui_run(FID, @LScript[1]);
@@ -958,7 +1025,7 @@ begin
   Result  := False;
   LBuffer := nil;
 
-  if Initialized then
+  if Initialized and (length(script_) > 0) then
     try
       LBuffer := webui_malloc(buffer_length);
       LScript := UTF8Encode(script_ + #0);
