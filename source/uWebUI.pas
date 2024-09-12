@@ -433,11 +433,20 @@ begin
                 Status := lsError;
                 {$IFDEF MSWINDOWS}
                 FError := GetLastError;
+                {$ELSE}
+                  {$IFDEF FPC}
+                  FError := GetLastOSError;
+                  {$ENDIF}
                 {$ENDIF}
                 AppendErrorLog('Error loading ' + TempLibraryPath);
                 {$IFDEF MSWINDOWS}
                 AppendErrorLog('Error code : 0x' + {$IFDEF FPC}string({$ENDIF}inttohex(cardinal(FError), 8)){$IFDEF FPC}){$ENDIF};
                 AppendErrorLog({$IFDEF FPC}string({$ENDIF}SysErrorMessage(cardinal(FError)){$IFDEF FPC}){$ENDIF});
+                {$ELSE}
+                  {$IFDEF FPC}
+                  AppendErrorLog('Error code : 0x' + string(inttohex(cardinal(FError), 8)));
+                  AppendErrorLog(trim(GetLoadErrorStr));
+                  {$ENDIF}
                 {$ENDIF}
                 ShowErrorMessageDlg(ErrorMessage);
               end
