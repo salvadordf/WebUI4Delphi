@@ -50,7 +50,13 @@ begin
   //WebUI.LibraryPath := WEBUI_DEBUG_LIB;
   {$ENDIF}
   FWindow := nil;
-  MainPanel.Enabled := WebUI.Initialize;
+  if WebUI.Initialize then
+    MainPanel.Enabled := True
+   else
+    begin
+      MainPanel.Enabled := False;
+      ShowMessage(WebUI.ErrorMessage);
+    end;
 end;
 
 procedure TMainForm.ShowBrowserBtnClick(Sender: TObject);
