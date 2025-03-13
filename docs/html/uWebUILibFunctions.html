@@ -28,6 +28,12 @@
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_bind">webui_bind</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; func: <a href="uWebUITypes.html#TWebUIBindCallback">TWebUIBindCallback</a>): <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>; cdecl;</code></td>
 </tr>
 <tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_context">webui_set_context</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; context: Pointer); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_context">webui_get_context</a></strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): Pointer; cdecl;</code></td>
+</tr>
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_best_browser">webui_get_best_browser</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>; cdecl;</code></td>
 </tr>
 <tr class="list2">
@@ -49,58 +55,70 @@
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_kiosk">webui_set_kiosk</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
 </tr>
 <tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_custom_parameters">webui_set_custom_parameters</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; params: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_high_contrast">webui_set_high_contrast</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_is_high_contrast">webui_is_high_contrast</a></strong>: function(): boolean; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_browser_exist">webui_browser_exist</a></strong>: function(browser: <a href="uWebUITypes.html#TWebUIBrowser">TWebUIBrowser</a>): boolean; cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_wait">webui_wait</a></strong>: procedure(); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_close">webui_close</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_close_client">webui_close_client</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_destroy">webui_destroy</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_exit">webui_exit</a></strong>: procedure(); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_root_folder">webui_set_root_folder</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_default_root_folder">webui_set_default_root_folder</a></strong>: function(const path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_file_handler">webui_set_file_handler</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; handler: <a href="uWebUITypes.html#TWebUIFileHandlerCallback">TWebUIFileHandlerCallback</a>); cdecl;</code></td>
 </tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_file_handler_window">webui_set_file_handler_window</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; handler: <a href="uWebUITypes.html#TWebUIFileHandlerWindowCallback">TWebUIFileHandlerWindowCallback</a>); cdecl;</code></td>
+</tr>
 <tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_set_response_file_handler">webui_interface_set_response_file_handler</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const response: Pointer; length: integer); cdecl;</code></td>
+</tr>
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_is_shown">webui_is_shown</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): boolean; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_timeout">webui_set_timeout</a></strong>: procedure(second: NativeUInt); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_icon">webui_set_icon</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const icon, icon_type: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_encode">webui_encode</a></strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_decode">webui_decode</a></strong>: function(const str: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_free">webui_free</a></strong>: procedure(ptr: Pointer); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_malloc">webui_malloc</a></strong>: function(size: NativeUInt): Pointer; cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_memcpy">webui_memcpy</a></strong>: procedure(dest, src: Pointer; count: NativeUInt); cdecl;</code></td>
 </tr>
 <tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_send_raw">webui_send_raw</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
@@ -115,43 +133,49 @@
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_size">webui_set_size</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; width, height: cardinal); cdecl;</code></td>
 </tr>
 <tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_minimum_size">webui_set_minimum_size</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; width, height: cardinal); cdecl;</code></td>
+</tr>
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_position">webui_set_position</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; x, y: cardinal); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_profile">webui_set_profile</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const name, path: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_proxy">webui_set_proxy</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const proxy_server: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_url">webui_get_url</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_open_url">webui_open_url</a></strong>: procedure(const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_set_public">webui_set_public</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; status: boolean); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_navigate">webui_navigate</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_navigate_client">webui_navigate_client</a></strong>: procedure(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_clean">webui_clean</a></strong>: procedure(); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_delete_all_profiles">webui_delete_all_profiles</a></strong>: procedure(); cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_delete_profile">webui_delete_profile</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>); cdecl;</code></td>
 </tr>
-<tr class="list">
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_parent_process_id">webui_get_parent_process_id</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
 </tr>
-<tr class="list2">
+<tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_child_process_id">webui_get_child_process_id</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_win32_get_hwnd">webui_win32_get_hwnd</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): Pointer; cdecl;</code></td>
 </tr>
 <tr class="list">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_get_port">webui_get_port</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): NativeUInt; cdecl;</code></td>
@@ -261,6 +285,24 @@
 <tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_get_size_at">webui_interface_get_size_at</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; index: NativeUInt): NativeUInt; cdecl;</code></td>
 </tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_show_client">webui_interface_show_client</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_close_client">webui_interface_close_client</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_send_raw_client">webui_interface_send_raw_client</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_navigate_client">webui_interface_navigate_client</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_run_client">webui_interface_run_client</a></strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const script_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="uWebUILibFunctions.html#webui_interface_script_client">webui_interface_script_client</a></strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; timeout: NativeUInt; buffer: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; buffer_length: NativeUInt): boolean; cdecl;</code></td>
+</tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Variables</h3>
@@ -335,6 +377,52 @@
 <dd>The HTML element / JavaScript object.</dd>
 <dt>func</dt>
 <dd>The callback function.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_context"></span><code><strong>webui_set_context</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; context: Pointer); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Use this API after using `webui_bind()` to add any user data to it that can be read later using `webui_get_context()`. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_context))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>element</dt>
+<dd>The HTML element / JavaScript object.</dd>
+<dt>context</dt>
+<dd>Any user data.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_get_context"></span><code><strong>webui_get_context</strong>: function(e: <a href="uWebUITypes.html#PWebUIEvent">PWebUIEvent</a>): Pointer; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Get user data that is set using `webui_set_context()`. </p>
+<p>
+ 
+
+<p>@returns(Returns user data pointer.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_context))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>e</dt>
+<dd>The event struct.</dd>
 </dl>
 </td></tr>
 </table>
@@ -501,6 +589,28 @@
 <dd>The window number.</dd>
 <dt>status</dt>
 <dd>True or False.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_custom_parameters"></span><code><strong>webui_set_custom_parameters</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; params: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Add a user-defined web browser's CLI parameters. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_custom_parameters))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>params</dt>
+<dd>Command line parameters.</dd>
 </dl>
 </td></tr>
 </table>
@@ -689,7 +799,7 @@
 </tr>
 <tr><td colspan="1">
 <p>
- Set a custom handler to serve files. This custom handler should return full HTTP header and body. </p>
+ Set a custom handler to serve files. This custom handler should return full HTTP header and body. This deactivates any previous handler set with `webui_set_file_handler_window`. </p>
 <p>
  
 
@@ -702,6 +812,54 @@
 <dd>The window number.</dd>
 <dt>handler</dt>
 <dd>The handler function: `void myHandler(const char* filename, * int* length)`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_file_handler_window"></span><code><strong>webui_set_file_handler_window</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; handler: <a href="uWebUITypes.html#TWebUIFileHandlerWindowCallback">TWebUIFileHandlerWindowCallback</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set a custom handler to serve files. This custom handler should return full HTTP header and body. This deactivates any previous handler set with `webui_set_file_handler`. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_file_handler_window))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>handler</dt>
+<dd>The handler function: `void myHandler(size_t window, const char* filename, * int* length)`.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_set_response_file_handler"></span><code><strong>webui_interface_set_response_file_handler</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const response: Pointer; length: integer); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Use this API to set a file handler response if your backend need async response for `webui_set_file_handler()`. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_set_response_file_handler))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>response</dt>
+<dd>The response buffer.</dd>
+<dt>length</dt>
+<dd>The response size.</dd>
 </dl>
 </td></tr>
 </table>
@@ -849,6 +1007,32 @@
 </table>
 <table class="detail wide_list">
 <tr class="list">
+<td class="itemcode"><span id="webui_memcpy"></span><code><strong>webui_memcpy</strong>: procedure(dest, src: Pointer; count: NativeUInt); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Copy raw data. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_memcpy))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>dest</dt>
+<dd>Destination memory pointer.</dd>
+<dt>src</dt>
+<dd>Source memory pointer.</dd>
+<dt>count</dt>
+<dd>Bytes to copy.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
 <td class="itemcode"><span id="webui_send_raw"></span><code><strong>webui_send_raw</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
 </tr>
 <tr><td colspan="1">
@@ -944,6 +1128,32 @@
 <p>
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_size))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>width</dt>
+<dd>The window width.</dd>
+<dt>height</dt>
+<dd>The window height.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_set_minimum_size"></span><code><strong>webui_set_minimum_size</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; width, height: cardinal); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Set the window minimum size. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_set_minimum_size))</p>
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
 <dt>window</dt>
@@ -1212,6 +1422,26 @@
 <p>@returns(Returns the the child process id as integer.)
 
 <p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_get_child_process_id))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_win32_get_hwnd"></span><code><strong>webui_win32_get_hwnd</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>): Pointer; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Gets Win32 window `HWND`. More reliable with WebView than web browser window, as browser PIDs may change on launch. </p>
+<p>
+ 
+
+<p>@returns(Returns the window `hwnd` as `void*`.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_win32_get_hwnd))</p>
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
 <dt>window</dt>
@@ -2054,6 +2284,182 @@
 <dd>The event number.</dd>
 <dt>index</dt>
 <dd>The argument position.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_show_client"></span><code><strong>webui_interface_show_client</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const content: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. Single client. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>@returns(Returns True if showing the window is successed.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_show_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>content</dt>
+<dd>The HTML, URL, Or a local file.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_close_client"></span><code><strong>webui_interface_close_client</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Close a specific client. </p>
+<p>
+ 
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_close_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_send_raw_client"></span><code><strong>webui_interface_send_raw_client</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const function_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; const raw: Pointer; size: NativeUInt); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Safely send raw data to the UI. Single client. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_close_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>function_</dt>
+<dd>The JavaScript function to receive raw data: `function myFunc(myData){}`.</dd>
+<dt>raw</dt>
+<dd>The raw data buffer.</dd>
+<dt>size</dt>
+<dd>The raw data size in bytes.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_navigate_client"></span><code><strong>webui_interface_navigate_client</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const url: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Navigate to a specific URL. Single client. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_navigate_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>url</dt>
+<dd>Full HTTP URL.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_run_client"></span><code><strong>webui_interface_run_client</strong>: procedure(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const script_: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>); cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Run JavaScript without waiting for the response. Single client. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_run_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>script_</dt>
+<dd>The JavaScript to be run.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="webui_interface_script_client"></span><code><strong>webui_interface_script_client</strong>: function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; const script: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; timeout: NativeUInt; buffer: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; buffer_length: NativeUInt): boolean; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+ Run JavaScript and get the response back. Single client. Make sure your local buffer can hold the response. </p>
+<p>
+ 
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>
+
+<p>@returns(Returns True if there is no execution error.)
+
+<p>&lt;see href=&quot;<a href="https://github.com/webui-dev/webui/blob/main/include/webui.h">https://github.com/webui-dev/webui/blob/main/include/webui.h</a>&quot;&gt;WebUI source file: /include/webui.h (webui_interface_script_client))</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>window</dt>
+<dd>The window number.</dd>
+<dt>event_number</dt>
+<dd>The event number.</dd>
+<dt>script</dt>
+<dd>The JavaScript to be run.</dd>
+<dt>timeout</dt>
+<dd>The execution timeout in seconds.</dd>
+<dt>buffer</dt>
+<dd>The local buffer to hold the response.</dd>
+<dt>buffer_length</dt>
+<dd>The local buffer size.</dd>
 </dl>
 </td></tr>
 </table>

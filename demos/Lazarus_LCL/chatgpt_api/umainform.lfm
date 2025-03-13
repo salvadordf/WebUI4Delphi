@@ -1,0 +1,55 @@
+object MainForm: TMainForm
+  Left = 350
+  Height = 296
+  Top = 250
+  Width = 956
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'chatgpt_api'
+  ClientHeight = 296
+  ClientWidth = 956
+  Position = poScreenCenter
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  object MainPanel: TPanel
+    Left = 0
+    Height = 296
+    Top = 0
+    Width = 956
+    Align = alClient
+    ClientHeight = 296
+    ClientWidth = 956
+    TabOrder = 0
+    object AskChatGPTBtn: TButton
+      Left = 1
+      Height = 32
+      Top = 1
+      Width = 954
+      Align = alTop
+      Caption = 'Ask ChatGPT'
+      TabOrder = 0
+      OnClick = AskChatGPTBtnClick
+    end
+    object QuestionMem: TMemo
+      Left = 1
+      Height = 172
+      Top = 33
+      Width = 954
+      Align = alClient
+      Lines.Strings = (
+        'What is the capital of Canada?'
+      )
+      ScrollBars = ssBoth
+      TabOrder = 1
+    end
+    object AnswerMem: TMemo
+      Left = 1
+      Height = 90
+      Top = 205
+      Width = 954
+      Align = alBottom
+      ScrollBars = ssBoth
+      TabOrder = 2
+    end
+  end
+end

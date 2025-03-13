@@ -80,9 +80,12 @@
 <td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIFileHandlerCallback">TWebUIFileHandlerCallback</a></strong> = function(const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
 </tr>
 <tr class="list2">
-<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a></strong> = procedure(window : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); cdecl;</code></td>
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIFileHandlerWindowCallback">TWebUIFileHandlerWindowCallback</a></strong> = function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
 </tr>
 <tr class="list">
+<td class="itemcode"><code><strong><a href="uWebUITypes.html#TWebUIInterfaceEventCallback">TWebUIInterfaceEventCallback</a></strong> = procedure(window : <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; event_type: <a href="uWebUITypes.html#TWebUIEventType">TWebUIEventType</a>; const element: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; event_number: <a href="uWebUITypes.html#TWebUIEventID">TWebUIEventID</a>; bind_id: <a href="uWebUITypes.html#TWebUIBindID">TWebUIBindID</a>); cdecl;</code></td>
+</tr>
+<tr class="list2">
 <td class="itemcode"><code><strong><a href="uWebUITypes.html#TOnWebUIEvent">TOnWebUIEvent</a></strong> = procedure(Sender: TObject; const aEvent: <a href="uWebUITypes.IWebUIEventHandler.html">IWebUIEventHandler</a>) of object;</code></td>
 </tr>
 </table>
@@ -289,7 +292,9 @@
 <li>
 <span id="multi_client">multi_client</span>:  Allow multiple clients to connect to the same window, This is helpful for web apps (non-desktop software), Please see the documentation for more details. Default: False </li>
 <li>
-<span id="use_cookies">use_cookies</span>:  Allow multiple clients to connect to the same window, This is helpful for web apps (non-desktop software), Please see the documentation for more details. Default: False </li>
+<span id="use_cookies">use_cookies</span>:  Allow or prevent WebUI from adding `webui_auth` cookies. WebUI uses these cookies to identify clients and block unauthorized access to the window content using a URL. Please keep this option to `True` if you want only a single client to access the window content. Default: True </li>
+<li>
+<span id="asynchronous_response">asynchronous_response</span>:  If the backend uses asynchronous operations, set this option to `True`. This will make webui wait until the backend sets a response using `webui_return_x()`. </li>
 </ul>
 </td></tr>
 </table>
@@ -310,6 +315,13 @@
 <table class="detail wide_list">
 <tr class="list">
 <td class="itemcode"><span id="TWebUIFileHandlerCallback"></span><code><strong>TWebUIFileHandlerCallback</strong> = function(const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
+</tr>
+<tr><td colspan="1">
+<p class="nodescription">This item has no description.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TWebUIFileHandlerWindowCallback"></span><code><strong>TWebUIFileHandlerWindowCallback</strong> = function(window: <a href="uWebUITypes.html#TWebUIWindowID">TWebUIWindowID</a>; const filename: <a href="uWebUITypes.html#PWebUIChar">PWebUIChar</a>; len: PInteger): Pointer; cdecl;</code></td>
 </tr>
 <tr><td colspan="1">
 <p class="nodescription">This item has no description.</p></td></tr>

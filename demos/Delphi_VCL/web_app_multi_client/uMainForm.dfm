@@ -4,7 +4,7 @@ object MainForm: TMainForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'web_app_multi_client'
-  ClientHeight = 49
+  ClientHeight = 53
   ClientWidth = 450
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object MainForm: TMainForm
     Left = 10
     Top = 10
     Width = 430
-    Height = 29
+    Height = 33
     Align = alClient
     BevelOuter = bvNone
     Padding.Left = 5
@@ -32,6 +32,7 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 0
+    ExplicitHeight = 29
     object ShowBrowserBtn: TButton
       Left = 5
       Top = 5

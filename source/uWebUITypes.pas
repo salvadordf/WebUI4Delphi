@@ -13,9 +13,9 @@ interface
 
 uses
   {$IFDEF DELPHI16_UP}
-    System.Classes;
+    {$IFDEF MSWINDOWS}WinApi.Windows,{$ENDIF} System.Classes;
   {$ELSE}
-    Classes;
+    {$IFDEF MSWINDOWS}Windows,{$ENDIF} Classes;
   {$ENDIF}
 
 type
@@ -217,12 +217,20 @@ type
     /// </summary>
     multi_client,
     /// <summary>
-    /// Allow multiple clients to connect to the same window,
-    /// This is helpful for web apps (non-desktop software),
-    /// Please see the documentation for more details.
-    /// Default: False
+    /// Allow or prevent WebUI from adding `webui_auth` cookies.
+    /// WebUI uses these cookies to identify clients and block
+    /// unauthorized access to the window content using a URL.
+    /// Please keep this option to `True` if you want only a single
+    /// client to access the window content.
+    /// Default: True
     /// </summary>
-    use_cookies
+    use_cookies,
+    /// <summary>
+    /// If the backend uses asynchronous operations, set this
+    /// option to `True`. This will make webui wait until the
+    /// backend sets a response using `webui_return_x()`.
+    /// </summary>
+    asynchronous_response
   );
 
   /// <summary>
@@ -267,9 +275,10 @@ type
   end;
   PWebUIEvent = ^TWebUIEvent;
 
-  TWebUIBindCallback           = procedure(e: PWebUIEvent); cdecl;
-  TWebUIFileHandlerCallback    = function(const filename: PWebUIChar; len: PInteger): Pointer; cdecl;
-  TWebUIInterfaceEventCallback = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); cdecl;
+  TWebUIBindCallback               = procedure(e: PWebUIEvent); cdecl;
+  TWebUIFileHandlerCallback        = function(const filename: PWebUIChar; len: PInteger): Pointer; cdecl;
+  TWebUIFileHandlerWindowCallback  = function(window: TWebUIWindowID; const filename: PWebUIChar; len: PInteger): Pointer; cdecl;
+  TWebUIInterfaceEventCallback     = procedure(window : TWebUIWindowID; event_type: TWebUIEventType; const element: PWebUIChar; event_number: TWebUIEventID; bind_id: TWebUIBindID); cdecl;
 
   TOnWebUIEvent = procedure(Sender: TObject; const aEvent: IWebUIEventHandler) of object;
 
@@ -289,6 +298,7 @@ type
       function GetClientID: TWebUIClientID;
       function GetConnectionID : TWebUIConnectionID;
       function GetCookies : string;
+      function GetContext : Pointer;
 
       /// <summary>
       /// Get an argument as integer at a specific index.
@@ -560,6 +570,13 @@ type
       /// Client's full cookies.
       /// </summary>
       property Cookies           : string             read GetCookies;
+      /// <summary>
+      /// Get user data that is set using `IWebUIWindow.SetContext`.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_context)</see></para>
+      /// </remarks>
+      property Context           : Pointer            read GetContext;
   end;
 
   IWebUIWindow = interface
@@ -573,6 +590,9 @@ type
     function  GetOnWebUIEvent : TOnWebUIEvent;
     function  GetBestBrowser : TWebUIBrowser;
     function  GetAllowWebView : boolean;
+    {$IFDEF MSWINDOWS}
+    function  GetHWND : HWND;
+    {$ENDIF}
 
     procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
     procedure SetAllowWebView(aAllow : boolean);
@@ -691,6 +711,7 @@ type
     function    SetRootFolder(const path : string) : boolean;
     /// <summary>
     /// Set a custom handler to serve files. This custom handler should return full HTTP header and body.
+    /// This deactivates any previous handler set with `SetFileHandlerWindow`.
     /// </summary>
     /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
     /// <remarks>
@@ -698,6 +719,25 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
     /// </remarks>>
     procedure   SetFileHandler(handler: TWebUIFileHandlerCallback);
+    /// <summary>
+    /// Set a custom handler to serve files. This custom handler should
+    /// return full HTTP header and body.
+    /// This deactivates any previous handler set with `SetFileHandler`.
+    /// </summary>
+    /// <param name="handler">The handler function: `void myHandler(size_t window, const char* filename, * int* length)`.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler_window)</see></para>
+    /// </remarks>
+    procedure   SetFileHandlerWindow(handler: TWebUIFileHandlerWindowCallback);
+    /// <summary>
+    /// Use this API to set a file handler response if your backend need async response for `SetFileHandler`.
+    /// </summary>
+    /// <param name="response">The response buffer.</param>
+    /// <param name="length">The response size.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response_file_handler)</see></para>
+    /// </remarks>
+    procedure   SetResponseFileHandler(const response: Pointer; length: integer);
     /// <summary>
     /// Set the default embedded HTML favicon.
     /// </summary>
@@ -734,6 +774,15 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_size)</see></para>
     /// </remarks>
     procedure   SetSize(width, height: cardinal);
+    /// <summary>
+    /// Set the window minimum size.
+    /// </summary>
+    /// <param name="width">The window width.</param>
+    /// <param name="height">The window height.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_minimum_size)</see></para>
+    /// </remarks>
+    procedure   SetMinimumSize(width, height: cardinal);
     /// <summary>
     /// Set the window position.
     /// </summary>
@@ -875,6 +924,23 @@ type
     /// </remarks>
     procedure   SetHighContrast(status: boolean);
     /// <summary>
+    /// Use this API after using `Bind` to add any user data to it that can be read later using `webui_get_context()`.
+    /// </summary>
+    /// <param name="element_">The HTML element / JavaScript object.</param>
+    /// <param name="context">Any user data.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_context)</see></para>
+    /// </remarks>
+    procedure   SetContext(const element_ : string; context: Pointer);
+    /// <summary>
+    /// Add a user-defined web browser's CLI parameters.
+    /// </summary>
+    /// <param name="params">Command line parameters.</param>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_custom_parameters)</see></para>
+    /// </remarks>
+    procedure   SetCustomParameters(const params : string);
+    /// <summary>
     /// Window number or Window ID.
     /// </summary>
     property ID                : TWebUIWindowID   read GetID;
@@ -929,6 +995,15 @@ type
     /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
     /// </remarks>
     property Port             : NativeUInt        read GetPort             write SetPort2;
+    {$IFDEF MSWINDOWS}
+    /// <summary>
+    /// Gets Win32 window `HWND`. More reliable with WebView than web browser window, as browser PIDs may change on launch.
+    /// </summary>
+    /// <remarks>
+    /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_win32_get_hwnd)</see></para>
+    /// </remarks>
+    property Handle           : HWND              read GetHWND;
+    {$ENDIF}
     /// <summary>
     /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
     /// </summary>

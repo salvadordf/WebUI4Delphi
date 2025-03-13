@@ -542,6 +542,10 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetCookies">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetContext">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetContext">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="Create">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#Create">
 </object>
@@ -893,6 +897,10 @@
 <param name="Name" value="Cookies">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Cookies">
 </object>
+<li><object type="text/sitemap">
+<param name="Name" value="Context">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Context">
+</object>
 </ul>
 <li><object type="text/sitemap">
 <param name="Name" value="Methods">
@@ -946,6 +954,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetCookies">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetCookies">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetContext">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetContext">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetIntAt">
@@ -1096,6 +1108,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#Port">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Handle">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#Handle">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnWebUIEvent">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#OnWebUIEvent">
 </object>
@@ -1140,6 +1156,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetAllowWebView">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetAllowWebView">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetHWND">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetHWND">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
@@ -1206,6 +1226,14 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetFileHandler">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetFileHandlerWindow">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetFileHandlerWindow">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetResponseFileHandler">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetResponseFileHandler">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetIcon">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetIcon">
 </object>
@@ -1220,6 +1248,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetSize">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMinimumSize">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetMinimumSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetPosition">
@@ -1284,6 +1316,14 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetHighContrast">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetHighContrast">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetContext">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetContext">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetCustomParameters">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetCustomParameters">
 </object>
 </ul>
 </ul>
@@ -1352,6 +1392,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIFileHandlerCallback">
 <param name="Local" value="uWebUITypes.html#TWebUIFileHandlerCallback">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="TWebUIFileHandlerWindowCallback">
+<param name="Local" value="uWebUITypes.html#TWebUIFileHandlerWindowCallback">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="TWebUIInterfaceEventCallback">
@@ -1442,6 +1486,14 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#AllowWebView">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Port">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#Port">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Handle">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#Handle">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="OnWebUIEvent">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#OnWebUIEvent">
 </object>
@@ -1486,6 +1538,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetAllowWebView">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetAllowWebView">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetHWND">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetHWND">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
@@ -1592,6 +1648,14 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetFileHandler">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetFileHandlerWindow">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetFileHandlerWindow">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetResponseFileHandler">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetResponseFileHandler">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetIcon">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetIcon">
 </object>
@@ -1606,6 +1670,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetSize">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetSize">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMinimumSize">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetMinimumSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetPosition">
@@ -1672,6 +1740,14 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetHighContrast">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetContext">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetContext">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetCustomParameters">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetCustomParameters">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetNewWindowID">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetNewWindowID">
 </object>
@@ -1710,6 +1786,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ConnectionID">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#ConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Context">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#Context">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Cookies">
@@ -1772,6 +1852,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetConnectionID">
 <param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetConnectionID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetContext">
+<param name="Local" value="uWebUITypes.IWebUIEventHandler.html#GetContext">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetCookies">
@@ -1926,6 +2010,10 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ChildProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Handle">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#Handle">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ID">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#ID">
 </object>
@@ -1990,6 +2078,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="GetChildProcessID">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#GetChildProcessID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="GetHWND">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#GetHWND">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="GetID">
@@ -2084,12 +2176,24 @@
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetAllowWebView">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetContext">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetContext">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetCustomParameters">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetCustomParameters">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetEventBlocking">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetEventBlocking">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetFileHandler">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetFileHandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFileHandlerWindow">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetFileHandlerWindow">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetHide">
@@ -2106,6 +2210,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetKiosk">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetKiosk">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMinimumSize">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetMinimumSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetOnWebUIEvent">
@@ -2130,6 +2238,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPublic">
 <param name="Local" value="uWebUITypes.IWebUIWindow.html#SetPublic">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetResponseFileHandler">
+<param name="Local" value="uWebUITypes.IWebUIWindow.html#SetResponseFileHandler">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetRuntime">
@@ -2636,6 +2748,10 @@
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetConnectionID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetContext">
+<param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetContext">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetCookies">
 <param name="Local" value="uWebUIEventHandler.TWebUIEventHandler.html#GetCookies">
 </object>
@@ -2774,6 +2890,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#ChildProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="Handle">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#Handle">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="ID">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#ID">
 </object>
@@ -2792,6 +2912,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="ParentProcessID">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#ParentProcessID">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="Port">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#Port">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="Url">
@@ -2888,6 +3012,10 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetChildProcessID">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="GetHWND">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetHWND">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="GetID">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#GetID">
 </object>
@@ -2948,12 +3076,24 @@
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SendRaw">
 </object>
 <li><object type="text/sitemap">
+<param name="Name" value="SetContext">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetContext">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetCustomParameters">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetCustomParameters">
+</object>
+<li><object type="text/sitemap">
 <param name="Name" value="SetEventBlocking">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetEventBlocking">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetFileHandler">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetFileHandler">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetFileHandlerWindow">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetFileHandlerWindow">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetHide">
@@ -2970,6 +3110,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetKiosk">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetKiosk">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetMinimumSize">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetMinimumSize">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetPort2">
@@ -2990,6 +3134,10 @@
 <li><object type="text/sitemap">
 <param name="Name" value="SetPublic">
 <param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetPublic">
+</object>
+<li><object type="text/sitemap">
+<param name="Name" value="SetResponseFileHandler">
+<param name="Local" value="uWebUIWindow.TWebUIWindow.html#SetResponseFileHandler">
 </object>
 <li><object type="text/sitemap">
 <param name="Name" value="SetRuntime">

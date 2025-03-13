@@ -1,0 +1,60 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  Caption = 'chatgpt_api'
+  ClientHeight = 320
+  ClientWidth = 900
+  Padding.Left = 10.000000000000000000
+  Padding.Top = 10.000000000000000000
+  Padding.Right = 10.000000000000000000
+  Padding.Bottom = 10.000000000000000000
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnCloseQuery = FormCloseQuery
+  DesignerMasterStyle = 0
+  object MainPanel: TPanel
+    Align = Client
+    Size.Width = 880.000000000000000000
+    Size.Height = 300.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object AskChatGPTBtn: TButton
+      Align = Top
+      Size.Width = 880.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Ask ChatGPT'
+      TextSettings.Trimming = None
+      OnClick = AskChatGPTBtnClick
+    end
+    object AnswerMem: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Align = Bottom
+      Position.Y = 192.000000000000000000
+      Size.Width = 880.000000000000000000
+      Size.Height = 108.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Viewport.Width = 876.000000000000000000
+      Viewport.Height = 104.000000000000000000
+    end
+    object QuestionMem: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'What is the capital of Canada?')
+      Align = Client
+      Size.Width = 880.000000000000000000
+      Size.Height = 170.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 876.000000000000000000
+      Viewport.Height = 166.000000000000000000
+    end
+  end
+end

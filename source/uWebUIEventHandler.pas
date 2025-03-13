@@ -44,6 +44,7 @@ type
       function GetClientID: TWebUIClientID;
       function GetConnectionID : TWebUIConnectionID;
       function GetCookies : string;
+      function GetContext : Pointer;
 
     public
       constructor Create(const aEvent: PWebUIEvent); overload;
@@ -453,6 +454,14 @@ begin
     Result := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(FEvent.cookies))
    else
     Result := '';
+end;
+
+function TWebUIEventHandler.GetContext : Pointer;
+begin
+  if Initialized then
+    Result := webui_get_context(@FEvent)
+   else
+    Result := nil;
 end;
 
 function TWebUIEventHandler.GetIntAt(index: NativeUInt): int64;

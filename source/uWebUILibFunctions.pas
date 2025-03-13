@@ -56,6 +56,27 @@ var
   webui_bind : function(window: TWebUIWindowID; const element: PWebUIChar; func: TWebUIBindCallback): TWebUIBindID; cdecl;
 
   /// <summary>
+  /// Use this API after using `webui_bind()` to add any user data to it that can be read later using `webui_get_context()`.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="element">The HTML element / JavaScript object.</param>
+  /// <param name="context">Any user data.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_context)</see></para>
+  /// </remarks>
+  webui_set_context : procedure(window: TWebUIWindowID; const element: PWebUIChar; context: Pointer); cdecl;
+
+  /// <summary>
+  /// Get user data that is set using `webui_set_context()`.
+  /// </summary>
+  /// <param name="e">The event struct.</param>
+  /// <returns>Returns user data pointer.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_context)</see></para>
+  /// </remarks>
+  webui_get_context : function(e: PWebUIEvent): Pointer; cdecl;
+
+  /// <summary>
   /// Get the recommended web browser ID to use. If you are already using one,
   /// this function will return the same ID.
   /// </summary>
@@ -132,6 +153,16 @@ var
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_kiosk)</see></para>
   /// </remarks>
   webui_set_kiosk : procedure(window: TWebUIWindowID; status: boolean); cdecl;
+
+  /// <summary>
+  /// Add a user-defined web browser's CLI parameters.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="params">Command line parameters.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_custom_parameters)</see></para>
+  /// </remarks>
+  webui_set_custom_parameters : procedure(window: TWebUIWindowID; params: PWebUIChar); cdecl;
 
   /// <summary>
   /// Set the window with high-contrast support. Useful when you want to build a better high-contrast theme with CSS.
@@ -228,6 +259,7 @@ var
 
   /// <summary>
   /// Set a custom handler to serve files. This custom handler should return full HTTP header and body.
+  /// This deactivates any previous handler set with `webui_set_file_handler_window`.
   /// </summary>
   /// <param name="window">The window number.</param>
   /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
@@ -235,6 +267,29 @@ var
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
   /// </remarks>
   webui_set_file_handler : procedure(window: TWebUIWindowID; handler: TWebUIFileHandlerCallback); cdecl;
+
+  /// <summary>
+  /// Set a custom handler to serve files. This custom handler should
+  /// return full HTTP header and body.
+  /// This deactivates any previous handler set with `webui_set_file_handler`.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="handler">The handler function: `void myHandler(size_t window, const char* filename, * int* length)`.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler_window)</see></para>
+  /// </remarks>
+  webui_set_file_handler_window : procedure(window: TWebUIWindowID; handler: TWebUIFileHandlerWindowCallback); cdecl;
+
+  /// <summary>
+  /// Use this API to set a file handler response if your backend need async response for `webui_set_file_handler()`.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="response">The response buffer.</param>
+  /// <param name="length">The response size.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response_file_handler)</see></para>
+  /// </remarks>
+  webui_interface_set_response_file_handler : procedure(window: TWebUIWindowID; const response: Pointer; length: integer); cdecl;
 
   /// <summary>
   /// Check if the specified window is still running.
@@ -306,6 +361,17 @@ var
   webui_malloc : function(size: NativeUInt): Pointer; cdecl;
 
   /// <summary>
+  /// Copy raw data.
+  /// </summary>
+  /// <param name="dest">Destination memory pointer.</param>
+  /// <param name="src">Source memory pointer.</param>
+  /// <param name="count">Bytes to copy.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_memcpy)</see></para>
+  /// </remarks>
+  webui_memcpy : procedure(dest, src: Pointer; count: NativeUInt); cdecl;
+
+  /// <summary>
   /// Safely send raw data to the UI. All clients.
   /// </summary>
   /// <param name="window">The window number.</param>
@@ -349,6 +415,17 @@ var
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_size)</see></para>
   /// </remarks>
   webui_set_size : procedure(window: TWebUIWindowID; width, height: cardinal); cdecl;
+
+  /// <summary>
+  /// Set the window minimum size.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="width">The window width.</param>
+  /// <param name="height">The window height.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_minimum_size)</see></para>
+  /// </remarks>
+  webui_set_minimum_size : procedure(window: TWebUIWindowID; width, height: cardinal); cdecl;
 
   /// <summary>
   /// Set the window position.
@@ -476,6 +553,16 @@ var
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_child_process_id)</see></para>
   /// </remarks>
   webui_get_child_process_id : function(window: TWebUIWindowID): NativeUInt; cdecl;
+
+  /// <summary>
+  /// Gets Win32 window `HWND`. More reliable with WebView than web browser window, as browser PIDs may change on launch.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <returns>Returns the window `hwnd` as `void*`.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_win32_get_hwnd)</see></para>
+  /// </remarks>
+  webui_win32_get_hwnd : function(window: TWebUIWindowID): Pointer; cdecl;
 
   /// <summary>
   /// Get the network port of a running window. This can be useful to determine the HTTP link of `webui.js`
@@ -871,6 +958,78 @@ var
   /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_get_size_at)</see></para>
   /// </remarks>
   webui_interface_get_size_at : function(window: TWebUIWindowID; event_number: TWebUIEventID; index: NativeUInt): NativeUInt; cdecl;
+
+  /// <summary>
+  /// Show a window using embedded HTML, or a file. If the window is already open, it will be refreshed. Single client.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="content">The HTML, URL, Or a local file.</param>
+  /// <returns>Returns True if showing the window is successed.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_show_client)</see></para>
+  /// </remarks>
+  webui_interface_show_client : function(window: TWebUIWindowID; event_number: TWebUIEventID; const content: PWebUIChar): boolean; cdecl;
+
+  /// <summary>
+  /// Close a specific client.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_close_client)</see></para>
+  /// </remarks>
+  webui_interface_close_client : procedure(window: TWebUIWindowID; event_number: TWebUIEventID); cdecl;
+
+  /// <summary>
+  /// Safely send raw data to the UI. Single client.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="function_">The JavaScript function to receive raw data: `function myFunc(myData){}`.</param>
+  /// <param name="raw">The raw data buffer.</param>
+  /// <param name="size">The raw data size in bytes.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_close_client)</see></para>
+  /// </remarks>
+  webui_interface_send_raw_client : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const function_: PWebUIChar; const raw: Pointer; size: NativeUInt); cdecl;
+
+  /// <summary>
+  /// Navigate to a specific URL. Single client.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="url">Full HTTP URL.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_navigate_client)</see></para>
+  /// </remarks>
+  webui_interface_navigate_client : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const url: PWebUIChar); cdecl;
+
+  /// <summary>
+  /// Run JavaScript without waiting for the response. Single client.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="script_">The JavaScript to be run.</param>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_run_client)</see></para>
+  /// </remarks>
+  webui_interface_run_client : procedure(window: TWebUIWindowID; event_number: TWebUIEventID; const script_: PWebUIChar); cdecl;
+
+  /// <summary>
+  /// Run JavaScript and get the response back. Single client. Make sure your local buffer can hold the response.
+  /// </summary>
+  /// <param name="window">The window number.</param>
+  /// <param name="event_number">The event number.</param>
+  /// <param name="script">The JavaScript to be run.</param>
+  /// <param name="timeout">The execution timeout in seconds.</param>
+  /// <param name="buffer">The local buffer to hold the response.</param>
+  /// <param name="buffer_length">The local buffer size.</param>
+  /// <returns>Returns True if there is no execution error.</returns>
+  /// <remarks>
+  /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_script_client)</see></para>
+  /// </remarks>
+  webui_interface_script_client : function(window: TWebUIWindowID; event_number: TWebUIEventID; const script: PWebUIChar; timeout: NativeUInt; buffer: PWebUIChar; buffer_length: NativeUInt): boolean; cdecl;
 
 implementation
 

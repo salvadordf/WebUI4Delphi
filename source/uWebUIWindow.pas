@@ -45,6 +45,9 @@ type
       function  GetOnWebUIEvent : TOnWebUIEvent;
       function  GetBestBrowser : TWebUIBrowser;
       function  GetAllowWebView : boolean;
+      {$IFDEF MSWINDOWS}
+      function  GetHWND : HWND;
+      {$ENDIF}
 
       procedure SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
       procedure SetAllowWebView(aAllow : boolean);
@@ -190,6 +193,7 @@ type
       function    SetRootFolder(const path : string) : boolean;
       /// <summary>
       /// Set a custom handler to serve files. This custom handler should return full HTTP header and body.
+      /// This deactivates any previous handler set with `SetFileHandlerWindow`.
       /// </summary>
       /// <param name="handler">The handler function: `void myHandler(const char* filename, * int* length)`.</param>
       /// <remarks>
@@ -197,6 +201,25 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler)</see></para>
       /// </remarks>>
       procedure   SetFileHandler(handler: TWebUIFileHandlerCallback);
+      /// <summary>
+      /// Set a custom handler to serve files. This custom handler should
+      /// return full HTTP header and body.
+      /// This deactivates any previous handler set with `SetFileHandler`.
+      /// </summary>
+      /// <param name="handler">The handler function: `void myHandler(size_t window, const char* filename, * int* length)`.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_file_handler_window)</see></para>
+      /// </remarks>
+      procedure   SetFileHandlerWindow(handler: TWebUIFileHandlerWindowCallback);
+      /// <summary>
+      /// Use this API to set a file handler response if your backend need async response for `SetFileHandler`.
+      /// </summary>
+      /// <param name="response">The response buffer.</param>
+      /// <param name="length">The response size.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_interface_set_response_file_handler)</see></para>
+      /// </remarks>
+      procedure   SetResponseFileHandler(const response: Pointer; length: integer);
       /// <summary>
       /// Set the default embedded HTML favicon.
       /// </summary>
@@ -233,6 +256,15 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_size)</see></para>
       /// </remarks>
       procedure   SetSize(width, height: cardinal);
+      /// <summary>
+      /// Set the window minimum size.
+      /// </summary>
+      /// <param name="width">The window width.</param>
+      /// <param name="height">The window height.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_minimum_size)</see></para>
+      /// </remarks>
+      procedure   SetMinimumSize(width, height: cardinal);
       /// <summary>
       /// Set the window position.
       /// </summary>
@@ -374,6 +406,23 @@ type
       /// </remarks>
       procedure   SetHighContrast(status: boolean);
       /// <summary>
+      /// Use this API after using `Bind` to add any user data to it that can be read later using `webui_get_context()`.
+      /// </summary>
+      /// <param name="element_">The HTML element / JavaScript object.</param>
+      /// <param name="context">Any user data.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_context)</see></para>
+      /// </remarks>
+      procedure   SetContext(const element_ : string; context: Pointer);
+      /// <summary>
+      /// Add a user-defined web browser's CLI parameters.
+      /// </summary>
+      /// <param name="params">Command line parameters.</param>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_set_custom_parameters)</see></para>
+      /// </remarks>
+      procedure   SetCustomParameters(const params : string);
+      /// <summary>
       /// Get a free window number that can be used with `webui_new_window_id()`.
       /// </summary>
       /// <returns>Returns the first available free window number. Starting from 1.</returns>
@@ -437,6 +486,15 @@ type
       /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_port)</see></para>
       /// </remarks>
       property Port             : NativeUInt        read GetPort             write SetPort2;
+      {$IFDEF MSWINDOWS}
+      /// <summary>
+      /// Gets Win32 window `HWND`. More reliable with WebView than web browser window, as browser PIDs may change on launch.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_win32_get_hwnd)</see></para>
+      /// </remarks>
+      property Handle           : HWND              read GetHWND;
+      {$ENDIF}
       /// <summary>
       /// Event triggered on a browser event. It's necessay to bind the event using the TWebUIWindow.Bind* functions without a "func_" parameter.
       /// </summary>
@@ -638,6 +696,16 @@ begin
   Result := FAllowWebView;
 end;
 
+{$IFDEF MSWINDOWS}
+function TWebUIWindow.GetHWND : HWND;
+begin
+  if Initialized then
+    Result := HWND(webui_win32_get_hwnd(FID))
+   else
+    Result := 0;
+end;
+{$ENDIF}
+
 procedure TWebUIWindow.SetOnWebUIEvent(const aEvent : TOnWebUIEvent);
 begin
   FOnWebUIEvent := aEvent;
@@ -671,6 +739,44 @@ procedure TWebUIWindow.SetHighContrast(status: boolean);
 begin
   if Initialized then
     webui_set_high_contrast(FID, status);
+end;
+
+procedure TWebUIWindow.SetContext(const element_ : string; context: Pointer);
+var
+  LElement    : AnsiString;
+  LElementPtr : PWebUIChar;
+begin
+  if Initialized then
+    begin
+      if (length(element_) > 0) then
+        begin
+          LElement    := UTF8Encode(element_ + #0);
+          LElementPtr := @LElement[1];
+        end
+       else
+        LElementPtr := nil;
+
+      webui_set_context(FID, LElementPtr, context);
+    end;
+end;
+
+procedure TWebUIWindow.SetCustomParameters(const params : string);
+var
+  LParams    : AnsiString;
+  LParamsPtr : PWebUIChar;
+begin
+  if Initialized then
+    begin
+      if (length(params) > 0) then
+        begin
+          LParams    := UTF8Encode(params + #0);
+          LParamsPtr := @LParams[1];
+        end
+       else
+        LParamsPtr := nil;
+
+      webui_set_custom_parameters(FID, LParamsPtr);
+    end;
 end;
 
 procedure TWebUIWindow.doOnWebUIEvent(const aEvent: IWebUIEventHandler);
@@ -854,6 +960,18 @@ begin
     webui_set_file_handler(FID, handler);
 end;
 
+procedure TWebUIWindow.SetFileHandlerWindow(handler: TWebUIFileHandlerWindowCallback);
+begin
+  if Initialized then
+    webui_set_file_handler_window(FID, handler);
+end;
+
+procedure TWebUIWindow.SetResponseFileHandler(const response: Pointer; length: integer);
+begin
+  if Initialized then
+    webui_interface_set_response_file_handler(FID, response, length);
+end;
+
 procedure TWebUIWindow.SetIcon(const icon, icon_type : string);
 var
   LIcon, LIconType: AnsiString;
@@ -902,6 +1020,12 @@ procedure TWebUIWindow.SetSize(width, height: cardinal);
 begin
   if Initialized then
     webui_set_size(FID, width, height);
+end;
+
+procedure TWebUIWindow.SetMinimumSize(width, height: cardinal);
+begin
+  if Initialized then
+    webui_set_minimum_size(FID, width, height);
 end;
 
 procedure TWebUIWindow.SetPosition(x, y: cardinal);
@@ -1028,13 +1152,13 @@ begin
   if Initialized and (length(script_) > 0) then
     try
       LBuffer := webui_malloc(buffer_length);
+      FillChar(LBuffer^, buffer_length, #0);
       LScript := UTF8Encode(script_ + #0);
 
       if webui_script(FID, @LScript[1], timeout, LBuffer, buffer_length) then
-        begin
-          buffer := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
-          Result := True;
-        end;
+        Result := True;
+
+      buffer := {$IFDEF DELPHI12_UP}UTF8ToString{$ELSE}UTF8Decode{$ENDIF}(PAnsiChar(LBuffer));
     finally
       if (LBuffer <> nil) then
         webui_free(LBuffer);

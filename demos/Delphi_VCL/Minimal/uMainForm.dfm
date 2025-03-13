@@ -32,7 +32,7 @@ object MainForm: TMainForm
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 0
-    ExplicitLeft = 7
+    ExplicitLeft = 13
     ExplicitTop = 13
     object ShowBrowserBtn: TButton
       Left = 5
@@ -44,8 +44,7 @@ object MainForm: TMainForm
       TabOrder = 0
       OnClick = ShowBrowserBtnClick
       ExplicitLeft = 0
-      ExplicitTop = 4
-      ExplicitHeight = 25
+      ExplicitTop = 6
     end
   end
 end
