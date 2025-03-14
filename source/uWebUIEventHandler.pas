@@ -338,6 +338,13 @@ type
       /// Client's full cookies.
       /// </summary>
       property Cookies           : string             read GetCookies;
+      /// <summary>
+      /// Get user data that is set using `IWebUIWindow.SetContext`.
+      /// </summary>
+      /// <remarks>
+      /// <para><see href="https://github.com/webui-dev/webui/blob/main/include/webui.h">WebUI source file: /include/webui.h (webui_get_context)</see></para>
+      /// </remarks>
+      property Context           : Pointer            read GetContext;
   end;
 
 implementation
