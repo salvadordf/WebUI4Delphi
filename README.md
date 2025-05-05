@@ -6,7 +6,7 @@ However, you can also decide to have a visible Delphi or Lazarus application com
 
 WebUI4Delphi can be used in Delphi or Lazarus applications for Windows, Linux and MacOS. 
 
-WebUI4Delphi was developed and tested on Delphi 12.3 and Lazarus 3.8/FPC 3.2.2 but it also supports Delphi 2010. 
+WebUI4Delphi was developed and tested on Delphi 12.3 and Lazarus 4.0/FPC 3.2.2 but it also supports Delphi 2010. 
 
 WebUI4Delphi includes VCL, FireMonkey (FMX), LCL and console examples.
 
