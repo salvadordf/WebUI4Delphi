@@ -98,6 +98,7 @@ You can also support this project with Liberapay.
 ## Related projects 
 * [CEF4Delphi](https://github.com/salvadordf/CEF4Delphi) 
 * [WebView4Delphi](https://github.com/salvadordf/WebView4Delphi)
+* [VirtualTouchKeyboard4Delphi](https://github.com/salvadordf/VirtualTouchKeyboard4Delphi)
 * [PasDoc](https://pasdoc.github.io/)
 
 ## Other resources
